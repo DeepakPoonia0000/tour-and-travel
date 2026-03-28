@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <%- include('partials/head') %>
+  </head>
+  <body class="bg-slate-50 text-slate-950">
+    <%- include('partials/header') %>
+    <main class="space-y-12">
+      <section class="relative overflow-hidden bg-slate-950 text-white">
+        <div class="absolute inset-0">
+          <% if (countries.length && countries[0].heroImage) { %>
+            <img src="<%= countries[0].heroImage %>" alt="<%= countries[0].name %>" class="h-full w-full object-cover opacity-90" />
+          <% } else { %>
+            <div class="h-full w-full bg-slate-900"></div>
+          <% } %>
+          <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/50 to-transparent"></div>
+        </div>
+        <div class="relative mx-auto max-w-screen-2xl px-6 py-24 lg:py-32">
+          <div class="grid gap-12 lg:grid-cols-[1.1fr_0.9fr] items-center">
+            <div class="max-w-2xl">
+              <span class="inline-flex items-center gap-2 rounded-full bg-orange-100/20 px-4 py-2 text-sm font-semibold uppercase tracking-[0.24em] text-orange-200">
+                Featured Destination
+              </span>
+              <h1 class="mt-8 text-5xl font-serif font-semibold tracking-tight text-white sm:text-6xl lg:text-7xl">
+                Kyoto: The Heart of Old Japan
+              </h1>
+              <p class="mt-6 max-w-xl text-lg leading-8 text-slate-200/90">
+                Explore sacred temples, hidden tea rituals, and modern serenity in a city where every street, garden, and shrine tells a story of time-honored tradition.
+              </p>
+              <div class="mt-10 flex flex-wrap gap-4">
+                <a href="/countries" class="inline-flex items-center justify-center rounded-full bg-primary px-8 py-4 text-sm font-semibold text-white shadow-lg shadow-slate-950/25 transition hover:bg-slate-900">
+                  Explore the City
+                </a>
+                <a href="/activities" class="inline-flex items-center justify-center rounded-full border border-white/20 bg-white/10 px-8 py-4 text-sm font-semibold text-white transition hover:bg-white/20">
+                  Browse Experiences
+                </a>
+              </div>
+            </div>
+            <div class="grid gap-6">
+              <div class="relative overflow-hidden rounded-[2rem] border border-white/10 bg-slate-900/80 shadow-2xl">
+                <img src="https://images.unsplash.com/photo-1526481280694-3bfa7568d96f?auto=format&fit=crop&w=1200&q=80" alt="Kyoto temple" class="h-96 w-full object-cover" />
+                <div class="absolute inset-0 bg-gradient-to-t from-slate-950/90 via-transparent"></div>
+                <div class="absolute bottom-6 left-6">
+                  <p class="text-sm uppercase tracking-[0.32em] text-orange-200/80">Cultural Pulse</p>
+                  <h2 class="mt-3 text-3xl font-semibold text-white">Seasons of Silence</h2>
+                </div>
+              </div>
+              <div class="grid gap-4 sm:grid-cols-2">
+                <div class="rounded-[1.75rem] bg-white/10 p-6 text-white shadow-xl backdrop-blur-xl">
+                  <p class="text-xs uppercase tracking-[0.3em] text-orange-200/80">Current Vibe</p>
+                  <p class="mt-4 text-xl font-semibold">Serene & Temperate</p>
+                  <p class="mt-2 text-sm text-slate-100/80">Peak Koyo season with crisp mornings and glowing temple light.</p>
+                </div>
+                <div class="rounded-[1.75rem] bg-white/10 p-6 text-white shadow-xl backdrop-blur-xl">
+                  <p class="text-xs uppercase tracking-[0.3em] text-orange-200/80">Featured Path</p>
+                  <p class="mt-4 text-xl font-semibold">Fushimi Inari</p>
+                  <p class="mt-2 text-sm text-slate-100/80">The legendary torii trail leading to the mountain sanctuary.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="max-w-screen-2xl mx-auto px-6 pb-24">
+        <div class="flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
+          <div>
+            <p class="text-sm uppercase tracking-[0.28em] text-slate-600 font-semibold">Sacred Grounds</p>
+            <h2 class="text-4xl font-serif tracking-tight text-slate-950">Top attractions in Kyoto</h2>
+          </div>
+          <a href="/attractions" class="text-sm font-semibold text-secondary transition hover:text-primary">View all attractions →</a>
+        </div>
+        <div class="mt-10 grid gap-6 lg:grid-cols-12">
+          <% const featured = attractions.slice(0, 4); %>
+          <div class="lg:col-span-7 rounded-[2rem] overflow-hidden bg-slate-950 text-white shadow-2xl">
+            <% if (featured[0]) { %>
+              <img src="<%= featured[0].heroImage || 'https://images.unsplash.com/photo-1526481280694-3bfa7568d96f?auto=format&fit=crop&w=1200&q=80' %>" alt="<%= featured[0].name %>" class="h-[520px] w-full object-cover" />
+              <div class="p-10">
+                <p class="text-sm uppercase tracking-[0.3em] text-orange-200/80">Featured Landmark</p>
+                <h3 class="mt-4 text-4xl font-semibold"><%= featured[0].name %></h3>
+                <p class="mt-4 max-w-xl text-slate-200"><%= featured[0].summary || featured[0].description?.slice(0, 140) || 'A landmark worth visiting.' %></p>
+              </div>
+            <% } else { %>
+              <div class="flex h-[520px] items-center justify-center bg-slate-900 text-slate-200">No attraction loaded</div>
+            <% } %>
+          </div>
+          <div class="lg:col-span-5 grid gap-6">
+            <% featured.slice(1).forEach(item => { %>
+              <article class="rounded-[1.75rem] border border-slate-200/10 bg-white shadow-lg transition hover:-translate-y-1">
+                <img src="<%= item.heroImage || 'https://images.unsplash.com/photo-1526481280694-3bfa7568d96f?auto=format&fit=crop&w=1200&q=80' %>" alt="<%= item.name %>" class="h-56 w-full object-cover rounded-t-[1.75rem]" />
+                <div class="p-6">
+                  <p class="text-xs uppercase tracking-[0.28em] text-secondary"><%= item.category || 'Attraction' %></p>
+                  <h3 class="mt-3 text-2xl font-semibold text-slate-950"><a href="/attractions/<%= item.slug %>"><%= item.name %></a></h3>
+                  <p class="mt-3 text-sm text-slate-600"><%= item.summary || item.description?.slice(0, 120) || 'Explore this local highlight.' %></p>
+                </div>
+              </article>
+            <% }) %>
+          </div>
+        </div>
+      </section>
+
+      <section class="bg-surface2 py-16">
+        <div class="max-w-screen-2xl mx-auto px-6">
+          <div class="flex flex-col gap-6 lg:flex-row lg:items-center lg:justify-between">
+            <div>
+              <p class="text-sm uppercase tracking-[0.28em] text-slate-600 font-semibold">Local experiences</p>
+              <h2 class="text-4xl font-serif tracking-tight text-slate-950">Curated activities for every traveler</h2>
+            </div>
+            <a href="/activities" class="text-sm font-semibold text-secondary transition hover:text-primary">Browse all activities →</a>
+          </div>
+          <div class="mt-10 grid gap-6 lg:grid-cols-3">
+            <% activities.slice(0, 3).forEach(activity => { %>
+              <article class="rounded-[1.75rem] bg-white p-6 shadow-xl transition hover:-translate-y-1">
+                <h3 class="text-2xl font-semibold text-slate-950"><a href="/activities/<%= activity.slug %>"><%= activity.name %></a></h3>
+                <p class="mt-4 text-sm text-slate-600"><%= activity.summary || activity.description?.slice(0, 120) || 'A memorable experience curated by the admin.' %></p>
+                <span class="mt-6 inline-flex rounded-full bg-primary/10 px-4 py-2 text-sm font-semibold text-primary"><%= activity.category || 'Activity' %></span>
+              </article>
+            <% }) %>
+          </div>
+        </div>
+      </section>
+
+      <% if (packages && packages.length) { %>
+        <section class="py-16">
+          <div class="max-w-screen-2xl mx-auto px-6">
+            <div class="flex flex-col gap-6 lg:flex-row lg:items-center lg:justify-between">
+              <div>
+                <p class="text-sm uppercase tracking-[0.28em] text-slate-600 font-semibold">Tour packages</p>
+                <h2 class="text-4xl font-serif tracking-tight text-slate-950">Featured itineraries</h2>
+              </div>
+              <a href="/packages" class="text-sm font-semibold text-secondary transition hover:text-primary">View all packages →</a>
+            </div>
+            <div class="mt-10 grid gap-6 lg:grid-cols-3">
+              <% packages.slice(0, 3).forEach(pkg => { %>
+                <article class="rounded-[1.75rem] bg-white p-6 shadow-xl transition hover:-translate-y-1">
+                  <h3 class="text-2xl font-semibold text-slate-950"><a href="/packages/<%= pkg.slug %>"><%= pkg.name %></a></h3>
+                  <p class="mt-4 text-sm text-slate-600"><%= pkg.summary || pkg.description?.slice(0, 120) || 'A curated travel package itinerary.' %></p>
+                  <div class="mt-5 flex flex-wrap gap-3 text-sm text-slate-500">
+                    <% if (pkg.duration) { %><span class="rounded-full bg-slate-100 px-3 py-1"><%= pkg.duration %></span><% } %>
+                    <% if (pkg.price) { %><span class="rounded-full bg-slate-100 px-3 py-1"><%= pkg.price %></span><% } %>
+                  </div>
+                </article>
+              <% }) %>
+            </div>
+          </div>
+        </section>
+      <% } %>
+    </main>
+    <%- include('partials/footer') %>
+  </body>
+</html>

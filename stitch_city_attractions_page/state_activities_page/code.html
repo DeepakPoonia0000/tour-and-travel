@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>The Editorial Explorer | Tuscany: A Renaissance of the Soul</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif:ital,wght@0,400;0,700;1,400&amp;family=Plus+Jakarta+Sans:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "on-secondary": "#ffffff",
+              "on-background": "#191b22",
+              "error-container": "#ffdad6",
+              "on-surface-variant": "#434653",
+              "on-primary-fixed": "#001946",
+              "primary-fixed": "#dae2ff",
+              "secondary-fixed-dim": "#ffb68d",
+              "on-secondary-fixed": "#331200",
+              "surface-container-lowest": "#ffffff",
+              "surface-container-low": "#f3f3fc",
+              "inverse-on-surface": "#f0f0f9",
+              "surface-tint": "#2559bd",
+              "on-primary": "#ffffff",
+              "surface-container-high": "#e7e7f0",
+              "on-surface": "#191b22",
+              "on-error-container": "#93000a",
+              "surface-bright": "#faf8ff",
+              "tertiary-fixed-dim": "#59dbc7",
+              "primary-fixed-dim": "#b1c5ff",
+              "on-primary-fixed-variant": "#00419e",
+              "primary": "#00327d",
+              "error": "#ba1a1a",
+              "inverse-surface": "#2e3037",
+              "tertiary-container": "#00584e",
+              "on-primary-container": "#a5bdff",
+              "background": "#faf8ff",
+              "on-tertiary-fixed": "#00201c",
+              "tertiary-fixed": "#79f7e3",
+              "surface-dim": "#d9d9e2",
+              "inverse-primary": "#b1c5ff",
+              "outline-variant": "#c3c6d5",
+              "on-tertiary-fixed-variant": "#005047",
+              "on-secondary-container": "#672c00",
+              "on-tertiary": "#ffffff",
+              "on-secondary-fixed-variant": "#763300",
+              "secondary-fixed": "#ffdbc9",
+              "surface-container-highest": "#e2e2eb",
+              "surface": "#faf8ff",
+              "primary-container": "#0047ab",
+              "tertiary": "#003f37",
+              "secondary-container": "#fc8a40",
+              "surface-container": "#ededf6",
+              "secondary": "#9b4500",
+              "outline": "#737784",
+              "on-tertiary-container": "#50d3bf",
+              "surface-variant": "#e2e2eb",
+              "on-error": "#ffffff"
+            },
+            fontFamily: {
+              "headline": ["Noto Serif", "serif"],
+              "body": ["Plus Jakarta Sans", "sans-serif"],
+              "label": ["Plus Jakarta Sans", "sans-serif"]
+            },
+            borderRadius: {"DEFAULT": "0.25rem", "lg": "1rem", "xl": "1.5rem", "full": "9999px"},
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            vertical-align: middle;
+        }
+        .perspective-hero {
+            perspective: 1000px;
+        }
+        .glass-panel {
+            background: rgba(250, 248, 255, 0.8);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+        }
+    </style>
+</head>
+<body class="bg-background text-on-surface font-body selection:bg-secondary-fixed selection:text-on-secondary-fixed">
+<!-- TopNavBar -->
+<header class="fixed top-0 w-full z-50 bg-surface/80 dark:bg-slate-950/80 backdrop-blur-md shadow-sm dark:shadow-none">
+<div class="flex justify-between items-center px-8 py-4 max-w-screen-2xl mx-auto">
+<div class="text-2xl font-semibold tracking-tight text-blue-900 dark:text-blue-50 font-headline">The Editorial Explorer</div>
+<nav class="hidden md:flex items-center space-x-8">
+<a class="text-blue-900 dark:text-blue-400 border-b-2 border-orange-700 pb-1 font-headline italic text-lg leading-relaxed" href="#">Destinations</a>
+<a class="text-slate-600 dark:text-slate-400 hover:text-blue-800 dark:hover:text-blue-200 transition-colors font-headline italic text-lg leading-relaxed" href="#">Experiences</a>
+<a class="text-slate-600 dark:text-slate-400 hover:text-blue-800 dark:hover:text-blue-200 transition-colors font-headline italic text-lg leading-relaxed" href="#">Journal</a>
+<a class="text-slate-600 dark:text-slate-400 hover:text-blue-800 dark:hover:text-blue-200 transition-colors font-headline italic text-lg leading-relaxed" href="#">About</a>
+</nav>
+<div class="flex items-center space-x-6">
+<span class="material-symbols-outlined text-primary cursor-pointer" data-icon="search">search</span>
+<button class="bg-secondary text-on-secondary px-6 py-2 rounded-lg font-medium transition-transform scale-98 active:opacity-80">Book Now</button>
+</div>
+</div>
+</header>
+<main class="pt-20">
+<!-- Perspective Hero Section -->
+<section class="relative h-[870px] overflow-hidden flex items-end">
+<div class="absolute inset-0 z-0">
+<img class="w-full h-full object-cover" data-alt="wide angle panoramic view of rolling tuscan hills with a stone farmhouse and cypress trees under a soft golden sunset sky" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCMRG8_fkFsyjHS-TMfpCKbIURYfO4b8BstU7CE_E0ITsQtJcDLwOHn4GHRFcJzqM_FzmUjBL3tC2b_UkCKQEApykiYu-YO_lM5DkcFHEk73BNq9l1NRIxM9RqY-gQgcBmCn4DloQBtIHAS4hTaL_IyXX3TMuTTuTMHp5qllFbXnQBKUsAssfi69tJJ6wWYAl2V3K1GkOrVfpmUt8cqRx2g6iaIOEG4cfsNLdnIrhdfsL_k9i0Lq2osACI0vlaTMmOZRptB6pQdvWPY"/>
+<div class="absolute inset-0 bg-gradient-to-t from-primary/60 to-transparent"></div>
+</div>
+<div class="relative z-10 max-w-screen-2xl mx-auto w-full px-8 pb-24">
+<div class="max-w-3xl">
+<span class="bg-secondary-container text-on-secondary-container px-4 py-1 rounded-full text-xs font-bold tracking-widest uppercase mb-6 inline-block">REGIONAL SPOTLIGHT</span>
+<h1 class="text-white font-headline text-6xl md:text-8xl mb-6 leading-tight">Tuscany</h1>
+<p class="text-white/90 text-xl font-body leading-relaxed max-w-2xl italic">
+                        Where the cypress-lined horizons meet the cradle of the Renaissance. Experience a land defined by golden light, world-class vintage, and an artistic legacy that spans centuries.
+                    </p>
+</div>
+</div>
+<!-- Overlapping Summary Card -->
+<div class="absolute -bottom-12 right-8 md:right-24 z-20 hidden md:block">
+<div class="bg-surface-container-lowest p-10 rounded-xl shadow-2xl max-w-md">
+<div class="flex items-center gap-4 mb-4">
+<span class="material-symbols-outlined text-secondary" data-icon="explore">explore</span>
+<h3 class="text-primary font-bold text-lg">Curated Highlights</h3>
+</div>
+<ul class="space-y-4 text-on-surface-variant">
+<li class="flex justify-between items-center border-b border-surface-container-high pb-2">
+<span>Chianti Wine Routes</span>
+<span class="font-bold text-primary">Arezzo</span>
+</li>
+<li class="flex justify-between items-center border-b border-surface-container-high pb-2">
+<span>Renaissance Art Tour</span>
+<span class="font-bold text-primary">Florence</span>
+</li>
+<li class="flex justify-between items-center">
+<span>Thermal Hot Springs</span>
+<span class="font-bold text-primary">Saturnia</span>
+</li>
+</ul>
+</div>
+</div>
+</section>
+<!-- Region Navigation Chips -->
+<section class="max-w-screen-2xl mx-auto px-8 mt-32 mb-16">
+<div class="flex flex-wrap gap-4 items-center">
+<span class="text-on-surface-variant font-label text-sm uppercase tracking-widest mr-4">Filter by Region:</span>
+<button class="bg-secondary-container text-on-secondary-container px-6 py-2 rounded-full font-medium transition-all">All Regions</button>
+<button class="bg-surface-container-high text-on-surface hover:bg-surface-container-highest px-6 py-2 rounded-full font-medium transition-all">Chianti Valley</button>
+<button class="bg-surface-container-high text-on-surface hover:bg-surface-container-highest px-6 py-2 rounded-full font-medium transition-all">Val d'Orcia</button>
+<button class="bg-surface-container-high text-on-surface hover:bg-surface-container-highest px-6 py-2 rounded-full font-medium transition-all">Maremma Coast</button>
+<button class="bg-surface-container-high text-on-surface hover:bg-surface-container-highest px-6 py-2 rounded-full font-medium transition-all">Appenine Mountains</button>
+</div>
+</section>
+<!-- Activities Grid (Asymmetric Bento Style) -->
+<section class="max-w-screen-2xl mx-auto px-8 grid grid-cols-1 md:grid-cols-12 gap-8 mb-32">
+<!-- Featured Large Card -->
+<div class="md:col-span-8 group cursor-pointer overflow-hidden rounded-xl bg-surface-container-lowest">
+<div class="relative h-[500px] overflow-hidden">
+<img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" data-alt="aerial view of florence italy including the duomo and red tiled roofs at sunrise with soft morning mist" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD08wkvYr896Gb0xSv2cRZwQ47V_UKXHBQtLNzB0WUoxvK8Xw2CJYR_QTmGA8M1pQCHvvGBYNho0doE7OiviceprAJZ3aS65t9Dqt8RbQIUlSMYDhsbqWVKqmwbEq__b3dFpPRoQP8WDjs8s7pZiSZTTCKF28Wj4wA47NxxOhQnIjvvKMdLgvTlgR36PlWFNY0KPOU4Gft90LbQEmJi9LfS5xgM2Ie2j-LXSXwDGZEKP5NNV4gjI0FB8OGLtpKwPFKmxgPcrr5ZV7hb"/>
+<div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent"></div>
+<div class="absolute bottom-0 left-0 p-8 w-full flex justify-between items-end">
+<div>
+<span class="text-secondary-fixed font-label text-xs tracking-widest uppercase mb-2 block">Culture &amp; Art</span>
+<h2 class="text-white font-headline text-4xl mb-4">The Uffizi After Hours</h2>
+<p class="text-white/80 max-w-lg mb-0 font-body">A private, candlelit journey through the world's most significant Renaissance collection, led by a PhD art historian.</p>
+</div>
+<button class="bg-on-secondary text-primary px-8 py-3 rounded-lg font-bold hover:bg-secondary-fixed transition-colors">Book Private Tour</button>
+</div>
+</div>
+</div>
+<!-- Vertical Card -->
+<div class="md:col-span-4 group cursor-pointer overflow-hidden rounded-xl bg-surface-container-lowest flex flex-col">
+<div class="relative flex-grow h-[300px] md:h-auto overflow-hidden">
+<img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" data-alt="rows of grapes in a tuscan vineyard under golden afternoon light with a rustic villa in the distance" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBDLPIoIt3M24mV2piOMy85zPGa-oeRZY3dNvXP_0pSgKdzJY6ul84xswQrCAHOzUBIwSOoTy3KdZpAzdMDHBgLDM8nRkg6nLPSmMxBtWQZNLoW2vGA4u-xEYRgh052KkpZfeHoZT6mUeY3pZRUwQ7r-8PD3mrgCRf5y_N4fLj21IrSIMbCRSDVMoeAcosyvA6ESaE7kCnS1mTkn0j0o74lrB_aWC5lg2pbHmpcr5Ru_xHEYHJp8GMKUOh8Velf3_9zFdUcyqTvSazt"/>
+</div>
+<div class="p-8">
+<span class="text-primary font-label text-xs tracking-widest uppercase mb-2 block">Gastronomy</span>
+<h3 class="text-on-surface font-headline text-2xl mb-4">Truffle Hunting in San Miniato</h3>
+<p class="text-on-surface-variant mb-6 text-sm leading-relaxed">Join a local 'Trifolao' and their Lagotto Romagnolo dogs in the secret forests for an authentic seasonal hunt followed by a degustation dinner.</p>
+<div class="flex justify-between items-center">
+<span class="text-primary font-bold">€240 / person</span>
+<span class="material-symbols-outlined text-secondary" data-icon="arrow_forward">arrow_forward</span>
+</div>
+</div>
+</div>
+<!-- Horizontal Card 1 -->
+<div class="md:col-span-6 group cursor-pointer overflow-hidden rounded-xl bg-surface-container-low flex flex-col md:flex-row">
+<div class="md:w-1/2 overflow-hidden h-[250px] md:h-full">
+<img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" data-alt="people bathing in the natural turquoise hot springs of saturnia in tuscany surrounded by white mineral formations" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBXYStA8cu1ePK9DRh5B7TRPJTbYyaICqUiDUy5v80YtuMJ4-6n1qzwwZoW7tnOzRC27InTy2s4yocJ_mAS3TfsY74gg9VXiNMIv19QlPIxyTz50cQEjLhMDnJPNQIySs7NEKeXmCV2solxvbskT-1ZZTFnqYkEgaAwnBvmNLE9NZtGy6Tldk71Sdqi7nGZuZ4ypxfLh1J1dOSCNVjzHtIn8Rqwy8lKerEtZT4t-E4-piTx_8xSx7bmgBFnSpRjrsJ8GU_sjx9FSRH1"/>
+</div>
+<div class="md:w-1/2 p-8 flex flex-col justify-center">
+<span class="text-tertiary font-label text-xs tracking-widest uppercase mb-2 block">Wellness</span>
+<h3 class="text-on-surface font-headline text-2xl mb-2">Saturnia Thermal Spa Retreat</h3>
+<p class="text-on-surface-variant text-sm mb-4">Unwind in ancient volcanic waters that have flowed at 37°C for over 3,000 years.</p>
+<a class="text-secondary font-bold text-sm flex items-center gap-2 group-hover:underline" href="#">Explore Packages <span class="material-symbols-outlined text-sm" data-icon="chevron_right">chevron_right</span></a>
+</div>
+</div>
+<!-- Horizontal Card 2 -->
+<div class="md:col-span-6 group cursor-pointer overflow-hidden rounded-xl bg-surface-container-low flex flex-col md:flex-row">
+<div class="md:w-1/2 overflow-hidden h-[250px] md:h-full">
+<img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" data-alt="a vintage open top sports car driving on a winding tuscan road lined with cypress trees" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC7mJQzw9s7Z_sa4vxrzC-5Ik5LWPDwrwsFg1wBTpum8Grk88OkX4ymO1ltvTTIwIxKnyBeGc4EmJNrDxNp85bhMdS9l2AHYR_zb8cPPPzBdzsLu5rbeCKBtyGksP0KrwQzdnJK5ebpFuXuQYL1gUrZfoid55JZf95gqIh0jCgjFKz8BBsdeS6Gglvjucu0j69NZkjTbcoFqsrvG-ZunTyLD-6-MZ8ggbPjQ6QY4VONJUlfIJbigEo1arVY3Vwc6uGATaimCTF75kcK"/>
+</div>
+<div class="md:w-1/2 p-8 flex flex-col justify-center">
+<span class="text-secondary font-label text-xs tracking-widest uppercase mb-2 block">Adventure</span>
+<h3 class="text-on-surface font-headline text-2xl mb-2">Vintage Alfa Romeo Road Trip</h3>
+<p class="text-on-surface-variant text-sm mb-4">Drive the winding 'Strade Bianche' in a restored 1960s classic. Map and picnic basket included.</p>
+<a class="text-secondary font-bold text-sm flex items-center gap-2 group-hover:underline" href="#">Book the Classic <span class="material-symbols-outlined text-sm" data-icon="chevron_right">chevron_right</span></a>
+</div>
+</div>
+</section>
+<!-- Newsletter Section (Tonal Transition) -->
+<section class="bg-primary py-24">
+<div class="max-w-screen-2xl mx-auto px-8 grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
+<div>
+<h2 class="text-white font-headline text-5xl mb-6">Receive the Monthly Dispatch</h2>
+<p class="text-primary-fixed-dim text-lg max-w-md italic">Exclusive openings, seasonal guides, and private villas delivered to your inbox every full moon.</p>
+</div>
+<div class="flex flex-col gap-4">
+<div class="flex gap-4">
+<input class="bg-surface-container-low/10 border-none rounded-lg flex-grow text-white placeholder-white/50 focus:ring-2 focus:ring-secondary-container" placeholder="Your email address" type="email"/>
+<button class="bg-secondary text-on-secondary px-8 py-4 rounded-lg font-bold hover:scale-105 transition-transform">Subscribe</button>
+</div>
+<p class="text-xs text-white/40">By subscribing, you agree to our curated privacy standards.</p>
+</div>
+</div>
+</section>
+<!-- Map & Logistics Section -->
+<section class="max-w-screen-2xl mx-auto px-8 my-32">
+<div class="grid grid-cols-1 md:grid-cols-12 gap-12">
+<div class="md:col-span-4">
+<h2 class="font-headline text-4xl text-primary mb-8">Navigating the Heartland</h2>
+<div class="space-y-8">
+<div class="flex gap-4">
+<span class="material-symbols-outlined text-secondary" data-icon="train">train</span>
+<div>
+<h4 class="font-bold text-on-surface">By Rail</h4>
+<p class="text-sm text-on-surface-variant">The Frecciarossa high-speed line connects Florence to Rome in 90 minutes.</p>
+</div>
+</div>
+<div class="flex gap-4">
+<span class="material-symbols-outlined text-secondary" data-icon="directions_car">directions_car</span>
+<div>
+<h4 class="font-bold text-on-surface">By Road</h4>
+<p class="text-sm text-on-surface-variant">Rental cars are essential for the Val d'Orcia region. Be mindful of ZTL zones.</p>
+</div>
+</div>
+<div class="flex gap-4">
+<span class="material-symbols-outlined text-secondary" data-icon="calendar_month">calendar_month</span>
+<div>
+<h4 class="font-bold text-on-surface">When to Visit</h4>
+<p class="text-sm text-on-surface-variant">May for wildflowers, or September for the grape harvest and softest light.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="md:col-span-8 h-[500px] rounded-xl overflow-hidden bg-surface-container-high relative">
+<img class="w-full h-full object-cover" data-alt="an artistic minimalist map of tuscany with key cities and wine regions illustrated in an elegant watercolor style" data-location="Tuscany, Italy" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBxO19LaH2f8iNboj6vnEJHsbk33eI6mDhwDRMDzufXKrAOktuQCzHKBJQa1FxuiJ76WC_Lihn6kTgxD8kHJ3dmadD8PY8i1XZNWSfPvupMwA0nddPLYGsdFhC6lBkkZCDvoyDzN-DwrnvqfFKrf658DJREBYOW4QbfXwZRH8JTLUV0n39N41OZPOAqunkX2y-ZM11Y3en7VBHYoCpeDdmtHBy6Vd81eq0bzRxLBkHldlHGceABUeOVrMn4Q5f18rl1x5jMAFCPfgdZ"/>
+<div class="absolute inset-0 bg-primary/10 pointer-events-none"></div>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="w-full py-16 px-8 mt-20 bg-slate-50 dark:bg-slate-900">
+<div class="grid grid-cols-1 md:grid-cols-4 gap-12 max-w-screen-2xl mx-auto">
+<div class="col-span-1 md:col-span-1">
+<div class="text-xl font-bold text-blue-900 dark:text-blue-50 mb-6">The Editorial Explorer</div>
+<p class="text-slate-500 text-sm font-body leading-relaxed">
+                    A collection of the world's most immersive travel stories and hand-curated adventures for the modern wanderer.
+                </p>
+</div>
+<div>
+<h4 class="font-bold text-blue-900 dark:text-blue-400 mb-6 font-headline">Explore</h4>
+<ul class="space-y-4 font-label text-sm tracking-wide">
+<li><a class="text-slate-500 dark:text-slate-400 hover:text-blue-900 dark:hover:text-blue-200 underline underline-offset-4 decoration-orange-700/30 transition-opacity" href="#">Destinations</a></li>
+<li><a class="text-slate-500 dark:text-slate-400 hover:text-blue-900 dark:hover:text-blue-200 underline underline-offset-4 decoration-orange-700/30 transition-opacity" href="#">Private Collection</a></li>
+<li><a class="text-slate-500 dark:text-slate-400 hover:text-blue-900 dark:hover:text-blue-200 underline underline-offset-4 decoration-orange-700/30 transition-opacity" href="#">The Journal</a></li>
+<li><a class="text-slate-500 dark:text-slate-400 hover:text-blue-900 dark:hover:text-blue-200 underline underline-offset-4 decoration-orange-700/30 transition-opacity" href="#">Our Vision</a></li>
+</ul>
+</div>
+<div>
+<h4 class="font-bold text-blue-900 dark:text-blue-400 mb-6 font-headline">Connect</h4>
+<ul class="space-y-4 font-label text-sm tracking-wide">
+<li><a class="text-slate-500 dark:text-slate-400 hover:text-blue-900 dark:hover:text-blue-200 underline underline-offset-4 decoration-orange-700/30 transition-opacity" href="#">Contact Us</a></li>
+<li><a class="text-slate-500 dark:text-slate-400 hover:text-blue-900 dark:hover:text-blue-200 underline underline-offset-4 decoration-orange-700/30 transition-opacity" href="#">Press Kit</a></li>
+<li><a class="text-slate-500 dark:text-slate-400 hover:text-blue-900 dark:hover:text-blue-200 underline underline-offset-4 decoration-orange-700/30 transition-opacity" href="#">Careers</a></li>
+</ul>
+</div>
+<div>
+<h4 class="font-bold text-blue-900 dark:text-blue-400 mb-6 font-headline">Legal</h4>
+<ul class="space-y-4 font-label text-sm tracking-wide">
+<li><a class="text-slate-500 dark:text-slate-400 hover:text-blue-900 dark:hover:text-blue-200 underline underline-offset-4 decoration-orange-700/30 transition-opacity" href="#">Privacy Policy</a></li>
+<li><a class="text-slate-500 dark:text-slate-400 hover:text-blue-900 dark:hover:text-blue-200 underline underline-offset-4 decoration-orange-700/30 transition-opacity" href="#">Terms of Service</a></li>
+</ul>
+</div>
+</div>
+<div class="max-w-screen-2xl mx-auto mt-16 pt-8 border-t border-slate-200 dark:border-slate-800 flex flex-col md:flex-row justify-between items-center gap-4">
+<p class="text-slate-500 dark:text-slate-400 font-label text-sm tracking-wide">© 2024 The Editorial Explorer. All rights reserved.</p>
+<div class="flex gap-6">
+<span class="material-symbols-outlined text-slate-400 cursor-pointer hover:text-primary transition-colors" data-icon="share">share</span>
+<span class="material-symbols-outlined text-slate-400 cursor-pointer hover:text-primary transition-colors" data-icon="language">language</span>
+</div>
+</div>
+</footer>
+</body></html>

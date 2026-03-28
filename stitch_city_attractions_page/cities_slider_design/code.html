@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Horizon Voyager | Curated Cities</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif:ital,wght@0,400;0,700;1,400&amp;family=Plus+Jakarta+Sans:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "tertiary-container": "#00584e",
+              "on-secondary-fixed-variant": "#763300",
+              "on-tertiary-fixed-variant": "#005047",
+              "on-surface": "#191b22",
+              "error-container": "#ffdad6",
+              "outline": "#737784",
+              "secondary-container": "#fc8a40",
+              "inverse-surface": "#2e3037",
+              "on-tertiary-fixed": "#00201c",
+              "tertiary": "#003f37",
+              "on-error-container": "#93000a",
+              "inverse-primary": "#b1c5ff",
+              "on-secondary-container": "#672c00",
+              "on-background": "#191b22",
+              "on-primary-fixed-variant": "#00419e",
+              "on-primary-container": "#a5bdff",
+              "surface-bright": "#faf8ff",
+              "background": "#faf8ff",
+              "surface-container-highest": "#e2e2eb",
+              "surface": "#faf8ff",
+              "surface-variant": "#e2e2eb",
+              "tertiary-fixed": "#79f7e3",
+              "on-primary": "#ffffff",
+              "surface-tint": "#2559bd",
+              "on-tertiary-container": "#50d3bf",
+              "primary-container": "#0047ab",
+              "on-tertiary": "#ffffff",
+              "primary-fixed": "#dae2ff",
+              "on-secondary": "#ffffff",
+              "surface-container-lowest": "#ffffff",
+              "inverse-on-surface": "#f0f0f9",
+              "surface-container": "#ededf6",
+              "on-error": "#ffffff",
+              "secondary-fixed-dim": "#ffb68d",
+              "surface-dim": "#d9d9e2",
+              "surface-container-high": "#e7e7f0",
+              "primary": "#00327d",
+              "tertiary-fixed-dim": "#59dbc7",
+              "primary-fixed-dim": "#b1c5ff",
+              "on-secondary-fixed": "#331200",
+              "secondary": "#9b4500",
+              "error": "#ba1a1a",
+              "secondary-fixed": "#ffdbc9",
+              "outline-variant": "#c3c6d5",
+              "surface-container-low": "#f3f3fc",
+              "on-primary-fixed": "#001946",
+              "on-surface-variant": "#434653"
+            },
+            fontFamily: {
+              "headline": ["Noto Serif"],
+              "body": ["Plus Jakarta Sans"],
+              "label": ["Plus Jakarta Sans"]
+            },
+            borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+          },
+        },
+      }
+    </script>
+<style>
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+        .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+    </style>
+</head>
+<body class="bg-surface font-body text-on-surface">
+<!-- Top Navigation Bar -->
+<nav class="fixed top-0 w-full flex justify-between items-center px-8 py-4 max-w-full bg-surface/80 dark:bg-slate-900/80 backdrop-blur-md z-50">
+<div class="text-2xl font-serif italic text-blue-900 dark:text-blue-100">Horizon Voyager</div>
+<div class="hidden md:flex items-center space-x-8">
+<a class="text-blue-900 dark:text-blue-400 font-bold border-b-2 border-orange-600 transition-colors duration-300" href="#">Destinations</a>
+<a class="text-slate-600 dark:text-slate-400 hover:text-orange-700 transition-colors duration-300" href="#">Journeys</a>
+<a class="text-slate-600 dark:text-slate-400 hover:text-orange-700 transition-colors duration-300" href="#">Experiences</a>
+<a class="text-slate-600 dark:text-slate-400 hover:text-orange-700 transition-colors duration-300" href="#">About</a>
+</div>
+<div class="flex items-center space-x-6">
+<button class="text-blue-900 dark:text-blue-400 hover:text-orange-700 transition-colors">
+<span class="material-symbols-outlined" data-icon="favorite">favorite</span>
+</button>
+<button class="text-blue-900 dark:text-blue-400 hover:text-orange-700 transition-colors">
+<span class="material-symbols-outlined" data-icon="person">person</span>
+</button>
+</div>
+</nav>
+<main class="pt-24 pb-20">
+<!-- Section Header -->
+<section class="px-8 md:px-16 mb-12 flex flex-col md:flex-row md:items-end justify-between gap-4">
+<div class="max-w-2xl">
+<span class="font-label text-xs uppercase tracking-[0.2em] text-secondary mb-3 block">Global Collections</span>
+<h2 class="font-headline text-4xl md:text-5xl text-primary leading-tight">Urban Soul: Cities of Character</h2>
+</div>
+<a class="font-body font-semibold text-primary hover:text-secondary transition-colors duration-300 flex items-center gap-2 group" href="#">
+                View All Cities
+                <span class="material-symbols-outlined text-sm group-hover:translate-x-1 transition-transform" data-icon="arrow_forward">arrow_forward</span>
+</a>
+</section>
+<!-- Cities Slider Canvas -->
+<section class="relative">
+<div class="flex overflow-x-auto no-scrollbar snap-x snap-mandatory gap-8 px-8 md:px-16 pb-12">
+<!-- Card: Florence -->
+<div class="flex-none w-[300px] md:w-[400px] snap-start group">
+<div class="relative aspect-[3/4] overflow-hidden rounded-xl bg-surface-container-high transition-transform duration-500 hover:scale-[1.02]">
+<img alt="Florence Architecture" class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" data-alt="Sun-drenched terracotta rooftops of Florence with the Duomo dome in the distance during golden hour under a soft orange sky." src="https://lh3.googleusercontent.com/aida-public/AB6AXuD5X-Mi_J7OBiUDdB8m1kaA6hAy3C5u7x7QW0xocx-yOGmR1O9aNbGIUiMN0mPGApiTFDMMjonXqPyj1LwPsdnq6ciIrjJ-TQcearUHv_kHjfJ7wu5jQDMbApiAbMGeXuI_V3TR59hcJo0QmSn9dvxDgj2bvm74LZ26V-wdgyXtOQtoHnMVVd-jfNrHGLQb_XP87eXYU9MQJzdnkgPwKhRcWKHpOWP1jlgPBJ2IubNLBnTv6h8pa2rfjMmI2t5nNMdgCCjqVGPaQCJB"/>
+<div class="absolute inset-0 bg-gradient-to-t from-primary/60 via-transparent to-transparent opacity-60"></div>
+<div class="absolute top-6 right-6">
+<span class="bg-surface-container-lowest/90 backdrop-blur-md px-3 py-1 rounded-full text-[10px] font-label font-bold tracking-widest text-primary uppercase">Europe</span>
+</div>
+</div>
+<div class="mt-6">
+<h3 class="font-headline text-2xl text-on-surface mb-1">Florence</h3>
+<p class="font-body text-sm text-on-surface-variant flex items-center gap-1">
+<span class="material-symbols-outlined text-xs" data-icon="location_on">location_on</span>
+                            Italy
+                        </p>
+</div>
+</div>
+<!-- Card: Jaipur -->
+<div class="flex-none w-[300px] md:w-[400px] snap-start group">
+<div class="relative aspect-[3/4] overflow-hidden rounded-xl bg-surface-container-high transition-transform duration-500 hover:scale-[1.02]">
+<img alt="Jaipur Palace" class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" data-alt="Intricate pink sandstone architecture of Hawa Mahal in Jaipur with symmetrical windows and soft morning light casting gentle shadows." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDrz1GrU0A6MRUMdicZztuHZ75gxsF2sjw9AjSM51zZn_DG-w27WnmvUNZI89-vX-6pEUhHHJJIJysL-yvGLguPapmzMUPxrpBXy8-JiLHfWaRuQydCuQ5vhvBB7J0QDqVVVAdNQvJmDPwnqVKuiYpgYgzvjTjObcGLe275BRBM90Ag8DHznRu84lPteG7thQ-sl9VKUC9O6Skhm5MbC6_6aC4YXOIB74OQ7VA5zaus_8UM5HSOjhZbefHa-mewzW0DxdFmsR5vjzkn"/>
+<div class="absolute inset-0 bg-gradient-to-t from-primary/60 via-transparent to-transparent opacity-60"></div>
+<div class="absolute top-6 right-6">
+<span class="bg-surface-container-lowest/90 backdrop-blur-md px-3 py-1 rounded-full text-[10px] font-label font-bold tracking-widest text-primary uppercase">Asia</span>
+</div>
+</div>
+<div class="mt-6">
+<h3 class="font-headline text-2xl text-on-surface mb-1">Jaipur</h3>
+<p class="font-body text-sm text-on-surface-variant flex items-center gap-1">
+<span class="material-symbols-outlined text-xs" data-icon="location_on">location_on</span>
+                            India
+                        </p>
+</div>
+</div>
+<!-- Card: Paris -->
+<div class="flex-none w-[300px] md:w-[400px] snap-start group">
+<div class="relative aspect-[3/4] overflow-hidden rounded-xl bg-surface-container-high transition-transform duration-500 hover:scale-[1.02]">
+<img alt="Paris Street" class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" data-alt="Elegant Parisian street with Haussmann-style stone buildings and a glimpse of the Eiffel Tower under a misty blue dawn sky." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCuEpTRcftRK7cebc5euk7t1bx2wZasgDTkil8zuErfYkbAtaPy1UGF2521537E_3-jgs5km5XrF7XThZzh4t9vZc8RyxMj1dy2qrguSeH0EjXjzQICTMclMnMaUW1P7JQNH9RXwUWB5xu2ixyMa9ic-DqI_NsQL_QQijceA-vjwz5SjwKN5Zm-HJC4Rtgvu-y9HMhhHqE0TDe3QO3nhmS4xWSQCiY07gnVCY5e49OKmKEflV_1ziXeObUA9g0rqKzBGGVSbK6oGKh-"/>
+<div class="absolute inset-0 bg-gradient-to-t from-primary/60 via-transparent to-transparent opacity-60"></div>
+<div class="absolute top-6 right-6">
+<span class="bg-surface-container-lowest/90 backdrop-blur-md px-3 py-1 rounded-full text-[10px] font-label font-bold tracking-widest text-primary uppercase">Europe</span>
+</div>
+</div>
+<div class="mt-6">
+<h3 class="font-headline text-2xl text-on-surface mb-1">Paris</h3>
+<p class="font-body text-sm text-on-surface-variant flex items-center gap-1">
+<span class="material-symbols-outlined text-xs" data-icon="location_on">location_on</span>
+                            France
+                        </p>
+</div>
+</div>
+<!-- Card: Kyoto -->
+<div class="flex-none w-[300px] md:w-[400px] snap-start group">
+<div class="relative aspect-[3/4] overflow-hidden rounded-xl bg-surface-container-high transition-transform duration-500 hover:scale-[1.02]">
+<img alt="Kyoto Temple" class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" data-alt="Traditional wooden pagoda in Kyoto surrounded by vibrant autumn maple leaves in shades of red and orange during dusk." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCWPB5tk_eUqTYcJMeied7gO1K6uda04ll-4kUrHtbDt362I8ur9zfI8m2S5ZAYa-5vQFWrS3D0h0uagmJGnsyXIc50PXRmbzemmvqrj4jR2q-lqwZIYOaL51yuAYqXsDO0jx9L9ofXyejetKwNFsEINK6U6NLRUR-OZjLGXt5wSyTE5iu56gKOaOon-P5jedBL7OqAvNPBtql6qgjOx23Ej6pTsrOrS4kEabKZhg1Gf_jryZqMrmHndIiXYSvO0hyIH3GpVZXaymeG"/>
+<div class="absolute inset-0 bg-gradient-to-t from-primary/60 via-transparent to-transparent opacity-60"></div>
+<div class="absolute top-6 right-6">
+<span class="bg-surface-container-lowest/90 backdrop-blur-md px-3 py-1 rounded-full text-[10px] font-label font-bold tracking-widest text-primary uppercase">Asia</span>
+</div>
+</div>
+<div class="mt-6">
+<h3 class="font-headline text-2xl text-on-surface mb-1">Kyoto</h3>
+<p class="font-body text-sm text-on-surface-variant flex items-center gap-1">
+<span class="material-symbols-outlined text-xs" data-icon="location_on">location_on</span>
+                            Japan
+                        </p>
+</div>
+</div>
+<!-- Card: Osaka -->
+<div class="flex-none w-[300px] md:w-[400px] snap-start group">
+<div class="relative aspect-[3/4] overflow-hidden rounded-xl bg-surface-container-high transition-transform duration-500 hover:scale-[1.02]">
+<img alt="Osaka Night" class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" data-alt="Vibrant neon lights reflecting on the river in Osaka's Dotonbori district at night with glowing signs and bustling atmosphere." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBF48oL5gUw36qN3woTyEz-5tOk6ZV-Oxd0IRRh59zgN6Sn-QtvBk8mD3rIh1YPCk4PRx6onWMtr6_4btwyPV4IqcikQWiMvUDFRyEiFxqJl0v2hAkspQ5i18Mq4Zc70mBTXDDLW5ASQJh7kzgnUPhaLwOgsMLaFnGNqbs65rO29yEC83_Trd4V6ptpdm3JvkBByRviA5_FXv7LEQkpkJSEzdpRKznautdq6c6Nh3P2INEyN6nhcwAG0ZWHi-1NzvPc3UMJzr1faoMW"/>
+<div class="absolute inset-0 bg-gradient-to-t from-primary/60 via-transparent to-transparent opacity-60"></div>
+<div class="absolute top-6 right-6">
+<span class="bg-surface-container-lowest/90 backdrop-blur-md px-3 py-1 rounded-full text-[10px] font-label font-bold tracking-widest text-primary uppercase">Asia</span>
+</div>
+</div>
+<div class="mt-6">
+<h3 class="font-headline text-2xl text-on-surface mb-1">Osaka</h3>
+<p class="font-body text-sm text-on-surface-variant flex items-center gap-1">
+<span class="material-symbols-outlined text-xs" data-icon="location_on">location_on</span>
+                            Japan
+                        </p>
+</div>
+</div>
+</div>
+<!-- Dot Pagination -->
+<div class="flex justify-center items-center space-x-3 mt-4">
+<button aria-label="Go to slide 1" class="w-2 h-2 rounded-full bg-primary transition-all duration-300 w-6"></button>
+<button aria-label="Go to slide 2" class="w-2 h-2 rounded-full bg-outline-variant hover:bg-primary transition-all duration-300"></button>
+<button aria-label="Go to slide 3" class="w-2 h-2 rounded-full bg-outline-variant hover:bg-primary transition-all duration-300"></button>
+<button aria-label="Go to slide 4" class="w-2 h-2 rounded-full bg-outline-variant hover:bg-primary transition-all duration-300"></button>
+<button aria-label="Go to slide 5" class="w-2 h-2 rounded-full bg-outline-variant hover:bg-primary transition-all duration-300"></button>
+</div>
+</section>
+<!-- Contextual Explore CTA Section -->
+<section class="mt-24 px-8 md:px-16 grid grid-cols-1 md:grid-cols-12 gap-12 items-center">
+<div class="md:col-span-7 aspect-video rounded-xl overflow-hidden shadow-2xl">
+<img alt="Travel Planning" class="w-full h-full object-cover" data-alt="Serene alpine lake reflecting towering snow-capped peaks in crystal clear water with a solitary wooden boat on the shore." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBfG6InuCISOTMXCrUVXv4uVId4cHuKXSQDFsyBQx4cKZmSfmor6qsrZmkG42rsZ3FxL1Ik7MHJ9owtMDzBND0FjRfNHXsRrdIEpDYgTwukCUiCZm2LU_ZIfM_DWnieq6l5eNJ_3JUaEaWa8hYiPwZlAnuGfwMkfHzWxjHS6veSyQmxp396kngGHOliLMHkUyP7nutpXUGq9vMVgKM-wEY8L1RNxWIEIHwjpNQr4SHUC61ysMTvgKRmZrB4Glg__c5Q9nJbnbdceLKP"/>
+</div>
+<div class="md:col-span-5">
+<h3 class="font-headline text-3xl text-primary mb-6">Your next story begins with a single destination.</h3>
+<p class="font-body text-lg text-on-surface-variant leading-relaxed mb-8">
+                    Discover hand-picked urban experiences that transcend the ordinary. From the Renaissance echoes of Florence to the neon pulse of Osaka, our curators bring you closer to the world's most vibrant souls.
+                </p>
+<button class="bg-primary text-on-primary px-8 py-4 rounded-md font-semibold text-sm tracking-wide hover:shadow-lg transition-all transform hover:-translate-y-1">
+                    Begin Your Odyssey
+                </button>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="bg-slate-50 dark:bg-slate-950 full-width py-12 px-8">
+<div class="w-full grid grid-cols-1 md:grid-cols-2 gap-8 items-center max-w-7xl mx-auto">
+<div>
+<div class="font-serif text-lg text-blue-900 dark:text-blue-100 mb-2">Horizon Voyager</div>
+<p class="font-sans text-sm tracking-wide text-slate-500">© 2024 Horizon Voyager. The Curated Odyssey.</p>
+</div>
+<div class="flex flex-wrap gap-x-8 gap-y-2 md:justify-end">
+<a class="font-sans text-sm tracking-wide text-slate-500 hover:underline decoration-orange-500 opacity-80 hover:opacity-100 transition-opacity" href="#">Privacy Policy</a>
+<a class="font-sans text-sm tracking-wide text-slate-500 hover:underline decoration-orange-500 opacity-80 hover:opacity-100 transition-opacity" href="#">Terms of Service</a>
+<a class="font-sans text-sm tracking-wide text-slate-500 hover:underline decoration-orange-500 opacity-80 hover:opacity-100 transition-opacity" href="#">Travel Guides</a>
+<a class="font-sans text-sm tracking-wide text-slate-500 hover:underline decoration-orange-500 opacity-80 hover:opacity-100 transition-opacity" href="#">Contact Us</a>
+</div>
+</div>
+</footer>
+<!-- Mobile Navigation Shell -->
+<div class="md:hidden fixed bottom-0 w-full bg-surface/90 backdrop-blur-md flex justify-around items-center py-3 z-50">
+<button class="flex flex-col items-center text-primary">
+<span class="material-symbols-outlined" data-icon="explore">explore</span>
+<span class="text-[10px] mt-1 font-label">Explore</span>
+</button>
+<button class="flex flex-col items-center text-slate-500">
+<span class="material-symbols-outlined" data-icon="map">map</span>
+<span class="text-[10px] mt-1 font-label">Routes</span>
+</button>
+<button class="flex flex-col items-center text-slate-500">
+<span class="material-symbols-outlined" data-icon="favorite">favorite</span>
+<span class="text-[10px] mt-1 font-label">Saved</span>
+</button>
+<button class="flex flex-col items-center text-slate-500">
+<span class="material-symbols-outlined" data-icon="person">person</span>
+<span class="text-[10px] mt-1 font-label">Account</span>
+</button>
+</div>
+</body></html>

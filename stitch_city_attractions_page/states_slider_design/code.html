@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif:ital,wght@0,400;0,700;1,400&amp;family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "tertiary-container": "#00584e",
+              "on-secondary-fixed-variant": "#763300",
+              "on-tertiary-fixed-variant": "#005047",
+              "on-surface": "#191b22",
+              "error-container": "#ffdad6",
+              "outline": "#737784",
+              "secondary-container": "#fc8a40",
+              "inverse-surface": "#2e3037",
+              "on-tertiary-fixed": "#00201c",
+              "tertiary": "#003f37",
+              "on-error-container": "#93000a",
+              "inverse-primary": "#b1c5ff",
+              "on-secondary-container": "#672c00",
+              "on-background": "#191b22",
+              "on-primary-fixed-variant": "#00419e",
+              "on-primary-container": "#a5bdff",
+              "surface-bright": "#faf8ff",
+              "background": "#faf8ff",
+              "surface-container-highest": "#e2e2eb",
+              "surface": "#faf8ff",
+              "surface-variant": "#e2e2eb",
+              "tertiary-fixed": "#79f7e3",
+              "on-primary": "#ffffff",
+              "surface-tint": "#2559bd",
+              "on-tertiary-container": "#50d3bf",
+              "primary-container": "#0047ab",
+              "on-tertiary": "#ffffff",
+              "primary-fixed": "#dae2ff",
+              "on-secondary": "#ffffff",
+              "surface-container-lowest": "#ffffff",
+              "inverse-on-surface": "#f0f0f9",
+              "surface-container": "#ededf6",
+              "on-error": "#ffffff",
+              "secondary-fixed-dim": "#ffb68d",
+              "surface-dim": "#d9d9e2",
+              "surface-container-high": "#e7e7f0",
+              "primary": "#00327d",
+              "tertiary-fixed-dim": "#59dbc7",
+              "primary-fixed-dim": "#b1c5ff",
+              "on-secondary-fixed": "#331200",
+              "secondary": "#9b4500",
+              "error": "#ba1a1a",
+              "secondary-fixed": "#ffdbc9",
+              "outline-variant": "#c3c6d5",
+              "surface-container-low": "#f3f3fc",
+              "on-primary-fixed": "#001946",
+              "on-surface-variant": "#434653"
+            },
+            fontFamily: {
+              "headline": ["Noto Serif"],
+              "body": ["Plus Jakarta Sans"],
+              "label": ["Plus Jakarta Sans"]
+            },
+            borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+        }
+        .hide-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .hide-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+</head>
+<body class="bg-surface font-body text-on-surface antialiased">
+<nav class="fixed top-0 w-full flex justify-between items-center px-8 py-4 max-w-full bg-surface/80 dark:bg-slate-900/80 backdrop-blur-md z-50 transition-colors duration-300">
+<div class="text-2xl font-serif italic text-blue-900 dark:text-blue-100">Horizon Voyager</div>
+<div class="hidden md:flex items-center gap-10">
+<a class="text-blue-900 dark:text-blue-400 font-bold border-b-2 border-orange-600 transition-colors duration-300" href="#">Destinations</a>
+<a class="text-slate-600 dark:text-slate-400 hover:text-blue-800 hover:text-orange-700 transition-colors duration-300" href="#">Journeys</a>
+<a class="text-slate-600 dark:text-slate-400 hover:text-blue-800 hover:text-orange-700 transition-colors duration-300" href="#">Experiences</a>
+<a class="text-slate-600 dark:text-slate-400 hover:text-blue-800 hover:text-orange-700 transition-colors duration-300" href="#">About</a>
+</div>
+<div class="flex items-center gap-6">
+<button class="text-blue-900 dark:text-blue-400 hover:text-orange-700 transition-colors duration-300 active:scale-95">
+<span class="material-symbols-outlined" data-icon="favorite">favorite</span>
+</button>
+<button class="text-blue-900 dark:text-blue-400 hover:text-orange-700 transition-colors duration-300 active:scale-95">
+<span class="material-symbols-outlined" data-icon="person">person</span>
+</button>
+</div>
+</nav>
+<main class="pt-20">
+<section class="relative w-full h-[921px] overflow-hidden group">
+<div class="flex h-full w-full overflow-x-auto snap-x snap-mandatory hide-scrollbar">
+<div class="flex-none w-full h-full relative snap-start">
+<div class="absolute inset-0 bg-primary/20 z-10"></div>
+<img alt="Tuscany landscape" class="absolute inset-0 w-full h-full object-cover" data-alt="Cinematic wide shot of rolling Tuscan hills at sunrise with mist in valleys and lone cypress trees under golden light" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDuO9OirbloFavzj4kIX-QZTX7_TcI8pG5Q9L9npfWcWNwWF8ZUXEGFIu9I9B4gcL-ODKl0j4FtQMd4gK-lLXvXzay1utOhAaoHQ43KU7_BdYadC4FpW7UmRXRyamNObHN7ku55oOIRXgUJ0hfsgJPYSQgjFQ3Z7U8Is7eZKKGHh2hEeStN-rH9O9_ecsB-mgm1aIrpsSzOCXt8B6tUudH0Rghfdyto76VtHsmkWNZiJ4fw7h-2ZyqQY6lhy_9cdyRSSVeTlGxekxUo"/>
+<div class="absolute inset-0 bg-gradient-to-t from-on-surface/80 via-transparent to-transparent z-20"></div>
+<div class="absolute bottom-24 left-12 md:left-24 z-30 max-w-2xl">
+<span class="font-label text-xs tracking-[0.2em] text-white/80 mb-4 block">ITALIA</span>
+<h2 class="font-headline text-5xl md:text-8xl text-white mb-4 leading-tight">Tuscany</h2>
+<p class="font-body text-lg md:text-xl text-white/90 mb-8 max-w-lg leading-relaxed">Where the amber sun kisses ancient vineyards and time dissolves into the rolling horizon.</p>
+<a class="inline-flex items-center gap-4 text-white hover:text-secondary-container transition-colors group/link" href="#">
+<span class="font-label tracking-widest text-sm font-semibold">DISCOVER</span>
+<span class="material-symbols-outlined transform group-hover/link:translate-x-2 transition-transform" data-icon="arrow_forward">arrow_forward</span>
+</a>
+</div>
+</div>
+<div class="flex-none w-full h-full relative snap-start">
+<div class="absolute inset-0 bg-primary/20 z-10"></div>
+<img alt="Rajasthan palace" class="absolute inset-0 w-full h-full object-cover" data-alt="Majestic Rajasthani palace reflecting in a still lake at dusk with vibrant orange sky and intricate architectural silhouettes" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA867mD7x4meoiw1-KJqe9-mmsvKQK8m9sbSr9FPu_6CK38Chy7qkrXrkKl6SUNCmy7-N43_1l7DUPTlHKPVOjB89JU0ynglieAlQDy2bkZXMIPFX8Nxf2M-RSFwE3GTTXlsQVIVISZAlxqN3YwFip1EWuZapFIE0DKLzD-qpRHwaRfIpg_sQNzwwtIpQ9fdX-30Nz24gVnniynmrqsARUjQV_F2Tf3MOZXjDIRqDyiLAxt1gLN3DBLk6Sg4m6fM0FhS_SS7KJVBGoI"/>
+<div class="absolute inset-0 bg-gradient-to-t from-on-surface/80 via-transparent to-transparent z-20"></div>
+<div class="absolute bottom-24 left-12 md:left-24 z-30 max-w-2xl">
+<span class="font-label text-xs tracking-[0.2em] text-white/80 mb-4 block">INDIA</span>
+<h2 class="font-headline text-5xl md:text-8xl text-white mb-4 leading-tight">Rajasthan</h2>
+<p class="font-body text-lg md:text-xl text-white/90 mb-8 max-w-lg leading-relaxed">A majestic tapestry of desert citadels and royal legacies etched in pink and gold.</p>
+<a class="inline-flex items-center gap-4 text-white hover:text-secondary-container transition-colors group/link" href="#">
+<span class="font-label tracking-widest text-sm font-semibold">DISCOVER</span>
+<span class="material-symbols-outlined transform group-hover/link:translate-x-2 transition-transform" data-icon="arrow_forward">arrow_forward</span>
+</a>
+</div>
+</div>
+<div class="flex-none w-full h-full relative snap-start">
+<div class="absolute inset-0 bg-primary/20 z-10"></div>
+<img alt="Provence lavender fields" class="absolute inset-0 w-full h-full object-cover" data-alt="Vibrant rows of purple lavender stretching to the horizon in Provence with a rustic stone farmhouse in soft evening light" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAFzOn89f2vJ5XeURKiPimM0zEDff5iz7oK8LMLCnvi1Sd9qwLXWGPhc6-Jlm5rmNbtRpmmNQwwG9uwAe03A_61sXjLOzczcksTtXUSjhAf5d-vbR-lKErs_cCULEVT9680Dj2jZ1khXAYl3Ocn0Z_K8ZeXgIqf3qJqY74nggFjSMT8ATRBC2FigIOqbugu38A4MWFylwRo39PDsT6OZOO-FoKZLICxi1QbMbsfCEZGymoWXBa_jo_OiOBlSzreWM0bzsVtrjGcaGd6"/>
+<div class="absolute inset-0 bg-gradient-to-t from-on-surface/80 via-transparent to-transparent z-20"></div>
+<div class="absolute bottom-24 left-12 md:left-24 z-30 max-w-2xl">
+<span class="font-label text-xs tracking-[0.2em] text-white/80 mb-4 block">FRANCE</span>
+<h2 class="font-headline text-5xl md:text-8xl text-white mb-4 leading-tight">Provence</h2>
+<p class="font-body text-lg md:text-xl text-white/90 mb-8 max-w-lg leading-relaxed">The intoxicating scent of lavender fields dancing under the eternal azure sky.</p>
+<a class="inline-flex items-center gap-4 text-white hover:text-secondary-container transition-colors group/link" href="#">
+<span class="font-label tracking-widest text-sm font-semibold">DISCOVER</span>
+<span class="material-symbols-outlined transform group-hover/link:translate-x-2 transition-transform" data-icon="arrow_forward">arrow_forward</span>
+</a>
+</div>
+</div>
+<div class="flex-none w-full h-full relative snap-start">
+<div class="absolute inset-0 bg-primary/20 z-10"></div>
+<img alt="Kyoto Prefecture" class="absolute inset-0 w-full h-full object-cover" data-alt="Traditional Japanese pagoda framed by bright red autumn maple leaves in Kyoto at twilight with soft ambient glow" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBQQJAZaHmHlXh76tkmtvEKz36Wr1gOQNHITIKftBHJvBm_9b2Y5dBxulNGog4LNDPKG9KPS20vmM1yagyGkYaX8befTFoszVTGVseNHDVVQ05EKKwbHr9klL0f22aSjoo5R59nhPvvImnAd2YvwjO7gBOzVsqoL3VR83EXL6Eta-VNfkvYzWG7DCwLHDI61txQS6F6954XMzBr9_MN5mAiWyWIP-tRURHMRhBCbmu8Dn8yeUaNbseCRCM-QnPD-wDSYHL7EFVAdra9"/>
+<div class="absolute inset-0 bg-gradient-to-t from-on-surface/80 via-transparent to-transparent z-20"></div>
+<div class="absolute bottom-24 left-12 md:left-24 z-30 max-w-2xl">
+<span class="font-label text-xs tracking-[0.2em] text-white/80 mb-4 block">JAPAN</span>
+<h2 class="font-headline text-5xl md:text-8xl text-white mb-4 leading-tight text-nowrap">Kyoto Prefecture</h2>
+<p class="font-body text-lg md:text-xl text-white/90 mb-8 max-w-lg leading-relaxed">Quiet temples and bamboo forests where the spirit of ancient Japan whispers in the wind.</p>
+<a class="inline-flex items-center gap-4 text-white hover:text-secondary-container transition-colors group/link" href="#">
+<span class="font-label tracking-widest text-sm font-semibold">DISCOVER</span>
+<span class="material-symbols-outlined transform group-hover/link:translate-x-2 transition-transform" data-icon="arrow_forward">arrow_forward</span>
+</a>
+</div>
+</div>
+</div>
+<div class="absolute top-1/2 left-8 -translate-y-1/2 z-40 hidden md:block opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+<button class="w-14 h-14 rounded-full border border-white/30 backdrop-blur-md bg-white/10 flex items-center justify-center text-white hover:bg-white hover:text-primary transition-all duration-300">
+<span class="material-symbols-outlined" data-icon="arrow_back">arrow_back</span>
+</button>
+</div>
+<div class="absolute top-1/2 right-8 -translate-y-1/2 z-40 hidden md:block opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+<button class="w-14 h-14 rounded-full border border-white/30 backdrop-blur-md bg-white/10 flex items-center justify-center text-white hover:bg-white hover:text-primary transition-all duration-300">
+<span class="material-symbols-outlined" data-icon="arrow_forward">arrow_forward</span>
+</button>
+</div>
+<div class="absolute bottom-8 right-12 z-40 flex items-center gap-4">
+<div class="w-12 h-1 bg-secondary-container"></div>
+<div class="w-8 h-1 bg-white/30"></div>
+<div class="w-8 h-1 bg-white/30"></div>
+<div class="w-8 h-1 bg-white/30"></div>
+</div>
+</section>
+<section class="py-24 px-8 md:px-24 bg-surface">
+<div class="grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
+<div class="space-y-6">
+<h3 class="font-headline text-4xl text-primary leading-tight">Curated Journeys for the Discerning Explorer</h3>
+<p class="font-body text-lg text-on-surface-variant leading-relaxed">We believe travel is an art form. Our itineraries are not just schedules; they are curated narratives designed to immerse you in the soul of a destination. From private vineyard tastings in the heart of Tuscany to traditional tea ceremonies in Kyoto's quietest corners.</p>
+<div class="pt-4">
+<button class="bg-primary text-on-primary px-8 py-4 rounded-lg font-semibold hover:shadow-xl transition-all duration-300 active:scale-95">
+                            Start Your Odyssey
+                        </button>
+</div>
+</div>
+<div class="relative">
+<div class="aspect-[4/5] bg-surface-container-low rounded-lg overflow-hidden">
+<img alt="Traveler exploring" class="w-full h-full object-cover grayscale-[20%] hover:scale-105 transition-transform duration-700" data-alt="Solo traveler standing on a scenic overlook viewing a vast mountain lake in early morning light, editorial style photography" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA8Vy6Dd8Iv472Sl3B0aEO0kLKn4ZDBA1jPYIt_79VEkNrnAnCuCiWqg2o3i4yUfragEXx0TYIXAE3aowlnSxDKx89E6o7XsfAdupm5WwaVd3g2Lu3pcWguRDmo4hYMrNM5RK8EPN2reep02eX71Z3SSDfg0erA1JYkd68jVV01fM50RTexylSOFYOhxZT4sX-5Z9goiRyxVVVkA4Spn8MgKg09CXy5cPv44-J_2JMdNR8r2HfJK2VS0DczBATaUKL8bUCC8l6EFaTU"/>
+</div>
+<div class="absolute -bottom-8 -left-8 p-8 bg-surface-container-lowest shadow-2xl rounded-lg max-w-[240px] hidden md:block border border-outline-variant/20">
+<p class="font-headline italic text-primary text-xl">"A journey is best measured in friends, rather than miles."</p>
+<p class="font-label text-xs tracking-widest text-secondary mt-4 uppercase">— Tim Cahill</p>
+</div>
+</div>
+</div>
+</section>
+</main>
+<footer class="w-full grid grid-cols-1 md:grid-cols-2 gap-8 items-center bg-slate-50 dark:bg-slate-950 full-width py-12 px-8">
+<div class="space-y-4">
+<div class="font-serif text-lg text-blue-900 dark:text-blue-100">Horizon Voyager</div>
+<p class="font-sans text-sm tracking-wide text-slate-500">© 2024 Horizon Voyager. The Curated Odyssey.</p>
+</div>
+<div class="flex flex-wrap gap-8 md:justify-end">
+<a class="font-sans text-sm tracking-wide text-slate-500 hover:underline decoration-orange-500 opacity-80 hover:opacity-100 transition-opacity" href="#">Privacy Policy</a>
+<a class="font-sans text-sm tracking-wide text-slate-500 hover:underline decoration-orange-500 opacity-80 hover:opacity-100 transition-opacity" href="#">Terms of Service</a>
+<a class="font-sans text-sm tracking-wide text-slate-500 hover:underline decoration-orange-500 opacity-80 hover:opacity-100 transition-opacity" href="#">Travel Guides</a>
+<a class="font-sans text-sm tracking-wide text-slate-500 hover:underline decoration-orange-500 opacity-80 hover:opacity-100 transition-opacity" href="#">Contact Us</a>
+</div>
+</footer>
+</body></html>

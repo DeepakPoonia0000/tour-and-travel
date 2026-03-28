@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>The Editorial Explorer | Kyoto: A Curated Odyssey</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif:ital,wght@0,400;0,700;1,400&amp;family=Plus+Jakarta+Sans:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "tertiary": "#003f37",
+                        "on-secondary": "#ffffff",
+                        "primary-container": "#0047ab",
+                        "surface-dim": "#d9d9e2",
+                        "surface-container-high": "#e7e7f0",
+                        "primary": "#00327d",
+                        "outline-variant": "#c3c6d5",
+                        "secondary-fixed": "#ffdbc9",
+                        "secondary": "#9b4500",
+                        "on-surface-variant": "#434653",
+                        "error-container": "#ffdad6",
+                        "on-primary": "#ffffff",
+                        "background": "#faf8ff",
+                        "primary-fixed": "#dae2ff",
+                        "outline": "#737784",
+                        "surface-bright": "#faf8ff",
+                        "tertiary-fixed": "#79f7e3",
+                        "surface-container-highest": "#e2e2eb",
+                        "tertiary-container": "#00584e",
+                        "secondary-container": "#fc8a40",
+                        "tertiary-fixed-dim": "#59dbc7",
+                        "on-error-container": "#93000a",
+                        "surface": "#faf8ff",
+                        "on-primary-fixed-variant": "#00419e",
+                        "primary-fixed-dim": "#b1c5ff",
+                        "surface-tint": "#2559bd",
+                        "surface-container-low": "#f3f3fc",
+                        "on-primary-container": "#a5bdff",
+                        "surface-variant": "#e2e2eb",
+                        "on-secondary-fixed": "#331200",
+                        "inverse-on-surface": "#f0f0f9",
+                        "surface-container-lowest": "#ffffff",
+                        "surface-container": "#ededf6",
+                        "on-primary-fixed": "#001946",
+                        "on-secondary-fixed-variant": "#763300",
+                        "on-tertiary": "#ffffff",
+                        "secondary-fixed-dim": "#ffb68d",
+                        "on-tertiary-fixed": "#00201c",
+                        "inverse-surface": "#2e3037",
+                        "inverse-primary": "#b1c5ff",
+                        "on-tertiary-fixed-variant": "#005047",
+                        "on-secondary-container": "#672c00",
+                        "on-tertiary-container": "#50d3bf",
+                        "on-error": "#ffffff",
+                        "on-background": "#191b22",
+                        "on-surface": "#191b22",
+                        "error": "#ba1a1a"
+                    },
+                    fontFamily: {
+                        "headline": ["Noto Serif"],
+                        "body": ["Plus Jakarta Sans"],
+                        "label": ["Plus Jakarta Sans"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .glass-nav {
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+        }
+        .perspective-shadow {
+            box-shadow: 0 24px 48px -12px rgba(25, 27, 34, 0.06);
+        }
+        .text-balance {
+            text-wrap: balance;
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background font-body selection:bg-secondary-fixed selection:text-on-secondary-fixed">
+<!-- TopNavBar -->
+<nav class="fixed top-0 w-full z-50 bg-white/80 dark:bg-slate-900/80 backdrop-blur-md shadow-sm dark:shadow-none">
+<div class="flex justify-between items-center px-12 py-6 max-w-full mx-auto">
+<div class="text-2xl font-serif italic text-[#00327d] dark:text-blue-300">
+                The Editorial Explorer
+            </div>
+<div class="hidden md:flex items-center space-x-12">
+<a class="text-[#9b4500] dark:text-orange-400 border-b border-[#9b4500] font-medium font-serif text-lg tracking-tight" href="#">Destinations</a>
+<a class="text-[#00327d] dark:text-slate-300 hover:text-[#9b4500] transition-colors font-serif text-lg tracking-tight" href="#">Experiences</a>
+<a class="text-[#00327d] dark:text-slate-300 hover:text-[#9b4500] transition-colors font-serif text-lg tracking-tight" href="#">Journal</a>
+<a class="text-[#00327d] dark:text-slate-300 hover:text-[#9b4500] transition-colors font-serif text-lg tracking-tight" href="#">Bookings</a>
+</div>
+<div class="flex items-center space-x-6">
+<div class="relative hidden lg:block">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-outline">search</span>
+<input class="bg-surface-container-low border-none rounded-full py-2 pl-10 pr-4 text-sm focus:ring-2 focus:ring-primary w-64" placeholder="Search destinations..." type="text"/>
+</div>
+<button class="text-[#00327d] hover:opacity-80 transition-opacity">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">account_circle</span>
+</button>
+</div>
+</div>
+</nav>
+<main class="pt-24">
+<!-- Perspective Hero Section -->
+<section class="relative h-[921px] overflow-hidden flex items-center">
+<div class="absolute inset-0 z-0">
+<img class="w-full h-full object-cover scale-105" data-alt="Stunning wide shot of Kyoto's Yasaka Pagoda at twilight with glowing lanterns and soft pink cherry blossoms in the foreground" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA4dpclzYQOQUpJSTnsbolDeiW2Ktned0cvwCTm9gPQ0khAGh-fqnlfrsBfF75RZPFJjW8AbGB2SuOotmADuIe1RoG_ajGt6PmoY3XRmCPTXEtQ3ve3Scrztfp24ZKpw4GS-9698Wuie1KwhvY_xY-38ApzbtsWSUE-8TlvL18XI82rR3zU8v6ubSJs3hZ5q3gDP7YR8f7pGnYDgs6bL9CGjVfjn4vu5Hn-vc2W1LwfX05xd3JsyXPwRKbHvyaozH6ngcmEdj_SXnHg"/>
+<div class="absolute inset-0 bg-gradient-to-r from-primary/40 to-transparent"></div>
+</div>
+<div class="relative z-10 px-12 md:px-24 w-full max-w-7xl mx-auto">
+<div class="max-w-2xl">
+<span class="font-label text-sm tracking-[0.2em] text-white uppercase mb-4 block">Destination Spotlight</span>
+<h1 class="font-headline text-white text-6xl md:text-8xl mb-6 italic leading-tight">Kyoto: The <br/>Silent Poetry</h1>
+<p class="text-white/90 text-lg md:text-xl font-light mb-8 max-w-lg leading-relaxed">
+                        Where ancient traditions breathe through cedar-scented temples and the gentle rustle of silk in Gion's narrow alleys.
+                    </p>
+<button class="bg-secondary text-on-secondary px-8 py-4 rounded-md font-medium hover:bg-on-secondary-fixed-variant transition-all perspective-shadow flex items-center gap-2">
+                        Explore the Collection
+                        <span class="material-symbols-outlined">arrow_forward</span>
+</button>
+</div>
+</div>
+<!-- Overlapping Detail Card -->
+<div class="absolute bottom-0 right-12 translate-y-1/2 hidden xl:block z-20">
+<div class="bg-surface-container-lowest p-8 rounded-lg perspective-shadow max-w-sm">
+<div class="flex items-center gap-4 mb-4">
+<div class="bg-secondary-fixed p-3 rounded-full">
+<span class="material-symbols-outlined text-secondary" style="font-variation-settings: 'FILL' 1;">thermostat</span>
+</div>
+<div>
+<p class="font-label text-xs text-outline uppercase tracking-wider">Current Vibe</p>
+<p class="font-semibold text-primary">Serene &amp; Temperate</p>
+</div>
+</div>
+<p class="text-sm text-on-surface-variant leading-relaxed">
+                        Kyoto is currently entering the peak of the Koyo season. Maples are turning deep crimson near the Philosopher’s Path.
+                    </p>
+</div>
+</div>
+</section>
+<!-- Intro Section / Asymmetric Layout -->
+<section class="py-32 px-12 max-w-7xl mx-auto">
+<div class="flex flex-col md:flex-row gap-16 items-center">
+<div class="w-full md:w-3/5 relative">
+<div class="aspect-[4/5] overflow-hidden rounded-lg">
+<img class="w-full h-full object-cover hover:scale-105 transition-transform duration-700" data-alt="Interior of a traditional Zen temple in Kyoto with a perfectly manicured rock garden visible through a large circular window" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBiXA-tUbFaJfhA8VKRkIL3XAzbOpd70sgkKyFef75qzgeSwk4HhuatHGrJ8FW1M2Itu1MrmxHS-cBKaRMaiROuBBznpsGB1HCjjp0bOPIuJazWxcCMYIKFnJ2yxzJYeGMthGY37HoFxONHXFE45fMMuYADk7SX8fIJsmCX-hnqfj4fU9As-3UlOSd2wt2xn7aoLunzXL7XEyxNPcnZ2oszgnQJXO1fJ8jZ5WxN_CZx46xxUeS31G1v_PLkD2y6r8228kAYtk6iETfK"/>
+</div>
+<div class="absolute -bottom-8 -right-8 w-64 aspect-square bg-surface-container-high rounded-lg p-6 flex flex-col justify-end hidden lg:flex">
+<span class="material-symbols-outlined text-secondary text-4xl mb-4">local_florist</span>
+<h4 class="font-headline text-xl italic text-primary">Wabi-Sabi Essence</h4>
+</div>
+</div>
+<div class="w-full md:w-2/5">
+<h2 class="font-headline text-4xl text-primary mb-8 leading-snug">A City of Ten Thousand Temples</h2>
+<p class="body-lg text-on-surface-variant mb-6">
+                        Kyoto is not a place you visit; it is a pace you adopt. From the orange gates of Fushimi Inari to the golden reflections of Kinkaku-ji, every corner tells a story of a thousand years of craftsmanship and devotion.
+                    </p>
+<p class="body-lg text-on-surface-variant mb-10">
+                        Our curated odyssey takes you beyond the tourist trail, into the private tea houses and hidden moss gardens that define the true soul of Japan's cultural heart.
+                    </p>
+<div class="flex gap-4">
+<div class="text-center p-4 bg-surface-container-low rounded-lg flex-1">
+<p class="font-headline text-2xl text-secondary">1.2k</p>
+<p class="font-label text-[10px] tracking-tighter uppercase text-outline">Temples</p>
+</div>
+<div class="text-center p-4 bg-surface-container-low rounded-lg flex-1">
+<p class="font-headline text-2xl text-secondary">400+</p>
+<p class="font-label text-[10px] tracking-tighter uppercase text-outline">Tea Houses</p>
+</div>
+<div class="text-center p-4 bg-surface-container-low rounded-lg flex-1">
+<p class="font-headline text-2xl text-secondary">17</p>
+<p class="font-label text-[10px] tracking-tighter uppercase text-outline">UNESCO Sites</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Bento Grid Attractions -->
+<section class="bg-surface-container-low py-24 px-12">
+<div class="max-w-7xl mx-auto">
+<div class="flex justify-between items-end mb-16">
+<div>
+<span class="font-label text-sm tracking-widest text-secondary uppercase mb-2 block">Curated Selection</span>
+<h2 class="font-headline text-4xl text-primary italic">Iconic Landmarks</h2>
+</div>
+<div class="flex gap-2">
+<span class="px-4 py-2 bg-secondary-container text-on-secondary-container rounded-full text-xs font-label">All</span>
+<span class="px-4 py-2 bg-surface-container-highest text-on-surface-variant rounded-full text-xs font-label">Temples</span>
+<span class="px-4 py-2 bg-surface-container-highest text-on-surface-variant rounded-full text-xs font-label">Nature</span>
+</div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-12 gap-6">
+<!-- Fushimi Inari - Featured Large -->
+<div class="md:col-span-8 group cursor-pointer relative overflow-hidden rounded-lg bg-surface-container-lowest perspective-shadow">
+<div class="aspect-[16/9] overflow-hidden">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="Perspective view through thousands of bright orange torii gates at Fushimi Inari Shrine in Kyoto" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAx6d6jGDsnwfXn1fIVfr7d8Tk0RVdTxRqPxpO9XI1Ji3EWa18POERXwiFTzDYRKmA8AL3MG2EClpdzuU-O6M8MIDYYxN3VneLYMyI2pb4KNUOauZMQTzFO6SHSeWXXPiKrRcKNP2DPa9schCPyMMy_r3b0PKFlfhe69ejCO5NXTHgAZH9cYBKKcCrvzdPjhOwfCwsQkxh-Glavm-ZIQZyJQvP7Hn8xqdVudvbVZRxEm--VDM9yvebnahg7KAJiDI7ly-oYQK6zwgnU"/>
+</div>
+<div class="p-8 flex justify-between items-center">
+<div>
+<div class="flex items-center gap-2 mb-2">
+<span class="material-symbols-outlined text-secondary text-sm" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="text-sm font-medium">4.9 (12.4k reviews)</span>
+</div>
+<h3 class="font-headline text-2xl text-primary">Fushimi Inari-taisha</h3>
+<p class="text-on-surface-variant mt-2">The legendary path of five thousand vermilion gates.</p>
+</div>
+<button class="bg-primary text-on-primary px-6 py-3 rounded-md font-label text-sm uppercase tracking-wide">View Details</button>
+</div>
+</div>
+<!-- Kinkaku-ji -->
+<div class="md:col-span-4 group cursor-pointer bg-surface-container-lowest rounded-lg overflow-hidden perspective-shadow">
+<div class="aspect-square overflow-hidden">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="The Golden Pavilion Temple in Kyoto reflecting in a still pond surrounded by lush pines" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBbs7OvsV_MzMlG9CdJIgYcE9BiTnL1KzX5ya2mpKt1i93VqvtwTSPo1iqQLxlEk-YKT-9Ze8zCdwJnHuKvAUklnob8yQ86_7hqLL0VvqMlWHj4mXrWeNPZbKV7x4yqDjsfyaPWY6oC9vaA7AT68qLCi9ZlT0s0DsTptrGqdf5N824oM_cD-6uvaCUCHYkSqVI9qp_SP1pAH2gv14K-LrShUXbo6hd9x1eYzMjyXcdeunCVIQTUw-3vpnZcw-KBFy_3qoAF9QqFn554"/>
+</div>
+<div class="p-6">
+<div class="flex justify-between items-start mb-2">
+<h3 class="font-headline text-xl text-primary">Kinkaku-ji</h3>
+<div class="flex items-center text-secondary">
+<span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="text-xs font-bold ml-1">4.8</span>
+</div>
+</div>
+<p class="text-sm text-on-surface-variant mb-6 line-clamp-2">A Zen temple whose top two floors are completely covered in gold leaf.</p>
+<button class="w-full border border-outline-variant/30 py-3 rounded-md text-primary font-label text-xs uppercase hover:bg-surface-container-low transition-colors">Details</button>
+</div>
+</div>
+<!-- Arashiyama Bamboo -->
+<div class="md:col-span-4 group cursor-pointer bg-surface-container-lowest rounded-lg overflow-hidden perspective-shadow">
+<div class="aspect-square overflow-hidden">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="Looking up through towering green bamboo stalks in the Arashiyama Bamboo Grove with soft sunlight filtering through" src="https://lh3.googleusercontent.com/aida-public/AB6AXuASmkzFURYgApaa_mx-n5WQLJOi-dwPBjfoxsaAO5b_7sk1bBRmY66NfiPGNO35VJZyoxeGopHQQeFBtSvuZ5BtsS7sOsTjw1JcoXS_MffBt_Z_QKJ66gHqTlXYAgz5_VoSsgR7ZBXDGqUPSRwKFv4U7PYuAzMzf1Qxi0AfeujgTxJexFYG9_vy6mlSipRSOQBo41TE48JbL0GTOKafgmGwsyWUU-oMT8PzM-ucufqf310BX-7w6fevn72OsGwRtG6diJjaGlduOVKW"/>
+</div>
+<div class="p-6">
+<div class="flex justify-between items-start mb-2">
+<h3 class="font-headline text-xl text-primary">Bamboo Grove</h3>
+<div class="flex items-center text-secondary">
+<span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="text-xs font-bold ml-1">4.7</span>
+</div>
+</div>
+<p class="text-sm text-on-surface-variant mb-6 line-clamp-2">Walk through towering stalks of green bamboo that sway and whistle.</p>
+<button class="w-full border border-outline-variant/30 py-3 rounded-md text-primary font-label text-xs uppercase hover:bg-surface-container-low transition-colors">Details</button>
+</div>
+</div>
+<!-- Gion District -->
+<div class="md:col-span-8 group cursor-pointer relative overflow-hidden rounded-lg bg-surface-container-lowest perspective-shadow">
+<div class="aspect-[16/9] overflow-hidden">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="Traditional wooden tea houses and stone-paved streets of the Gion district in Kyoto at dusk" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBe_LioX-xgHO9dRbspsRV9MbFRw9jB_OcWSvkuOUfdiiuofT0jFU3GpsDqdtA0I7kZ07n_zUwQge03l7qSDhM1uCGDchZHzVijrdNZjyg5kR5iXPQAPkFDGu5NiWPrkczvLRK-nsc7HPzd8EVfTSddpwz7ldalLsCbkKEN9coerab22vqfc-H1hfeVwaM-d07Hr4p-9_qgmdx2cs2QHERoC2_XJ1HaNMnMIEeGQu8S8Fq0Qd5ENwEYf2ZI2hndLNJYhoPWpZV4cMu0"/>
+</div>
+<div class="p-8 flex justify-between items-center">
+<div>
+<div class="flex items-center gap-2 mb-2">
+<span class="material-symbols-outlined text-secondary text-sm" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="text-sm font-medium">4.9 (8.1k reviews)</span>
+</div>
+<h3 class="font-headline text-2xl text-primary">Gion District</h3>
+<p class="text-on-surface-variant mt-2">The historic entertainment quarter where Geiko culture thrives.</p>
+</div>
+<button class="bg-primary text-on-primary px-6 py-3 rounded-md font-label text-sm uppercase tracking-wide">View Details</button>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Journal Section -->
+<section class="py-32 px-12 max-w-7xl mx-auto">
+<div class="text-center mb-16">
+<h2 class="font-headline text-4xl text-primary italic mb-4">The Traveler's Journal</h2>
+<div class="w-24 h-px bg-secondary mx-auto"></div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-12">
+<article class="space-y-4">
+<img class="w-full aspect-video object-cover rounded-lg mb-6" data-alt="A delicate matcha tea set on a wooden table with a view of a Japanese garden" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCQv3UkMMkvVNI15aUooZw_M0accEPS-H6ysAsL51d7PYCp8o822IhIjpFYtHWhoHnyc27mkCVxNu1HECETg54y4rGPgAokuhIsfEBirCWDcCI5y7RDTtLmvKE9xoxnUGQq85z90nhOZ6NRlkvXBVeILqyWqXlAfkhueog6ux5vCLkCKMttUMiYlri6twx4O736zUrdyrTN1OvbXxAGxo5_PPR9VIgl5HsEWIypP4GMzwlW2YxmC_f9wyPsbSPg9HJp-8W9P9_CCC-t"/>
+<span class="font-label text-[10px] tracking-widest text-outline uppercase">Tea &amp; Tradition</span>
+<h4 class="font-headline text-xl text-primary">The Art of the Silent Ceremony</h4>
+<p class="text-sm text-on-surface-variant leading-relaxed">Understanding the profound meditation behind Kyoto’s oldest tea houses...</p>
+<a class="inline-block text-secondary font-medium text-sm underline underline-offset-4" href="#">Read Journal</a>
+</article>
+<article class="space-y-4">
+<img class="w-full aspect-video object-cover rounded-lg mb-6" data-alt="An artisan carefully painting a traditional Japanese paper umbrella with intricate floral designs" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBG02rAACw51L9igq2PnH7qGYy0tZz7ZWbMBWuE47OtxmCcG_4isL7mSMCo-XZFUpXu0dPPec-zuTkhvZjvIE_alDjhz3KOMem6bVspOHxdmsp5ckhkDahcIieV-VmIGiMaaRPYv7S74m1A-z8GoQyUPZNDuBTw9tPFmWGQ1DJNG_Z_HUC7HuIcwMTaNCUCVLhF1w5GJicJCX3ycXD371_ygYpfDSSKvE2J650wJd5PobgPkOtSxx2pO-ZrdhB1HCapeN_Dtyy0w1kZ"/>
+<span class="font-label text-[10px] tracking-widest text-outline uppercase">Crafsmanship</span>
+<h4 class="font-headline text-xl text-primary">The Masters of Nishijin-ori</h4>
+<p class="text-sm text-on-surface-variant leading-relaxed">A deep dive into the 1,200-year history of textile weaving in the Nishijin district...</p>
+<a class="inline-block text-secondary font-medium text-sm underline underline-offset-4" href="#">Read Journal</a>
+</article>
+<article class="space-y-4">
+<img class="w-full aspect-video object-cover rounded-lg mb-6" data-alt="Chef's hands meticulously plating a colorful multi-course Kaiseki dinner on fine ceramic ware" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBrRqOW7XLI60FI5yP4IPon6gk1IRqTdBX12vpTzQF7VI9N5GPcqji1e2VBR3PJmEw4PcQfvYFZqPOIkxOGvcyzg8nAVf4lNZKLTWu33pfqEorG4aCYVN7BRjMZfAio3YpQuYaqOTRwYS1XUhK-X-mvYTWP6_lL-0sDoBCTNxxAiSgXPmd68KuBZrEzsJXJiHW8iZvargJFZdoxBQ0-KBzVJ_tFPq8kGYLv5M6yeEjpOH345VRg7vIQGLt4kku4kGgVJg56FmNLzUy9"/>
+<span class="font-label text-[10px] tracking-widest text-outline uppercase">Gastronomy</span>
+<h4 class="font-headline text-xl text-primary">Kaiseki: A Season on a Plate</h4>
+<p class="text-sm text-on-surface-variant leading-relaxed">Why the world’s most sophisticated culinary experience belongs in Kyoto...</p>
+<a class="inline-block text-secondary font-medium text-sm underline underline-offset-4" href="#">Read Journal</a>
+</article>
+</div>
+</section>
+<!-- Newsletter / CTA -->
+<section class="bg-primary py-24 text-center px-12">
+<div class="max-w-3xl mx-auto">
+<h2 class="font-headline text-white text-4xl mb-6 italic leading-tight">Begin Your Kyoto Chapter</h2>
+<p class="text-white/80 body-lg mb-10">Subscribe to receive our curated seasonal travel guide and private itinerary recommendations for your next odyssey.</p>
+<form class="flex flex-col md:flex-row gap-4">
+<input class="flex-1 bg-white/10 border border-white/20 text-white placeholder:text-white/40 px-6 py-4 rounded-md focus:ring-2 focus:ring-secondary outline-none" placeholder="Your email address" type="email"/>
+<button class="bg-secondary text-on-secondary px-10 py-4 rounded-md font-label uppercase text-sm tracking-widest hover:opacity-90 transition-opacity">Subscribe</button>
+</form>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="bg-[#faf8ff] dark:bg-slate-950 w-full border-t-0">
+<div class="tonal-shift bg-[#f3f3fc] dark:bg-slate-900 py-16">
+<div class="grid grid-cols-1 md:grid-cols-2 lg:flex lg:justify-between px-12 gap-8 max-w-full mx-auto">
+<div class="space-y-6">
+<div class="text-xl font-serif text-[#00327d] dark:text-blue-300">The Editorial Explorer</div>
+<p class="text-slate-500 dark:text-slate-400 max-w-xs font-sans text-sm tracking-wide">A curated collection of global experiences, crafted for the discerning voyager who seeks depth and story.</p>
+</div>
+<div class="flex flex-col gap-3">
+<span class="font-label text-xs font-bold text-primary mb-2 uppercase">Company</span>
+<a class="text-slate-500 dark:text-slate-400 font-sans text-sm tracking-wide uppercase hover:text-[#9b4500] dark:hover:text-orange-400 underline-offset-4 hover:underline transition-all" href="#">About Us</a>
+<a class="text-slate-500 dark:text-slate-400 font-sans text-sm tracking-wide uppercase hover:text-[#9b4500] dark:hover:text-orange-400 underline-offset-4 hover:underline transition-all" href="#">Sustainability</a>
+</div>
+<div class="flex flex-col gap-3">
+<span class="font-label text-xs font-bold text-primary mb-2 uppercase">Support</span>
+<a class="text-slate-500 dark:text-slate-400 font-sans text-sm tracking-wide uppercase hover:text-[#9b4500] dark:hover:text-orange-400 underline-offset-4 hover:underline transition-all" href="#">Privacy</a>
+<a class="text-slate-500 dark:text-slate-400 font-sans text-sm tracking-wide uppercase hover:text-[#9b4500] dark:hover:text-orange-400 underline-offset-4 hover:underline transition-all" href="#">Terms</a>
+<a class="text-slate-500 dark:text-slate-400 font-sans text-sm tracking-wide uppercase hover:text-[#9b4500] dark:hover:text-orange-400 underline-offset-4 hover:underline transition-all" href="#">Contact</a>
+</div>
+<div class="flex flex-col gap-4">
+<span class="font-label text-xs font-bold text-primary mb-2 uppercase">Connect</span>
+<div class="flex gap-4">
+<button class="w-10 h-10 rounded-full border border-outline-variant/30 flex items-center justify-center hover:text-secondary transition-colors">
+<span class="material-symbols-outlined text-lg">public</span>
+</button>
+<button class="w-10 h-10 rounded-full border border-outline-variant/30 flex items-center justify-center hover:text-secondary transition-colors">
+<span class="material-symbols-outlined text-lg">share</span>
+</button>
+</div>
+</div>
+</div>
+<div class="mt-16 px-12 pt-8 border-t border-outline-variant/10 text-center md:text-left">
+<p class="font-sans text-xs tracking-wide uppercase text-slate-500 dark:text-slate-400">© 2024 The Editorial Explorer. A Curated Odyssey.</p>
+</div>
+</div>
+</footer>
+</body></html>

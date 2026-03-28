@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <%- include('partials/head') %>
+  </head>
+  <body class="bg-slate-50 text-slate-950">
+    <%- include('partials/header') %>
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+      <section class="rounded-[2rem] bg-white border border-slate-200 p-10 shadow-sm mb-10">
+        <p class="text-sm uppercase tracking-[0.28em] text-secondary font-semibold">Countries</p>
+        <h1 class="mt-4 text-5xl font-serif font-semibold tracking-tight text-slate-950">Browse all countries</h1>
+        <p class="mt-6 max-w-3xl text-lg leading-8 text-slate-600">Every country page is dynamic and managed through admin content, with dedicated guides for hotels, attractions, activities, and travel planning.</p>
+      </section>
+      <section>
+        <div class="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
+          <% countries.forEach(country => { %>
+            <article class="overflow-hidden rounded-[2rem] bg-white shadow-xl transition duration-200 hover:-translate-y-1 hover:shadow-2xl">
+              <a href="/countries/<%= country.slug %>">
+                <div class="h-72 bg-cover bg-center" style="background-image:url('<%= country.heroImage || 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1200&q=80' %>')"></div>
+              </a>
+              <div class="p-8">
+                <h3 class="text-2xl font-semibold text-slate-950"><a href="/countries/<%= country.slug %>" class="hover:text-sky-600"><%= country.name %></a></h3>
+                <p class="mt-4 text-sm leading-6 text-slate-600"><%= country.summary || country.description?.slice(0, 130) || 'Travel destination overview.' %></p>
+              </div>
+            </article>
+          <% }) %>
+        </div>
+      </section>
+    </main>
+    <%- include('partials/footer') %>
+  </body>
+</html>

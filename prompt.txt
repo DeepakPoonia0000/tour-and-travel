@@ -1,0 +1,20 @@
+create a tour and travel website based on the design that i have created using stitch and is present in the stitch_city_attraction_page folder
+use mongoose, exxpress and ejs
+in this admin will have all the control over the content and will add everythin manually and there will only be one admin whose credentials will be in the env
+this projecct have countries, states, cities, attractions and activities
+and the combination pages too of the country with attraction and activities and state and cities also have specific attractions and activities pages too
+then there are stae and a specific activity pages too
+and when createing any entry take a priority value and show all the entries in specific categories slider that they fall under and they will be ordered based on teh priority values
+the priority value will range from 1 to 9999
+if two entries have same pririty value then the  latest updated one will be shown first
+so if i create a state page then all of the cities that are linked to that state and have a priority value will be shown in that state and the same for the state and activity and attraction pages that are created by the admin
+there are also specific pgaes for things to do, places to visit, best time to visit, how to reach and hotels for each country, state and cities
+make it optimized for seo and use all the necessary meta tags
+all of the data will be shown dynamically and nothing will be static
+
+folow the design as closely as possible
+
+
+
+
+https://github.com/DeepakPoonia0000/tour-and-travel.git

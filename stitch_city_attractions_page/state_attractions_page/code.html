@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>The Editorial Explorer | Tuscany: A Curated Odyssey</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif:ital,wght@0,400;0,700;1,400&amp;family=Plus+Jakarta+Sans:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "tertiary": "#003f37",
+              "on-secondary": "#ffffff",
+              "primary-container": "#0047ab",
+              "surface-dim": "#d9d9e2",
+              "surface-container-high": "#e7e7f0",
+              "primary": "#00327d",
+              "outline-variant": "#c3c6d5",
+              "secondary-fixed": "#ffdbc9",
+              "secondary": "#9b4500",
+              "on-surface-variant": "#434653",
+              "error-container": "#ffdad6",
+              "on-primary": "#ffffff",
+              "background": "#faf8ff",
+              "primary-fixed": "#dae2ff",
+              "outline": "#737784",
+              "surface-bright": "#faf8ff",
+              "tertiary-fixed": "#79f7e3",
+              "surface-container-highest": "#e2e2eb",
+              "tertiary-container": "#00584e",
+              "secondary-container": "#fc8a40",
+              "tertiary-fixed-dim": "#59dbc7",
+              "on-error-container": "#93000a",
+              "surface": "#faf8ff",
+              "on-primary-fixed-variant": "#00419e",
+              "primary-fixed-dim": "#b1c5ff",
+              "surface-tint": "#2559bd",
+              "surface-container-low": "#f3f3fc",
+              "on-primary-container": "#a5bdff",
+              "surface-variant": "#e2e2eb",
+              "on-secondary-fixed": "#331200",
+              "inverse-on-surface": "#f0f0f9",
+              "surface-container-lowest": "#ffffff",
+              "surface-container": "#ededf6",
+              "on-primary-fixed": "#001946",
+              "on-secondary-fixed-variant": "#763300",
+              "on-tertiary": "#ffffff",
+              "secondary-fixed-dim": "#ffb68d",
+              "on-tertiary-fixed": "#00201c",
+              "inverse-surface": "#2e3037",
+              "inverse-primary": "#b1c5ff",
+              "on-tertiary-fixed-variant": "#005047",
+              "on-secondary-container": "#672c00",
+              "on-tertiary-container": "#50d3bf",
+              "on-error": "#ffffff",
+              "on-background": "#191b22",
+              "on-surface": "#191b22",
+              "error": "#ba1a1a"
+            },
+            fontFamily: {
+              "headline": ["Noto Serif", "serif"],
+              "body": ["Plus Jakarta Sans", "sans-serif"],
+              "label": ["Plus Jakarta Sans", "sans-serif"]
+            },
+            borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+          },
+        },
+      }
+    </script>
+<style>
+      .material-symbols-outlined {
+        font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+      }
+      body {
+        font-family: 'Plus Jakarta Sans', sans-serif;
+        background-color: #faf8ff;
+        color: #191b22;
+      }
+      .serif-display {
+        font-family: 'Noto Serif', serif;
+      }
+      .glass-nav {
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+      }
+      .perspective-card {
+        transform: translateY(-100px);
+      }
+    </style>
+</head>
+<body class="bg-surface text-on-surface selection:bg-secondary-fixed selection:text-on-secondary-fixed">
+<!-- Top Navigation Shell -->
+<nav class="fixed top-0 w-full z-50 bg-white/80 dark:bg-slate-900/80 backdrop-blur-md shadow-sm dark:shadow-none flex justify-between items-center px-12 py-6 max-w-full mx-auto">
+<div class="text-2xl font-serif italic text-[#00327d] dark:text-blue-300">
+            The Editorial Explorer
+        </div>
+<div class="hidden md:flex items-center gap-12">
+<a class="text-[#9b4500] dark:text-orange-400 border-b border-[#9b4500] font-medium font-serif text-lg tracking-tight" href="#">Destinations</a>
+<a class="text-[#00327d] dark:text-slate-300 hover:text-[#9b4500] transition-colors font-serif text-lg tracking-tight" href="#">Experiences</a>
+<a class="text-[#00327d] dark:text-slate-300 hover:text-[#9b4500] transition-colors font-serif text-lg tracking-tight" href="#">Journal</a>
+<a class="text-[#00327d] dark:text-slate-300 hover:text-[#9b4500] transition-colors font-serif text-lg tracking-tight" href="#">Bookings</a>
+</div>
+<div class="flex items-center gap-6">
+<span class="material-symbols-outlined text-[#00327d] cursor-pointer hover:opacity-80 transition-opacity" data-icon="search">search</span>
+<span class="material-symbols-outlined text-[#00327d] cursor-pointer hover:opacity-80 transition-opacity" data-icon="account_circle">account_circle</span>
+</div>
+</nav>
+<main class="pt-0">
+<!-- Hero Section: Perspective Hero -->
+<header class="relative h-[921px] w-full overflow-hidden flex items-center justify-center">
+<div class="absolute inset-0 z-0">
+<img alt="Tuscany" class="w-full h-full object-cover" data-alt="expansive aerial view of rolling tuscan hills with golden wheat fields, cypress trees, and a distant rustic farmhouse at sunrise" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA6wYYDIn33xM1xY8cqA4ufC6scOscjJWr2yye8uU_oicqgieYTYDHIX47Hn2CtoaI51DrdBw17hwOrbzF2tH-weqiFSVUpHHj913nR2KqRM-2Yn7eQUmXu6ywkemzK92EhRp1xoH_c5rWMU_RYSYHKpqcL3LAWnFpYzu_uTiCefYR04GK8zFyAlIHXDC9AFhUH7jnYy86YZjlaq63sqgApJcCq-8Du7x3qQLBBM_AN5FLv5OJUF5VLN7DzfP6qVmcoSHQggOGZhooP"/>
+<div class="absolute inset-0 bg-gradient-to-b from-primary/20 via-transparent to-surface"></div>
+</div>
+<div class="relative z-10 text-center px-6">
+<span class="label-md uppercase tracking-[0.3em] text-on-primary font-bold mb-4 block drop-shadow-md">Region Spotlight</span>
+<h1 class="serif-display text-7xl md:text-9xl text-white mb-6 drop-shadow-2xl">Tuscany</h1>
+<p class="text-white text-xl md:text-2xl max-w-2xl mx-auto font-light italic leading-relaxed drop-shadow-lg">
+                    A canvas of rolling hills, renaissance art, and the golden light of the Mediterranean.
+                </p>
+</div>
+</header>
+<!-- Intro Content with Overlapping Card -->
+<section class="max-w-7xl mx-auto px-12 relative">
+<div class="perspective-card bg-surface-container-lowest p-12 md:p-20 shadow-xl rounded-lg flex flex-col md:flex-row gap-16 items-start">
+<div class="w-full md:w-1/2">
+<span class="text-secondary font-semibold uppercase tracking-widest text-xs mb-4 block">The Heart of Italy</span>
+<h2 class="serif-display text-4xl md:text-5xl text-primary leading-tight mb-8">Where Time Slows Down to the Pace of a Decanted Wine.</h2>
+<p class="text-on-surface-variant text-lg leading-relaxed mb-6">
+                        Tuscany is not just a destination; it is an sensory experience curated by centuries of history. From the marble-clad streets of Florence to the quiet cypress-lined avenues of Val d'Orcia, every corner tells a story of artistic triumph and rural simplicity.
+                    </p>
+<button class="bg-primary text-on-primary px-8 py-4 rounded-md font-medium hover:bg-primary-container transition-all flex items-center gap-3">
+                        Request Concierge Guide
+                        <span class="material-symbols-outlined text-sm">arrow_forward</span>
+</button>
+</div>
+<div class="w-full md:w-1/2 grid grid-cols-2 gap-4">
+<div class="pt-12">
+<img class="rounded-lg shadow-lg w-full h-80 object-cover" data-alt="narrow sunlit cobblestone street in a medieval tuscan village with blooming flowers in window boxes" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCA1813pxenSd7HdFmEHEtl3paMkWNYFmo_ezj9okDbHYv2wi-k62St8DmSfdgr5dxqYBbzbG2MJZDa4l_I5ILAAtPN4Vzspa9fdeXv0zWVuD3A2Q3eA1I3dcMr2tl2CvwoAsqNKER6ELIStHWtYtLClqBpBgOHibS0G1lTemBDVShXuZoGH6ne8g2Bt875NGxRDacqzAWfZesxOvZ1kwzIwwFLM4lD5YDzs9m2mq12mFxWun_-9OLQ7qrnPXOXynGXsHzivAs_4GZ0"/>
+</div>
+<div>
+<img class="rounded-lg shadow-lg w-full h-80 object-cover" data-alt="gothic cathedral facade with intricate marble carvings under a clear blue italian sky" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDMK2TmWowsdEyqFXlj-7kS8qN6MsCKHoedYz_Ykc1JiKO7GxMsY60n3oOvM_lE3Y9YLbvpFim7WyvCLfxUIwkSfYzVB0c_pJNBtFaPr5L_U_2w34Fs42M2Zbnf2dqAPRVi50YlIT-fk1N2VNsLQxihOGs-4kyQVdS1Qw9e-9ilb4DnbQOXbWdh30QDUnyEcMdfLOxAxkdtmpzQYsiWrqGqkQUv0kCwuF8_181Yjgl8oqXaeRe_urelOTfW-TgmoPwrBYaxIhUNtkrQ"/>
+</div>
+</div>
+</div>
+</section>
+<!-- Filters Section -->
+<section class="max-w-7xl mx-auto px-12 mb-16">
+<div class="flex flex-col md:flex-row md:items-center justify-between gap-8 py-8 border-y-0 bg-surface-container-low rounded-xl px-10">
+<div>
+<h3 class="serif-display text-2xl text-primary">Curated Attractions</h3>
+<p class="text-on-surface-variant text-sm">Filter your odyssey by theme</p>
+</div>
+<div class="flex flex-wrap gap-4">
+<button class="px-6 py-2 rounded-full bg-secondary-container text-on-secondary-container font-medium text-sm transition-all">All Sights</button>
+<button class="px-6 py-2 rounded-full bg-surface-container-highest text-on-surface-variant hover:bg-secondary-fixed font-medium text-sm transition-all">History</button>
+<button class="px-6 py-2 rounded-full bg-surface-container-highest text-on-surface-variant hover:bg-secondary-fixed font-medium text-sm transition-all">Nature</button>
+<button class="px-6 py-2 rounded-full bg-surface-container-highest text-on-surface-variant hover:bg-secondary-fixed font-medium text-sm transition-all">Art &amp; Culture</button>
+</div>
+</div>
+</section>
+<!-- Bento Grid Attractions -->
+<section class="max-w-7xl mx-auto px-12 mb-32">
+<div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+<!-- Large Feature Card -->
+<div class="md:col-span-2 group cursor-pointer">
+<div class="relative overflow-hidden rounded-lg aspect-[16/9]">
+<img alt="Duomo di Firenze" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" data-alt="the majestic terracotta dome of the cathedral of santa maria del fiore towering over the city of florence at twilight" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAVDC0lJf431XHS5wrom0KyS9n8i7xe40DGvVAA43-gH7PAeyDr2rldeb9rqRnfv8GCZPTmiCtiVVty29IUPGzN56PzDhmAeUVa07nUFl_nyDh4VZ8omhxi3LpKvoXoi9pHbteXKgMJwY6zaOVzWvUzOkhmQt0lKrh7ZCxnc0pefHkrye7IoMAZWHtSZOUZhFZRAZcCoS-x6VxYhyiTrrUIc_fIfpojJTUPSPer2WVY8mI4boffiwytxKAxbVdfyUxJw7cT9Uxp1SD5"/>
+<div class="absolute inset-0 bg-gradient-to-t from-primary/80 to-transparent flex flex-col justify-end p-10">
+<span class="text-secondary-fixed text-xs font-bold uppercase tracking-widest mb-2">History • Florence</span>
+<h4 class="serif-display text-4xl text-white mb-4">Duomo di Firenze</h4>
+<p class="text-white/80 max-w-lg mb-6 leading-relaxed">Brunelleschi’s masterpiece remains the crown jewel of the Renaissance skyline, an architectural feat that defied the limits of its time.</p>
+<span class="text-white font-medium flex items-center gap-2 group-hover:gap-4 transition-all">Explore Monument <span class="material-symbols-outlined">east</span></span>
+</div>
+</div>
+</div>
+<!-- Vertical Card -->
+<div class="group cursor-pointer">
+<div class="bg-surface-container-lowest rounded-lg h-full flex flex-col overflow-hidden">
+<div class="relative overflow-hidden h-72">
+<img alt="Val d'Orcia" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" data-alt="a lonely stone villa perched on a hill surrounded by perfectly symmetrical green cypress trees in the tuscan countryside" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD3vqAQMiB9yOlvUCFBJC5Cww2xx56xW2Q9cMzx05Ob75RvG5WRpBd8W4cXFfLL1nd24Kkv6Ap3nrb_3VpQ_YuCjliPYY7BUC3kiVsOwGbJNQV4GnSEABIyH4S5i35HXadjk_XTw46EgcrSiol6W8w5DrPr50tH6rH5bJF3vnApap_acNc92hftn1gj--DRFEC9sb169ob7JNE4tiOEVgv6jS64xqZjO8V_JpmM0E-YrcMI2HuujRxhRBh2GPjAjUZVXjfknLb6E7wu"/>
+</div>
+<div class="p-8">
+<span class="text-secondary text-xs font-bold uppercase tracking-widest mb-2 block">Nature • Val d'Orcia</span>
+<h4 class="serif-display text-2xl text-primary mb-4">Cypress Alleys of Pienza</h4>
+<p class="text-on-surface-variant text-sm leading-relaxed mb-6">The quintessential Tuscan landscape, where nature has been sculpted into a living poem over centuries.</p>
+<div class="mt-auto pt-4 border-t-0 flex items-center justify-between">
+<span class="text-primary font-bold text-sm">Read Story</span>
+<span class="material-symbols-outlined text-primary">arrow_outward</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Regular Card 1 -->
+<div class="group cursor-pointer">
+<div class="bg-surface-container-lowest rounded-lg overflow-hidden h-full">
+<div class="relative h-60 overflow-hidden">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="the leaning tower of pisa standing tall on a manicured lawn under clear afternoon light" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD_OqsiI57Y4fPHK5gbCT4oE9ZVmZR94fZPkxahC5gruwu8Fi4bWu_1w4lPnJHlG4tO5gRXaGbd2hnW1m-rIfd5imDB4boqscBAVAGl-aAT_aUMfdQUCZb2Y_mm_d5o7mkjxOltfuyGQ07AI_NkKewwmT7WjpOVE522APPFtfCiwlyOdQ3Z4rFmTp2-xjh9gpjWkYpV26uAlUHpbdSbcS8VGzQFRgKYtoIu2lghKy0r_inQ7QD4xF6n-mVym5uzYLF3C-F7g-f01ipn"/>
+</div>
+<div class="p-6">
+<h5 class="serif-display text-xl text-primary mb-2">Piazza dei Miracoli</h5>
+<p class="text-on-surface-variant text-sm mb-4">More than just a leaning tower, a spiritual complex of stunning white marble.</p>
+<span class="text-xs font-bold text-outline uppercase">45 mins from Florence</span>
+</div>
+</div>
+</div>
+<!-- Regular Card 2 -->
+<div class="group cursor-pointer">
+<div class="bg-surface-container-lowest rounded-lg overflow-hidden h-full">
+<div class="relative h-60 overflow-hidden">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="the medieval skyline of san gimignano with its numerous square towers rising against a soft sunset" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCi-yVFW22orKJQ9MaYlIGIAkwnbdDGbDUUWLiQSnA9fJ0I_JD9m0ZBmkEqBsEwO9BOx-gjGriETQHQ1D3R3jXhoEWyVLd1c8kosY8UGQR3OxkhISl7W4Eh1ggEtekwywp6NyPL4DqYelijy1cNtLIW6InckPj0UjMsFwekljUAu_mKBV9v4gm1hBqZ-9p0GLa3ceV-zahvb5M06BDs8-15rqaX84fSpE_14gI2SErTxQcSfn3srVIvTh7-8_vArH61eXKr4Rn4AZ6k"/>
+</div>
+<div class="p-6">
+<h5 class="serif-display text-xl text-primary mb-2">Medieval Manhattan</h5>
+<p class="text-on-surface-variant text-sm mb-4">Explore the fourteen surviving stone towers of San Gimignano's feudal past.</p>
+<span class="text-xs font-bold text-outline uppercase">Historical Preservation</span>
+</div>
+</div>
+</div>
+<!-- Regular Card 3 -->
+<div class="group cursor-pointer">
+<div class="bg-surface-container-lowest rounded-lg overflow-hidden h-full">
+<div class="relative h-60 overflow-hidden">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="rustic wooden table set with local wine and pecorino cheese in a sun-drenched vineyard" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC0y0kQEFwivLyN7OyuWDUoBDi15my-j2qbm6w2o-E61UaNJTAzrm-CwFq3DOr6aJr9VI9AuB9EPFNcwyxoKk_Jot8J9BJOLQd1bwacQt6LntAX2wrEh6oys3MtgwJENSrc6Go-DrtEgiIHLryig3iIoItansKI6NcNxUlkGZYHk4mZdM_MfubQ3hF0hdMdYMERoD6iAEZWD6OURP-Z31YSbvayCb2TMKvGgoMKQXJ2qOrWq5KVNTvcYpKzCAhQFft8w0Bz_cS3YI_0"/>
+</div>
+<div class="p-6">
+<h5 class="serif-display text-xl text-primary mb-2">Chianti Classico</h5>
+<p class="text-on-surface-variant text-sm mb-4">The sensory heart of Tuscany, where every vineyard offers a taste of history.</p>
+<span class="text-xs font-bold text-outline uppercase">Exclusive Tasting</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Regional Map Interaction Preview -->
+<section class="bg-surface-container-low py-24 mb-32">
+<div class="max-w-7xl mx-auto px-12 grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
+<div>
+<span class="label-md uppercase text-secondary font-bold tracking-widest mb-4 block">Interactive Atlas</span>
+<h2 class="serif-display text-5xl text-primary mb-8">Navigate the Etruscan Paths</h2>
+<p class="text-on-surface-variant text-lg leading-relaxed mb-8">
+                        Our bespoke digital atlas allows you to trace the ancient trade routes and hidden artistic enclaves that standard guides miss. Tailor your route from the Apuan Alps to the Maremma coast.
+                    </p>
+<div class="space-y-4">
+<div class="flex items-center gap-4 group">
+<div class="w-10 h-10 rounded-full bg-primary-fixed flex items-center justify-center text-primary transition-colors group-hover:bg-primary group-hover:text-on-primary">
+<span class="material-symbols-outlined text-sm">map</span>
+</div>
+<span class="font-medium text-primary">Download Offline Topographic Map</span>
+</div>
+<div class="flex items-center gap-4 group">
+<div class="w-10 h-10 rounded-full bg-primary-fixed flex items-center justify-center text-primary transition-colors group-hover:bg-primary group-hover:text-on-primary">
+<span class="material-symbols-outlined text-sm">history_edu</span>
+</div>
+<span class="font-medium text-primary">Renaissance Architecture Trail</span>
+</div>
+</div>
+</div>
+<div class="relative">
+<div class="aspect-square bg-white p-4 rounded-full shadow-2xl relative overflow-hidden border-8 border-surface-container-low">
+<img class="w-full h-full object-cover rounded-full grayscale hover:grayscale-0 transition-all duration-700" data-alt="vintage style map of tuscany with focus on florence and siena cities" data-location="Tuscany" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAtsL9QHsI2M9fFUVHGReDtE2XWVff0XFq5hbkMeZEH-LeYbD0gtu-qu2Sr-NXBoXc5mhTyKOJKWCh8fOxM47HNuB-uYfaucaFvX3otskbPSVbOTZxx5fvrN-q8609n0vHt5VHR2MVNmxKW6nwLLxQRh9CUe6fpxyJZVOYipkKv5fVWIP7tLsG4Ukci9hE6t15SaK-GohfuXW_QCrOaeCc4h7QuaN5ahj3ow_ZpOsrEFa13Fo-Ddxu_4Q7YvEzZ6co_B6ae6K9W2U8T"/>
+<div class="absolute inset-0 flex items-center justify-center">
+<div class="bg-primary/90 text-white p-4 rounded-xl backdrop-blur-md shadow-lg">
+<span class="material-symbols-outlined block text-center mb-1">location_on</span>
+<span class="text-xs font-bold tracking-widest uppercase">Select City</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Newsletter / Footer CTA -->
+<section class="max-w-7xl mx-auto px-12 pb-32">
+<div class="bg-primary p-12 md:p-24 rounded-lg text-center relative overflow-hidden">
+<div class="absolute top-0 right-0 w-64 h-64 bg-white/5 rounded-full -translate-y-1/2 translate-x-1/2"></div>
+<div class="relative z-10">
+<h2 class="serif-display text-4xl md:text-6xl text-on-primary mb-6">Become a Modern Explorer.</h2>
+<p class="text-on-primary-container text-lg mb-10 max-w-2xl mx-auto">Subscribe to our monthly journal for curated itineraries, hidden destination gems, and exclusive travel features.</p>
+<div class="flex flex-col md:flex-row gap-4 justify-center items-center">
+<input class="w-full md:w-96 px-6 py-4 rounded-md bg-white/10 border border-white/20 text-white placeholder:text-white/50 focus:outline-none focus:ring-2 focus:ring-secondary transition-all" placeholder="Your email address" type="email"/>
+<button class="bg-secondary text-on-secondary px-10 py-4 rounded-md font-bold uppercase tracking-widest text-sm hover:bg-secondary-container transition-all">Join Odyssey</button>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="tonal-shift bg-[#f3f3fc] dark:bg-slate-900 py-16 w-full border-t-0">
+<div class="grid grid-cols-1 md:grid-cols-2 lg:flex lg:justify-between px-12 gap-8 max-w-7xl mx-auto">
+<div class="space-y-6">
+<div class="text-xl font-serif text-[#00327d] dark:text-blue-300">The Editorial Explorer</div>
+<p class="text-slate-500 max-w-xs text-sm">Redefining the art of travel through immersive storytelling and artisanal curation.</p>
+</div>
+<div class="flex flex-col gap-4">
+<span class="font-sans text-sm tracking-wide uppercase text-[#00327d] font-bold">The Journey</span>
+<a class="text-slate-500 dark:text-slate-400 hover:text-[#9b4500] dark:hover:text-orange-400 underline-offset-4 hover:underline transition-all duration-300 text-sm uppercase" href="#">About Us</a>
+<a class="text-slate-500 dark:text-slate-400 hover:text-[#9b4500] dark:hover:text-orange-400 underline-offset-4 hover:underline transition-all duration-300 text-sm uppercase" href="#">Sustainability</a>
+<a class="text-slate-500 dark:text-slate-400 hover:text-[#9b4500] dark:hover:text-orange-400 underline-offset-4 hover:underline transition-all duration-300 text-sm uppercase" href="#">Contact</a>
+</div>
+<div class="flex flex-col gap-4">
+<span class="font-sans text-sm tracking-wide uppercase text-[#00327d] font-bold">Legal</span>
+<a class="text-slate-500 dark:text-slate-400 hover:text-[#9b4500] dark:hover:text-orange-400 underline-offset-4 hover:underline transition-all duration-300 text-sm uppercase" href="#">Privacy</a>
+<a class="text-slate-500 dark:text-slate-400 hover:text-[#9b4500] dark:hover:text-orange-400 underline-offset-4 hover:underline transition-all duration-300 text-sm uppercase" href="#">Terms</a>
+</div>
+<div class="lg:text-right">
+<p class="font-sans text-sm tracking-wide uppercase text-slate-500 dark:text-slate-400">© 2024 The Editorial Explorer. A Curated Odyssey.</p>
+<div class="flex lg:justify-end gap-6 mt-6">
+<span class="material-symbols-outlined text-[#00327d] cursor-pointer">public</span>
+<span class="material-symbols-outlined text-[#00327d] cursor-pointer">photo_camera</span>
+<span class="material-symbols-outlined text-[#00327d] cursor-pointer">rss_feed</span>
+</div>
+</div>
+</div>
+</footer>
+</body></html>

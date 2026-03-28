@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <%- include('../partials/head') %>
+  </head>
+  <body class="min-h-screen bg-slate-50 text-slate-900">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+      <header class="mb-8 flex flex-col gap-4 rounded-[2rem] bg-white border border-slate-200 p-8 shadow-sm sm:flex-row sm:items-center sm:justify-between">
+        <div>
+          <h1 class="text-3xl font-semibold text-slate-900"><%= record && record._id ? 'Edit' : 'Create' %> <%= entityLabel %></h1>
+          <p class="mt-2 text-slate-600">Set the priority, slug, and all dynamic fields for this entry.</p>
+        </div>
+        <a class="inline-flex rounded-2xl border border-slate-300 bg-white px-5 py-3 text-sm font-semibold text-slate-900 transition hover:bg-slate-50" href="/admin/<%= entity %>">Back</a>
+      </header>
+      <% if (error) { %>
+        <div class="mb-6 rounded-2xl bg-red-50 px-4 py-4 text-sm text-red-700 ring-1 ring-red-200"><%= error %></div>
+      <% } %>
+      <form class="space-y-8 rounded-[2rem] bg-white border border-slate-200 p-8 shadow-sm" action="<%= action %>" method="POST" enctype="multipart/form-data">
+        <div class="grid gap-6 xl:grid-cols-2">
+          <label class="block">
+            <span class="text-sm font-medium text-slate-700">Name</span>
+            <input name="name" required value="<%= record.name || '' %>" class="mt-2 w-full rounded-2xl border border-slate-300 bg-slate-50 px-4 py-3 text-slate-900 outline-none transition focus:border-sky-500 focus:ring-2 focus:ring-sky-100" />
+          </label>
+          <label class="block">
+            <span class="text-sm font-medium text-slate-700">Slug</span>
+            <input name="slug" value="<%= record.slug || '' %>" placeholder="auto-generated if blank" class="mt-2 w-full rounded-2xl border border-slate-300 bg-slate-50 px-4 py-3 text-slate-900 outline-none transition focus:border-sky-500 focus:ring-2 focus:ring-sky-100" />
+          </label>
+          <label class="block">
+            <span class="text-sm font-medium text-slate-700">Priority</span>
+            <input name="priority" type="number" min="1" max="9999" value="<%= record.priority || 9999 %>" class="mt-2 w-full rounded-2xl border border-slate-300 bg-slate-50 px-4 py-3 text-slate-900 outline-none transition focus:border-sky-500 focus:ring-2 focus:ring-sky-100" />
+          </label>
+          <label class="block">
+            <span class="text-sm font-medium text-slate-700">Upload hero image</span>
+            <input type="file" name="heroImageFile" accept="image/*" class="mt-2 w-full rounded-2xl border border-slate-300 bg-slate-50 px-4 py-3 text-slate-900 outline-none transition focus:border-sky-500 focus:ring-2 focus:ring-sky-100" />
+            <p class="mt-2 text-sm text-slate-500">Optional. Uploading a file will override the hero image URL.</p>
+          </label>
+          <label class="block">
+            <span class="text-sm font-medium text-slate-700">Hero image URL</span>
+            <input name="heroImageUrl" value="<%= record.heroImage || '' %>" class="mt-2 w-full rounded-2xl border border-slate-300 bg-slate-50 px-4 py-3 text-slate-900 outline-none transition focus:border-sky-500 focus:ring-2 focus:ring-sky-100" />
+          </label>
+        </div>
+        <% if (entity === 'packages') { %>
+          <div class="grid gap-6 xl:grid-cols-2">
+            <label class="block">
+              <span class="text-sm font-medium text-slate-700">Price</span>
+              <input name="price" value="<%= record.price || '' %>" class="mt-2 w-full rounded-2xl border border-slate-300 bg-slate-50 px-4 py-3 text-slate-900 outline-none transition focus:border-sky-500 focus:ring-2 focus:ring-sky-100" />
+            </label>
+            <label class="block">
+              <span class="text-sm font-medium text-slate-700">Duration</span>
+              <input name="duration" value="<%= record.duration || '' %>" class="mt-2 w-full rounded-2xl border border-slate-300 bg-slate-50 px-4 py-3 text-slate-900 outline-none transition focus:border-sky-500 focus:ring-2 focus:ring-sky-100" />
+            </label>
+          </div>
+          <div class="grid gap-6 lg:grid-cols-2">
+            <label class="block">
+              <span class="text-sm font-medium text-slate-700">Itinerary countries</span>
+              <select name="itineraryCountries" multiple class="mt-2 h-40 w-full rounded-2xl border border-slate-300 bg-slate-50 px-4 py-3 text-slate-900 outline-none transition focus:border-sky-500 focus:ring-2 focus:ring-sky-100">
+                <% references.countries.forEach(country => { %>
+                  <option value="<%= country._id %>" <%= Array.isArray(record.itineraryCountries) && record.itineraryCountries.includes(String(country._id)) ? 'selected' : '' %>><%= country.name %></option>
+                <% }) %>
+              </select>
+            </label>
+            <label class="block">
+              <span class="text-sm font-medium text-slate-700">Itinerary states</span>
+              <select name="itineraryStates" multiple class="mt-2 h-40 w-full rounded-2xl border border-slate-300 bg-slate-50 px-4 py-3 text-slate-900 outline-none transition focus:border-sky-500 focus:ring-2 focus:ring-sky-100">
+                <% references.states.forEach(state => { %>
+                  <option value="<%= state._id %>" <%= Array.isArray(record.itineraryStates) && record.itineraryStates.includes(String(state._id)) ? 'selected' : '' %>><%= state.name %></option>
+                <% }) %>
+              </select>
+            </label>
+          </div>
+          <div class="grid gap-6 lg:grid-cols-2">
+            <label class="block">
+              <span class="text-sm font-medium text-slate-700">Itinerary cities</span>
+              <select name="itineraryCities" multiple class="mt-2 h-40 w-full rounded-2xl border border-slate-300 bg-slate-50 px-4 py-3 text-slate-900 outline-none transition focus:border-sky-500 focus:ring-2 focus:ring-sky-100">
+                <% references.cities.forEach(city => { %>
+                  <option value="<%= city._id %>" <%= Array.isArray(record.itineraryCities) && record.itineraryCities.includes(String(city._id)) ? 'selected' : '' %>><%= city.name %></option>
+                <% }) %>
+              </select>
+            </label>
+            <label class="block">
+              <span class="text-sm font-medium text-slate-700">Itinerary attractions</span>
+              <select name="itineraryAttractions" multiple class="mt-2 h-40 w-full rounded-2xl border border-slate-300 bg-slate-50 px-4 py-3 text-slate-900 outline-none transition focus:border-sky-500 focus:ring-2 focus:ring-sky-100">
+                <% references.attractions.forEach(attraction => { %>
+                  <option value="<%= attraction._id %>" <%= Array.isArray(record.itineraryAttractions) && record.itineraryAttractions.includes(String(attraction._id)) ? 'selected' : '' %>><%= attraction.name %></option>
+                <% }) %>
+              </select>
+            </label>
+          </div>
+          <label class="block">
+            <span class="text-sm font-medium text-slate-700">Itinerary activities</span>
+            <select name="itineraryActivities" multiple class="mt-2 h-40 w-full rounded-2xl border border-slate-300 bg-slate-50 px-4 py-3 text-slate-900 outline-none transition focus:border-sky-500 focus:ring-2 focus:ring-sky-100">
+              <% references.activities.forEach(activity => { %>
+                <option value="<%= activity._id %>" <%= Array.isArray(record.itineraryActivities) && record.itineraryActivities.includes(String(activity._id)) ? 'selected' : '' %>><%= activity.name %></option>
+              <% }) %>
+            </select>
+          </label>
+        <% } %>
+        <% if (entity === 'states' || entity === 'cities' || entity === 'attractions' || entity === 'activities') { %>
+          <div class="grid gap-6 xl:grid-cols-2">
+            <label class="block">
+              <span class="text-sm font-medium text-slate-700">Country</span>
+              <select name="country" required class="mt-2 w-full rounded-2xl border border-slate-300 bg-slate-50 px-4 py-3 text-slate-900 outline-none transition focus:border-sky-500 focus:ring-2 focus:ring-sky-100">
+                <option value="">Select country</option>
+                <% references.countries.forEach(country => { %>
+                  <option value="<%= country._id %>" <%= String(country._id) === String(record.country) ? 'selected' : '' %>><%= country.name %></option>
+                <% }) %>
+              </select>
+            </label>
+            <% if (entity === 'cities' || entity === 'attractions' || entity === 'activities') { %>
+              <label class="block">
+                <span class="text-sm font-medium text-slate-700">State</span>
+                <select name="state" <%= entity === 'cities' ? 'required' : '' %> class="mt-2 w-full rounded-2xl border border-slate-300 bg-slate-50 px-4 py-3 text-slate-900 outline-none transition focus:border-sky-500 focus:ring-2 focus:ring-sky-100">
+                  <option value="">Select state</option>
+                  <% references.states.forEach(state => { %>
+                    <option value="<%= state._id %>" <%= String(state._id) === String(record.state) ? 'selected' : '' %>><%= state.name %></option>
+                  <% }) %>
+                </select>
+              </label>
+            <% } %>
+            <% if (entity === 'attractions' || entity === 'activities') { %>
+              <label class="block">
+                <span class="text-sm font-medium text-slate-700">City</span>
+                <select name="city" class="mt-2 w-full rounded-2xl border border-slate-300 bg-slate-50 px-4 py-3 text-slate-900 outline-none transition focus:border-sky-500 focus:ring-2 focus:ring-sky-100">
+                  <option value="">Select city</option>
+                  <% references.cities.forEach(city => { %>
+                    <option value="<%= city._id %>" <%= String(city._id) === String(record.city) ? 'selected' : '' %>><%= city.name %></option>
+                  <% }) %>
+                </select>
+              </label>
+            <% } %>
+            <label class="block">
+              <span class="text-sm font-medium text-slate-700">Category</span>
+              <input name="category" value="<%= record.category || '' %>" class="mt-2 w-full rounded-2xl border border-slate-300 bg-slate-50 px-4 py-3 text-slate-900 outline-none transition focus:border-sky-500 focus:ring-2 focus:ring-sky-100" />
+            </label>
+          </div>
+        <% } %>
+        <div class="grid gap-6 xl:grid-cols-2">
+          <label class="block">
+            <span class="text-sm font-medium text-slate-700">Summary</span>
+            <textarea rows="3" name="summary" class="mt-2 w-full rounded-2xl border border-slate-300 bg-slate-50 px-4 py-3 text-slate-900 outline-none transition focus:border-sky-500 focus:ring-2 focus:ring-sky-100"><%= record.summary || '' %></textarea>
+          </label>
+          <label class="block">
+            <span class="text-sm font-medium text-slate-700">Description</span>
+            <textarea rows="5" name="description" class="mt-2 w-full rounded-2xl border border-slate-300 bg-slate-50 px-4 py-3 text-slate-900 outline-none transition focus:border-sky-500 focus:ring-2 focus:ring-sky-100"><%= record.description || '' %></textarea>
+          </label>
+        </div>
+        <div class="grid gap-6 xl:grid-cols-2">
+          <label class="block">
+            <span class="text-sm font-medium text-slate-700">Things to do</span>
+            <textarea rows="4" name="thingsToDo" class="mt-2 w-full rounded-2xl border border-slate-300 bg-slate-50 px-4 py-3 text-slate-900 outline-none transition focus:border-sky-500 focus:ring-2 focus:ring-sky-100"><%= record.thingsToDo || '' %></textarea>
+          </label>
+          <label class="block">
+            <span class="text-sm font-medium text-slate-700">Places to visit</span>
+            <textarea rows="4" name="placesToVisit" class="mt-2 w-full rounded-2xl border border-slate-300 bg-slate-50 px-4 py-3 text-slate-900 outline-none transition focus:border-sky-500 focus:ring-2 focus:ring-sky-100"><%= record.placesToVisit || '' %></textarea>
+          </label>
+        </div>
+        <div class="grid gap-6 xl:grid-cols-2">
+          <label class="block">
+            <span class="text-sm font-medium text-slate-700">Best time to visit</span>
+            <textarea rows="3" name="bestTimeToVisit" class="mt-2 w-full rounded-2xl border border-slate-300 bg-slate-50 px-4 py-3 text-slate-900 outline-none transition focus:border-sky-500 focus:ring-2 focus:ring-sky-100"><%= record.bestTimeToVisit || '' %></textarea>
+          </label>
+          <label class="block">
+            <span class="text-sm font-medium text-slate-700">How to reach</span>
+            <textarea rows="3" name="howToReach" class="mt-2 w-full rounded-2xl border border-slate-300 bg-slate-50 px-4 py-3 text-slate-900 outline-none transition focus:border-sky-500 focus:ring-2 focus:ring-sky-100"><%= record.howToReach || '' %></textarea>
+          </label>
+        </div>
+        <label class="block">
+          <span class="text-sm font-medium text-slate-700">Hotels</span>
+          <textarea rows="3" name="hotels" class="mt-2 w-full rounded-2xl border border-slate-300 bg-slate-50 px-4 py-3 text-slate-900 outline-none transition focus:border-sky-500 focus:ring-2 focus:ring-sky-100"><%= record.hotels || '' %></textarea>
+        </label>
+        <div class="grid gap-6 xl:grid-cols-2">
+          <label class="block">
+            <span class="text-sm font-medium text-slate-700">SEO title</span>
+            <input name="seoTitle" value="<%= record.seoTitle || '' %>" class="mt-2 w-full rounded-2xl border border-slate-300 bg-slate-50 px-4 py-3 text-slate-900 outline-none transition focus:border-sky-500 focus:ring-2 focus:ring-sky-100" />
+          </label>
+          <label class="block">
+            <span class="text-sm font-medium text-slate-700">SEO description</span>
+            <textarea rows="3" name="seoDescription" class="mt-2 w-full rounded-2xl border border-slate-300 bg-slate-50 px-4 py-3 text-slate-900 outline-none transition focus:border-sky-500 focus:ring-2 focus:ring-sky-100"><%= record.seoDescription || '' %></textarea>
+          </label>
+        </div>
+        <label class="block">
+          <span class="text-sm font-medium text-slate-700">SEO keywords</span>
+          <input name="seoKeywords" value="<%= record.seoKeywords || '' %>" class="mt-2 w-full rounded-2xl border border-slate-300 bg-slate-50 px-4 py-3 text-slate-900 outline-none transition focus:border-sky-500 focus:ring-2 focus:ring-sky-100" />
+        </label>
+        <button class="w-full rounded-2xl bg-sky-600 px-6 py-4 text-base font-semibold text-white transition hover:bg-sky-700" type="submit"><%= record && record._id ? 'Update' : 'Create' %> <%= entityLabel %></button>
+      </form>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Horizon Voyager | Luxury Hotels &amp; Stays</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif:wght@400;700;900&amp;family=Plus+Jakarta+Sans:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "on-tertiary-container": "#50d3bf",
+              "on-secondary-fixed-variant": "#763300",
+              "secondary-fixed-dim": "#ffb68d",
+              "primary-container": "#0047ab",
+              "on-secondary-fixed": "#331200",
+              "on-background": "#191b22",
+              "tertiary-fixed": "#79f7e3",
+              "on-tertiary-fixed": "#00201c",
+              "inverse-surface": "#2e3037",
+              "tertiary-container": "#00584e",
+              "inverse-primary": "#b1c5ff",
+              "tertiary": "#003f37",
+              "inverse-on-surface": "#f0f0f9",
+              "surface-tint": "#2559bd",
+              "outline-variant": "#c3c6d5",
+              "surface-variant": "#e2e2eb",
+              "surface-container-lowest": "#ffffff",
+              "on-primary": "#ffffff",
+              "surface-container-high": "#e7e7f0",
+              "primary-fixed": "#dae2ff",
+              "surface-container": "#ededf6",
+              "primary": "#00327d",
+              "outline": "#737784",
+              "on-primary-fixed": "#001946",
+              "error": "#ba1a1a",
+              "error-container": "#ffdad6",
+              "tertiary-fixed-dim": "#59dbc7",
+              "surface-bright": "#faf8ff",
+              "on-surface": "#191b22",
+              "surface-container-low": "#f3f3fc",
+              "secondary-fixed": "#ffdbc9",
+              "on-error-container": "#93000a",
+              "background": "#faf8ff",
+              "surface-dim": "#d9d9e2",
+              "on-secondary": "#ffffff",
+              "on-error": "#ffffff",
+              "secondary": "#9b4500",
+              "on-primary-container": "#a5bdff",
+              "secondary-container": "#fc8a40",
+              "on-primary-fixed-variant": "#00419e",
+              "surface-container-highest": "#e2e2eb",
+              "surface": "#faf8ff",
+              "primary-fixed-dim": "#b1c5ff",
+              "on-surface-variant": "#434653",
+              "on-secondary-container": "#672c00",
+              "on-tertiary-fixed-variant": "#005047",
+              "on-tertiary": "#ffffff"
+            },
+            fontFamily: {
+              "headline": ["Noto Serif"],
+              "body": ["Plus Jakarta Sans"],
+              "label": ["Plus Jakarta Sans"]
+            },
+            borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .perspective-card:hover img {
+            transform: scale(1.05);
+        }
+        .glass-nav {
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+        }
+        .ghost-border {
+            outline: 1px solid rgba(195, 198, 213, 0.2);
+        }
+    </style>
+</head>
+<body class="bg-surface text-on-surface font-body selection:bg-secondary-fixed selection:text-on-secondary-fixed">
+<!-- Top Navigation Bar -->
+<nav class="fixed top-0 w-full z-50 bg-white/70 backdrop-blur-md shadow-sm">
+<div class="flex justify-between items-center w-full px-8 py-4 max-w-screen-2xl mx-auto">
+<div class="text-2xl font-serif font-bold tracking-tight text-blue-900">Horizon Voyager</div>
+<div class="hidden md:flex items-center space-x-8">
+<a class="text-slate-700 hover:text-blue-900 transition-colors font-label" href="#">Destinations</a>
+<a class="text-blue-900 border-b-2 border-orange-700 pb-1 font-semibold font-label" href="#">Journeys</a>
+<a class="text-slate-700 hover:text-blue-900 transition-colors font-label" href="#">Experiences</a>
+<a class="text-slate-700 hover:text-blue-900 transition-colors font-label" href="#">Journal</a>
+</div>
+<div class="flex items-center space-x-6">
+<div class="hidden lg:flex items-center bg-surface-container-low px-4 py-2 rounded-md ghost-border">
+<span class="material-symbols-outlined text-outline text-sm mr-2">search</span>
+<input class="bg-transparent border-none focus:ring-0 text-sm w-48 font-body" placeholder="Search destinations..." type="text"/>
+</div>
+<div class="flex items-center space-x-4">
+<span class="material-symbols-outlined text-blue-900 cursor-pointer p-2 hover:bg-slate-100/50 rounded-md transition-all" data-icon="favorite">favorite</span>
+<span class="material-symbols-outlined text-blue-900 cursor-pointer p-2 hover:bg-slate-100/50 rounded-md transition-all" data-icon="person">person</span>
+<button class="bg-secondary text-on-secondary px-6 py-2.5 rounded-md font-semibold text-sm transition-all active:scale-95 shadow-sm">Book Now</button>
+</div>
+</div>
+</div>
+</nav>
+<main class="pt-24 pb-20">
+<!-- Editorial Hero Section -->
+<header class="max-w-screen-2xl mx-auto px-8 mb-16 grid grid-cols-1 lg:grid-cols-12 gap-8 items-end">
+<div class="lg:col-span-7">
+<span class="text-secondary font-label font-bold tracking-[0.2em] uppercase text-xs mb-4 block">The Curated Collection</span>
+<h1 class="font-headline text-5xl md:text-7xl font-black text-primary leading-tight">Sanctuaries of <br/>Refined Rest.</h1>
+<p class="mt-6 text-xl text-on-surface-variant max-w-xl leading-relaxed">From the minimalist tranquility of Kyoto Ryokans to the avant-garde elegance of Parisian boutiques, discover our handpicked selection of the world's most evocative stays.</p>
+</div>
+<div class="lg:col-span-5 hidden lg:block">
+<div class="aspect-[4/3] rounded-xl overflow-hidden shadow-2xl relative">
+<img class="w-full h-full object-cover" data-alt="serene high-end luxury hotel suite with mountain views through floor to ceiling windows and soft morning light" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCHZ9WpB63r2q2ZrSAYOYi3covz1Q9T2BFMmOAPrJBdQTR7qlmIjaBepLdlNC4r6Os9x3O6bHZnS0MzRkjbKGlDwdvRlUGFySo2kWETgsTn7S2neDs9UjpH8wuNVeKtPZXzUosTpx8fKs7pU0TZzaFJtwPnJqmqxpIX-09gCHz_dTUvMsljBBvCvHbKBITA03EIALkB95OtfIS1P11RZ2aP-SbB_V4dHwBuOfh2sDjF_9UusqfRM_a33TkIRh2sfwnD-FbR6WdBSdiB"/>
+<div class="absolute inset-0 bg-gradient-to-t from-primary/40 to-transparent"></div>
+</div>
+</div>
+</header>
+<!-- Search & Filter Bar (Glassmorphism) -->
+<section class="sticky top-20 z-40 max-w-screen-2xl mx-auto px-8 mb-12">
+<div class="bg-white/80 backdrop-blur-xl rounded-xl p-4 shadow-sm ghost-border flex flex-wrap items-center justify-between gap-4">
+<div class="flex flex-wrap items-center gap-6">
+<div class="flex items-center gap-2 px-4 py-2 bg-surface-container-low rounded-md">
+<span class="material-symbols-outlined text-sm text-outline" data-icon="location_on">location_on</span>
+<span class="text-sm font-medium font-body">All Neighborhoods</span>
+</div>
+<div class="flex items-center gap-2 px-4 py-2 bg-surface-container-low rounded-md">
+<span class="material-symbols-outlined text-sm text-outline" data-icon="hotel">hotel</span>
+<span class="text-sm font-medium font-body">Property Type</span>
+</div>
+<div class="flex items-center gap-2 px-4 py-2 bg-surface-container-low rounded-md">
+<span class="material-symbols-outlined text-sm text-outline" data-icon="payments">payments</span>
+<span class="text-sm font-medium font-body">Price Range</span>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<div class="flex gap-2">
+<span class="px-3 py-1.5 bg-secondary-container text-on-secondary-container rounded-full text-xs font-bold font-label">Mountains</span>
+<span class="px-3 py-1.5 bg-surface-container-high text-on-surface-variant rounded-full text-xs font-bold font-label">Beachfront</span>
+<span class="px-3 py-1.5 bg-surface-container-high text-on-surface-variant rounded-full text-xs font-bold font-label">Urban Oasis</span>
+</div>
+<div class="h-6 w-[1px] bg-outline-variant/30"></div>
+<button class="flex items-center gap-2 text-primary font-bold text-sm">
+<span class="material-symbols-outlined text-lg" data-icon="tune">tune</span>
+                        Filters
+                    </button>
+</div>
+</div>
+</section>
+<!-- Listing Grid -->
+<section class="max-w-screen-2xl mx-auto px-8">
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
+<!-- Card 1: Ryokan -->
+<div class="group perspective-card cursor-pointer">
+<div class="aspect-[4/5] overflow-hidden rounded-xl mb-6 relative">
+<img class="w-full h-full object-cover transition-transform duration-700" data-alt="traditional japanese ryokan room with tatami mats, sliding paper doors, and a private stone hot spring bath at dusk" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDxT5IKI9XuKR0miKPSqMM9gy3Z39HwcYIyKi0AUCOMPITDwOoJHyPkJxoUE58jkhutd9pLRmPApR3NQGUOrd3dwu3Ki4lWzGRX8ybbenyswIqNsxBdJIO8mompv63JeMI1R5LcMfSJgFwSLfCMkBW5Qw0cGyJGE7II6HuhlRWkcNIww1D0iCFtyVPnBVt7O88_PwQQxBxgdd0JG-w0KGaPfeQZQ3dnOBrph1dynVEn70fZNY420dJpwVkW-6-aSUDBuwubY5tsPtX3"/>
+<div class="absolute top-4 right-4 bg-white/90 backdrop-blur px-3 py-1.5 rounded-lg flex items-center gap-1 shadow-sm">
+<span class="material-symbols-outlined text-orange-600 text-sm" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="text-xs font-bold text-primary">4.9</span>
+</div>
+</div>
+<div class="px-2">
+<div class="flex justify-between items-start mb-2">
+<div>
+<span class="text-xs font-bold font-label text-outline uppercase tracking-wider">Higashiyama, Kyoto</span>
+<h3 class="font-headline text-2xl font-bold text-primary mt-1">Zaborin Secret Spring</h3>
+</div>
+</div>
+<div class="flex flex-wrap gap-3 my-4">
+<span class="flex items-center gap-1.5 text-xs text-on-surface-variant bg-surface-container-low px-2.5 py-1 rounded-md">
+<span class="material-symbols-outlined text-base" data-icon="hot_tub">hot_tub</span> Private Onsen
+                            </span>
+<span class="flex items-center gap-1.5 text-xs text-on-surface-variant bg-surface-container-low px-2.5 py-1 rounded-md">
+<span class="material-symbols-outlined text-base" data-icon="restaurant">restaurant</span> Kaiseki Dining
+                            </span>
+</div>
+<div class="pt-4 flex justify-between items-center border-t border-outline-variant/20">
+<div>
+<span class="text-[10px] text-outline uppercase font-bold tracking-tighter">Starting From</span>
+<p class="text-xl font-bold text-primary">$1,240 <span class="text-sm font-normal text-on-surface-variant">/ night</span></p>
+</div>
+<span class="material-symbols-outlined text-primary group-hover:translate-x-1 transition-transform" data-icon="arrow_forward">arrow_forward</span>
+</div>
+</div>
+</div>
+<!-- Card 2: Boutique Hotel -->
+<div class="group perspective-card cursor-pointer lg:mt-12">
+<div class="aspect-[4/5] overflow-hidden rounded-xl mb-6 relative">
+<img class="w-full h-full object-cover transition-transform duration-700" data-alt="elegant parisian boutique hotel lobby with marble floors, crystal chandelier, and deep velvet armchairs in gold tones" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB4s3P1p2rMTuivnGX_cCa_7UpIcfmNqpgVtOaZVJGzMhm7LOLfm1JTqqfkqyTLZYS7L45aHCj1x6ZejvE3qsKHdAAw-qYbC94QZrnzrnaJ3Z0gD4BcWSQg4USkNNNXicUBU7lsBt5FmboFmP8cPbUTOUziUqCshWEd1PIo6wvQHfMWJg5exdbfUZEaaU0Am_LzDX-jIzXpwS0MIcQk6Yb5SmSBoVKVQn6cP3uNfPk4LEpor3Ond2kexPVnXwSVvUjA3fudRtzyJsxR"/>
+<div class="absolute top-4 right-4 bg-white/90 backdrop-blur px-3 py-1.5 rounded-lg flex items-center gap-1 shadow-sm">
+<span class="material-symbols-outlined text-orange-600 text-sm" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="text-xs font-bold text-primary">4.8</span>
+</div>
+</div>
+<div class="px-2">
+<div class="flex justify-between items-start mb-2">
+<div>
+<span class="text-xs font-bold font-label text-outline uppercase tracking-wider">Le Marais, Paris</span>
+<h3 class="font-headline text-2xl font-bold text-primary mt-1">L'Hôtel des Poètes</h3>
+</div>
+</div>
+<div class="flex flex-wrap gap-3 my-4">
+<span class="flex items-center gap-1.5 text-xs text-on-surface-variant bg-surface-container-low px-2.5 py-1 rounded-md">
+<span class="material-symbols-outlined text-base" data-icon="wine_bar">wine_bar</span> Rare Cellar
+                            </span>
+<span class="flex items-center gap-1.5 text-xs text-on-surface-variant bg-surface-container-low px-2.5 py-1 rounded-md">
+<span class="material-symbols-outlined text-base" data-icon="concierge">concierge</span> Personal Butler
+                            </span>
+</div>
+<div class="pt-4 flex justify-between items-center border-t border-outline-variant/20">
+<div>
+<span class="text-[10px] text-outline uppercase font-bold tracking-tighter">Starting From</span>
+<p class="text-xl font-bold text-primary">$890 <span class="text-sm font-normal text-on-surface-variant">/ night</span></p>
+</div>
+<span class="material-symbols-outlined text-primary group-hover:translate-x-1 transition-transform" data-icon="arrow_forward">arrow_forward</span>
+</div>
+</div>
+</div>
+<!-- Card 3: Coastal Villa -->
+<div class="group perspective-card cursor-pointer">
+<div class="aspect-[4/5] overflow-hidden rounded-xl mb-6 relative">
+<img class="w-full h-full object-cover transition-transform duration-700" data-alt="minimalist modern luxury villa on santorini cliffs with white walls, infinity pool, and sapphire blue ocean horizon" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCFbZxu2Ug_F_jVYQHNigJQPQxn4dtENfRvfQ2JNEbBMXep1DvZD8DrszLXb6vSxmgEuVpPcBZZvJFWz45kw-rLuvoxdLsNh6vQTfBZXK61Jgv78DJhrYDM1ZcEfx5KC_uy2tueFgV-hjojeNp5hB_Lq1srBChE3i_MpIabCO3QrRGWDanSgboni4wKpt8Wiso_aOGTYgIWo71nW-IIvrole1ZRzSO4FCndorrXRyexL_I4pB6sPIUbPGgu_OI9ZU3SMO_LVyUKownm"/>
+<div class="absolute top-4 right-4 bg-white/90 backdrop-blur px-3 py-1.5 rounded-lg flex items-center gap-1 shadow-sm">
+<span class="material-symbols-outlined text-orange-600 text-sm" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="text-xs font-bold text-primary">5.0</span>
+</div>
+</div>
+<div class="px-2">
+<div class="flex justify-between items-start mb-2">
+<div>
+<span class="text-xs font-bold font-label text-outline uppercase tracking-wider">Oia, Santorini</span>
+<h3 class="font-headline text-2xl font-bold text-primary mt-1">Celestial Horizon Villa</h3>
+</div>
+</div>
+<div class="flex flex-wrap gap-3 my-4">
+<span class="flex items-center gap-1.5 text-xs text-on-surface-variant bg-surface-container-low px-2.5 py-1 rounded-md">
+<span class="material-symbols-outlined text-base" data-icon="pool">pool</span> Infinity Pool
+                            </span>
+<span class="flex items-center gap-1.5 text-xs text-on-surface-variant bg-surface-container-low px-2.5 py-1 rounded-md">
+<span class="material-symbols-outlined text-base" data-icon="deck">deck</span> Private Terrace
+                            </span>
+</div>
+<div class="pt-4 flex justify-between items-center border-t border-outline-variant/20">
+<div>
+<span class="text-[10px] text-outline uppercase font-bold tracking-tighter">Starting From</span>
+<p class="text-xl font-bold text-primary">$1,550 <span class="text-sm font-normal text-on-surface-variant">/ night</span></p>
+</div>
+<span class="material-symbols-outlined text-primary group-hover:translate-x-1 transition-transform" data-icon="arrow_forward">arrow_forward</span>
+</div>
+</div>
+</div>
+<!-- Card 4: Safari Lodge -->
+<div class="group perspective-card cursor-pointer">
+<div class="aspect-[4/5] overflow-hidden rounded-xl mb-6 relative">
+<img class="w-full h-full object-cover transition-transform duration-700" data-alt="luxurious safari tent interior with fine linens, wooden furniture, and views of wild african savannah at dusk" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAta3quQ7y-cRlvnnjixMFHVVtQCO-4pKbYYDWy0MbOFezsW0DIydNZczbyEn-_NbOs2wzKoVSVn5jFSZ3lsl29Oosx3pl-EQlrXc448OjfniaaG1Sbx4Zr3IZwyeyp3UQJuJpsdOANuYESaSvPhe3okvPygTsov8GiHDo_iJZqkyFl_flKObYPDjeCnDHPWDpsvj56taMzLQxGN_OXLHYmk5t9qGes9J0BeV-Cn6xhimvIuP01Adf-IobYGlmx3FB1hKJIMj1HtXRB"/>
+<div class="absolute top-4 right-4 bg-white/90 backdrop-blur px-3 py-1.5 rounded-lg flex items-center gap-1 shadow-sm">
+<span class="material-symbols-outlined text-orange-600 text-sm" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="text-xs font-bold text-primary">4.9</span>
+</div>
+</div>
+<div class="px-2">
+<div class="flex justify-between items-start mb-2">
+<div>
+<span class="text-xs font-bold font-label text-outline uppercase tracking-wider">Serengeti, Tanzania</span>
+<h3 class="font-headline text-2xl font-bold text-primary mt-1">Golden Savannah Camp</h3>
+</div>
+</div>
+<div class="flex flex-wrap gap-3 my-4">
+<span class="flex items-center gap-1.5 text-xs text-on-surface-variant bg-surface-container-low px-2.5 py-1 rounded-md">
+<span class="material-symbols-outlined text-base" data-icon="explore">explore</span> Private Game Drive
+                            </span>
+<span class="flex items-center gap-1.5 text-xs text-on-surface-variant bg-surface-container-low px-2.5 py-1 rounded-md">
+<span class="material-symbols-outlined text-base" data-icon="star">star</span> Star Gazing Deck
+                            </span>
+</div>
+<div class="pt-4 flex justify-between items-center border-t border-outline-variant/20">
+<div>
+<span class="text-[10px] text-outline uppercase font-bold tracking-tighter">Starting From</span>
+<p class="text-xl font-bold text-primary">$2,100 <span class="text-sm font-normal text-on-surface-variant">/ night</span></p>
+</div>
+<span class="material-symbols-outlined text-primary group-hover:translate-x-1 transition-transform" data-icon="arrow_forward">arrow_forward</span>
+</div>
+</div>
+</div>
+<!-- Card 5: Alpine Retreat -->
+<div class="group perspective-card cursor-pointer lg:-mt-12">
+<div class="aspect-[4/5] overflow-hidden rounded-xl mb-6 relative">
+<img class="w-full h-full object-cover transition-transform duration-700" data-alt="modern alpine chalet with warm wood interiors, a large stone fireplace, and snow covered pine forest visible through glass walls" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA0j205n3DEO09udA3drtdw1YXO8F6Z67iQqpSO-w8Xxy8kzA7ge19RspO9hPE5O--wz3LPEToHL6ohlqt7MV013MvZo1tBsfr8QGfQU7mkPbyVzE8aXg5T7_IL_SgtGu0Hz3-2lkieBqG7N2418LckuXz4pYtXXdi2w4Nw6W6axZmBx8qWMEV7fMRCejpDzsY4P3Ntfl8zJlBjSyOTJJNtt9R8Nce2qWIPx8KTfEqcpWtHPJUiRkl2N9_htv8Vdz7MwcdkYAsQrLEu"/>
+<div class="absolute top-4 right-4 bg-white/90 backdrop-blur px-3 py-1.5 rounded-lg flex items-center gap-1 shadow-sm">
+<span class="material-symbols-outlined text-orange-600 text-sm" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="text-xs font-bold text-primary">4.7</span>
+</div>
+</div>
+<div class="px-2">
+<div class="flex justify-between items-start mb-2">
+<div>
+<span class="text-xs font-bold font-label text-outline uppercase tracking-wider">Zermatt, Switzerland</span>
+<h3 class="font-headline text-2xl font-bold text-primary mt-1">Eiger Peak Manor</h3>
+</div>
+</div>
+<div class="flex flex-wrap gap-3 my-4">
+<span class="flex items-center gap-1.5 text-xs text-on-surface-variant bg-surface-container-low px-2.5 py-1 rounded-md">
+<span class="material-symbols-outlined text-base" data-icon="ac_unit">ac_unit</span> Ski-In/Ski-Out
+                            </span>
+<span class="flex items-center gap-1.5 text-xs text-on-surface-variant bg-surface-container-low px-2.5 py-1 rounded-md">
+<span class="material-symbols-outlined text-base" data-icon="spa">spa</span> Swiss Alpine Spa
+                            </span>
+</div>
+<div class="pt-4 flex justify-between items-center border-t border-outline-variant/20">
+<div>
+<span class="text-[10px] text-outline uppercase font-bold tracking-tighter">Starting From</span>
+<p class="text-xl font-bold text-primary">$1,100 <span class="text-sm font-normal text-on-surface-variant">/ night</span></p>
+</div>
+<span class="material-symbols-outlined text-primary group-hover:translate-x-1 transition-transform" data-icon="arrow_forward">arrow_forward</span>
+</div>
+</div>
+</div>
+<!-- Card 6: Desert Oasis -->
+<div class="group perspective-card cursor-pointer">
+<div class="aspect-[4/5] overflow-hidden rounded-xl mb-6 relative">
+<img class="w-full h-full object-cover transition-transform duration-700" data-alt="luxury desert resort at night with lanterns lighting sand paths, adobe architecture, and deep blue starry sky" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB_lqVART3_HnZD5ZKLlcnqmALbqc_np0_33-GVFcfWfOp8NN9gdsJAk1hTd_hfZr4U3QtpiyM6pAGKdQc-nl8LN7yxBr4FyqpVXMec2OKdkD5g5lo5jFY4sk2neTTgATRUVthj3SP4LVunGSOYAZxv7XHVqRwa4rnQv97ytHZ_0WEIfS4EeJM7-WPup-MB1xnuQNttSnFqIDSfyIey-yeHNkOOg5fuUTfi83JGJ0pLVVzaVYUBwW3hF4TViIdUrEQ6efqeSGKgl2dO"/>
+<div class="absolute top-4 right-4 bg-white/90 backdrop-blur px-3 py-1.5 rounded-lg flex items-center gap-1 shadow-sm">
+<span class="material-symbols-outlined text-orange-600 text-sm" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="text-xs font-bold text-primary">4.9</span>
+</div>
+</div>
+<div class="px-2">
+<div class="flex justify-between items-start mb-2">
+<div>
+<span class="text-xs font-bold font-label text-outline uppercase tracking-wider">Amangiri, Utah</span>
+<h3 class="font-headline text-2xl font-bold text-primary mt-1">Monolith Plateau Respite</h3>
+</div>
+</div>
+<div class="flex flex-wrap gap-3 my-4">
+<span class="flex items-center gap-1.5 text-xs text-on-surface-variant bg-surface-container-low px-2.5 py-1 rounded-md">
+<span class="material-symbols-outlined text-base" data-icon="landscape">landscape</span> Canyon Views
+                            </span>
+<span class="flex items-center gap-1.5 text-xs text-on-surface-variant bg-surface-container-low px-2.5 py-1 rounded-md">
+<span class="material-symbols-outlined text-base" data-icon="self_improvement">self_improvement</span> Yoga Pavilion
+                            </span>
+</div>
+<div class="pt-4 flex justify-between items-center border-t border-outline-variant/20">
+<div>
+<span class="text-[10px] text-outline uppercase font-bold tracking-tighter">Starting From</span>
+<p class="text-xl font-bold text-primary">$3,200 <span class="text-sm font-normal text-on-surface-variant">/ night</span></p>
+</div>
+<span class="material-symbols-outlined text-primary group-hover:translate-x-1 transition-transform" data-icon="arrow_forward">arrow_forward</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Newsletter Subscription Area -->
+<section class="mt-32 max-w-screen-xl mx-auto px-8">
+<div class="bg-primary p-12 md:p-20 rounded-2xl relative overflow-hidden">
+<div class="absolute top-0 right-0 w-1/2 h-full opacity-10 pointer-events-none">
+<img class="w-full h-full object-cover grayscale" data-alt="abstract artistic architectural photography with clean lines and soft shadows" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDw2qT_CbETZ9WTWULfc1ifE7JhHRNiH5k49FRZXfETHX9-tFKd4sDn_JsD8Sf0nyP0J0FOXP7_VZxTC8ecMsH37ktcFL5ptL2pn-4OfhTYRj5HvUvr1HsAGga-fIb8KiwfXgmwvWmAXWXFydg3w-8hElJVrDe7FXpuU6WsHIsvb2FGOJTXSQbYgsBDtDZqejWLCB1vNmTjcq12G9-Hw8kC9-eBqS2TpUEK_m67TPyTJ32z1hiphm4J5oBwrQURv9nWpkMfnOlfIy63"/>
+</div>
+<div class="relative z-10 max-w-2xl">
+<h2 class="font-headline text-4xl font-bold text-white mb-6">Join the Voyager Circle.</h2>
+<p class="text-primary-fixed text-lg mb-10 leading-relaxed">Early access to hidden retreats and curated itineraries delivered monthly to your inbox.</p>
+<div class="flex flex-col sm:flex-row gap-4">
+<input class="flex-grow bg-white/10 border border-white/20 text-white placeholder:text-white/50 px-6 py-4 rounded-md focus:ring-2 focus:ring-secondary focus:border-transparent outline-none" placeholder="Your email address" type="email"/>
+<button class="bg-secondary text-on-secondary px-8 py-4 rounded-md font-bold transition-all hover:bg-secondary-container">Subscribe</button>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="bg-slate-50 border-t border-slate-200/20">
+<div class="grid grid-cols-1 md:grid-cols-4 gap-12 px-12 py-20 max-w-screen-2xl mx-auto">
+<div class="md:col-span-1">
+<span class="text-3xl font-serif font-black text-blue-900 mb-6 block">Horizon Voyager</span>
+<p class="text-slate-600 font-body leading-relaxed text-sm">Crafting the world's most distinguished travel experiences since 1994. The Curated Odyssey.</p>
+</div>
+<div>
+<h4 class="font-headline text-blue-900 font-bold mb-6">Collections</h4>
+<ul class="space-y-4">
+<li><a class="text-slate-600 hover:text-orange-700 underline-offset-4 hover:underline transition-all text-sm" href="#">Luxury Collections</a></li>
+<li><a class="text-slate-600 hover:text-orange-700 underline-offset-4 hover:underline transition-all text-sm" href="#">Sustainable Travel</a></li>
+<li><a class="text-slate-600 hover:text-orange-700 underline-offset-4 hover:underline transition-all text-sm" href="#">Alpine Retreats</a></li>
+<li><a class="text-slate-600 hover:text-orange-700 underline-offset-4 hover:underline transition-all text-sm" href="#">Coastal Sanctuaries</a></li>
+</ul>
+</div>
+<div>
+<h4 class="font-headline text-blue-900 font-bold mb-6">Voyager Services</h4>
+<ul class="space-y-4">
+<li><a class="text-slate-600 hover:text-orange-700 underline-offset-4 hover:underline transition-all text-sm" href="#">Travel Concierge</a></li>
+<li><a class="text-slate-600 hover:text-orange-700 underline-offset-4 hover:underline transition-all text-sm" href="#">About Our Story</a></li>
+<li><a class="text-slate-600 hover:text-orange-700 underline-offset-4 hover:underline transition-all text-sm" href="#">Member Benefits</a></li>
+<li><a class="text-slate-600 hover:text-orange-700 underline-offset-4 hover:underline transition-all text-sm" href="#">Corporate Travel</a></li>
+</ul>
+</div>
+<div>
+<h4 class="font-headline text-blue-900 font-bold mb-6">Legal</h4>
+<ul class="space-y-4">
+<li><a class="text-slate-600 hover:text-orange-700 underline-offset-4 hover:underline transition-all text-sm" href="#">Privacy Policy</a></li>
+<li><a class="text-slate-600 hover:text-orange-700 underline-offset-4 hover:underline transition-all text-sm" href="#">Terms of Service</a></li>
+<li><a class="text-slate-600 hover:text-orange-700 underline-offset-4 hover:underline transition-all text-sm" href="#">Contact Support</a></li>
+</ul>
+</div>
+</div>
+<div class="max-w-screen-2xl mx-auto px-12 pb-12">
+<p class="text-slate-600 text-sm font-body border-t border-slate-200 pt-8">© 2024 Horizon Voyager. The Curated Odyssey.</p>
+</div>
+</footer>
+</body></html>

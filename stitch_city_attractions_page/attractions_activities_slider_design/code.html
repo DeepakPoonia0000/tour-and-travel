@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif:ital,wght@0,400;0,700;1,400&amp;family=Plus+Jakarta+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "tertiary-container": "#00584e",
+              "on-secondary-fixed-variant": "#763300",
+              "on-tertiary-fixed-variant": "#005047",
+              "on-surface": "#191b22",
+              "error-container": "#ffdad6",
+              "outline": "#737784",
+              "secondary-container": "#fc8a40",
+              "inverse-surface": "#2e3037",
+              "on-tertiary-fixed": "#00201c",
+              "tertiary": "#003f37",
+              "on-error-container": "#93000a",
+              "inverse-primary": "#b1c5ff",
+              "on-secondary-container": "#672c00",
+              "on-background": "#191b22",
+              "on-primary-fixed-variant": "#00419e",
+              "on-primary-container": "#a5bdff",
+              "surface-bright": "#faf8ff",
+              "background": "#faf8ff",
+              "surface-container-highest": "#e2e2eb",
+              "surface": "#faf8ff",
+              "surface-variant": "#e2e2eb",
+              "tertiary-fixed": "#79f7e3",
+              "on-primary": "#ffffff",
+              "surface-tint": "#2559bd",
+              "on-tertiary-container": "#50d3bf",
+              "primary-container": "#0047ab",
+              "on-tertiary": "#ffffff",
+              "primary-fixed": "#dae2ff",
+              "on-secondary": "#ffffff",
+              "surface-container-lowest": "#ffffff",
+              "inverse-on-surface": "#f0f0f9",
+              "surface-container": "#ededf6",
+              "on-error": "#ffffff",
+              "secondary-fixed-dim": "#ffb68d",
+              "surface-dim": "#d9d9e2",
+              "surface-container-high": "#e7e7f0",
+              "primary": "#00327d",
+              "tertiary-fixed-dim": "#59dbc7",
+              "primary-fixed-dim": "#b1c5ff",
+              "on-secondary-fixed": "#331200",
+              "secondary": "#9b4500",
+              "error": "#ba1a1a",
+              "secondary-fixed": "#ffdbc9",
+              "outline-variant": "#c3c6d5",
+              "surface-container-low": "#f3f3fc",
+              "on-primary-fixed": "#001946",
+              "on-surface-variant": "#434653"
+            },
+            fontFamily: {
+              "headline": ["Noto Serif"],
+              "body": ["Plus Jakarta Sans"],
+              "label": ["Plus Jakarta Sans"]
+            },
+            borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        body { font-family: 'Plus Jakarta Sans', sans-serif; }
+        h1, h2, h3 { font-family: 'Noto Serif', serif; }
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+    </style>
+</head>
+<body class="bg-surface text-on-surface antialiased">
+<!-- Top Navigation Bar -->
+<nav class="fixed top-0 w-full flex justify-between items-center px-8 py-4 max-w-full bg-surface/80 dark:bg-slate-900/80 backdrop-blur-md z-50">
+<div class="text-2xl font-serif italic text-blue-900 dark:text-blue-100">Horizon Voyager</div>
+<div class="hidden md:flex items-center gap-8">
+<a class="text-slate-600 dark:text-slate-400 hover:text-orange-700 transition-colors duration-300 font-body" href="#">Destinations</a>
+<a class="text-blue-900 dark:text-blue-400 font-bold border-b-2 border-orange-600 font-body" href="#">Journeys</a>
+<a class="text-slate-600 dark:text-slate-400 hover:text-orange-700 transition-colors duration-300 font-body" href="#">Experiences</a>
+<a class="text-slate-600 dark:text-slate-400 hover:text-orange-700 transition-colors duration-300 font-body" href="#">About</a>
+</div>
+<div class="flex items-center gap-4">
+<button class="p-2 text-blue-900 dark:text-blue-400 hover:scale-95 duration-200 ease-in-out">
+<span class="material-symbols-outlined">favorite</span>
+</button>
+<button class="p-2 text-blue-900 dark:text-blue-400 hover:scale-95 duration-200 ease-in-out">
+<span class="material-symbols-outlined">person</span>
+</button>
+</div>
+</nav>
+<main class="pt-24 pb-20">
+<!-- Section Header -->
+<header class="px-8 md:px-16 mb-12">
+<div class="flex flex-col md:flex-row md:items-end justify-between gap-6">
+<div class="max-w-2xl">
+<span class="uppercase tracking-[0.2em] text-[0.75rem] font-semibold text-secondary mb-4 block">Selected for You</span>
+<h2 class="text-4xl md:text-5xl font-headline text-primary leading-tight">Curated Highlights for Your Journey</h2>
+</div>
+<div class="flex gap-4">
+<button class="w-12 h-12 rounded-full border border-outline-variant/30 flex items-center justify-center text-primary hover:bg-primary hover:text-on-primary transition-all duration-300">
+<span class="material-symbols-outlined">chevron_left</span>
+</button>
+<button class="w-12 h-12 rounded-full border border-outline-variant/30 flex items-center justify-center text-primary hover:bg-primary hover:text-on-primary transition-all duration-300">
+<span class="material-symbols-outlined">chevron_right</span>
+</button>
+</div>
+</div>
+</header>
+<!-- Slider Section -->
+<section class="relative">
+<div class="flex overflow-x-auto no-scrollbar gap-8 px-8 md:px-16 snap-x snap-mandatory">
+<!-- Attraction Card: Eiffel Tower -->
+<div class="flex-none w-[320px] md:w-[480px] snap-start group">
+<div class="relative overflow-hidden rounded-xl aspect-[16/10] bg-surface-container-low mb-6">
+<img alt="Eiffel Tower" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" data-alt="Stunning low angle view of the Eiffel Tower against a clear blue sky with soft morning sunlight hitting the iron structure" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC1_bKO3nQnYxB4BfPuqisvl41a5Itp9jxBI7apCiz3Obp2qQ9Pz2sxGi7CdjEJuboIaIV_3o7uBJRGKgYAbLuftxarSXXFKEfLfDx3r9QOdI5LuMHlP1Bmye44im2T7i4nwwYfq_zG2-62MzKSTxpwO76nukzmWUFceExMFHvzvUF1Eb2JtTzKPHAW2MDCr9t8tSmlluQTs9W-UMQBXiojZhWw3HGozVHSyrRKevS2JYXjRWyl5Im7qyeCkO2-H8j0jktCZaA6QUh0"/>
+<div class="absolute top-4 left-4 bg-secondary-container text-on-secondary-container px-3 py-1 rounded-md text-[0.7rem] font-bold tracking-wider flex items-center gap-2">
+<span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">workspace_premium</span>
+                            MOST ICONIC
+                        </div>
+</div>
+<div class="space-y-2">
+<div class="flex items-center gap-1 text-secondary-container">
+<span class="material-symbols-outlined text-[16px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-[16px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-[16px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-[16px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-[16px]" style="font-variation-settings: 'FILL' 1;">star_half</span>
+<span class="text-on-surface-variant text-sm font-medium ml-1">4.9 (12.4k)</span>
+</div>
+<h3 class="text-2xl font-headline text-primary group-hover:text-secondary transition-colors">Eiffel Tower</h3>
+<p class="text-on-surface-variant text-sm font-body leading-relaxed max-w-sm">Experience the iron lady of Paris with exclusive skip-the-line access to the summit.</p>
+</div>
+</div>
+<!-- Activity Card: Private Omakase -->
+<div class="flex-none w-[280px] md:w-[320px] snap-start group">
+<div class="relative overflow-hidden rounded-xl aspect-[3/4] bg-surface-container-low mb-6">
+<img alt="Omakase Craftsmanship" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" data-alt="Close-up of a master sushi chef's hands delicately placing a piece of nigiri on a black ceramic plate in a dim, upscale restaurant" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAH-gpn_hv3rnL4Mxl0BppQtsvti7o2EZ1VLsyoUSR-bvRGW3GPAg6RrnZEu-4vOyAM8v3trWqcUSpei8JLlUOaSBBm7jp3PbjUOiYfRKxw1J0R_uC3FHON9cqfZqW8X-nWIiTb490BkQi2QaMWskP-Er4K6ZAAat0iiAixRgFSigVHKrrNmkBo8uGvVnIuXD4xZdZejbKKzDdhcyw0AxSJa262A784hg00IjywZknjB4wI6kZVeJ1Nu9Hak-sI1iphiitSRr4W3PBd"/>
+<div class="absolute bottom-0 left-0 right-0 p-6 bg-gradient-to-t from-primary/80 to-transparent">
+<div class="flex items-center gap-2 text-white/90 mb-1">
+<span class="material-symbols-outlined text-sm">schedule</span>
+<span class="text-[0.75rem] font-medium">3.5 Hours</span>
+</div>
+<div class="text-white font-bold text-lg">From $120</div>
+</div>
+</div>
+<h3 class="text-xl font-headline text-primary group-hover:text-secondary transition-colors mb-2">Private Omakase &amp; Sushi Craftsmanship</h3>
+<p class="text-on-surface-variant text-sm font-body">An intimate culinary journey through Edomae-style tradition.</p>
+</div>
+<!-- Attraction Card: Louvre Museum -->
+<div class="flex-none w-[320px] md:w-[480px] snap-start group">
+<div class="relative overflow-hidden rounded-xl aspect-[16/10] bg-surface-container-low mb-6">
+<img alt="Louvre Museum" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" data-alt="The glass pyramid of the Louvre Museum in Paris at dusk with warm interior lights glowing against a deep blue twilight sky" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC17SGnM4huj2OOJGzxGlFhpk_7WzbGnhr7oYpj_iWfIoJuSU8_kp6thJ77oxvbgphOZbJDghgWzIFdIpGJBS3TeTmJylLd-F1R3LC9x9ecSTU3BMhlhYc6EP5JABKIfrwL4TiwqcsnPWsCCG6HmXtybsLu_VG-4KXlNSRttANBbf4uLVH4lNirJv-gb0i871d3JpB0ETUrsWIqvmToNjAunmsKIxUGutYt-x7tD5jmrrwwgXVJenBjoc1IALYe3OjZ29nLPY7oxrcN"/>
+<div class="absolute top-4 left-4 bg-secondary-container text-on-secondary-container px-3 py-1 rounded-md text-[0.7rem] font-bold tracking-wider flex items-center gap-2">
+<span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">workspace_premium</span>
+                            MOST ICONIC
+                        </div>
+</div>
+<div class="space-y-2">
+<div class="flex items-center gap-1 text-secondary-container">
+<span class="material-symbols-outlined text-[16px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-[16px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-[16px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-[16px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-[16px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="text-on-surface-variant text-sm font-medium ml-1">5.0 (21.8k)</span>
+</div>
+<h3 class="text-2xl font-headline text-primary group-hover:text-secondary transition-colors">Louvre Museum</h3>
+<p class="text-on-surface-variant text-sm font-body leading-relaxed max-w-sm">Wander through centuries of human achievement in the world's largest art repository.</p>
+</div>
+</div>
+<!-- Activity Card: teamLab Borderless -->
+<div class="flex-none w-[280px] md:w-[320px] snap-start group">
+<div class="relative overflow-hidden rounded-xl aspect-[3/4] bg-surface-container-low mb-6">
+<img alt="teamLab Borderless" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" data-alt="Immersive digital art installation with thousands of hanging crystal lights creating a surreal kaleidoscopic forest of color and reflection" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCLILIRJp3pRNqDzRH6PWJxZfoXNnWYQ7VjV4rtT2yqrJqQHIIxNsmCQ6amWEgpPv3QR_YNhHZ4I3Z-l95-JdmRHJ7IeVLEpuFpkrtabO9Jc5sy-t_XLishCeCZo9dBnfPfsWyfQFB9kXyfqezDUYkmbd9Z8NAbscIthiYTUCTbbW-6Zv_e5yc7H3rlMU38MjHwk0O2LoxRrsc7lEw5u-M-gBgfxyo7xQXnhskMMul5JZ-QbCfvpNA3fathpwpvSxUIwceXmbHQCz4g"/>
+<div class="absolute bottom-0 left-0 right-0 p-6 bg-gradient-to-t from-primary/80 to-transparent">
+<div class="flex items-center gap-2 text-white/90 mb-1">
+<span class="material-symbols-outlined text-sm">schedule</span>
+<span class="text-[0.75rem] font-medium">4 Hours</span>
+</div>
+<div class="text-white font-bold text-lg">From $45</div>
+</div>
+</div>
+<h3 class="text-xl font-headline text-primary group-hover:text-secondary transition-colors mb-2">Digital Immersions: teamLab Borderless</h3>
+<p class="text-on-surface-variant text-sm font-body">Lose yourself in a world of art without boundaries or physical maps.</p>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="bg-slate-50 dark:bg-slate-950 full-width py-12 px-8">
+<div class="w-full grid grid-cols-1 md:grid-cols-2 gap-8 items-center border-t border-outline-variant/10 pt-12">
+<div class="space-y-4">
+<div class="font-serif text-lg text-blue-900 dark:text-blue-100">Horizon Voyager</div>
+<p class="text-slate-500 font-sans text-sm tracking-wide">© 2024 Horizon Voyager. The Curated Odyssey.</p>
+</div>
+<div class="flex flex-wrap gap-6 justify-start md:justify-end">
+<a class="text-slate-500 font-sans text-sm tracking-wide hover:underline decoration-orange-500 transition-opacity opacity-80 hover:opacity-100" href="#">Privacy Policy</a>
+<a class="text-slate-500 font-sans text-sm tracking-wide hover:underline decoration-orange-500 transition-opacity opacity-80 hover:opacity-100" href="#">Terms of Service</a>
+<a class="text-slate-500 font-sans text-sm tracking-wide hover:underline decoration-orange-500 transition-opacity opacity-80 hover:opacity-100" href="#">Travel Guides</a>
+<a class="text-slate-500 font-sans text-sm tracking-wide hover:underline decoration-orange-500 transition-opacity opacity-80 hover:opacity-100" href="#">Contact Us</a>
+</div>
+</div>
+</footer>
+</body></html>

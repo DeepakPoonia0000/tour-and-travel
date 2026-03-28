@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Rajasthan | The Editorial Explorer</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif:ital,wght@0,400;0,700;1,400&amp;family=Plus+Jakarta+Sans:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "secondary": "#9b4500",
+              "tertiary-container": "#00584e",
+              "on-secondary-fixed-variant": "#763300",
+              "on-secondary-fixed": "#331200",
+              "error": "#ba1a1a",
+              "surface-bright": "#faf8ff",
+              "surface-container-low": "#f3f3fc",
+              "surface-container": "#ededf6",
+              "primary": "#00327d",
+              "on-tertiary-container": "#50d3bf",
+              "primary-fixed": "#dae2ff",
+              "on-tertiary-fixed": "#00201c",
+              "on-primary-fixed": "#001946",
+              "secondary-fixed": "#ffdbc9",
+              "on-tertiary": "#ffffff",
+              "on-primary-fixed-variant": "#00419e",
+              "on-secondary-container": "#672c00",
+              "surface-variant": "#e2e2eb",
+              "surface": "#faf8ff",
+              "primary-container": "#0047ab",
+              "inverse-on-surface": "#f0f0f9",
+              "on-primary": "#ffffff",
+              "surface-container-highest": "#e2e2eb",
+              "on-secondary": "#ffffff",
+              "tertiary-fixed": "#79f7e3",
+              "surface-container-high": "#e7e7f0",
+              "error-container": "#ffdad6",
+              "on-primary-container": "#a5bdff",
+              "surface-dim": "#d9d9e2",
+              "on-error": "#ffffff",
+              "background": "#faf8ff",
+              "tertiary": "#003f37",
+              "outline-variant": "#c3c6d5",
+              "inverse-surface": "#2e3037",
+              "primary-fixed-dim": "#b1c5ff",
+              "tertiary-fixed-dim": "#59dbc7",
+              "on-surface-variant": "#434653",
+              "secondary-container": "#fc8a40",
+              "on-surface": "#191b22",
+              "secondary-fixed-dim": "#ffb68d",
+              "outline": "#737784",
+              "on-error-container": "#93000a",
+              "inverse-primary": "#b1c5ff",
+              "on-tertiary-fixed-variant": "#005047",
+              "surface-container-lowest": "#ffffff",
+              "surface-tint": "#2559bd",
+              "on-background": "#191b22"
+            },
+            fontFamily: {
+              "headline": ["Noto Serif", "serif"],
+              "body": ["Plus Jakarta Sans", "sans-serif"],
+              "label": ["Plus Jakarta Sans", "sans-serif"]
+            },
+            borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+          },
+        },
+      }
+    </script>
+<style>
+      .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+      .glass-effect { backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); }
+      .perspective-card { transition: transform 0.3s ease-out; }
+      .perspective-card:hover { transform: translateY(-8px) scale(1.02); }
+      .text-shadow-sm { text-shadow: 0 2px 4px rgba(0,0,0,0.1); }
+    </style>
+</head>
+<body class="bg-surface text-on-surface font-body selection:bg-secondary-fixed selection:text-on-secondary-fixed">
+<!-- TopNavBar -->
+<nav class="fixed top-0 w-full z-50 bg-surface/80 dark:bg-slate-950/80 backdrop-blur-md">
+<div class="flex justify-between items-center max-w-7xl mx-auto px-8 h-20">
+<div class="flex items-center gap-8">
+<span class="text-2xl font-bold tracking-tight text-blue-900 dark:text-blue-100 font-noto-serif">The Editorial Explorer</span>
+<div class="hidden md:flex gap-6">
+<a class="text-blue-900 dark:text-blue-100 border-b-2 border-orange-700 dark:border-orange-500 pb-1 font-medium transition-all duration-300 ease-in-out" href="#">Destinations</a>
+<a class="text-slate-600 dark:text-slate-400 hover:text-blue-900 dark:hover:text-blue-200 transition-colors font-medium" href="#">Activities</a>
+<a class="text-slate-600 dark:text-slate-400 hover:text-blue-900 dark:hover:text-blue-200 transition-colors font-medium" href="#">Packages</a>
+</div>
+</div>
+<div class="flex items-center gap-6">
+<button class="text-blue-900 dark:text-blue-400 font-semibold px-4 py-2 hover:bg-slate-100/50 dark:hover:bg-slate-800/50 rounded-lg transition-all">Bookings</button>
+<img alt="User profile and settings" class="w-10 h-10 rounded-full object-cover ring-2 ring-primary-fixed" data-alt="Close-up portrait of a professional traveler with a warm smile, soft natural lighting in a studio setting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCD6NGzSZrvdt_NarT8rwRm0p-0-_2shm6UQOOfnAdSMycYOhdjIW2DoizRJ0ap8ALyzXfK45Pl1vJls4z9b6K9_emCVcXom3SiaaIdDNXUlsz8LTaKVJ5aOiLB8ygDSIuL_-02ftjbpj8-v9Ypzd46wMkni6GmdXonxOTgfLMSR5MbWlrGdFOkLiHiNSrCainfD7KQZs6h9a1od7jsGjRT02pyVP8bIYVxNKt60lNCs0TFSgC5Jhq8FTkDBB7NGrcSRrbn0pvUxncZ"/>
+</div>
+</div>
+</nav>
+<!-- SideNavBar (Suppressed for landing page as per shell relevance) -->
+<main class="pt-20">
+<!-- Breadcrumbs -->
+<div class="max-w-7xl mx-auto px-8 py-6">
+<nav class="flex items-center gap-2 text-sm text-outline font-label tracking-wide">
+<a class="hover:text-primary transition-colors" href="#">Home</a>
+<span class="material-symbols-outlined text-xs">chevron_right</span>
+<a class="hover:text-primary transition-colors" href="#">India</a>
+<span class="material-symbols-outlined text-xs">chevron_right</span>
+<span class="text-on-surface font-semibold">Rajasthan</span>
+</nav>
+</div>
+<!-- Perspective Hero Section -->
+<section class="relative h-[870px] overflow-hidden px-8 max-w-7xl mx-auto">
+<div class="relative h-full w-full rounded-xl overflow-hidden shadow-2xl">
+<img alt="Rajasthan Landscape" class="absolute inset-0 w-full h-full object-cover" data-alt="Wide panoramic shot of Hawa Mahal in Jaipur at sunrise, with warm orange glow hitting the intricate pink sandstone facade" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDu546d4fwCIQxYlZ2AELorH2SebdV2H18QwJPG1ZkH3k2ZV_gfXkybWHiHnXo6ApnZRVpinQAUYhZP5q3IB_gzXXaG5orgA6pmyFe-Vbf3-1XHvGBJsPG125hgASwcf9zJ1GgpC13WxaQ1rYPknNNW5FBl1RH3fDCsKHxN9wPYrhJ0WbIIT5T3P3LPn2Vl7nQyyhpsFpTYGmzYgTpzrGZAgT07hLDOx635I9sS-rdzxLdBp0h8fiU8d6XnZSDX4oJcnMunvk_3Bw6r"/>
+<div class="absolute inset-0 bg-gradient-to-t from-primary/80 via-transparent to-black/20"></div>
+<div class="absolute bottom-0 left-0 p-12 w-full md:w-2/3">
+<span class="inline-block px-4 py-1 bg-secondary text-on-secondary rounded-full text-xs font-bold uppercase tracking-widest mb-4">Land of Kings</span>
+<h1 class="font-headline text-5xl md:text-7xl text-white mb-6 leading-tight">Rajasthan: A Symphony in Sandstone.</h1>
+<p class="text-white/90 text-lg md:text-xl font-body leading-relaxed max-w-2xl mb-8">
+                        Experience the vibrant pulse of India's royal heartland. From the golden dunes of the Thar to the shimmering lakes of Udaipur, every corner of Rajasthan whispers stories of ancient chivalry and unparalleled artistic heritage.
+                    </p>
+</div>
+</div>
+<!-- Search Filter Overlay -->
+<div class="absolute bottom-0 right-12 translate-y-1/2 w-full max-w-xl hidden lg:block">
+<div class="bg-surface-container-lowest glass-effect p-8 rounded-xl shadow-2xl border border-white/20">
+<div class="grid grid-cols-2 gap-6">
+<div class="space-y-2">
+<label class="text-xs font-bold text-outline uppercase tracking-wider">Destination</label>
+<div class="flex items-center gap-2 bg-surface-container-low p-3 rounded-lg border border-outline-variant/20">
+<span class="material-symbols-outlined text-primary">location_on</span>
+<input class="bg-transparent border-none focus:ring-0 text-sm w-full" placeholder="Where to go?" type="text"/>
+</div>
+</div>
+<div class="space-y-2">
+<label class="text-xs font-bold text-outline uppercase tracking-wider">Experience</label>
+<div class="flex items-center gap-2 bg-surface-container-low p-3 rounded-lg border border-outline-variant/20">
+<span class="material-symbols-outlined text-primary">auto_awesome</span>
+<select class="bg-transparent border-none focus:ring-0 text-sm w-full appearance-none">
+<option>Heritage Tour</option>
+<option>Desert Safari</option>
+<option>Luxury Stay</option>
+</select>
+</div>
+</div>
+</div>
+<button class="w-full mt-6 bg-secondary text-on-secondary py-4 rounded-lg font-bold hover:bg-secondary/90 transition-all flex items-center justify-center gap-2">
+<span class="material-symbols-outlined">search</span>
+                        Discover Experiences
+                    </button>
+</div>
+</div>
+</section>
+<!-- Popular Cities - Asymmetrical Bento Grid -->
+<section class="max-w-7xl mx-auto px-8 pt-32 pb-20">
+<div class="flex justify-between items-end mb-12">
+<div class="max-w-lg">
+<h2 class="font-headline text-4xl text-primary mb-4">The Crown Jewels</h2>
+<p class="text-outline text-lg">Wander through cities painted in hues of history, where every street corner is a living museum.</p>
+</div>
+<a class="text-secondary font-bold flex items-center gap-2 hover:gap-4 transition-all" href="#">
+                    View all cities <span class="material-symbols-outlined">arrow_forward</span>
+</a>
+</div>
+<div class="grid grid-cols-12 gap-8 h-[700px]">
+<div class="col-span-12 md:col-span-7 h-full relative group overflow-hidden rounded-xl perspective-card shadow-lg">
+<img alt="Jaipur" class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" data-alt="Cinematic wide shot of the Amer Fort in Jaipur reflected in the Maota Lake during the blue hour" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBjqVjob2xFUWITLK_ytpoCCZONs36tVUfVe6W7WpouAd8m82cNk-ogusMcaL4awPCaQxwJV22lcHGAHyhcDVpVZvGu-9DngQYNVzR9MF5TsFz3WBW9e5GOqGTyzDppC-D7Bi36jbbr0DXlO0O4EPQEQ1usPoIEmVKgSiCh4GdLVKBcGQ4jibEVbVXxMRBR2uofyRn3SaTH8MwuvCnsMbXg6ZNwSfU3tmb1eeUVYZ13qAtRm2FW9Y2WaEH9KG1QLE9-G1vLJij6SvTc"/>
+<div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent"></div>
+<div class="absolute bottom-0 left-0 p-8">
+<h3 class="font-headline text-3xl text-white mb-2">Jaipur</h3>
+<p class="text-white/80 font-body">The Pink City: A blend of chaotic charm and regal elegance.</p>
+</div>
+</div>
+<div class="col-span-12 md:col-span-5 flex flex-col gap-8">
+<div class="h-1/2 relative group overflow-hidden rounded-xl perspective-card shadow-lg">
+<img alt="Udaipur" class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" data-alt="Lush green landscape of Lake Pichola in Udaipur with the white Taj Lake Palace floating in the center under a clear sky" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAUI4fPy6qghlIwHTqFIgk-t913aBlMCWTjJtZpsPmmOo1BdyIbgq2S3B9qVj4UCeiEi360LpXclH4gS_5deKJTJyR8L2jT-vl3W4dhRuxK1aURbkHV0Ky6YMgrt3PT4p9x8_0ef_B4tPp5GYGuCaCXNPSn9Wh7Hw4p1AaMHgRs4M6vaTUsYXKXwBc9VQw3H7nK7EapA0mdF4xLIaDAhLTniwBdsYEzjuiiQv_dPVXd-IkYvjAPMOzC-B_N1O1kMFTK217CN5Aj-Cax"/>
+<div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent"></div>
+<div class="absolute bottom-0 left-0 p-6">
+<h3 class="font-headline text-2xl text-white mb-1">Udaipur</h3>
+<p class="text-white/80 text-sm">The Venice of the East.</p>
+</div>
+</div>
+<div class="h-1/2 relative group overflow-hidden rounded-xl perspective-card shadow-lg">
+<img alt="Jodhpur" class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" data-alt="Aerial view of the blue-painted houses of Jodhpur clustered around the base of the Mehrangarh Fort" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAi7oPanT7gjno9EkF2JKt-2JhRPxBbfO-K5eV4lqw_t_-VTUTvv8O0uDZZt0e4X2JWKbLGuyt0SlFrYb_W_djq0UIDLoYDzE0EICumEEQxejE7zKuUZn7oyjOPbma7TCJcglqmzIGbM89BX7gDYaUHnwPp93WmQa8UVdT0wqxWeLNSlbsvhjT2VPaWtVUnV7XsZ6BZZMhT0EwuSX9kxXqgzsA9k_k88SvlGU3g_T2Yapb27mOOzllPNkFm65WBYoqF_6owxMNbf1kx"/>
+<div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent"></div>
+<div class="absolute bottom-0 left-0 p-6">
+<h3 class="font-headline text-2xl text-white mb-1">Jodhpur</h3>
+<p class="text-white/80 text-sm">The Blue City's indigo maze.</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Famous Attractions - Floating Cards Layout -->
+<section class="bg-surface-container-low py-24">
+<div class="max-w-7xl mx-auto px-8">
+<div class="text-center mb-16">
+<span class="font-label text-sm uppercase tracking-[0.2em] text-secondary font-bold">Immersive Discovery</span>
+<h2 class="font-headline text-4xl text-primary mt-4">Echoes of Grandeur</h2>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-12">
+<!-- Attraction 1 -->
+<div class="bg-surface-container-lowest rounded-xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-500 group">
+<div class="h-72 overflow-hidden">
+<img alt="Thar Desert" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" data-alt="Dramatic sand dunes of the Thar Desert in Jaisalmer at sunset, with long shadows and golden light reflecting off the ripples" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBTO3P1bJl_9WD_mnCsNJ3lU0SGngL-x1l9Ol1V8zHk7IP1ma9kWLuPzZgYcDxbsc3Jz_EhtUeS2fo6ajBq4GEiKaXOWzUFuUYj4Sj08MWgsH3EqJiAHbJYvmyPL757Pu7xysG1hFtcQo5nWBw5LRUlJGHwSGv6yZ_z5pKPloAi7faFa9kWbnb6yt-R2sNB58fzGq7NomdMy_takN4TE2nOIKVEA_NK5w5Sylz7bxfMxIAwqMYChkSgsCJY9tV1yylENbLUxe1WAOgq"/>
+</div>
+<div class="p-8">
+<div class="flex justify-between items-start mb-4">
+<h4 class="font-headline text-xl text-primary">Thar Desert</h4>
+<span class="bg-primary-fixed text-on-primary-fixed px-3 py-1 rounded-full text-xs font-bold italic">Unmissable</span>
+</div>
+<p class="text-outline leading-relaxed mb-6">Witness the mystical silence of the golden dunes under a canopy of billion stars.</p>
+<div class="flex items-center gap-4 border-t border-outline-variant/10 pt-6">
+<div class="flex items-center gap-1 text-secondary">
+<span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="text-sm font-bold">4.9</span>
+</div>
+<span class="text-outline-variant">|</span>
+<span class="text-sm text-outline">Jaisalmer</span>
+</div>
+</div>
+</div>
+<!-- Attraction 2 -->
+<div class="bg-surface-container-lowest rounded-xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-500 group translate-y-8">
+<div class="h-72 overflow-hidden">
+<img alt="Mehrangarh Fort" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" data-alt="The imposing stone walls and intricate balconies of Mehrangarh Fort in Jodhpur during the golden hour" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAZVtGJgmirnVLu7FUD5voN7ykE4LFz7jUrUU5_lwKki80aJUIhBYPO2GyZcRmazqJjF-tdhi-PYAWZWAw5aRAXE1HVQb2dEVnoXalgYIyBXzx9kh0m6WEf4cN-WrFLnUYogaEgleQVJxizpkg-hVGQQgxJ0LlHSnzJJh1OHKlUt2v0it4jaU0u5jmEAzyBg6pKkDyFeaVGk71XQZ0geHnZar8OFWNn4KH3eNrjxYUNI0SgBxQSWdLLI8Sbe90jeVsiBlv6l2YRur3X"/>
+</div>
+<div class="p-8">
+<div class="flex justify-between items-start mb-4">
+<h4 class="font-headline text-xl text-primary">Mehrangarh Fort</h4>
+<span class="bg-secondary-fixed text-on-secondary-fixed px-3 py-1 rounded-full text-xs font-bold uppercase">Heritage</span>
+</div>
+<p class="text-outline leading-relaxed mb-6">A formidable citadel rising 400 feet above the skyline, housing some of India's finest palaces.</p>
+<div class="flex items-center gap-4 border-t border-outline-variant/10 pt-6">
+<div class="flex items-center gap-1 text-secondary">
+<span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="text-sm font-bold">4.8</span>
+</div>
+<span class="text-outline-variant">|</span>
+<span class="text-sm text-outline">Jodhpur</span>
+</div>
+</div>
+</div>
+<!-- Attraction 3 -->
+<div class="bg-surface-container-lowest rounded-xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-500 group">
+<div class="h-72 overflow-hidden">
+<img alt="Pushkar Lake" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" data-alt="The sacred Pushkar Lake at dusk with white buildings and ghats reflected in the still water" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDmlryuF2NwjlwK0Mt9893dwC8PCI81ujPuRCXQUD1coBSija6hYVFBvVUIZLqtEtMb8ByoHF9y1-MAnJinS8mTjgN03yvpT5sUSWdeBXnovwOmV-zXeVpCIiS3F4ICntEJ5tY1xSE-mWgWcA668xTA54MGDvtBnq3Qx9IGC8PLIL_f98XhKz5P8Igg_mDHMZaixRqdpCs7m1fiHtXCT3AAveIjMq-otqF4QWH_Ja4Ym16UuyXfqax2xGU26ZvSf7luhJ44iW1oOX8v"/>
+</div>
+<div class="p-8">
+<div class="flex justify-between items-start mb-4">
+<h4 class="font-headline text-xl text-primary">Pushkar Lake</h4>
+<span class="bg-tertiary-container text-on-tertiary-container px-3 py-1 rounded-full text-xs font-bold uppercase">Spiritual</span>
+</div>
+<p class="text-outline leading-relaxed mb-6">The sacred heart of Rajasthan, where the rhythmic chanting of prayers meets the desert breeze.</p>
+<div class="flex items-center gap-4 border-t border-outline-variant/10 pt-6">
+<div class="flex items-center gap-1 text-secondary">
+<span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="text-sm font-bold">4.7</span>
+</div>
+<span class="text-outline-variant">|</span>
+<span class="text-sm text-outline">Pushkar</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Featured Activities - Interactive Chips & Large Imagery -->
+<section class="max-w-7xl mx-auto px-8 py-32">
+<div class="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
+<div class="relative h-[600px] rounded-2xl overflow-hidden shadow-2xl">
+<img alt="Hot Air Ballooning" class="w-full h-full object-cover" data-alt="Colorful hot air balloons floating over the rural villages and rugged hills of Rajasthan at dawn" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBj85BzN4wmGayH29fLHDUprAvvfEGad3P56pmIEdMhoAanOo6SG_BIyzCJ_mi0fYdJ-xosGithtGWZ1CRLLhCBpaCqDkqyahLQOqRb-OzzigFmHfQukNpFbZqp9iKRyDGIJC4hIZJ-oOnobZ3qkq5PznDUR1IbfN_0qRHsaDP55zCqzjTERHp6VE5LYId6IwGXJ8XNrj0b4_MIhvCCbnfUpnqpQjYLU0mjvNeZerRdEC_GzEsY6KMRjwcM-XbVrqYx0TPH_qLAlevg"/>
+<div class="absolute inset-0 bg-primary/20 mix-blend-multiply"></div>
+</div>
+<div>
+<h2 class="font-headline text-4xl text-primary mb-8">Curated Experiences</h2>
+<p class="text-lg text-outline leading-relaxed mb-10">
+                        We don't just show you the sights; we immerse you in the soul of Rajasthan. Choose your adventure from our editorially selected experiences.
+                    </p>
+<div class="flex flex-wrap gap-4 mb-12">
+<button class="bg-secondary-container text-on-secondary-container px-6 py-3 rounded-full font-bold text-sm transition-all hover:scale-105">Royal Safaris</button>
+<button class="bg-surface-container-high text-on-surface px-6 py-3 rounded-full font-bold text-sm transition-all hover:bg-primary-fixed hover:text-on-primary-fixed">Culinary Journeys</button>
+<button class="bg-surface-container-high text-on-surface px-6 py-3 rounded-full font-bold text-sm transition-all hover:bg-primary-fixed hover:text-on-primary-fixed">Handicraft Trails</button>
+<button class="bg-surface-container-high text-on-surface px-6 py-3 rounded-full font-bold text-sm transition-all hover:bg-primary-fixed hover:text-on-primary-fixed">Palace Dinners</button>
+<button class="bg-surface-container-high text-on-surface px-6 py-3 rounded-full font-bold text-sm transition-all hover:bg-primary-fixed hover:text-on-primary-fixed">Festival Tours</button>
+</div>
+<div class="space-y-6">
+<div class="flex items-center gap-6 p-6 bg-surface-container-lowest rounded-xl hover:shadow-md transition-all group">
+<span class="material-symbols-outlined text-4xl text-secondary group-hover:scale-125 transition-transform">eco</span>
+<div>
+<h5 class="font-bold text-primary mb-1">Eco-Conscious Exploration</h5>
+<p class="text-sm text-outline">Supporting local artisans and sustainable heritage preservation.</p>
+</div>
+</div>
+<div class="flex items-center gap-6 p-6 bg-surface-container-lowest rounded-xl hover:shadow-md transition-all group border border-transparent hover:border-outline-variant/20">
+<span class="material-symbols-outlined text-4xl text-secondary group-hover:scale-125 transition-transform">verified_user</span>
+<div>
+<h5 class="font-bold text-primary mb-1">Expert Curated Guides</h5>
+<p class="text-sm text-outline">Accompanied by historians and local storytelling experts.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="bg-slate-50 dark:bg-slate-950 w-full py-16 px-8 mt-20">
+<div class="grid grid-cols-1 md:grid-cols-4 gap-12 max-w-7xl mx-auto border-t border-slate-200/50 dark:border-slate-800/50 pt-12">
+<div class="col-span-1 md:col-span-2">
+<span class="font-noto-serif text-2xl text-blue-900 dark:text-blue-100 mb-6 block">The Editorial Explorer</span>
+<p class="text-slate-500 dark:text-slate-400 max-w-md leading-relaxed mb-8">
+                    Crafting immersive travel stories for the modern nomad. Join us as we explore the world's most captivating destinations through a lens of authenticity and luxury.
+                </p>
+<div class="flex gap-4">
+<a class="w-10 h-10 flex items-center justify-center rounded-full bg-surface-container-high hover:bg-secondary hover:text-on-secondary transition-all" href="#">
+<span class="material-symbols-outlined text-lg">share</span>
+</a>
+<a class="w-10 h-10 flex items-center justify-center rounded-full bg-surface-container-high hover:bg-secondary hover:text-on-secondary transition-all" href="#">
+<span class="material-symbols-outlined text-lg">mail</span>
+</a>
+</div>
+</div>
+<div>
+<h6 class="font-bold text-blue-900 dark:text-blue-100 mb-6 uppercase tracking-widest text-xs">Explore</h6>
+<ul class="space-y-4">
+<li><a class="text-slate-500 dark:text-slate-400 hover:text-blue-900 dark:hover:text-blue-100 transition-colors" href="#">About Us</a></li>
+<li><a class="text-slate-500 dark:text-slate-400 hover:text-blue-900 dark:hover:text-blue-100 transition-colors" href="#">Press</a></li>
+<li><a class="text-slate-500 dark:text-slate-400 hover:text-blue-900 dark:hover:text-blue-100 transition-colors" href="#">Newsletter</a></li>
+<li><a class="text-slate-500 dark:text-slate-400 hover:text-blue-900 dark:hover:text-blue-100 transition-colors" href="#">Help Center</a></li>
+</ul>
+</div>
+<div>
+<h6 class="font-bold text-blue-900 dark:text-blue-100 mb-6 uppercase tracking-widest text-xs">Legal</h6>
+<ul class="space-y-4">
+<li><a class="text-slate-500 dark:text-slate-400 hover:text-blue-900 dark:hover:text-blue-100 transition-colors" href="#">Privacy Policy</a></li>
+<li><a class="text-slate-500 dark:text-slate-400 hover:text-blue-900 dark:hover:text-blue-100 transition-colors" href="#">Terms of Service</a></li>
+</ul>
+</div>
+</div>
+<div class="max-w-7xl mx-auto mt-16 pt-8 border-t border-slate-200/30 dark:border-slate-800/30 flex flex-col md:flex-row justify-between items-center gap-4">
+<span class="text-slate-500 dark:text-slate-400 text-sm">© 2024 The Editorial Explorer. All rights reserved. Crafted for discovery.</span>
+<div class="flex items-center gap-2">
+<span class="text-xs font-bold text-secondary uppercase tracking-widest">Adventure awaits</span>
+<span class="material-symbols-outlined text-secondary animate-pulse">explore</span>
+</div>
+</div>
+</footer>
+</body></html>

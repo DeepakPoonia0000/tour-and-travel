@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+
+<html class="scroll-smooth" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Our Story &amp; Journal | Horizon Voyager</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif:ital,wght@0,400;0,700;1,400&amp;family=Plus+Jakarta+Sans:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary-fixed-dim": "#b1c5ff",
+                        "secondary-fixed": "#ffdbc9",
+                        "on-secondary-fixed": "#331200",
+                        "on-primary-fixed-variant": "#00419e",
+                        "on-secondary-container": "#672c00",
+                        "inverse-primary": "#b1c5ff",
+                        "on-secondary": "#ffffff",
+                        "surface-container-lowest": "#ffffff",
+                        "tertiary-fixed": "#79f7e3",
+                        "surface-dim": "#d9d9e2",
+                        "on-surface-variant": "#434653",
+                        "tertiary-container": "#00584e",
+                        "on-secondary-fixed-variant": "#763300",
+                        "surface-container-high": "#e7e7f0",
+                        "tertiary-fixed-dim": "#59dbc7",
+                        "secondary-fixed-dim": "#ffb68d",
+                        "error-container": "#ffdad6",
+                        "surface-tint": "#2559bd",
+                        "on-tertiary": "#ffffff",
+                        "on-tertiary-container": "#50d3bf",
+                        "primary": "#00327d",
+                        "surface-bright": "#faf8ff",
+                        "on-error-container": "#93000a",
+                        "on-background": "#191b22",
+                        "on-primary": "#ffffff",
+                        "outline": "#737784",
+                        "surface-variant": "#e2e2eb",
+                        "surface": "#faf8ff",
+                        "outline-variant": "#c3c6d5",
+                        "on-error": "#ffffff",
+                        "surface-container-highest": "#e2e2eb",
+                        "inverse-surface": "#2e3037",
+                        "on-surface": "#191b22",
+                        "error": "#ba1a1a",
+                        "secondary": "#9b4500",
+                        "tertiary": "#003f37",
+                        "surface-container": "#ededf6",
+                        "surface-container-low": "#f3f3fc",
+                        "on-primary-container": "#a5bdff",
+                        "on-tertiary-fixed-variant": "#005047",
+                        "inverse-on-surface": "#f0f0f9",
+                        "primary-fixed": "#dae2ff",
+                        "primary-container": "#0047ab",
+                        "background": "#faf8ff",
+                        "secondary-container": "#fc8a40",
+                        "on-tertiary-fixed": "#00201c",
+                        "on-primary-fixed": "#001946"
+                    },
+                    fontFamily: {
+                        "headline": ["Noto Serif"],
+                        "body": ["Plus Jakarta Sans"],
+                        "label": ["Plus Jakarta Sans"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .perspective-hero {
+            perspective: 1000px;
+        }
+        .drop-cap::first-letter {
+            float: left;
+            font-size: 5rem;
+            line-height: 1;
+            padding-right: 0.75rem;
+            font-family: 'Noto Serif', serif;
+            font-weight: 700;
+            color: #00327d;
+        }
+    </style>
+</head>
+<body class="bg-surface text-on-surface font-body selection:bg-secondary-fixed selection:text-on-secondary-fixed">
+<!-- TopNavBar -->
+<nav class="fixed top-0 w-full z-50 bg-white/80 dark:bg-slate-950/80 backdrop-blur-md shadow-sm dark:shadow-none">
+<div class="flex justify-between items-center w-full px-8 py-4 max-w-screen-2xl mx-auto">
+<div class="text-2xl font-serif italic text-blue-900 dark:text-blue-50">Horizon Voyager</div>
+<div class="hidden md:flex items-center space-x-8">
+<a class="text-slate-600 dark:text-slate-400 hover:text-blue-900 dark:hover:text-blue-200 transition-colors" href="#">Destinations</a>
+<a class="text-slate-600 dark:text-slate-400 hover:text-blue-900 dark:hover:text-blue-200 transition-colors" href="#">Journeys</a>
+<a class="text-slate-600 dark:text-slate-400 hover:text-blue-900 dark:hover:text-blue-200 transition-colors" href="#">Experiences</a>
+<a class="text-blue-900 dark:text-blue-400 font-bold border-b-2 border-orange-700 pb-1" href="#">Journal</a>
+</div>
+<div class="flex items-center space-x-6">
+<div class="flex space-x-4 items-center">
+<span class="material-symbols-outlined text-on-surface-variant cursor-pointer hover:bg-slate-50 p-2 rounded-full transition-all">shopping_bag</span>
+<span class="material-symbols-outlined text-on-surface-variant cursor-pointer hover:bg-slate-50 p-2 rounded-full transition-all">account_circle</span>
+</div>
+<button class="hidden lg:block bg-secondary text-on-secondary px-6 py-2.5 rounded-lg font-medium hover:scale-[1.02] active:opacity-80 transition-all duration-300">
+                    Book Now
+                </button>
+</div>
+</div>
+</nav>
+<main class="pt-20">
+<!-- Hero Section: The Perspective Hero -->
+<section class="relative h-[870px] overflow-hidden flex items-center justify-center">
+<div class="absolute inset-0 z-0">
+<img alt="Expansive mountain landscape" class="w-full h-full object-cover scale-105" data-alt="Cinematic wide shot of mist-covered alpine mountains at dawn with soft ethereal blue and gold lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA_7wgtsYFBbX1yzc8LViO9CVBNcaPwb5T5ulloX75jTQ6adFinqFO0Mf_NRxheAVahLVaWayhxYDcrmuQdux-kMA7Oa7XTPWXqj34WrExuyKOePh5kBU7nEt1_E7FCr0Se7WTFxKJmTKHgt5DmbaB7LZ-oXgBxdZRjI_arfh2021t5MSRssSAEf13q9EWDa-4xri4zQOdEWgzg9NgulD2mEUFOVZmnzCcQGABNe6K-hGzAIlLo7M54NOrhbDAUVtk7o9A3_gKN0MbF"/>
+<div class="absolute inset-0 bg-primary/20 mix-blend-multiply"></div>
+</div>
+<div class="relative z-10 text-center max-w-4xl px-6">
+<span class="font-label text-white text-xs tracking-[0.3em] uppercase mb-6 block drop-shadow-md">The Curated Odyssey</span>
+<h1 class="font-headline text-white text-6xl md:text-8xl mb-8 leading-tight drop-shadow-xl">Our Story</h1>
+<p class="text-white text-xl md:text-2xl font-light max-w-2xl mx-auto leading-relaxed opacity-90">
+                    Transcending the ordinary through the art of intentional exploration and slow discovery.
+                </p>
+</div>
+<div class="absolute -bottom-1 left-1/2 -translate-x-1/2 w-full max-w-5xl px-6 z-20">
+<div class="bg-surface-container-lowest p-12 shadow-xl rounded-t-xl text-center">
+<h2 class="font-headline text-3xl text-primary mb-4 italic">Crafting Memories, Not Just Itineraries</h2>
+<div class="w-24 h-0.5 bg-secondary-container mx-auto"></div>
+</div>
+</div>
+</section>
+<!-- Editorial Content: Mission -->
+<section class="bg-surface-container-lowest py-24">
+<div class="max-w-screen-xl mx-auto px-6 lg:px-12">
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-16 items-start">
+<div class="lg:col-span-7">
+<p class="drop-cap text-lg text-on-surface-variant leading-relaxed mb-8 font-body">
+                            Voyage is not merely a distance covered; it is a shift in perspective. Horizon Voyager was born from the belief that travel has become too hurried, too transactional, and too detached from the soul of the destination. We believe in the "The Curated Odyssey"—a philosophy where every moment is hand-selected not for its popularity, but for its authenticity.
+                        </p>
+<p class="text-lg text-on-surface-variant leading-relaxed mb-12">
+                            Our mission is to reconnect the modern explorer with the rhythms of the local landscape. Whether it's the quiet steam of a hidden ryokan in Shizuoka or the scent of wild rosemary on a Tuscan hillside, we prioritize sensory depth over checklist completion. We don't just show you the world; we invite you to live within its most intimate pockets.
+                        </p>
+<blockquote class="border-l-4 border-secondary-container pl-8 my-16 py-2">
+<p class="font-headline text-3xl italic text-primary leading-snug">
+                                "To travel is to discover that everyone is wrong about other countries."
+                            </p>
+<cite class="block mt-4 font-label text-sm uppercase tracking-widest text-outline">— Aldous Huxley</cite>
+</blockquote>
+</div>
+<div class="lg:col-span-5 relative">
+<div class="aspect-[4/5] overflow-hidden rounded-xl shadow-2xl">
+<img alt="Italian coastal village" class="w-full h-full object-cover" data-alt="Artistic vertical shot of a colorful Italian coastal town at dusk, warm window lights glowing against deep blue twilight sea" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBKsqmTbV542J2RYldXAWQCx1_T5VDWeIlxqwQNSLqbSic-anR1bEeR_RaKf5i3LZIbdlB-gvdrOyvB30IHgeUCHU4d8rmZpHZb1Wt3THBqyf32PKo-FwsrWSrmvtQ7etFORcAZ1qRKM9PxNfO6HlfrS11vMSwRO4fbeVJHL5KaMWzh3Ku3Wb3GpqtfpQ5P_fItv6Shh6yygw_R1xPyuHFBXk4ozNm2JcsBSD8Ow0OBUFzAMhKv4c7eQgLc-39Rsd-gMK2DvGEgobGd"/>
+</div>
+<div class="absolute -bottom-8 -left-8 bg-tertiary text-white p-8 rounded-lg max-w-xs hidden md:block">
+<h4 class="font-headline text-xl mb-2">Sustainable Legacy</h4>
+<p class="text-sm opacity-80 leading-relaxed">We commit 5% of every journey to local preservation efforts in the communities we visit.</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Meet the Curators: Bento Grid Inspired -->
+<section class="py-32 bg-surface">
+<div class="max-w-screen-xl mx-auto px-6 lg:px-12">
+<div class="mb-20 text-center">
+<span class="font-label text-secondary text-xs tracking-widest uppercase mb-4 block">The Experts</span>
+<h2 class="font-headline text-5xl text-primary">Meet the Curators</h2>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+<!-- Curator 1 -->
+<div class="group">
+<div class="aspect-[3/4] overflow-hidden rounded-xl mb-6 relative">
+<img alt="Elena Vance" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" data-alt="Close-up portrait of a woman with a confident smile in soft natural outdoor lighting, wearing a linen shirt" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAW_nvzmeM_90yFlnzyZX--ZsS4DwaSM79h1JrPltnEQiJDhIs_j4NmjdDUrtWZIkM36FvnrjsHhIS418yRm9LAIGs-9TxbmlekTMe5HkPqghdg9LtYK0adoYQNm5CAFGh3c01ZYukYIIY8ie9pGRf_-WVlIIFs6Pp2LCpi4lTOq6JYLUlKb6lZZivhAeTeSqQq0JIBDEGozuMviP9z2oREpQccINJHmtug4hJ1Ku5-mBPIdbrib1ZQq54k0lIaueKADI7RSUm4h-X1"/>
+<div class="absolute inset-0 bg-primary/20 opacity-0 group-hover:opacity-100 transition-opacity"></div>
+</div>
+<h3 class="font-headline text-2xl mb-1">Elena Vance</h3>
+<p class="font-label text-xs uppercase tracking-widest text-secondary mb-4">Mediterranean Specialist</p>
+<p class="text-on-surface-variant text-sm leading-relaxed">
+                            Former archaeologist with a passion for the hidden histories of the Cyclades. Elena crafts journeys that feel like time travel.
+                        </p>
+</div>
+<!-- Curator 2 -->
+<div class="group pt-12">
+<div class="aspect-[3/4] overflow-hidden rounded-xl mb-6 relative">
+<img alt="Julian Thorne" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" data-alt="Professional man with a beard looking thoughtfully at the horizon in a mountain setting, wearing a high-end outdoor jacket" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDKaami3WBW4XDeEtDHVHL6-UoEXquCkjdy8r-ZjTcbkhcRqhqbBpdMVsq7uZajsSrjI8wjKUeYG1gE29NynAMp9QJwuJkL8-SV1_owC7IGZc_JQUuj6biVqiJmrtNrcFfmU3kdlYM4yqJRvCqg-7kQUxKPSt9iJ9p5nhd2hd90GxD6IXeJRwfGLfM2I3-A35YjqBMDuCYCD74hZu1BiG7frB465-omsU_UcWU4qlflElF6cUXbT3w-MQVP-S3qt1KGD8XhCrv-1UQE"/>
+<div class="absolute inset-0 bg-primary/20 opacity-0 group-hover:opacity-100 transition-opacity"></div>
+</div>
+<h3 class="font-headline text-2xl mb-1">Julian Thorne</h3>
+<p class="font-label text-xs uppercase tracking-widest text-secondary mb-4">Nordic &amp; Alpine Guide</p>
+<p class="text-on-surface-variant text-sm leading-relaxed">
+                            Julian has spent fifteen winters in the Arctic Circle. His expertise lies in finding the most remote, luxurious shelters in the snow.
+                        </p>
+</div>
+<!-- Curator 3 -->
+<div class="group">
+<div class="aspect-[3/4] overflow-hidden rounded-xl mb-6 relative">
+<img alt="Mei Lin" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" data-alt="Elegant woman standing in a lush Japanese garden, soft dappled sunlight filtering through maple leaves" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBp8pv1VC5InKM-vVxfA4alVKxVxCaPbrwPTaLQmBobLUhsnVQ0nDvA1ZoercYfCvyNtzo3nnujKlkBGB4SOln10c7uiU3uSWQX8-kuoRKNv8jSlJJ_ubtakRwnv-orJGOUFCYvKFY0KTz47JIV22WHv2lIABMPfNH8goVXCPls6OlIuOstXsafLs9VcFQMLeyrcuL1WvMRJNO44lYuN8NycCj-eO6-VsQHCFVzS7Vi21nNpuIXJRzvMe0P9HLb-kcJnbBoS70PE55m"/>
+<div class="absolute inset-0 bg-primary/20 opacity-0 group-hover:opacity-100 transition-opacity"></div>
+</div>
+<h3 class="font-headline text-2xl mb-1">Mei Lin</h3>
+<p class="font-label text-xs uppercase tracking-widest text-secondary mb-4">East Asian Culturalist</p>
+<p class="text-on-surface-variant text-sm leading-relaxed">
+                            An expert in the tea ceremonies of Kyoto and the architectural wonders of rural China. Mei Lin connects soul to space.
+                        </p>
+</div>
+</div>
+</div>
+</section>
+<!-- Journal Section: Editorial Style -->
+<section class="py-32 bg-surface-container-low">
+<div class="max-w-screen-xl mx-auto px-6 lg:px-12">
+<div class="flex flex-col md:flex-row justify-between items-end mb-16 gap-8">
+<div class="max-w-2xl">
+<span class="font-label text-tertiary text-xs tracking-widest uppercase mb-4 block font-bold">The Journal</span>
+<h2 class="font-headline text-5xl text-primary leading-tight">Dispatches from the Edge of Discovery</h2>
+</div>
+<button class="flex items-center gap-2 group text-primary font-medium">
+                        View All Entries
+                        <span class="material-symbols-outlined transition-transform group-hover:translate-x-1">arrow_forward</span>
+</button>
+</div>
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-12">
+<!-- Featured Article -->
+<article class="lg:col-span-8 group cursor-pointer">
+<div class="overflow-hidden rounded-xl mb-8 shadow-sm">
+<img alt="Tuscany landscape" class="w-full aspect-[16/9] object-cover transition-transform duration-1000 group-hover:scale-105" data-alt="Golden rolling hills of Tuscany with a line of cypress trees at sunset, warm cinematic lighting and hazy atmosphere" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDOTnnaje278HB_DaS-_YCs-Z8dylPXnjTL8DSun5isChF6l0LRkNzReT0BRSG8S0wrfzb-7yHYqEpdxda1ZwX47cyaacIICrAzEM-e7MP3iaGxOf-4iBqMXq9YJPtIIycOoedI0fX8PdTGbiR4PWFFp63SzNlwnjl4XapDdomBZUokWC6T01FvhB2ZA2WyYA5OY6mUMMLONtPx1KfFR1Bak-UA-EyD_-6oGDvr0K2gAixxfkjhuVVLE5p8R6iuHWAR5DbOndyEyuu7"/>
+</div>
+<div class="flex gap-6 mb-4 items-center">
+<span class="font-label text-xs uppercase tracking-widest text-outline">Culture</span>
+<span class="w-1 h-1 bg-outline-variant rounded-full"></span>
+<span class="font-label text-xs uppercase tracking-widest text-outline">12 Min Read</span>
+</div>
+<h3 class="font-headline text-4xl mb-6 text-primary group-hover:text-secondary transition-colors">The Art of Slow Travel in Tuscany</h3>
+<p class="text-on-surface-variant text-lg leading-relaxed max-w-3xl mb-8">
+                            In the heart of the Val d'Orcia, time doesn't just pass—it ripens. We explore why the most meaningful way to see Italy is to stop trying to see all of it.
+                        </p>
+</article>
+<!-- Sidebar Articles -->
+<div class="lg:col-span-4 space-y-12">
+<article class="group cursor-pointer">
+<div class="aspect-video overflow-hidden rounded-lg mb-4">
+<img alt="Japanese Ryokan" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" data-alt="Interior of a traditional Japanese ryokan with tatami mats, paper screens, and a view into a zen garden with moss and rocks" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBpRznDlwW8BPwmEE987a3zEl1fJGVZu6jO9b2e7ZSU5lxtLGGncnCtI3bHxBF2KIoQm1rjpZmeE_uNyQ0hCLAhvlPo-pG-c0f49qb5GWCK0ELu-ctpzTOWV34RGsvRH7bOwfg7O6lWFsnNP4MQpLWSTdYvr1B_wzOnBoJI4iWcNXuylbSKQYjQTownpmh_J5ntAc_mQF6bvjKP7AFiZdSZrXXBpyAvmFQGDxg9NBinhQNjNaAnZmdTzFjWS9bIhQbm2Xt2q4Spdelm"/>
+</div>
+<span class="font-label text-[10px] uppercase tracking-widest text-secondary font-bold mb-2 block">Tradition</span>
+<h4 class="font-headline text-xl text-primary mb-2">Uncovering Hidden Ryokans</h4>
+<p class="text-on-surface-variant text-sm line-clamp-2">The most exclusive stays in Japan aren't in the city, but hidden deep in the cedar forests of Hakone.</p>
+</article>
+<article class="group cursor-pointer">
+<div class="aspect-video overflow-hidden rounded-lg mb-4">
+<img alt="Iceland landscapes" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" data-alt="Vibrant blue geothermal lagoon in Iceland surrounded by black volcanic rock and steam at sunset" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDD0wEWL1AVsdCFJEjcHNJmzQlrpxUIW6l2OkDZbj3YQrSkdusFJktfRsMfkkCPtt8rBr4SKNejpDg-mft8DzMbEaAumCP8ZhO6egjweaFGfXy-pYhs3X3mxETkFs-gv5LTD800ISCsD1-DS3gvxeDaPzNhu_Wmb3vPAQ7JcOhEvXb9kj0KIFtjA2i5a22_4RURt2jONMOllYuJIL6-nCE1s5OKUhHsXp6mzSiY8bWFmHtE8zyZNRdI0LvrEzwbpKhlji3Q3fuZzCHu"/>
+</div>
+<span class="font-label text-[10px] uppercase tracking-widest text-secondary font-bold mb-2 block">Nature</span>
+<h4 class="font-headline text-xl text-primary mb-2">Elemental Iceland</h4>
+<p class="text-on-surface-variant text-sm line-clamp-2">Finding silence amidst the roaring waterfalls and glacial lagoons of the northern fjords.</p>
+</article>
+</div>
+</div>
+<!-- Secondary Grid -->
+<div class="grid grid-cols-1 md:grid-cols-2 gap-12 mt-12">
+<article class="bg-surface-container-lowest p-8 rounded-xl flex flex-col md:flex-row gap-8 items-center shadow-sm hover:shadow-md transition-shadow">
+<div class="w-full md:w-1/3 aspect-square rounded-lg overflow-hidden shrink-0">
+<img alt="Fine dining" class="w-full h-full object-cover" data-alt="Artfully plated haute cuisine dish with delicate microgreens and colorful reductions on a dark ceramic plate" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA-zNsE1KecUhBcRaYtBhFfiUsl2mIA7KllQygjeBj7T9rhMmTXJQiYDBV9Rg1lxezSpAQhCdWUGGNzeEUFBCVhvTzCKmEHP2R1u5KHrLuJCzj0I2TTahcDvxdPuLQ-8ExlTTj_cABkmg-JlBuoZ0eciJD1-EOQhl_6bPRGPGieiOVdiSHupWIcWku1OZO7bhIpQeqbH5xN3aIMJFDPT6W-2ICiarHEOk9S_R6RA-lQa8TlnFgVgy97U_Oq6uIWwMhp4ycxcvpomr3C"/>
+</div>
+<div>
+<span class="font-label text-[10px] uppercase tracking-widest text-tertiary font-bold mb-2 block">Gastronomy</span>
+<h4 class="font-headline text-2xl text-primary mb-3">The Forager's Feast</h4>
+<p class="text-on-surface-variant text-sm mb-4">Michelin-starred dining that starts in the wild. A journey through Copenhagen’s revolutionary food scene.</p>
+<a class="text-secondary font-medium text-sm inline-flex items-center gap-1 group" href="#">
+                                Read Story <span class="material-symbols-outlined text-sm">open_in_new</span>
+</a>
+</div>
+</article>
+<article class="bg-surface-container-lowest p-8 rounded-xl flex flex-col md:flex-row gap-8 items-center shadow-sm hover:shadow-md transition-shadow">
+<div class="w-full md:w-1/3 aspect-square rounded-lg overflow-hidden shrink-0">
+<img alt="Dubai skyline" class="w-full h-full object-cover" data-alt="Architectural detail of a modern futuristic building against a clear blue sky, showing sleek glass and metal lines" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAjE62KEe-95-Hfj-wbhe4UgcS4AkrNfpdmH4OD-q12aFd0goko8KgS5-xic2N9OI1frSFwAJEToaltul4T3cuIyTRxFbGo0cfmEFwRY7EhzRQ41gfygJAdR2bAhINxX1jiw03okYqZYtUX15j0TJ2zrNuEp5xdN611f9xdUT6P6ZaIbBPEirfVQcG8uQUnPdmIrDIJvxuWdyjpgZqe2TPYWNpvR5tgiwUvwoT7b77ZNGSGc90IV6tfWO59ND68p9yfIKddneIgYQO3"/>
+</div>
+<div>
+<span class="font-label text-[10px] uppercase tracking-widest text-tertiary font-bold mb-2 block">Architecture</span>
+<h4 class="font-headline text-2xl text-primary mb-3">Urban Silhouettes</h4>
+<p class="text-on-surface-variant text-sm mb-4">How modern architecture is redefining the skylines of the desert, blending tradition with tomorrow.</p>
+<a class="text-secondary font-medium text-sm inline-flex items-center gap-1 group" href="#">
+                                Read Story <span class="material-symbols-outlined text-sm">open_in_new</span>
+</a>
+</div>
+</article>
+</div>
+</div>
+</section>
+<!-- Newsletter / Footer CTA -->
+<section class="py-24 bg-primary text-white overflow-hidden relative">
+<div class="absolute right-0 top-0 opacity-10 pointer-events-none">
+<span class="material-symbols-outlined text-[30rem]" style="font-variation-settings: 'FILL' 1;">explore</span>
+</div>
+<div class="max-w-screen-xl mx-auto px-6 lg:px-12 relative z-10 text-center">
+<h2 class="font-headline text-4xl md:text-5xl mb-6">Let the journey begin.</h2>
+<p class="text-primary-fixed-dim text-lg mb-10 max-w-xl mx-auto">Subscribe to our monthly journal for exclusive travel narratives and early access to curated journeys.</p>
+<form class="flex flex-col sm:flex-row gap-4 max-w-md mx-auto">
+<input class="bg-primary-container/30 border-none rounded-lg px-6 py-4 flex-grow placeholder:text-on-primary-container text-white focus:ring-2 focus:ring-secondary-container outline-none" placeholder="Your email address" type="email"/>
+<button class="bg-secondary-container text-on-secondary-container px-8 py-4 rounded-lg font-bold hover:scale-105 transition-transform active:opacity-90">Subscribe</button>
+</form>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="w-full mt-auto bg-slate-50 dark:bg-slate-900 border-t border-surface-variant/20">
+<div class="flex flex-col md:flex-row justify-between items-center px-12 py-16 w-full max-w-screen-2xl mx-auto">
+<div class="mb-8 md:mb-0">
+<div class="text-xl font-serif text-blue-900 dark:text-blue-50 mb-2">Horizon Voyager</div>
+<p class="text-slate-500 dark:text-slate-400 text-sm">© 2024 Horizon Voyager. The Curated Odyssey.</p>
+</div>
+<div class="flex flex-wrap justify-center gap-8 md:gap-12">
+<a class="text-slate-500 dark:text-slate-400 hover:text-blue-800 dark:hover:text-blue-200 underline-offset-4 hover:underline transition-all text-xs uppercase tracking-widest font-label" href="#">Privacy Policy</a>
+<a class="text-slate-500 dark:text-slate-400 hover:text-blue-800 dark:hover:text-blue-200 underline-offset-4 hover:underline transition-all text-xs uppercase tracking-widest font-label" href="#">Terms of Service</a>
+<a class="text-slate-500 dark:text-slate-400 hover:text-blue-800 dark:hover:text-blue-200 underline-offset-4 hover:underline transition-all text-xs uppercase tracking-widest font-label" href="#">Contact Us</a>
+<a class="text-slate-500 dark:text-slate-400 hover:text-blue-800 dark:hover:text-blue-200 underline-offset-4 hover:underline transition-all text-xs uppercase tracking-widest font-label" href="#">Our Story</a>
+<a class="text-slate-500 dark:text-slate-400 hover:text-blue-800 dark:hover:text-blue-200 underline-offset-4 hover:underline transition-all text-xs uppercase tracking-widest font-label" href="#">Sustainability</a>
+</div>
+<div class="flex space-x-4 mt-8 md:mt-0">
+<a class="text-slate-400 hover:text-primary transition-colors" href="#">
+<svg class="w-5 h-5" fill="currentColor" viewbox="0 0 24 24"><path d="M12.315 2c2.43 0 2.784.013 3.808.06 1.064.049 1.791.218 2.427.465a4.902 4.902 0 011.772 1.153 4.902 4.902 0 011.153 1.772c.247.636.416 1.363.465 2.427.048 1.067.06 1.407.06 4.123v.08c0 2.643-.012 2.987-.06 4.043-.049 1.064-.218 1.791-.465 2.427a4.902 4.902 0 01-1.153 1.772 4.902 4.902 0 01-1.772 1.153c-.636.247-1.363.416-2.427.465-1.067.048-1.407.06-4.123.06h-.08c-2.643 0-2.987-.012-4.043-.06-1.064-.049-1.791-.218-2.427-.465a4.902 4.902 0 01-1.772-1.153 4.902 4.902 0 01-1.153-1.772c-.247-.636-.416-1.363-.465-2.427-.047-1.024-.06-1.379-.06-3.808v-.63c0-2.43.013-2.784.06-3.808.049-1.064.218-1.791.465-2.427a4.902 4.902 0 011.153-1.772A4.902 4.902 0 015.45 2.525c.636-.247 1.363-.416 2.427-.465C8.901 2.013 9.256 2 11.685 2h.63zM12 7.004a4.996 4.996 0 100 9.992 4.996 4.996 0 000-9.992zm0 8.18a3.184 3.184 0 110-6.368 3.184 3.184 0 010 6.368zM18.147 5.856a1.192 1.192 0 100 2.384 1.192 1.192 0 000-2.384z"></path></svg>
+</a>
+<a class="text-slate-400 hover:text-primary transition-colors" href="#">
+<svg class="w-5 h-5" fill="currentColor" viewbox="0 0 24 24"><path d="M22 12.061c0-5.523-4.477-10-10-10s-10 4.477-10 10c0 4.99 3.656 9.126 8.438 9.878v-6.987h-2.54V12.06h2.54V9.845c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12.06h2.773l-.443 2.89h-2.33v6.988C18.343 21.187 22 17.051 22 12.061z"></path></svg>
+</a>
+</div>
+</div>
+</footer>
+</body></html>

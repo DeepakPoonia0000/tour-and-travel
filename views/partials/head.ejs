@@ -1,0 +1,40 @@
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title><%= metaTitle %></title>
+<meta name="description" content="<%= metaDescription %>" />
+<meta name="keywords" content="<%= metaKeywords %>" />
+<meta name="theme-color" content="#00327d" />
+<link rel="canonical" href="<%= metaUrl %>" />
+<meta property="og:title" content="<%= metaTitle %>" />
+<meta property="og:description" content="<%= metaDescription %>" />
+<meta property="og:url" content="<%= metaUrl %>" />
+<meta property="og:image" content="<%= metaImage %>" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="<%= metaTitle %>" />
+<meta name="twitter:description" content="<%= metaDescription %>" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif:ital,wght@0,400;0,700;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet" />
+<script src="https://cdn.tailwindcss.com?plugins=forms,typography"></script>
+<script id="tailwind-config">
+  tailwind.config = {
+    theme: {
+      extend: {
+        colors: {
+          surface: '#faf8ff',
+          primary: '#00327d',
+          secondary: '#9b4500',
+          accent: '#fc8a40',
+          muted: '#737784',
+          surface2: '#f3f3fc'
+        },
+        fontFamily: {
+          sans: ['Plus Jakarta Sans', 'sans-serif'],
+          serif: ['Noto Serif', 'serif']
+        }
+      }
+    }
+  };
+</script>
+<link rel="stylesheet" href="/css/style.css" />

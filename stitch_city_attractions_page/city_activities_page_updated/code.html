@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>The Editorial Explorer | Kyoto Odyssey</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif:ital,wght@0,400;0,700;1,400&amp;family=Plus+Jakarta+Sans:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "tertiary": "#003f37",
+              "on-secondary": "#ffffff",
+              "primary-container": "#0047ab",
+              "surface-dim": "#d9d9e2",
+              "surface-container-high": "#e7e7f0",
+              "primary": "#00327d",
+              "outline-variant": "#c3c6d5",
+              "secondary-fixed": "#ffdbc9",
+              "secondary": "#9b4500",
+              "on-surface-variant": "#434653",
+              "error-container": "#ffdad6",
+              "on-primary": "#ffffff",
+              "background": "#faf8ff",
+              "primary-fixed": "#dae2ff",
+              "outline": "#737784",
+              "surface-bright": "#faf8ff",
+              "tertiary-fixed": "#79f7e3",
+              "surface-container-highest": "#e2e2eb",
+              "tertiary-container": "#00584e",
+              "secondary-container": "#fc8a40",
+              "tertiary-fixed-dim": "#59dbc7",
+              "on-error-container": "#93000a",
+              "surface": "#faf8ff",
+              "on-primary-fixed-variant": "#00419e",
+              "primary-fixed-dim": "#b1c5ff",
+              "surface-tint": "#2559bd",
+              "surface-container-low": "#f3f3fc",
+              "on-primary-container": "#a5bdff",
+              "surface-variant": "#e2e2eb",
+              "on-secondary-fixed": "#331200",
+              "inverse-on-surface": "#f0f0f9",
+              "surface-container-lowest": "#ffffff",
+              "surface-container": "#ededf6",
+              "on-primary-fixed": "#001946",
+              "on-secondary-fixed-variant": "#763300",
+              "on-tertiary": "#ffffff",
+              "secondary-fixed-dim": "#ffb68d",
+              "on-tertiary-fixed": "#00201c",
+              "inverse-surface": "#2e3037",
+              "inverse-primary": "#b1c5ff",
+              "on-tertiary-fixed-variant": "#005047",
+              "on-secondary-container": "#672c00",
+              "on-tertiary-container": "#50d3bf",
+              "on-error": "#ffffff",
+              "on-background": "#191b22",
+              "on-surface": "#191b22",
+              "error": "#ba1a1a"
+            },
+            fontFamily: {
+              "headline": ["Noto Serif"],
+              "body": ["Plus Jakarta Sans"],
+              "label": ["Plus Jakarta Sans"]
+            },
+            borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+          },
+        },
+      }
+    </script>
+<style>
+      body { font-family: 'Plus Jakarta Sans', sans-serif; background-color: #faf8ff; color: #191b22; }
+      .font-serif { font-family: 'Noto Serif', serif; }
+      .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24; }
+      .glass-nav { backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); }
+    </style>
+</head>
+<body class="bg-surface text-on-surface">
+<!-- TopNavBar -->
+<nav class="fixed top-0 w-full z-50 bg-white/80 backdrop-blur-md shadow-sm flex justify-between items-center px-12 py-6 max-w-full mx-auto">
+<div class="text-2xl font-serif italic text-[#00327d]">The Editorial Explorer</div>
+<div class="hidden md:flex items-center space-x-8">
+<a class="text-[#9b4500] border-b border-[#9b4500] font-medium font-serif text-lg tracking-tight" href="#">Destinations</a>
+<a class="text-[#00327d] hover:text-[#9b4500] transition-colors font-serif text-lg tracking-tight" href="#">Experiences</a>
+<a class="text-[#00327d] hover:text-[#9b4500] transition-colors font-serif text-lg tracking-tight" href="#">Journal</a>
+<a class="text-[#00327d] hover:text-[#9b4500] transition-colors font-serif text-lg tracking-tight" href="#">Bookings</a>
+</div>
+<div class="flex items-center space-x-6">
+<span class="material-symbols-outlined text-[#00327d] text-2xl cursor-pointer">search</span>
+<span class="material-symbols-outlined text-[#00327d] text-3xl cursor-pointer">account_circle</span>
+</div>
+</nav>
+<main class="pt-24">
+<!-- Perspective Hero Section -->
+<section class="relative h-[870px] overflow-hidden flex items-center px-12">
+<div class="absolute inset-0 z-0">
+<img alt="Kyoto Temple" class="w-full h-full object-cover" data-alt="atmospheric view of a traditional wooden pagoda in Kyoto surrounded by vibrant autumn maple leaves in soft morning light" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCQwsOZ_pqahAujUh80H1YO8iQ2r5jpAkcdtamfiI83zM1Oyunfet01dpGxetT-j9DkKQxf4s1jhUhZFiLBIqMaPgCuO7hgF8r5jpswfNbCEbejmT8mT76B2pP1o1VGY8sjPZmGiuLgZWZWVhOsAi1Vy0oamdZfGK4VXvsf9snXND0z9RM55nKxr98FKAdYQ407ubEi-zVH7iUn2DH1krSubfKkPh0jaY6a-SXYWP6PmysbCdp8nKtWIGDr4IbUDD3lo_KFW6-rblGl"/>
+<div class="absolute inset-0 bg-gradient-to-r from-primary/40 to-transparent"></div>
+</div>
+<div class="relative z-10 max-w-3xl text-white">
+<p class="font-label text-sm tracking-[0.2em] uppercase mb-4 text-secondary-fixed">Cultural Epicenter</p>
+<h1 class="font-headline text-6xl md:text-8xl font-bold leading-tight mb-6">Kyoto: The <br/><span class="italic font-normal">Silent Echo</span></h1>
+<p class="font-body text-xl opacity-90 max-w-xl leading-relaxed">
+                    Beyond the gilded pavilions lies a city of whispered traditions. In Kyoto, time doesn't pass—it lingers in the steam of a tea bowl and the moss of a hidden garden.
+                </p>
+</div>
+<!-- Overlapping Detail Card -->
+<div class="absolute bottom-0 right-12 translate-y-1/2 z-20 hidden lg:block">
+<div class="bg-surface-container-lowest p-10 rounded-xl shadow-xl max-w-md">
+<h3 class="font-headline text-2xl text-primary mb-4">The Seasonal Pulse</h3>
+<p class="text-on-surface-variant mb-6 text-sm leading-relaxed">Currently entering the Kōyō season. Expect vibrant maples and crisp evening air. The perfect climate for traditional architecture walks and kaiseki dining.</p>
+<div class="flex items-center space-x-4">
+<div class="flex flex-col">
+<span class="text-[10px] uppercase tracking-widest text-outline">Temp</span>
+<span class="font-bold text-primary">18°C</span>
+</div>
+<div class="h-8 w-px bg-outline-variant/30"></div>
+<div class="flex flex-col">
+<span class="text-[10px] uppercase tracking-widest text-outline">Crowds</span>
+<span class="font-bold text-primary">Moderate</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Filter Bar -->
+<section class="mt-32 px-12 pb-8">
+<div class="flex flex-col md:flex-row justify-between items-end gap-6 border-b border-outline-variant/20 pb-8">
+<div>
+<h2 class="font-headline text-4xl text-primary mb-2">Curated Experiences</h2>
+<p class="text-on-surface-variant">Select your path through the old capital.</p>
+</div>
+<div class="flex flex-wrap gap-3">
+<button class="px-6 py-2 rounded-full bg-secondary-container text-on-secondary-container font-medium text-sm">All Activities</button>
+<button class="px-6 py-2 rounded-full bg-surface-container-high text-on-surface-variant hover:bg-secondary-fixed transition-colors font-medium text-sm">Gastronomy</button>
+<button class="px-6 py-2 rounded-full bg-surface-container-high text-on-surface-variant hover:bg-secondary-fixed transition-colors font-medium text-sm">Wellness</button>
+<button class="px-6 py-2 rounded-full bg-surface-container-high text-on-surface-variant hover:bg-secondary-fixed transition-colors font-medium text-sm">Adventure</button>
+</div>
+</div>
+</section>
+<!-- Experiences Bento/Grid -->
+<section class="px-12 py-12">
+<div class="grid grid-cols-1 md:grid-cols-12 gap-8">
+<!-- Large Featured Activity Card -->
+<div class="md:col-span-8 group cursor-pointer">
+<div class="relative overflow-hidden rounded-xl aspect-[16/9] mb-6">
+<img alt="Kaiseki Dining" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" data-alt="meticulously plated Japanese Kaiseki course featuring seasonal sashimi and delicate garnishes on handcrafted ceramic plates" src="https://lh3.googleusercontent.com/aida-public/AB6AXuByLfNVYBqO1MzP8DO2O9hkkhF1zJ7jFHAhhYaNtqua5GC_IVmNg7gNFiGnM9A34saIExuefMKHZrm-zrXYGB3X4JlG7uiUflWQscBZYq5pY7I4fnOnLf45_M6gB0gQWRUj1JpQ5qwTt6k1nxm2kqhOvI265_db0E4p4w1rZCwuJsKhMAyDnIXF42NpLnTlrpHXJjMJtTZcBt4tf31AqJ_OvKjO5wI5WYxhax_-vSG-bI2JRXMws3aYtadlQrvTiPVl-0rDw25ppy-R"/>
+<div class="absolute top-6 left-6 bg-white/90 backdrop-blur px-4 py-1 rounded-full text-[10px] font-bold tracking-widest uppercase text-secondary">Gastronomy</div>
+</div>
+<div class="flex justify-between items-start">
+<div class="max-w-xl">
+<h3 class="font-headline text-3xl mb-2 text-primary group-hover:text-secondary transition-colors">The Art of Kaiseki: Private Kitchen Mastery</h3>
+<p class="text-on-surface-variant leading-relaxed">Join Chef Masahiro for a 4-hour immersion into the philosophy of seasonal ingredients. A journey through 9 courses of sensory perfection.</p>
+</div>
+<div class="text-right">
+<span class="block text-2xl font-bold text-primary">¥45,000</span>
+<span class="text-xs text-outline uppercase tracking-tighter">Per Guest</span>
+</div>
+</div>
+<div class="mt-4 flex items-center space-x-6 text-sm text-outline">
+<div class="flex items-center"><span class="material-symbols-outlined mr-2 text-lg">schedule</span> 4 Hours</div>
+<div class="flex items-center"><span class="material-symbols-outlined mr-2 text-lg">group</span> Max 4 People</div>
+</div>
+</div>
+<!-- Secondary Activity Card -->
+<div class="md:col-span-4 group cursor-pointer">
+<div class="relative overflow-hidden rounded-xl aspect-square mb-6">
+<img alt="Zen Meditation" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" data-alt="peaceful zen garden with raked sand and stones viewed from a traditional wooden veranda during a quiet afternoon" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAydttL8olT_RO0t8hRk4XjqC_jFc0QeDcmO6QbSyC3c-9virNikpzBzFsrI0_j-_2AhY0fk9_e_uQx299CxnfkkWnTYsIl9A49osOK_ZuitJ1Doa_u60S-PUy_9AqKjkOZHGh7cBIgI9zOOIXEw1_uWDhePPksUCu4OrzQivb6SKjo2EgsmdrSQ_QLHv206V1AjpFaOVkeJx8ogBxXl2fCN_zkeYnV-j89D7ORele6Q0Ml8Cbvqm4ouLakQJ3lEvtWoFf97biKXNAG"/>
+<div class="absolute top-6 left-6 bg-white/90 backdrop-blur px-4 py-1 rounded-full text-[10px] font-bold tracking-widest uppercase text-secondary">Wellness</div>
+</div>
+<h3 class="font-headline text-2xl mb-2 text-primary group-hover:text-secondary transition-colors">Morning Zen: Ryōan-ji Solitude</h3>
+<p class="text-on-surface-variant text-sm mb-4">Private access to the famous rock garden before public hours with a resident monk.</p>
+<div class="flex justify-between items-center border-t border-outline-variant/10 pt-4">
+<span class="text-sm font-medium"><span class="material-symbols-outlined align-middle mr-1 text-base">schedule</span> 90 Mins</span>
+<span class="font-bold text-primary">¥12,000</span>
+</div>
+</div>
+<!-- Adventure Card -->
+<div class="md:col-span-4 group cursor-pointer">
+<div class="relative overflow-hidden rounded-xl aspect-square mb-6">
+<img alt="Arashiyama Forest" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" data-alt="misty bamboo forest in Arashiyama with tall green stalks reaching towards the sky and a narrow path winding through" src="https://lh3.googleusercontent.com/aida-public/AB6AXuATbb9T42nX0o_RDXkxBNB3pRRX3KxSAY2o0YlvEPb-suLmUZErTT7bPc94xTtDmlXJC6lj20LccTCLwQGsLQvTYcicGqC_7g9WGl6EWHobyvcNp2P4hJAplxrH3Szr5oPc05wJICyvl7ORvM5_HMmq7PfAn2Q4K8Jdvm0exO7NYhK1ERyLGWhL7pwnGG7nHEU34PClbTkz7kGOm6t4Xm7CVuqn37j-30v2MIt_ZrimntUHE-piS29GD6a-ZmjicF0_Fs0m0zuVtDF9"/>
+<div class="absolute top-6 left-6 bg-white/90 backdrop-blur px-4 py-1 rounded-full text-[10px] font-bold tracking-widest uppercase text-secondary">Adventure</div>
+</div>
+<h3 class="font-headline text-2xl mb-2 text-primary group-hover:text-secondary transition-colors">Arashiyama Peak: Dawn Ascent</h3>
+<p class="text-on-surface-variant text-sm mb-4">A guided trek through the hidden trails of the bamboo forest to a private overlook of the Hozugawa River.</p>
+<div class="flex justify-between items-center border-t border-outline-variant/10 pt-4">
+<span class="text-sm font-medium"><span class="material-symbols-outlined align-middle mr-1 text-base">schedule</span> 3 Hours</span>
+<span class="font-bold text-primary">¥8,500</span>
+</div>
+</div>
+<!-- Another Gastronomy Card (Asymmetric Layout) -->
+<div class="md:col-span-8 flex flex-col md:flex-row bg-surface-container-low rounded-xl overflow-hidden group cursor-pointer">
+<div class="md:w-1/2 relative h-64 md:h-auto overflow-hidden">
+<img alt="Matcha Ceremony" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" data-alt="ceremonial grade matcha being whisked into a frothy green tea in a dark stone bowl with steam rising" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDJiHkn1y2ieHkkNIOeWK60ooio2_KQSqeUq-kTiItWv5cy248qrqGsdYD1iYIWiWS9-Mc3Zd_b9gvLeZGFQ18z9Wo9thYP2ZaGvNOW12cXIqCXl0eR7oOuIx5iSVmxF1lutP5i4nooyCCCoDwwkeJY9ccJkU_1-Iegl8uZxaB-1w8InHl7KQoXSUA8aMz59SJ4GfE52I_ubduBEJ15E368-EOVFSL_siC66lhu0r-SKdE0rlfcFIuDPtc7qeSn4kFpnlnijsvwd-mF"/>
+<div class="absolute top-6 left-6 bg-white/90 backdrop-blur px-4 py-1 rounded-full text-[10px] font-bold tracking-widest uppercase text-secondary">Gastronomy</div>
+</div>
+<div class="md:w-1/2 p-10 flex flex-col justify-center">
+<h3 class="font-headline text-3xl mb-4 text-primary group-hover:text-secondary transition-colors">The Tea Way: Uji Heritage Session</h3>
+<p class="text-on-surface-variant mb-6 leading-relaxed">Discover the 800-year history of tea in Kyoto. Learn the precise movements of the Sado ceremony in a 17th-century tea house.</p>
+<div class="flex justify-between items-center mt-auto">
+<div class="flex flex-col">
+<span class="text-xs text-outline uppercase tracking-widest mb-1">Duration</span>
+<span class="font-bold">2.5 Hours</span>
+</div>
+<div class="text-right">
+<span class="block text-2xl font-bold text-primary">¥18,000</span>
+<button class="mt-4 px-6 py-2 bg-primary text-on-primary rounded-md text-sm font-bold uppercase tracking-widest hover:bg-primary-container transition-colors">Book Now</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Newsletter / Editorial Quote -->
+<section class="mt-24 px-12 py-32 bg-primary text-on-primary text-center relative overflow-hidden">
+<div class="absolute inset-0 opacity-10">
+<img alt="Texture" class="w-full h-full object-cover grayscale" data-alt="abstract blurred view of japanese architecture with strong vertical lines and soft shadows" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBZfd9Wq3XG16FoD5KtJ-9TdrvgiZiwc63bzkPQvwWATUUTxYJ9mm1KHRr7pOYAlEF0mpo1bDJ4yn0Mv3qj_bTlhdFZAqiYmaZN8SLDVxCmPtVDE8EteqsgBoU_KL0ngLlTMHe4IAp8INrw72ZSwhrYKpPHtRcFA1GS05bp3jdjdPx7h9QvogNi5Eovb7YUkzVIZAfMXSkOIfy-gy-3BX6YsJ6qSi-sHggvvJaEJeG7McquUJftJAg6_zMvB0vGEi3J2bQY5bwD0WG4"/>
+</div>
+<div class="relative z-10 max-w-4xl mx-auto">
+<span class="material-symbols-outlined text-5xl mb-8">format_quote</span>
+<h2 class="font-headline text-4xl md:text-5xl italic leading-tight mb-12">"Kyoto is the only place where you can feel the weight of a thousand years in a single falling leaf."</h2>
+<p class="font-label text-sm tracking-[0.3em] uppercase opacity-70">— Editorial Team, 2024</p>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="w-full border-t-0 tonal-shift bg-[#f3f3fc] py-16">
+<div class="grid grid-cols-1 md:grid-cols-2 lg:flex lg:justify-between px-12 gap-8">
+<div class="max-w-sm">
+<div class="text-xl font-serif text-[#00327d] mb-6">The Editorial Explorer</div>
+<p class="text-slate-500 font-body text-sm leading-relaxed lowercase">curating the world's most profound journeys through the lens of luxury storytelling and heritage discovery.</p>
+</div>
+<div class="flex flex-col gap-3">
+<h4 class="font-sans text-sm tracking-wide uppercase font-bold text-[#00327d] mb-2">Explore</h4>
+<a class="text-slate-500 hover:text-[#9b4500] underline-offset-4 hover:underline transition-all duration-300 font-sans text-sm tracking-wide uppercase" href="#">About Us</a>
+<a class="text-slate-500 hover:text-[#9b4500] underline-offset-4 hover:underline transition-all duration-300 font-sans text-sm tracking-wide uppercase" href="#">Sustainability</a>
+<a class="text-slate-500 hover:text-[#9b4500] underline-offset-4 hover:underline transition-all duration-300 font-sans text-sm tracking-wide uppercase" href="#">Privacy</a>
+</div>
+<div class="flex flex-col gap-3">
+<h4 class="font-sans text-sm tracking-wide uppercase font-bold text-[#00327d] mb-2">Connect</h4>
+<a class="text-slate-500 hover:text-[#9b4500] underline-offset-4 hover:underline transition-all duration-300 font-sans text-sm tracking-wide uppercase" href="#">Terms</a>
+<a class="text-slate-500 hover:text-[#9b4500] underline-offset-4 hover:underline transition-all duration-300 font-sans text-sm tracking-wide uppercase" href="#">Contact</a>
+<div class="flex space-x-4 mt-4">
+<span class="material-symbols-outlined text-[#00327d] cursor-pointer">share</span>
+<span class="material-symbols-outlined text-[#00327d] cursor-pointer">mail</span>
+</div>
+</div>
+<div class="lg:text-right">
+<p class="font-sans text-sm tracking-wide uppercase text-slate-500">© 2024 The Editorial Explorer. A Curated Odyssey.</p>
+</div>
+</div>
+</footer>
+</body></html>

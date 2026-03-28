@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Checkout | Horizon Voyager</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif:ital,wght@0,400;0,700;1,400&amp;family=Plus+Jakarta+Sans:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary-fixed-dim": "#b1c5ff",
+                        "secondary-fixed": "#ffdbc9",
+                        "on-secondary-fixed": "#331200",
+                        "on-primary-fixed-variant": "#00419e",
+                        "on-secondary-container": "#672c00",
+                        "inverse-primary": "#b1c5ff",
+                        "on-secondary": "#ffffff",
+                        "surface-container-lowest": "#ffffff",
+                        "tertiary-fixed": "#79f7e3",
+                        "surface-dim": "#d9d9e2",
+                        "on-surface-variant": "#434653",
+                        "tertiary-container": "#00584e",
+                        "on-secondary-fixed-variant": "#763300",
+                        "surface-container-high": "#e7e7f0",
+                        "tertiary-fixed-dim": "#59dbc7",
+                        "secondary-fixed-dim": "#ffb68d",
+                        "error-container": "#ffdad6",
+                        "surface-tint": "#2559bd",
+                        "on-tertiary": "#ffffff",
+                        "on-tertiary-container": "#50d3bf",
+                        "primary": "#00327d",
+                        "surface-bright": "#faf8ff",
+                        "on-error-container": "#93000a",
+                        "on-background": "#191b22",
+                        "on-primary": "#ffffff",
+                        "outline": "#737784",
+                        "surface-variant": "#e2e2eb",
+                        "surface": "#faf8ff",
+                        "outline-variant": "#c3c6d5",
+                        "on-error": "#ffffff",
+                        "surface-container-highest": "#e2e2eb",
+                        "inverse-surface": "#2e3037",
+                        "on-surface": "#191b22",
+                        "error": "#ba1a1a",
+                        "secondary": "#9b4500",
+                        "tertiary": "#003f37",
+                        "surface-container": "#ededf6",
+                        "surface-container-low": "#f3f3fc",
+                        "on-primary-container": "#a5bdff",
+                        "on-tertiary-fixed-variant": "#005047",
+                        "inverse-on-surface": "#f0f0f9",
+                        "primary-fixed": "#dae2ff",
+                        "primary-container": "#0047ab",
+                        "background": "#faf8ff",
+                        "secondary-container": "#fc8a40",
+                        "on-tertiary-fixed": "#00201c",
+                        "on-primary-fixed": "#001946"
+                    },
+                    fontFamily: {
+                        "headline": ["Noto Serif"],
+                        "body": ["Plus Jakarta Sans"],
+                        "label": ["Plus Jakarta Sans"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        body { font-family: 'Plus Jakarta Sans', sans-serif; }
+        h1, h2, h3, .font-serif { font-family: 'Noto Serif', serif; }
+        .ghost-border { outline: 1px solid rgba(195, 198, 213, 0.2); }
+    </style>
+</head>
+<body class="bg-surface text-on-surface selection:bg-primary-fixed selection:text-on-primary-fixed min-h-screen flex flex-col">
+<!-- TopNavBar -->
+<header class="fixed top-0 w-full z-50 bg-white/80 dark:bg-slate-950/80 backdrop-blur-md shadow-sm dark:shadow-none tonal-transition-surface-container-low">
+<nav class="flex justify-between items-center w-full px-8 py-4 max-w-screen-2xl mx-auto">
+<div class="text-2xl font-serif italic text-blue-900 dark:text-blue-50">Horizon Voyager</div>
+<div class="hidden md:flex items-center space-x-8">
+<a class="text-slate-600 dark:text-slate-400 hover:text-blue-900 dark:hover:text-blue-200 transition-colors" href="#">Destinations</a>
+<a class="text-slate-600 dark:text-slate-400 hover:text-blue-900 dark:hover:text-blue-200 transition-colors" href="#">Journeys</a>
+<a class="text-slate-600 dark:text-slate-400 hover:text-blue-900 dark:hover:text-blue-200 transition-colors" href="#">Experiences</a>
+<a class="text-slate-600 dark:text-slate-400 hover:text-blue-900 dark:hover:text-blue-200 transition-colors" href="#">Journal</a>
+</div>
+<div class="flex items-center space-x-6">
+<button class="material-symbols-outlined text-on-surface-variant hover:text-primary transition-colors" data-icon="shopping_bag">shopping_bag</button>
+<button class="material-symbols-outlined text-on-surface-variant hover:text-primary transition-colors" data-icon="account_circle">account_circle</button>
+<button class="bg-secondary text-white px-6 py-2 rounded-md font-medium hover:bg-secondary-container transition-all scale-98 active:opacity-80">Book Now</button>
+</div>
+</nav>
+</header>
+<main class="flex-grow pt-32 pb-24 px-6 md:px-12 max-w-7xl mx-auto w-full">
+<div class="mb-12">
+<nav class="flex items-center space-x-2 text-sm text-outline mb-4">
+<span>Cart</span>
+<span class="material-symbols-outlined text-xs">chevron_right</span>
+<span class="text-on-surface font-semibold">Checkout</span>
+<span class="material-symbols-outlined text-xs">chevron_right</span>
+<span>Confirmation</span>
+</nav>
+<h1 class="text-4xl md:text-5xl font-serif text-primary">Complete Your Journey</h1>
+<p class="text-on-surface-variant mt-4 max-w-2xl leading-relaxed">Please provide your details to finalize your reservation for The Silk Road Odyssey. Your adventure of a lifetime is just a few clicks away.</p>
+</div>
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
+<!-- Left Column: User Details & Payment -->
+<div class="lg:col-span-7 space-y-12">
+<!-- Contact Information -->
+<section>
+<div class="flex items-center space-x-4 mb-8">
+<span class="w-10 h-10 rounded-full bg-primary-fixed text-primary flex items-center justify-center font-bold">1</span>
+<h2 class="text-2xl font-serif text-on-surface">Contact Information</h2>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+<div class="space-y-2">
+<label class="text-xs font-label uppercase tracking-widest text-outline">Full Name</label>
+<input class="w-full bg-surface-container-low border-none rounded-lg p-4 focus:ring-2 focus:ring-primary/20 transition-all placeholder:text-outline/50" placeholder="Julianne Smith" type="text"/>
+</div>
+<div class="space-y-2">
+<label class="text-xs font-label uppercase tracking-widest text-outline">Email Address</label>
+<input class="w-full bg-surface-container-low border-none rounded-lg p-4 focus:ring-2 focus:ring-primary/20 transition-all placeholder:text-outline/50" placeholder="julianne@voyager.com" type="email"/>
+</div>
+<div class="space-y-2 md:col-span-2">
+<label class="text-xs font-label uppercase tracking-widest text-outline">Phone Number</label>
+<input class="w-full bg-surface-container-low border-none rounded-lg p-4 focus:ring-2 focus:ring-primary/20 transition-all placeholder:text-outline/50" placeholder="+1 (555) 000-0000" type="tel"/>
+</div>
+</div>
+</section>
+<!-- Traveler Details -->
+<section>
+<div class="flex items-center space-x-4 mb-8">
+<span class="w-10 h-10 rounded-full bg-primary-fixed text-primary flex items-center justify-center font-bold">2</span>
+<h2 class="text-2xl font-serif text-on-surface">Traveler Information</h2>
+</div>
+<div class="p-6 rounded-xl bg-surface-container-lowest ghost-border space-y-6">
+<div class="flex justify-between items-center">
+<h3 class="font-medium text-on-surface">Traveler 1 (Primary)</h3>
+<span class="text-xs font-label text-primary bg-primary-fixed px-3 py-1 rounded-full">Adult</span>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+<input class="bg-surface-container-low border-none rounded-lg p-4 focus:ring-2 focus:ring-primary/20 transition-all" placeholder="First Name" type="text"/>
+<input class="bg-surface-container-low border-none rounded-lg p-4 focus:ring-2 focus:ring-primary/20 transition-all" placeholder="Last Name" type="text"/>
+</div>
+</div>
+</section>
+<!-- Payment Method -->
+<section>
+<div class="flex items-center space-x-4 mb-8">
+<span class="w-10 h-10 rounded-full bg-primary-fixed text-primary flex items-center justify-center font-bold">3</span>
+<h2 class="text-2xl font-serif text-on-surface">Payment Method</h2>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
+<label class="relative flex flex-col items-center justify-center p-6 rounded-xl bg-surface-container-lowest ghost-border cursor-pointer hover:bg-surface-container-low transition-all group">
+<input checked="" class="absolute top-4 right-4 text-primary focus:ring-primary" name="payment" type="radio"/>
+<span class="material-symbols-outlined text-3xl mb-2 text-primary" data-icon="credit_card">credit_card</span>
+<span class="text-sm font-medium">Credit Card</span>
+</label>
+<label class="relative flex flex-col items-center justify-center p-6 rounded-xl bg-surface-container-lowest ghost-border cursor-pointer hover:bg-surface-container-low transition-all group">
+<input class="absolute top-4 right-4 text-primary focus:ring-primary" name="payment" type="radio"/>
+<span class="material-symbols-outlined text-3xl mb-2 text-on-surface-variant" data-icon="account_balance_wallet">account_balance_wallet</span>
+<span class="text-sm font-medium">Apple Pay</span>
+</label>
+<label class="relative flex flex-col items-center justify-center p-6 rounded-xl bg-surface-container-lowest ghost-border cursor-pointer hover:bg-surface-container-low transition-all group">
+<input class="absolute top-4 right-4 text-primary focus:ring-primary" name="payment" type="radio"/>
+<span class="material-symbols-outlined text-3xl mb-2 text-on-surface-variant" data-icon="payments">payments</span>
+<span class="text-sm font-medium">PayPal</span>
+</label>
+</div>
+<div class="space-y-6 p-8 rounded-2xl bg-surface-container-lowest shadow-2xl shadow-on-surface/5">
+<div class="space-y-2">
+<label class="text-xs font-label uppercase tracking-widest text-outline">Card Number</label>
+<div class="relative">
+<input class="w-full bg-surface-container-low border-none rounded-lg p-4 focus:ring-2 focus:ring-primary/20 transition-all" placeholder="0000 0000 0000 0000" type="text"/>
+<span class="absolute right-4 top-1/2 -translate-y-1/2 material-symbols-outlined text-outline" data-icon="lock">lock</span>
+</div>
+</div>
+<div class="grid grid-cols-2 gap-6">
+<div class="space-y-2">
+<label class="text-xs font-label uppercase tracking-widest text-outline">Expiry Date</label>
+<input class="w-full bg-surface-container-low border-none rounded-lg p-4 focus:ring-2 focus:ring-primary/20 transition-all" placeholder="MM / YY" type="text"/>
+</div>
+<div class="space-y-2">
+<label class="text-xs font-label uppercase tracking-widest text-outline">CVV</label>
+<input class="w-full bg-surface-container-low border-none rounded-lg p-4 focus:ring-2 focus:ring-primary/20 transition-all" placeholder="***" type="password"/>
+</div>
+</div>
+</div>
+</section>
+<div class="pt-6">
+<button class="w-full bg-primary text-on-primary py-5 rounded-xl font-bold text-lg hover:bg-primary-container transition-all shadow-xl shadow-primary/20 active:scale-[0.98]">
+                        Confirm and Book Journey
+                    </button>
+<p class="text-center text-xs text-outline mt-6 flex items-center justify-center space-x-2">
+<span class="material-symbols-outlined text-sm" data-icon="verified_user">verified_user</span>
+<span>Secure 256-bit SSL Encrypted Payment</span>
+</p>
+</div>
+</div>
+<!-- Right Column: Trip Summary -->
+<div class="lg:col-span-5 sticky top-32">
+<div class="bg-surface-container-lowest rounded-2xl shadow-sm ghost-border overflow-hidden">
+<div class="h-48 w-full relative">
+<img alt="Luxury desert camp at sunset in Uzbekistan with ornate silk rugs and golden lighting" class="w-full h-full object-cover" data-alt="Luxurious traditional silk road caravan campsite at sunset with warm orange desert glow and intricate textile patterns" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBWTMj4Ui57_tAZm1h863gtWBM4Paox3U3efR0jEUweQZLjO-Jvc_lwgUVm56PxdAtjcYZu3ZJ6YAtmGhw80spiNZrZ-RhWn3la0crboQjogFLTFEBjyVcvCBqh186QqcyabYAQATjGwNDcJ6Ygb_zHLd0RpKTiAFMS-8NAuFhUe245aTQbhSw4FojduozmQwnw8ASt6rzX6pnWzXmyNEG5rr-uU7U1j3myduVdP-W72fstUnbYluyHbU8EVvWZYlsPs_Isu1RxJoSE"/>
+<div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+<div class="absolute bottom-6 left-6">
+<span class="text-xs font-label text-white/80 uppercase tracking-widest mb-1 block">Selected Journey</span>
+<h3 class="text-2xl font-serif text-white">The Silk Road Odyssey</h3>
+</div>
+</div>
+<div class="p-8 space-y-8">
+<div class="space-y-4">
+<div class="flex items-start space-x-4">
+<span class="material-symbols-outlined text-primary" data-icon="calendar_today">calendar_today</span>
+<div>
+<p class="text-xs font-label uppercase tracking-widest text-outline">Dates</p>
+<p class="font-medium text-on-surface">September 14 — September 28, 2024</p>
+<p class="text-sm text-on-surface-variant">14 nights / 15 days</p>
+</div>
+</div>
+<div class="flex items-start space-x-4">
+<span class="material-symbols-outlined text-primary" data-icon="group">group</span>
+<div>
+<p class="text-xs font-label uppercase tracking-widest text-outline">Travelers</p>
+<p class="font-medium text-on-surface">2 Adults</p>
+</div>
+</div>
+<div class="flex items-start space-x-4">
+<span class="material-symbols-outlined text-primary" data-icon="explore">explore</span>
+<div>
+<p class="text-xs font-label uppercase tracking-widest text-outline">Route</p>
+<p class="font-medium text-on-surface">Tashkent — Samarkand — Bukhara</p>
+</div>
+</div>
+</div>
+<div class="pt-8 border-t border-outline-variant/30 space-y-4">
+<div class="flex justify-between items-center text-on-surface-variant">
+<span>Base Price (2x Travelers)</span>
+<span>$12,400.00</span>
+</div>
+<div class="flex justify-between items-center text-on-surface-variant">
+<span>Regional Taxes &amp; Fees</span>
+<span>$842.50</span>
+</div>
+<div class="flex justify-between items-center text-on-surface-variant">
+<span>Concierge Service Fee</span>
+<span>$250.00</span>
+</div>
+<div class="flex justify-between items-center pt-4 text-xl font-serif text-primary">
+<span>Total Amount</span>
+<span>$13,492.50</span>
+</div>
+</div>
+<div class="bg-surface-container-low p-4 rounded-xl flex items-start space-x-3">
+<span class="material-symbols-outlined text-secondary" data-icon="info">info</span>
+<p class="text-xs leading-relaxed text-on-surface-variant">
+                                Flexible cancellation policy applies. Full refund available up to 45 days prior to departure.
+                            </p>
+</div>
+</div>
+</div>
+<div class="mt-8 flex flex-col space-y-6 items-center">
+<div class="flex space-x-8 opacity-40 grayscale hover:grayscale-0 transition-all duration-500">
+<img alt="PayPal" class="h-6" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAhFj3RDEu-MU07qRJyUoB-EB0cTe24N1ke1DHH6dT64e8DdV55rC9BUh3-VwYUgJDL_A8VkPJb3YYBuktX8MOyhJ6Lsp6zdaGw8rQBs524I6oxJvBao3KoO-hZ8pWI_DI9QuAoQgSeLrqD0OwkhDHeyX-utE4O_b6XGj7V4qeTW5ZqouzHfwcX1u6dhFyfzpigQ08Bn1KswYd21vLy6AUjce9BETgZfHc27xpwrf-xA91154VNn4SqxfjEHxB_rZUPTUd66Zx1M_6x"/>
+<img alt="Visa" class="h-4" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBzAB5n-ZYDSKw-aRhxyx_yA-zCR7o6980gTT4aGa5j7pJUNAlIGHuDZ77Ix1Xg0XM-z55bDF1vPr3tDtMiBXsg-tqtWaflx4P7MSHNBxsJVA2eYs-9ojAhzPFEi6Odrlc5-3yYic4-9Sn0DWJixzTb6D4dgW9ZXvstLgOYP4FnOV-cmy2yvpx6v_IlgvDj-v0AkRsCu11BUNwV9uBW3cDPafc64U_VCvyOsh2EEHcPIHkKw6Eml9y6Lf3yw36gsEs2z_zdIjwaXib0"/>
+<img alt="Mastercard" class="h-6" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBazT4YrVVaeYO49TV6uUDt2IXgQEFdxuN_XbZjCatI9kMLjt4jNSO8jFd6kqpY9h2tKlYm_hVihSkU_Kft-mMPNAFt6I-bq4SWE65dZBJeDUQi1PvYQgmA2wEi7rdKuh7v--OgTFjXKg53Bo0koEw5g528VM6MTHHNNDLddxyiC8Ekqa5gPpjSQ8w8jKGHQ9puEklKkhQD2g9hGJTWB7103q63cfM6fDPiusOGtxyhYofJ6IRj2mAjs06oKZuKAVAUIOEHr-YHDutz"/>
+</div>
+<div class="text-xs text-outline text-center">
+                        Your transaction is secured with high-level encryption.<br/>
+                        Horizon Voyager never stores your full card information.
+                    </div>
+</div>
+</div>
+</div>
+</main>
+<!-- Footer -->
+<footer class="w-full mt-auto bg-slate-50 dark:bg-slate-900 tonal-shift bg-surface-container-low">
+<div class="flex flex-col md:flex-row justify-between items-center px-12 py-16 w-full max-w-screen-2xl mx-auto">
+<div class="mb-8 md:mb-0">
+<div class="text-xl font-serif text-blue-900 dark:text-blue-50 mb-4">Horizon Voyager</div>
+<p class="text-slate-500 dark:text-slate-400 text-sm">© 2024 Horizon Voyager. The Curated Odyssey.</p>
+</div>
+<div class="flex flex-wrap justify-center gap-8">
+<a class="text-slate-500 dark:text-slate-400 hover:text-blue-800 dark:hover:text-blue-200 underline-offset-4 hover:underline text-xs font-label uppercase tracking-widest" href="#">Privacy Policy</a>
+<a class="text-slate-500 dark:text-slate-400 hover:text-blue-800 dark:hover:text-blue-200 underline-offset-4 hover:underline text-xs font-label uppercase tracking-widest" href="#">Terms of Service</a>
+<a class="text-slate-500 dark:text-slate-400 hover:text-blue-800 dark:hover:text-blue-200 underline-offset-4 hover:underline text-xs font-label uppercase tracking-widest" href="#">Contact Us</a>
+<a class="text-slate-500 dark:text-slate-400 hover:text-blue-800 dark:hover:text-blue-200 underline-offset-4 hover:underline text-xs font-label uppercase tracking-widest" href="#">Our Story</a>
+<a class="text-slate-500 dark:text-slate-400 hover:text-blue-800 dark:hover:text-blue-200 underline-offset-4 hover:underline text-xs font-label uppercase tracking-widest" href="#">Sustainability</a>
+</div>
+</div>
+</footer>
+</body></html>

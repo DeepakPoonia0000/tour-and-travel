@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif:ital,wght@0,400;0,700;1,400&amp;family=Plus+Jakarta+Sans:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "primary-fixed-dim": "#b1c5ff",
+              "secondary-fixed": "#ffdbc9",
+              "on-secondary-fixed": "#331200",
+              "on-primary-fixed-variant": "#00419e",
+              "on-secondary-container": "#672c00",
+              "inverse-primary": "#b1c5ff",
+              "on-secondary": "#ffffff",
+              "surface-container-lowest": "#ffffff",
+              "tertiary-fixed": "#79f7e3",
+              "surface-dim": "#d9d9e2",
+              "on-surface-variant": "#434653",
+              "tertiary-container": "#00584e",
+              "on-secondary-fixed-variant": "#763300",
+              "surface-container-high": "#e7e7f0",
+              "tertiary-fixed-dim": "#59dbc7",
+              "secondary-fixed-dim": "#ffb68d",
+              "error-container": "#ffdad6",
+              "surface-tint": "#2559bd",
+              "on-tertiary": "#ffffff",
+              "on-tertiary-container": "#50d3bf",
+              "primary": "#00327d",
+              "surface-bright": "#faf8ff",
+              "on-error-container": "#93000a",
+              "on-background": "#191b22",
+              "on-primary": "#ffffff",
+              "outline": "#737784",
+              "surface-variant": "#e2e2eb",
+              "surface": "#faf8ff",
+              "outline-variant": "#c3c6d5",
+              "on-error": "#ffffff",
+              "surface-container-highest": "#e2e2eb",
+              "inverse-surface": "#2e3037",
+              "on-surface": "#191b22",
+              "error": "#ba1a1a",
+              "secondary": "#9b4500",
+              "tertiary": "#003f37",
+              "surface-container": "#ededf6",
+              "surface-container-low": "#f3f3fc",
+              "on-primary-container": "#a5bdff",
+              "on-tertiary-fixed-variant": "#005047",
+              "inverse-on-surface": "#f0f0f9",
+              "primary-fixed": "#dae2ff",
+              "primary-container": "#0047ab",
+              "background": "#faf8ff",
+              "secondary-container": "#fc8a40",
+              "on-tertiary-fixed": "#00201c",
+              "on-primary-fixed": "#001946"
+            },
+            fontFamily: {
+              "headline": ["Noto Serif"],
+              "body": ["Plus Jakarta Sans"],
+              "label": ["Plus Jakarta Sans"]
+            },
+            borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+          },
+        },
+      }
+    </script>
+<style>
+      .material-symbols-outlined {
+        font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+      }
+      .font-serif { font-family: 'Noto Serif', serif; }
+      .font-sans { font-family: 'Plus Jakarta Sans', sans-serif; }
+    </style>
+</head>
+<body class="bg-surface text-on-surface font-sans antialiased">
+<!-- TopNavBar -->
+<nav class="fixed top-0 w-full z-50 bg-white/80 dark:bg-slate-950/80 backdrop-blur-md shadow-sm dark:shadow-none">
+<div class="flex justify-between items-center w-full px-8 py-4 max-w-screen-2xl mx-auto">
+<div class="text-2xl font-serif italic text-blue-900 dark:text-blue-50">Horizon Voyager</div>
+<div class="hidden md:flex items-center space-x-8">
+<a class="text-blue-900 dark:text-blue-400 font-bold border-b-2 border-orange-700 pb-1 font-sans" href="#">Destinations</a>
+<a class="text-slate-600 dark:text-slate-400 hover:text-blue-900 dark:hover:text-blue-200 transition-colors font-sans" href="#">Journeys</a>
+<a class="text-slate-600 dark:text-slate-400 hover:text-blue-900 dark:hover:text-blue-200 transition-colors font-sans" href="#">Experiences</a>
+<a class="text-slate-600 dark:text-slate-400 hover:text-blue-900 dark:hover:text-blue-200 transition-colors font-sans" href="#">Journal</a>
+</div>
+<div class="flex items-center space-x-6">
+<button class="material-symbols-outlined text-on-surface-variant hover:text-primary transition-colors" data-icon="shopping_bag">shopping_bag</button>
+<button class="material-symbols-outlined text-on-surface-variant hover:text-primary transition-colors" data-icon="account_circle">account_circle</button>
+<button class="bg-secondary text-on-secondary px-6 py-2 rounded-lg font-medium hover:opacity-90 transition-all active:scale-95">Book Now</button>
+</div>
+</div>
+</nav>
+<main class="pt-24">
+<!-- Perspective Hero Section -->
+<section class="relative h-[614px] overflow-hidden">
+<div class="absolute inset-0 z-0">
+<img alt="Kyoto Temple" class="w-full h-full object-cover grayscale-[20%] contrast-[110%]" data-alt="Cinematic wide shot of a traditional wooden Japanese temple in Kyoto surrounded by vibrant autumn maple leaves in soft golden light" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA0GjvDQUrQlJTXaQli8mD_HXdApN6hijiFtnntVt6qUA8yILGLzxWsi5nu74NZ744MAGwQRdYC9md9EIpd3fRJSAiZHX_wpqsL4YBYvRcaoGGehqBxOWpzXbqrUzW2MvZyPgdpSmakkYL5MC2T0ZFEfyVvGS3WNs5hPxsEhsZsROI4SiO99zJ_mpK5NnEi9s86V0KRjHgAIRX3fsCcQrzfzh_hSbIOP9YdgnWUua1izw98wvPWw5E_zE7oRVdJGXJLYyCryFKimssV"/>
+<div class="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-surface"></div>
+</div>
+<div class="relative z-10 h-full flex flex-col justify-end px-8 md:px-24 pb-12 max-w-screen-2xl mx-auto">
+<span class="font-label text-sm uppercase tracking-[0.2em] text-on-primary-fixed mb-4">Guest Perspectives</span>
+<h1 class="font-headline text-5xl md:text-7xl font-bold text-primary mb-2">Kyoto, Japan</h1>
+<p class="font-serif italic text-2xl text-on-surface-variant max-w-2xl">A living chronicle of ancient elegance and Zen-inspired tranquility.</p>
+</div>
+</section>
+<!-- Rating Summary Bento Grid -->
+<section class="px-8 md:px-24 py-16 max-w-screen-2xl mx-auto -mt-20 relative z-20">
+<div class="grid grid-cols-1 md:grid-cols-12 gap-6">
+<!-- Main Rating Card -->
+<div class="md:col-span-4 bg-surface-container-lowest p-10 rounded-xl shadow-sm flex flex-col justify-center items-center text-center">
+<span class="font-label text-xs uppercase tracking-widest text-secondary mb-4">Overall Score</span>
+<div class="text-8xl font-headline font-bold text-primary mb-2">4.9</div>
+<div class="flex gap-1 text-secondary mb-4">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star_half</span>
+</div>
+<p class="text-on-surface-variant font-medium">Based on 1.2k verified journeys</p>
+</div>
+<!-- Category Breakdown Card -->
+<div class="md:col-span-8 bg-surface-container-lowest p-10 rounded-xl shadow-sm">
+<h3 class="font-headline text-2xl text-primary mb-8">Traveler Sentiment</h3>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-8">
+<!-- Metric -->
+<div class="space-y-2">
+<div class="flex justify-between items-end">
+<span class="font-label text-sm font-semibold text-on-surface">Cultural Depth</span>
+<span class="text-secondary font-bold">5.0</span>
+</div>
+<div class="h-1.5 w-full bg-surface-container-high rounded-full overflow-hidden">
+<div class="h-full bg-primary w-full"></div>
+</div>
+</div>
+<!-- Metric -->
+<div class="space-y-2">
+<div class="flex justify-between items-end">
+<span class="font-label text-sm font-semibold text-on-surface">Ease of Travel</span>
+<span class="text-secondary font-bold">4.7</span>
+</div>
+<div class="h-1.5 w-full bg-surface-container-high rounded-full overflow-hidden">
+<div class="h-full bg-primary w-[94%]"></div>
+</div>
+</div>
+<!-- Metric -->
+<div class="space-y-2">
+<div class="flex justify-between items-end">
+<span class="font-label text-sm font-semibold text-on-surface">Gastronomy</span>
+<span class="text-secondary font-bold">4.9</span>
+</div>
+<div class="h-1.5 w-full bg-surface-container-high rounded-full overflow-hidden">
+<div class="h-full bg-primary w-[98%]"></div>
+</div>
+</div>
+<!-- Metric -->
+<div class="space-y-2">
+<div class="flex justify-between items-end">
+<span class="font-label text-sm font-semibold text-on-surface">Value</span>
+<span class="text-secondary font-bold">4.6</span>
+</div>
+<div class="h-1.5 w-full bg-surface-container-high rounded-full overflow-hidden">
+<div class="h-full bg-primary w-[92%]"></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Filters Section -->
+<section class="px-8 md:px-24 mb-12 max-w-screen-2xl mx-auto flex flex-wrap items-center gap-4">
+<span class="font-label text-xs uppercase tracking-widest text-outline">Filter by:</span>
+<button class="bg-secondary-container text-on-secondary-container px-5 py-2 rounded-full text-sm font-medium">All Reviews</button>
+<button class="bg-surface-container-high text-on-surface-variant px-5 py-2 rounded-full text-sm font-medium hover:bg-surface-variant transition-colors">Solo Travel</button>
+<button class="bg-surface-container-high text-on-surface-variant px-5 py-2 rounded-full text-sm font-medium hover:bg-surface-variant transition-colors">Luxury Stay</button>
+<button class="bg-surface-container-high text-on-surface-variant px-5 py-2 rounded-full text-sm font-medium hover:bg-surface-variant transition-colors">Photography</button>
+</section>
+<!-- Review List -->
+<section class="px-8 md:px-24 pb-24 max-w-screen-2xl mx-auto space-y-16">
+<!-- Review Item 1 -->
+<article class="grid grid-cols-1 md:grid-cols-12 gap-8 items-start">
+<div class="md:col-span-3 flex flex-col items-start gap-4">
+<div class="flex items-center gap-4">
+<img alt="Traveler Avatar" class="w-14 h-14 rounded-full object-cover border-2 border-primary-fixed" data-alt="Professional headshot of a smiling woman with warm lighting and a natural outdoor background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBEVDwfTtwQupYozO2vzDRifSmKoiWzNVr3PUXG8g2MACFiLiRb7WuSKFNZNdjxFVoSEVvA8FIgeZmO8G3qFlH0qgY5aBh52yut0CMo01pvpQ9erJs1DQp3H4d7wUZVJTDIVaOetKJCELrAO7ofOBe2ehGJHjC4fpDCHCSRmcAvpVgkqGJuvpCeC5vVo1NVXMZ7VRyUSbcwbaQXJ6Oa-wR8tTspipX0XFFVy29CPaenuJTeTfDhUl3q1TblFfuw97wab9lgZ-lJnvgt"/>
+<div>
+<h4 class="font-bold text-on-surface">Elena Vance</h4>
+<p class="text-xs font-label text-outline uppercase tracking-wider">Expert Explorer</p>
+</div>
+</div>
+<div class="text-xs font-label text-outline-variant space-y-1">
+<p>Visited: October 2023</p>
+<p>Duration: 12 Days</p>
+</div>
+</div>
+<div class="md:col-span-9 space-y-6">
+<div class="flex items-center justify-between">
+<div class="flex gap-0.5 text-secondary">
+<span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">star</span>
+</div>
+<span class="text-xs font-label text-outline italic">Verified Experience</span>
+</div>
+<h2 class="font-headline text-3xl text-primary leading-tight">An ethereal morning at Fushimi Inari that defies description.</h2>
+<p class="font-body text-lg leading-relaxed text-on-surface-variant">
+                        Kyoto is a city that rewards the early riser. We began our ascent through the vermilion gates at 5:00 AM, and having the trail to ourselves as the sun broke through the cedar forest was spiritual. The balance between the hyper-modern Kyoto Station and the whispering bamboo groves of Arashiyama is a testament to Japanese urban planning and cultural reverence.
+                    </p>
+<div class="grid grid-cols-2 md:grid-cols-3 gap-4">
+<div class="aspect-square overflow-hidden rounded-lg">
+<img alt="Travel Photo" class="w-full h-full object-cover hover:scale-110 transition-transform duration-500" data-alt="Low angle shot of red torii gates in Kyoto with dappled sunlight filtering through trees" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCO8AmZUgoEGtmBwnN1RyIbIEFBAxgawhbeAFQXHIioMx-gcaxGuIv6zLxT0kNC48NB4LTFrgyXcuRBZw1hzk6L513yWd1TlniNBqtlBYbJ4yrVxQ7N_MwBiimMd0GYDAL6I1DnrIMcuA-Ri1zC09Mi6XautLbwslD7W7Y_HNrAuUr1ms26VJfSGT3OUyCMvmxIZukKG33rT0CbkfrGcD5CJixaEUNt3UVoeN_IR7QYtXBEh4QHHGxajPAx1bFjr82d2ltMlQFxKZfV"/>
+</div>
+<div class="aspect-square overflow-hidden rounded-lg">
+<img alt="Travel Photo" class="w-full h-full object-cover hover:scale-110 transition-transform duration-500" data-alt="Detailed close-up of traditional Japanese matcha tea set in a minimalist tatami room setting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAj1wo4ajleXoT8H-gSm4Jo7HdaV19MpTRknJGL_LCilPXMW0cAG9FbWYEGWBA_OmIsMKIpzGJEWLwFNNYSc9_YEhOLO7qrhuk4V3GqmILzscHV2ZIK5RXiO0PCUXfmdV5V0AZBMjpKEAJssSPsEjpM9KWhEJZXGCjPGaRn5FIvC7deU8NklhGKHGS7DnPcjKaBrRf_PLHgBCE5_I1nUViY4fw3gPzQ30Iq1dy1nnrjQ7P4o5-NDFNUxe_rqmTzCo707OTtKDBHDuLw"/>
+</div>
+<div class="hidden md:block aspect-square overflow-hidden rounded-lg">
+<img alt="Travel Photo" class="w-full h-full object-cover hover:scale-110 transition-transform duration-500" data-alt="Evening view of a narrow Kyoto street with glowing lanterns and traditional wooden storefronts" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBSbgL3XaR3VBQDN3LvpqmDrlAWgn7HpmUFtOUn35LFJyCnWA4mfhWguqMu8xsoKqKfcUtLBz3v9O2hmaXaiGTRzl90eMm7arytEHDkPWJ23zwRMDGESbd9xRojbi_62-dDLZanCf6Z7OPU40mh_iIOxzODSci2Hjdk9mGynbFHD9wgaYLB8vqOOzqgBEFgNoacYgN8IhYsEkkaQtn5ll5e8v4IBAyLlZZ4jjRSUiv9M42lf5KeIpXXAedEef6f0OKXPVwAUaLmOzMb"/>
+</div>
+</div>
+<div class="flex items-center gap-6 pt-4 border-t border-surface-container-high">
+<button class="flex items-center gap-2 text-sm font-medium text-outline hover:text-primary transition-colors">
+<span class="material-symbols-outlined text-lg">thumb_up</span>
+<span>Helpful (142)</span>
+</button>
+<button class="flex items-center gap-2 text-sm font-medium text-outline hover:text-primary transition-colors">
+<span class="material-symbols-outlined text-lg">chat_bubble_outline</span>
+<span>Comment (12)</span>
+</button>
+</div>
+</div>
+</article>
+<!-- Review Item 2 -->
+<article class="grid grid-cols-1 md:grid-cols-12 gap-8 items-start">
+<div class="md:col-span-3 flex flex-col items-start gap-4">
+<div class="flex items-center gap-4">
+<img alt="Traveler Avatar" class="w-14 h-14 rounded-full object-cover border-2 border-primary-fixed" data-alt="Portrait of a middle-aged man with glasses, looking thoughtful against a soft-focus urban background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDqhJ74bjJNeDUPhMzS9GfFEpBgSFKhM4VOzmPpx6_48AYBbl3s4fwi421px-Qrrrrq27D1ZEYHvLB-5yfvvL8vyLdQT6io7Cr_65iHkXzJEqJX79LV_XQtCeKxWhxqqvsf5PYIf3clIKDrAH0Z0xT78OpwskrNTejJ2b6pjPG_7R1k45cfMtW2T3oE_MQEpzydfaEY-EaIPXfYy0TmDVvRs4Hrhm4nuf7c2tW2xF-KYmdy4jp9Akom_4YU-ee56aRYGDjxfo7DlGYu"/>
+<div>
+<h4 class="font-bold text-on-surface">Marcus Thorne</h4>
+<p class="text-xs font-label text-outline uppercase tracking-wider">Culture Hunter</p>
+</div>
+</div>
+<div class="text-xs font-label text-outline-variant space-y-1">
+<p>Visited: April 2024</p>
+<p>Duration: 5 Days</p>
+</div>
+</div>
+<div class="md:col-span-9 space-y-6">
+<div class="flex items-center justify-between">
+<div class="flex gap-0.5 text-secondary">
+<span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 0;">star</span>
+</div>
+<span class="text-xs font-label text-outline italic">Verified Experience</span>
+</div>
+<h2 class="font-headline text-3xl text-primary leading-tight">Gastronomy like no other, though crowds can be daunting.</h2>
+<p class="font-body text-lg leading-relaxed text-on-surface-variant">
+                        The kaiseki dinner we had in Gion was a choreographed masterpiece of seasonal flavors. While the major shrines were crowded, slipping into the smaller, nameless temples offered the "Zen" I was searching for. My advice: wander aimlessly for an afternoon, you'll find the soul of Kyoto in the quiet side streets.
+                    </p>
+<div class="flex items-center gap-6 pt-4 border-t border-surface-container-high">
+<button class="flex items-center gap-2 text-sm font-medium text-outline hover:text-primary transition-colors">
+<span class="material-symbols-outlined text-lg">thumb_up</span>
+<span>Helpful (89)</span>
+</button>
+<button class="flex items-center gap-2 text-sm font-medium text-outline hover:text-primary transition-colors">
+<span class="material-symbols-outlined text-lg">chat_bubble_outline</span>
+<span>Comment (4)</span>
+</button>
+</div>
+</div>
+</article>
+</section>
+<!-- CTA Section -->
+<section class="bg-primary py-24 px-8 text-center text-on-primary">
+<h2 class="font-headline text-4xl md:text-5xl mb-6">Tell Your Own Story</h2>
+<p class="font-body text-xl text-primary-fixed-dim max-w-2xl mx-auto mb-10">Every journey is unique. Share your moments and help fellow travelers curate their own odyssey.</p>
+<button class="bg-secondary text-on-secondary px-10 py-4 rounded-lg font-bold text-lg hover:opacity-90 transition-all active:scale-95 shadow-xl">Write a Review</button>
+</section>
+</main>
+<!-- Footer -->
+<footer class="bg-slate-50 dark:bg-slate-900 w-full mt-auto">
+<div class="flex flex-col md:flex-row justify-between items-center px-12 py-16 w-full max-w-screen-2xl mx-auto">
+<div class="mb-8 md:mb-0">
+<div class="text-xl font-serif text-blue-900 dark:text-blue-50 mb-4">Horizon Voyager</div>
+<p class="text-slate-500 dark:text-slate-400 font-sans text-sm">© 2024 Horizon Voyager. The Curated Odyssey.</p>
+</div>
+<div class="flex flex-wrap justify-center gap-8">
+<a class="text-slate-500 dark:text-slate-400 text-xs font-label uppercase tracking-widest hover:text-blue-800 dark:hover:text-blue-200 underline-offset-4 hover:underline transition-all" href="#">Privacy Policy</a>
+<a class="text-slate-500 dark:text-slate-400 text-xs font-label uppercase tracking-widest hover:text-blue-800 dark:hover:text-blue-200 underline-offset-4 hover:underline transition-all" href="#">Terms of Service</a>
+<a class="text-slate-500 dark:text-slate-400 text-xs font-label uppercase tracking-widest hover:text-blue-800 dark:hover:text-blue-200 underline-offset-4 hover:underline transition-all" href="#">Contact Us</a>
+<a class="text-slate-500 dark:text-slate-400 text-xs font-label uppercase tracking-widest hover:text-blue-800 dark:hover:text-blue-200 underline-offset-4 hover:underline transition-all" href="#">Our Story</a>
+<a class="text-slate-500 dark:text-slate-400 text-xs font-label uppercase tracking-widest hover:text-blue-800 dark:hover:text-blue-200 underline-offset-4 hover:underline transition-all" href="#">Sustainability</a>
+</div>
+</div>
+</footer>
+</body></html>

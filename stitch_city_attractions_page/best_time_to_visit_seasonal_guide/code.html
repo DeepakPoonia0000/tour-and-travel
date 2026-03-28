@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif:wght@400;700;900&amp;family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            "on-tertiary-container": "#50d3bf",
+            "on-secondary-fixed-variant": "#763300",
+            "secondary-fixed-dim": "#ffb68d",
+            "primary-container": "#0047ab",
+            "on-secondary-fixed": "#331200",
+            "on-background": "#191b22",
+            "tertiary-fixed": "#79f7e3",
+            "on-tertiary-fixed": "#00201c",
+            "inverse-surface": "#2e3037",
+            "tertiary-container": "#00584e",
+            "inverse-primary": "#b1c5ff",
+            "tertiary": "#003f37",
+            "inverse-on-surface": "#f0f0f9",
+            "surface-tint": "#2559bd",
+            "outline-variant": "#c3c6d5",
+            "surface-variant": "#e2e2eb",
+            "surface-container-lowest": "#ffffff",
+            "on-primary": "#ffffff",
+            "surface-container-high": "#e7e7f0",
+            "primary-fixed": "#dae2ff",
+            "surface-container": "#ededf6",
+            "primary": "#00327d",
+            "outline": "#737784",
+            "on-primary-fixed": "#001946",
+            "error": "#ba1a1a",
+            "error-container": "#ffdad6",
+            "tertiary-fixed-dim": "#59dbc7",
+            "surface-bright": "#faf8ff",
+            "on-surface": "#191b22",
+            "surface-container-low": "#f3f3fc",
+            "secondary-fixed": "#ffdbc9",
+            "on-error-container": "#93000a",
+            "background": "#faf8ff",
+            "surface-dim": "#d9d9e2",
+            "on-secondary": "#ffffff",
+            "on-error": "#ffffff",
+            "secondary": "#9b4500",
+            "on-primary-container": "#a5bdff",
+            "secondary-container": "#fc8a40",
+            "on-primary-fixed-variant": "#00419e",
+            "surface-container-highest": "#e2e2eb",
+            "surface": "#faf8ff",
+            "primary-fixed-dim": "#b1c5ff",
+            "on-surface-variant": "#434653",
+            "on-secondary-container": "#672c00",
+            "on-tertiary-fixed-variant": "#005047",
+            "on-tertiary": "#ffffff"
+          },
+          fontFamily: {
+            "headline": ["Noto Serif"],
+            "body": ["Plus Jakarta Sans"],
+            "label": ["Plus Jakarta Sans"]
+          },
+          borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+        },
+      },
+    }
+  </script>
+<style>
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+    }
+    .perspective-card {
+      transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    }
+    .perspective-card:hover {
+      transform: translateY(-8px) scale(1.02);
+    }
+  </style>
+</head>
+<body class="bg-surface text-on-surface font-body selection:bg-secondary-fixed selection:text-on-secondary-fixed">
+<!-- Top Navigation Shell -->
+<nav class="fixed top-0 w-full z-50 bg-white/70 backdrop-blur-md shadow-sm">
+<div class="flex justify-between items-center w-full px-8 py-4 max-w-screen-2xl mx-auto">
+<div class="text-2xl font-headline font-bold tracking-tight text-primary">Horizon Voyager</div>
+<div class="hidden md:flex items-center space-gap-8 gap-8">
+<a class="text-primary border-b-2 border-secondary pb-1 font-semibold font-body" href="#">Destinations</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors font-body" href="#">Journeys</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors font-body" href="#">Experiences</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors font-body" href="#">Journal</a>
+</div>
+<div class="flex items-center gap-6">
+<div class="hidden sm:flex gap-4">
+<span class="material-symbols-outlined text-on-surface-variant cursor-pointer hover:text-primary">person</span>
+<span class="material-symbols-outlined text-on-surface-variant cursor-pointer hover:text-primary">favorite</span>
+</div>
+<button class="bg-secondary text-on-secondary px-6 py-2 rounded-md font-bold tracking-wide transition-all active:scale-95">Book Now</button>
+</div>
+</div>
+</nav>
+<!-- Hero Section -->
+<header class="relative pt-32 pb-20 px-8 max-w-screen-2xl mx-auto">
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-end">
+<div class="lg:col-span-7">
+<span class="font-label text-secondary uppercase tracking-[0.2em] mb-4 block font-bold">The Curated Odyssey</span>
+<h1 class="font-headline text-5xl md:text-7xl lg:text-8xl font-black text-primary leading-[1.1] mb-8">
+          The Kyoto <br/>Chronicles
+        </h1>
+<p class="font-body text-xl text-on-surface-variant max-w-xl leading-relaxed">
+          A rhythmic journey through Japan's cultural heart. From the ephemeral pinks of spring to the silent snows of winter, discover the precise moment your soul belongs in the Ancient Capital.
+        </p>
+</div>
+<div class="lg:col-span-5 relative">
+<div class="aspect-[4/5] rounded-xl overflow-hidden shadow-2xl group">
+<img alt="Traditional Pagoda" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" data-alt="Stunning low angle view of a five-story Japanese wooden pagoda surrounded by vibrant maple trees in early autumn sunlight." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCPU6EXusLRAIyl_9wBl3GO1fG8IhuswsltdF4WG-bKpqpd83L064MYdrhrFxZG6n6Zt1zkPy43fvNgx47EVzFkLmYfZJuBTc5iDvmxNABMcJ2gteefgYuYyEVdVAfMFngzvaik-WrRP7mKk4h8lVkaFbHdu28ansl891mpUv-AcS7BURPdXEyOggmVcfe8a6rSR0MhkkWJ_OT4j3FSKmgcPuhqHaPqHDOTo4Z8_04ANAEOj5WP8731aCG64RmOzMWeyUuqA6T0JJG7"/>
+</div>
+<div class="absolute -bottom-10 -left-10 bg-surface-container-lowest p-8 rounded-lg shadow-xl max-w-xs hidden md:block">
+<span class="font-headline text-2xl text-primary block mb-2">Editor's Choice</span>
+<p class="font-body text-sm text-on-surface-variant">"Kyoto isn't just a place to visit; it's a calendar of moods. Timing is everything."</p>
+</div>
+</div>
+</div>
+<!-- Editorial Calendar Layout -->
+<main class="max-w-screen-2xl mx-auto px-8 py-24 space-y-48">
+<!-- Spring: The Awakening -->
+<section class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+<div class="order-2 lg:order-1 space-y-8">
+<div class="flex items-baseline gap-4">
+<span class="font-headline text-9xl text-primary/10 select-none">01</span>
+<h2 class="font-headline text-5xl text-primary -ml-16">Spring: The Awakening</h2>
+</div>
+<div class="flex gap-12 border-b border-outline-variant/20 pb-8">
+<div>
+<span class="font-label text-xs uppercase tracking-widest text-secondary block mb-1">Avg Temperature</span>
+<span class="font-headline text-3xl text-primary">15°C - 22°C</span>
+</div>
+<div>
+<span class="font-label text-xs uppercase tracking-widest text-secondary block mb-1">Peak Month</span>
+<span class="font-headline text-3xl text-primary">April</span>
+</div>
+</div>
+<div class="space-y-4">
+<h3 class="font-label font-bold text-on-surface tracking-tight">SEASONAL HIGHLIGHTS</h3>
+<ul class="space-y-3 font-body text-on-surface-variant">
+<li class="flex items-center gap-3">
+<span class="material-symbols-outlined text-tertiary-container">filter_vintage</span>
+              Sakura blossoms at Philosopher's Path
+            </li>
+<li class="flex items-center gap-3">
+<span class="material-symbols-outlined text-tertiary-container">festival</span>
+              Miyako Odori geiko dances
+            </li>
+<li class="flex items-center gap-3">
+<span class="material-symbols-outlined text-tertiary-container">wb_sunny</span>
+              Mild, golden afternoon tea rituals
+            </li>
+</ul>
+</div>
+<div class="bg-surface-container-low p-8 rounded-xl border-l-4 border-secondary">
+<h4 class="font-headline text-xl text-primary mb-2">Traveler's Verdict</h4>
+<p class="font-body text-on-surface-variant leading-relaxed">
+<strong class="text-on-surface">Best for Beauty.</strong> This is the postcard version of Kyoto. While crowds are at their absolute peak, the visual poetry of cherry blossoms over the Kamo River is a bucket-list necessity that transcends the noise.
+          </p>
+</div>
+</div>
+<div class="order-1 lg:order-2">
+<div class="aspect-square bg-surface-container-high rounded-full overflow-hidden p-6 relative">
+<div class="w-full h-full rounded-full overflow-hidden shadow-2xl transition-transform duration-500 hover:scale-105">
+<img alt="Kyoto Spring" class="w-full h-full object-cover" data-alt="Dense canopy of light pink cherry blossoms framing a traditional wooden bridge in Kyoto during peak bloom." src="https://lh3.googleusercontent.com/aida-public/AB6AXuClMDWexQANDBaYnzHJAmch1_xL2JbRcTMllBPEa7ZyzBo_KyVRyplBA7DRLLoxd1aypPaDLdxN0bUlt9tUjD_3e_dm6nFcu7G5CNLP6c_U6_5Wfw0WWkroXKgG2x6pWZ4-V6rziKM9UPhcJl5upZCtofX_HCj0XfTNSUx9PsYQhuutb3EUnXmYySKx101YbUoglXAEk1d8mBX_uUlJx8AvkcUT9yzl33OUer3VewtNRzfdR6o56gN9KnzzzhoiOo-eGZ7FxvRZxJZk"/>
+</div>
+<div class="absolute top-10 right-10 bg-white/80 backdrop-blur p-4 rounded-full w-24 h-24 flex items-center justify-center text-center shadow-lg border border-white/50">
+<span class="font-headline text-secondary text-lg leading-tight">Hanami Season</span>
+</div>
+</div>
+</div>
+</section>
+<!-- Summer: The Vibrant Heat -->
+<section class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+<div class="relative">
+<div class="aspect-[16/10] bg-surface-container-high rounded-lg overflow-hidden relative">
+<img alt="Kyoto Summer" class="w-full h-full object-cover" data-alt="Traditional Japanese festival floats with intricate gold and red decorations during the Gion Matsuri festival in Kyoto summer." src="https://lh3.googleusercontent.com/aida-public/AB6AXuA1aYHQ46ggtdfp9IijeAMN97zT6z-18DS46Wr6wAfQ0oXTe9KCMP6HdE62mKjFBJQsUxeeXvt_J7DWXyDUoMMDcepqnscPfeGL7ylm9iMKf_Rq3jILgOKi7DqcNco4WxJQiYfurbLnWZcDwr5AhPI1c-QpDiephR16yEjqYrFcPgscSGX7sJugrF2UORO7S33tDJ3hVb7EKfRij2QqmfveECOYPLELyOiDFlLlXY_OiQbK5K2a30jyhSFzIX85JH7Q4x4PPr6wYH8v"/>
+<div class="absolute inset-0 bg-gradient-to-t from-primary/40 to-transparent"></div>
+</div>
+<div class="absolute -bottom-8 -right-8 w-48 h-48 bg-primary-container rounded-lg flex items-center justify-center p-6 text-on-primary shadow-xl">
+<p class="font-headline text-xl italic text-center">"The humidity is part of the story."</p>
+</div>
+</div>
+<div class="space-y-8 pl-0 lg:pl-12">
+<div class="flex items-baseline gap-4">
+<span class="font-headline text-9xl text-primary/10 select-none">02</span>
+<h2 class="font-headline text-5xl text-primary -ml-16">Summer: The Pulse</h2>
+</div>
+<div class="flex gap-12 border-b border-outline-variant/20 pb-8">
+<div>
+<span class="font-label text-xs uppercase tracking-widest text-secondary block mb-1">Avg Temperature</span>
+<span class="font-headline text-3xl text-primary">28°C - 35°C</span>
+</div>
+<div>
+<span class="font-label text-xs uppercase tracking-widest text-secondary block mb-1">Peak Month</span>
+<span class="font-headline text-3xl text-primary">July</span>
+</div>
+</div>
+<div class="space-y-4">
+<h3 class="font-label font-bold text-on-surface tracking-tight">SEASONAL HIGHLIGHTS</h3>
+<ul class="grid grid-cols-1 md:grid-cols-2 gap-4 font-body text-on-surface-variant">
+<li class="flex items-center gap-3">
+<span class="material-symbols-outlined text-secondary">flare</span>
+              Gion Matsuri Festival
+            </li>
+<li class="flex items-center gap-3">
+<span class="material-symbols-outlined text-secondary">waves</span>
+              Kawayuka riverside dining
+            </li>
+<li class="flex items-center gap-3">
+<span class="material-symbols-outlined text-secondary">local_fire_department</span>
+              Daimonji Gozan Okuribi
+            </li>
+<li class="flex items-center gap-3">
+<span class="material-symbols-outlined text-secondary">forest</span>
+              Arashiyama bamboo shade
+            </li>
+</ul>
+</div>
+<div class="bg-surface-container-low p-8 rounded-xl border-l-4 border-primary">
+<h4 class="font-headline text-xl text-primary mb-2">Traveler's Verdict</h4>
+<p class="font-body text-on-surface-variant leading-relaxed">
+<strong class="text-on-surface">Best for Culture.</strong> It is sweltering, yes, but Summer is when Kyoto's spirit truly emerges. The energy of the Gion Matsuri and the magical evening illumination of the riverbanks offer a visceral, unforgettable grit.
+          </p>
+</div>
+</div>
+</section>
+<!-- Autumn: The Crimson Peak -->
+<section class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+<div class="order-2 lg:order-1 space-y-8">
+<div class="flex items-baseline gap-4">
+<span class="font-headline text-9xl text-primary/10 select-none">03</span>
+<h2 class="font-headline text-5xl text-primary -ml-16">Autumn: The Ember</h2>
+</div>
+<div class="flex gap-12 border-b border-outline-variant/20 pb-8">
+<div>
+<span class="font-label text-xs uppercase tracking-widest text-secondary block mb-1">Avg Temperature</span>
+<span class="font-headline text-3xl text-primary">12°C - 19°C</span>
+</div>
+<div>
+<span class="font-label text-xs uppercase tracking-widest text-secondary block mb-1">Peak Month</span>
+<span class="font-headline text-3xl text-primary">November</span>
+</div>
+</div>
+<div class="space-y-4">
+<h3 class="font-label font-bold text-on-surface tracking-tight">SEASONAL HIGHLIGHTS</h3>
+<ul class="space-y-3 font-body text-on-surface-variant">
+<li class="flex items-center gap-3">
+<span class="material-symbols-outlined text-secondary">eco</span>
+              Momiji maple leaf viewing
+            </li>
+<li class="flex items-center gap-3">
+<span class="material-symbols-outlined text-secondary">lightbulb</span>
+              Temple light-up events
+            </li>
+<li class="flex items-center gap-3">
+<span class="material-symbols-outlined text-secondary">restaurant</span>
+              Seasonal Kyo-kaiseki dining
+            </li>
+</ul>
+</div>
+<div class="bg-surface-container-low p-8 rounded-xl border-l-4 border-on-secondary-fixed-variant">
+<h4 class="font-headline text-xl text-primary mb-2">Traveler's Verdict</h4>
+<p class="font-body text-on-surface-variant leading-relaxed">
+<strong class="text-on-surface">Best for Contemplation.</strong> The most visually dramatic season. The air is crisp, the sky is deep blue, and the temples are set ablaze by red maples. It's the most comfortable time for long walks through the eastern hills.
+          </p>
+</div>
+</div>
+<div class="order-1 lg:order-2 grid grid-cols-2 gap-4">
+<div class="space-y-4 pt-12">
+<div class="aspect-[3/4] rounded-xl overflow-hidden shadow-lg perspective-card">
+<img alt="Kyoto Autumn Detail" class="w-full h-full object-cover" data-alt="Close up of fiery red maple leaves hanging over a stone temple wall with soft bokeh in the background." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBAMwxkMXEVCcLA6_uq3do9RCpGtgfhasRO-O3-pzgRV5_OLD1tWNP42owYr4JFkbxjKm5NJw3-1FAk6mHIHwPDHysHQGdaGWNFaMcwiqIZNgZrgqXj2txi-_eoKyKtQXVdwAUnzKMIRV2Eq5GMC_ePfEN_pf7ODoBNmr1irGlfI1fNGCu9zeYZt5CxKODDQH_YeoIw1kItscrNhybfB_j65kzulvxkYp7OAptYzGht3sHkXbk83687ns_0bHbWCq5r8QhlRt1WrYO0"/>
+</div>
+</div>
+<div class="space-y-4">
+<div class="aspect-[3/5] rounded-xl overflow-hidden shadow-lg perspective-card">
+<img alt="Kyoto Autumn Vista" class="w-full h-full object-cover" data-alt="Wide panoramic shot of a mountain covered in multi-colored autumn foliage surrounding a hidden temple roof." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAukqkDt1ykF-edvYw0f2MKtxq93-RzMaIPrdbshwoewGnUyHzPJENdkDfwm1goIRpLHeBr7WJwYe8rtoSz5NGDU0kwmXNAb6wdEca80IZT9XyGBl5OokIgulcy6F7ztDT89Z4wKcrjwioym0e6W7Rht507jf67XWUql8HDEZFTrNAZ5HWPqQhxGLGYkQBJySgOOooGeVxujDwhyW0oQ0D_4WgGxbZeE3ZDlFFi50s2KAxgDzxUZuzuqqvNg1jHUUw6rYNtsf2-izgU"/>
+</div>
+</div>
+</div>
+</section>
+<!-- Winter: The Silent Shrine -->
+<section class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+<div class="relative group">
+<div class="aspect-square rounded-full border-2 border-dashed border-outline-variant/30 p-12 transition-transform duration-1000 group-hover:rotate-12">
+<div class="w-full h-full rounded-full overflow-hidden shadow-2xl">
+<img alt="Kyoto Winter" class="w-full h-full object-cover" data-alt="Golden Pavilion Kinkaku-ji reflected in a frozen pond, covered in a light dusting of white snow under a clear winter sky." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBKlgnzx3nvAHSatrXmQ3JwYNw0xbQL6m1qh0ShZxfAwJH0zCmyfYGBcpl0D3-YEIzdMQBqzOf5lZrxH3FWWff59FUhzqnVSNfYYzC3hvK3Uh7JHGmzTY417U7XyZsXon1bpryKDwafcTVq18i-COWr3Bm0fhDWxuDAq5DF-kJiPmLyCL_7gpMSoK16jqx3SSnQjyFxKtRvL2v4lobBQ2DouPtBxzhzFwV_WzRYh2yYrycN84JffoQ6r5WsxBNLp0eW_nkqf135rvV4"/>
+</div>
+</div>
+<div class="absolute inset-0 flex items-center justify-center">
+<div class="bg-surface/90 backdrop-blur-xl px-8 py-4 rounded-full border border-outline-variant shadow-xl">
+<span class="font-headline text-primary text-2xl">Absolute Serenity</span>
+</div>
+</div>
+</div>
+<div class="space-y-8">
+<div class="flex items-baseline gap-4">
+<span class="font-headline text-9xl text-primary/10 select-none">04</span>
+<h2 class="font-headline text-5xl text-primary -ml-16">Winter: The Stillness</h2>
+</div>
+<div class="flex gap-12 border-b border-outline-variant/20 pb-8">
+<div>
+<span class="font-label text-xs uppercase tracking-widest text-secondary block mb-1">Avg Temperature</span>
+<span class="font-headline text-3xl text-primary">2°C - 9°C</span>
+</div>
+<div>
+<span class="font-label text-xs uppercase tracking-widest text-secondary block mb-1">Peak Month</span>
+<span class="font-headline text-3xl text-primary">January</span>
+</div>
+</div>
+<div class="space-y-4">
+<h3 class="font-label font-bold text-on-surface tracking-tight">SEASONAL HIGHLIGHTS</h3>
+<ul class="space-y-3 font-body text-on-surface-variant">
+<li class="flex items-center gap-3">
+<span class="material-symbols-outlined text-on-primary-fixed-variant">ac_unit</span>
+              Snow-dusted Kinkaku-ji
+            </li>
+<li class="flex items-center gap-3">
+<span class="material-symbols-outlined text-on-primary-fixed-variant">hot_tub</span>
+              Hot onsen baths in Kurama
+            </li>
+<li class="flex items-center gap-3">
+<span class="material-symbols-outlined text-on-primary-fixed-variant">celebration</span>
+              Joyonokane bell ringing
+            </li>
+</ul>
+</div>
+<div class="bg-surface-container-low p-8 rounded-xl border-l-4 border-outline">
+<h4 class="font-headline text-xl text-primary mb-2">Traveler's Verdict</h4>
+<p class="font-body text-on-surface-variant leading-relaxed">
+<strong class="text-on-surface">Best for Solitude.</strong> If you despise crowds, this is your time. Kyoto's zen gardens are never more profound than when blanketed in silence. Plus, scoring a reservation at the city's most exclusive Michelin-starred tables is infinitely easier.
+          </p>
+</div>
+</div>
+</section>
+</main>
+<!-- Summary Section / Final Verdict -->
+<section class="bg-surface-container-low py-24 px-8">
+<div class="max-w-4xl mx-auto text-center space-y-12">
+<h2 class="font-headline text-4xl md:text-5xl text-primary">When will your Odyssey begin?</h2>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+<div class="bg-surface-container-lowest p-10 rounded-xl shadow-sm space-y-4 text-left border border-outline-variant/10">
+<div class="w-12 h-12 bg-secondary/10 rounded-full flex items-center justify-center mb-4">
+<span class="material-symbols-outlined text-secondary">auto_awesome</span>
+</div>
+<h3 class="font-headline text-2xl text-primary">The Newcomer</h3>
+<p class="font-body text-on-surface-variant">Choose <strong class="text-on-surface">Early April</strong>. It's crowded, but you must see the Sakura once in your life. It defines the soul of the city.</p>
+</div>
+<div class="bg-surface-container-lowest p-10 rounded-xl shadow-sm space-y-4 text-left border border-outline-variant/10">
+<div class="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center mb-4">
+<span class="material-symbols-outlined text-primary">camera</span>
+</div>
+<h3 class="font-headline text-2xl text-primary">The Purist</h3>
+<p class="font-body text-on-surface-variant">Choose <strong class="text-on-surface">Late November</strong>. The light is unparalleled for photography, and the deep crimsons are more enduring than the fleeting blossoms.</p>
+</div>
+</div>
+<button class="bg-primary text-on-primary px-10 py-4 rounded-md font-bold text-lg hover:bg-primary-container transition-all shadow-xl">Start Planning Your Trip</button>
+</div>
+</section>
+<!-- Footer -->
+<footer class="bg-surface-container-low border-t border-slate-200/20">
+<div class="grid grid-cols-1 md:grid-cols-4 gap-12 px-12 py-20 max-w-screen-2xl mx-auto">
+<div class="md:col-span-1">
+<span class="text-3xl font-headline font-black text-primary mb-6 block">Horizon Voyager</span>
+<p class="font-body text-on-surface-variant text-sm leading-relaxed opacity-80">
+          Crafting bespoke journeys for the discerning traveler since 2024. Your world, curated by experts.
+        </p>
+</div>
+<div>
+<h4 class="font-headline text-primary mb-6 font-bold">Luxury Collections</h4>
+<ul class="space-y-4 font-body text-sm text-on-surface-variant">
+<li><a class="hover:text-secondary hover:underline underline-offset-4 transition-all" href="#">Heritage Japan</a></li>
+<li><a class="hover:text-secondary hover:underline underline-offset-4 transition-all" href="#">Alpine Retreats</a></li>
+<li><a class="hover:text-secondary hover:underline underline-offset-4 transition-all" href="#">Coastal Escapes</a></li>
+</ul>
+</div>
+<div>
+<h4 class="font-headline text-primary mb-6 font-bold">Travel Concierge</h4>
+<ul class="space-y-4 font-body text-sm text-on-surface-variant">
+<li><a class="hover:text-secondary hover:underline underline-offset-4 transition-all" href="#">Private Guides</a></li>
+<li><a class="hover:text-secondary hover:underline underline-offset-4 transition-all" href="#">Itinerary Design</a></li>
+<li><a class="hover:text-secondary hover:underline underline-offset-4 transition-all" href="#">Sustainable Travel</a></li>
+</ul>
+</div>
+<div>
+<h4 class="font-headline text-primary mb-6 font-bold">Connect</h4>
+<ul class="space-y-4 font-body text-sm text-on-surface-variant">
+<li><a class="hover:text-secondary hover:underline underline-offset-4 transition-all" href="#">About Our Story</a></li>
+<li><a class="hover:text-secondary hover:underline underline-offset-4 transition-all" href="#">Privacy Policy</a></li>
+<li><a class="hover:text-secondary hover:underline underline-offset-4 transition-all" href="#">Terms of Service</a></li>
+</ul>
+</div>
+</div>
+<div class="max-w-screen-2xl mx-auto px-12 pb-12">
+<p class="font-body text-xs text-on-surface-variant opacity-60">© 2024 Horizon Voyager. The Curated Odyssey.</p>
+</div>
+</footer>
+</header>
+</body></html>

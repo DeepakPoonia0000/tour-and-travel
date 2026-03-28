@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+
+<html class="scroll-smooth" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Horizon Voyager | Personal Odyssey Dashboard</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif:ital,wght@0,400;0,700;1,400&amp;family=Plus+Jakarta+Sans:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary-fixed-dim": "#b1c5ff",
+                        "secondary-fixed": "#ffdbc9",
+                        "on-secondary-fixed": "#331200",
+                        "on-primary-fixed-variant": "#00419e",
+                        "on-secondary-container": "#672c00",
+                        "inverse-primary": "#b1c5ff",
+                        "on-secondary": "#ffffff",
+                        "surface-container-lowest": "#ffffff",
+                        "tertiary-fixed": "#79f7e3",
+                        "surface-dim": "#d9d9e2",
+                        "on-surface-variant": "#434653",
+                        "tertiary-container": "#00584e",
+                        "on-secondary-fixed-variant": "#763300",
+                        "surface-container-high": "#e7e7f0",
+                        "tertiary-fixed-dim": "#59dbc7",
+                        "secondary-fixed-dim": "#ffb68d",
+                        "error-container": "#ffdad6",
+                        "surface-tint": "#2559bd",
+                        "on-tertiary": "#ffffff",
+                        "on-tertiary-container": "#50d3bf",
+                        "primary": "#00327d",
+                        "surface-bright": "#faf8ff",
+                        "on-error-container": "#93000a",
+                        "on-background": "#191b22",
+                        "on-primary": "#ffffff",
+                        "outline": "#737784",
+                        "surface-variant": "#e2e2eb",
+                        "surface": "#faf8ff",
+                        "outline-variant": "#c3c6d5",
+                        "on-error": "#ffffff",
+                        "surface-container-highest": "#e2e2eb",
+                        "inverse-surface": "#2e3037",
+                        "on-surface": "#191b22",
+                        "error": "#ba1a1a",
+                        "secondary": "#9b4500",
+                        "tertiary": "#003f37",
+                        "surface-container": "#ededf6",
+                        "surface-container-low": "#f3f3fc",
+                        "on-primary-container": "#a5bdff",
+                        "on-tertiary-fixed-variant": "#005047",
+                        "inverse-on-surface": "#f0f0f9",
+                        "primary-fixed": "#dae2ff",
+                        "primary-container": "#0047ab",
+                        "background": "#faf8ff",
+                        "secondary-container": "#fc8a40",
+                        "on-tertiary-fixed": "#00201c",
+                        "on-primary-fixed": "#001946"
+                    },
+                    fontFamily: {
+                        "headline": ["Noto Serif"],
+                        "body": ["Plus Jakarta Sans"],
+                        "label": ["Plus Jakarta Sans"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .perspective-hero-text {
+            text-shadow: 0 4px 12px rgba(0,0,0,0.05);
+        }
+    </style>
+</head>
+<body class="bg-surface font-body text-on-surface antialiased">
+<nav class="fixed top-0 w-full z-50 bg-white/80 dark:bg-slate-950/80 backdrop-blur-md shadow-sm dark:shadow-none">
+<div class="flex justify-between items-center w-full px-8 py-4 max-w-screen-2xl mx-auto">
+<div class="flex items-center gap-12">
+<a class="text-2xl font-serif italic text-blue-900 dark:text-blue-50" href="#">Horizon Voyager</a>
+<div class="hidden md:flex gap-8 items-center">
+<a class="text-slate-600 dark:text-slate-400 hover:text-blue-900 dark:hover:text-blue-200 transition-colors text-sm font-medium" href="#">Destinations</a>
+<a class="text-slate-600 dark:text-slate-400 hover:text-blue-900 dark:hover:text-blue-200 transition-colors text-sm font-medium" href="#">Journeys</a>
+<a class="text-slate-600 dark:text-slate-400 hover:text-blue-900 dark:hover:text-blue-200 transition-colors text-sm font-medium" href="#">Experiences</a>
+<a class="text-slate-600 dark:text-slate-400 hover:text-blue-900 dark:hover:text-blue-200 transition-colors text-sm font-medium" href="#">Journal</a>
+</div>
+</div>
+<div class="flex items-center gap-6">
+<button class="material-symbols-outlined text-slate-600 hover:bg-slate-50 p-2 rounded-full transition-all">shopping_bag</button>
+<div class="w-10 h-10 rounded-full bg-primary-container text-on-primary-container flex items-center justify-center border-2 border-orange-700">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">account_circle</span>
+</div>
+</div>
+</div>
+</nav>
+<main class="pt-24 pb-20 px-4 md:px-8 max-w-screen-2xl mx-auto">
+<header class="mb-12">
+<span class="text-[0.75rem] font-label uppercase tracking-widest text-secondary font-semibold">The Personal Odyssey</span>
+<h1 class="text-4xl md:text-5xl font-headline font-bold text-primary mt-2">Welcome back, Julian.</h1>
+<p class="text-on-surface-variant max-w-2xl mt-4 leading-relaxed">Your next adventure awaits. Manage your upcoming itineraries, revisit past memories, and explore your curated wanderlust.</p>
+</header>
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-12">
+<aside class="lg:col-span-3 space-y-8">
+<nav class="space-y-2">
+<a class="flex items-center gap-3 px-4 py-3 bg-primary text-white rounded-xl shadow-sm transition-all" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">dashboard</span>
+<span class="font-medium">Dashboard</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-slate-600 hover:bg-surface-container-low rounded-xl transition-all group" href="#">
+<span class="material-symbols-outlined group-hover:text-primary transition-colors">person</span>
+<span class="font-medium group-hover:text-primary transition-colors">Profile Settings</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-slate-600 hover:bg-surface-container-low rounded-xl transition-all group" href="#">
+<span class="material-symbols-outlined group-hover:text-primary transition-colors">credit_card</span>
+<span class="font-medium group-hover:text-primary transition-colors">Payment Methods</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 text-slate-600 hover:bg-surface-container-low rounded-xl transition-all group" href="#">
+<span class="material-symbols-outlined group-hover:text-primary transition-colors">help_center</span>
+<span class="font-medium group-hover:text-primary transition-colors">Support</span>
+</a>
+</nav>
+<div class="bg-surface-container-low rounded-xl p-6 relative overflow-hidden group">
+<div class="relative z-10">
+<h4 class="font-headline text-lg text-primary mb-2">Voyager Elite</h4>
+<p class="text-xs text-on-surface-variant leading-relaxed">You are 2,400 miles away from your next tier. Unlock priority concierge service.</p>
+<div class="mt-4 w-full h-1 bg-outline-variant/20 rounded-full overflow-hidden">
+<div class="h-full bg-secondary w-3/4 rounded-full"></div>
+</div>
+</div>
+<div class="absolute -right-4 -bottom-4 opacity-5 group-hover:scale-110 transition-transform duration-700">
+<span class="material-symbols-outlined text-9xl">travel_explore</span>
+</div>
+</div>
+</aside>
+<div class="lg:col-span-9 space-y-16">
+<section>
+<div class="flex items-end justify-between mb-8">
+<h2 class="text-2xl font-headline font-bold text-primary">Upcoming Journeys</h2>
+<a class="text-sm font-label uppercase tracking-widest text-secondary font-bold hover:underline underline-offset-4" href="#">View All</a>
+</div>
+<div class="relative group">
+<div class="absolute inset-0 bg-primary/5 rounded-2xl transform rotate-1 group-hover:rotate-0 transition-transform duration-500"></div>
+<div class="relative bg-surface-container-lowest rounded-2xl p-6 md:p-8 flex flex-col md:flex-row gap-8 items-center shadow-[0_24px_40px_rgba(25,27,34,0.04)]">
+<div class="w-full md:w-1/3 aspect-[4/3] rounded-xl overflow-hidden shadow-sm">
+<img alt="Destination Image" class="w-full h-full object-cover hover:scale-105 transition-transform duration-700" data-alt="misty morning over ancient buddhist temples in Bagan Myanmar with hot air balloons in distance" src="https://lh3.googleusercontent.com/aida-public/AB6AXuByZSp-kQ_QRc0myKj2MXgvhg43CUEukoH8L2_qJfYRq7jl-Mvwae_WWcqO1HPRJuH4ST565M16-CLiliz0S5qyzvbWc_5pCfDIZJ6dMuVzUY_bYOSh6812tBoikzTLif9AbkQ4_7sDfLRAjY6FGsPn6ulWnqsc2NWpDQGARkieU34S6KjM_bF-D2jZbHodGF_pG4Rt0AI2UpCky-dIg0cDRkkyCyEkNwmnznDPl2JSJW_fJaxRkru2T5ebs8-UzdfAqNf5bN9rRkHm"/>
+</div>
+<div class="flex-1 space-y-4">
+<div class="flex items-center gap-2 text-secondary text-xs font-bold tracking-widest uppercase">
+<span class="material-symbols-outlined text-sm">calendar_today</span>
+<span>Oct 14 — Oct 22, 2024</span>
+</div>
+<h3 class="text-3xl font-headline font-bold text-primary">Sacred Temples &amp; Hidden Valleys</h3>
+<p class="text-on-surface-variant italic font-serif">A curated exploration of Bagan and the Shan Hills.</p>
+<div class="flex flex-wrap gap-4 pt-4">
+<div class="px-4 py-2 bg-surface-container-low rounded-lg text-xs font-medium flex items-center gap-2">
+<span class="material-symbols-outlined text-sm text-primary">hotel</span>
+                                        Belmond Governor’s Residence
+                                    </div>
+<div class="px-4 py-2 bg-surface-container-low rounded-lg text-xs font-medium flex items-center gap-2">
+<span class="material-symbols-outlined text-sm text-primary">flight_takeoff</span>
+                                        SQ 502 • Gate D4
+                                    </div>
+</div>
+</div>
+<div class="w-full md:w-auto flex md:flex-col gap-3">
+<button class="flex-1 px-6 py-3 bg-secondary text-white rounded-lg text-sm font-bold shadow-md hover:translate-y-[-2px] active:scale-95 transition-all">Digital Pass</button>
+<button class="flex-1 px-6 py-3 border border-outline-variant/30 text-primary rounded-lg text-sm font-bold hover:bg-slate-50 transition-all">Manage</button>
+</div>
+</div>
+</div>
+</section>
+<section>
+<div class="flex items-end justify-between mb-8">
+<h2 class="text-2xl font-headline font-bold text-primary">Saved Favorites</h2>
+<a class="text-sm font-label uppercase tracking-widest text-secondary font-bold hover:underline underline-offset-4" href="#">Edit List</a>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+<div class="group cursor-pointer">
+<div class="relative aspect-[3/4] rounded-xl overflow-hidden mb-4">
+<img alt="Amalfi Coast" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" data-alt="ethereal turquoise waters of Amalfi coast with pastel villas clinging to rugged cliffs" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCMgNms6hHeN4uj32mL5S67Nu4ZZad1MDU3PNbwFi0CcTYENgp18ZuZxBk1ivCaEn8clBDMoSUidok2Gxwtlbtd4QOs5ZCnqIIY1G-5hGmmOnkzZiUyQSJJlZw9rrf2KZVAA77lOnFDGzK3h9ePKh9ZRcqHNjhSowvJFSuGYyM4WzVY2PDk_xxmRmKhNJbf194ySWgCQznYgxXxmDBG2LMPNNVxRLeOvRJh2l9Sn-NGglhhYKV81EfEK_PugmGcrE4kg1nvpACs6s43"/>
+<div class="absolute top-4 right-4 bg-white/20 backdrop-blur-md p-2 rounded-full">
+<span class="material-symbols-outlined text-white" style="font-variation-settings: 'FILL' 1;">favorite</span>
+</div>
+</div>
+<h4 class="font-headline text-lg text-primary">Amalfi Coastline</h4>
+<p class="text-sm text-on-surface-variant">Italy • Summer 2025</p>
+</div>
+<div class="group cursor-pointer">
+<div class="relative aspect-[3/4] rounded-xl overflow-hidden mb-4">
+<img alt="Zermatt" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" data-alt="serene snowy peaks of the Swiss Alps reflecting in a perfectly still mirror-like lake" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCQrq1awNEj46fUIef1opoWSX9bvRMsXGT1feHkvN40elmo4HHgBL9GfRPPgz1BJJ1OLEpqgLsBrDRgOecKOYFhJtspB_7cPC1Ko5U0pdz1fvmEBOEHptABs_cwceOxpgHkEymtRThJGGx44ZQFtnMYviOBo5BoBNHsRF-Js9lRRWsRJ1eFIYGMn_1hrpw-F8eU5CxD7Sdx5KTQcNZ8oO0FvrQZk5qYkn7gIjyA4coDMTLBxPTA81QizCgirJsU-cZVNy3gLR9WA9CZ"/>
+<div class="absolute top-4 right-4 bg-white/20 backdrop-blur-md p-2 rounded-full">
+<span class="material-symbols-outlined text-white" style="font-variation-settings: 'FILL' 1;">favorite</span>
+</div>
+</div>
+<h4 class="font-headline text-lg text-primary">The Matterhorn</h4>
+<p class="text-sm text-on-surface-variant">Switzerland • Winter Retreat</p>
+</div>
+<div class="group cursor-pointer">
+<div class="relative aspect-[3/4] rounded-xl overflow-hidden mb-4 bg-surface-container flex items-center justify-center border-2 border-dashed border-outline-variant/40 group-hover:border-primary transition-colors">
+<div class="text-center p-6">
+<span class="material-symbols-outlined text-primary text-4xl mb-2">add_circle</span>
+<p class="font-bold text-sm text-primary">Discover More</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section class="bg-surface-container-low rounded-2xl p-8 md:p-12">
+<h2 class="text-2xl font-headline font-bold text-primary mb-8">Past Odyssey History</h2>
+<div class="space-y-6">
+<div class="flex items-center justify-between p-4 bg-surface-container-lowest rounded-xl hover:shadow-sm transition-all">
+<div class="flex items-center gap-6">
+<div class="w-16 h-16 rounded-lg overflow-hidden shrink-0">
+<img alt="History Image" class="w-full h-full object-cover" data-alt="sunset over the Taj Mahal with vibrant pink and orange sky reflected in water" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCT5NvYGhkpKv_c_2X2eoy-Yd9erQZz2woEktsIYv1M73Mt8eSwOgnKWl9qdBPat9YmeJxTpCxa2DJy2HbryquuKWzzMdKxu2ogvHV7cezw1RzHF2WrNVMTo64752ZLTm2IvyQ_0tSnZNgtcvGx-nH2kmW5mTqgcDdyWw04YU57ynMWCX8Z53sELuXT4XiJDbDdG9pQVX5uC4kcNs29a5B1m05Ii9IQt_Bzbm0ASbQ9314uTcYfvENtipHl0YOEagWp1fWGQ9lWYR4J"/>
+</div>
+<div>
+<h4 class="font-bold text-primary">Imperial India</h4>
+<p class="text-xs text-on-surface-variant">March 2024 • 12 Days</p>
+</div>
+</div>
+<button class="flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-primary hover:text-secondary transition-colors">
+                                View Journal
+                                <span class="material-symbols-outlined text-sm">arrow_forward_ios</span>
+</button>
+</div>
+<div class="flex items-center justify-between p-4 bg-surface-container-lowest rounded-xl hover:shadow-sm transition-all">
+<div class="flex items-center gap-6">
+<div class="w-16 h-16 rounded-lg overflow-hidden shrink-0">
+<img alt="History Image" class="w-full h-full object-cover" data-alt="traditional wooden pagodas in Kyoto Japan surrounded by blooming cherry blossoms" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDvUW95Bz1GDsm2v3C9ccCs7KyV7fQWL4e_3McyPtiTwEXW8Ty-b3NTMNIXMobqoztLuGACFDOIE9NSGJVHUiobznAYxwYmfpXmke-9GeJ9WpwfOXLyOnU8Cfg2Lc8XTyOuCDfmXeaqoQ6fAT_Cs8WNoB2e0FJ5x9HXke0R-mlVvOeCLiITfUNg0mtt5cDC0S9BNsG45BlK0meONtQ5odbyXfkenf0CE67DkNe1aacCQcgq39jLrUGUWLKQ2OuXmRhfHDfWMbxMLVN2"/>
+</div>
+<div>
+<h4 class="font-bold text-primary">Kyoto Blossoms</h4>
+<p class="text-xs text-on-surface-variant">April 2023 • 9 Days</p>
+</div>
+</div>
+<button class="flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-primary hover:text-secondary transition-colors">
+                                View Journal
+                                <span class="material-symbols-outlined text-sm">arrow_forward_ios</span>
+</button>
+</div>
+</div>
+</section>
+</div>
+</div>
+</main>
+<footer class="bg-slate-50 dark:bg-slate-900 w-full mt-auto">
+<div class="flex flex-col md:flex-row justify-between items-center px-12 py-16 w-full max-w-screen-2xl mx-auto">
+<div class="mb-8 md:mb-0 space-y-4">
+<a class="text-xl font-serif text-blue-900 dark:text-blue-50" href="#">Horizon Voyager</a>
+<p class="text-slate-500 dark:text-slate-400 text-sm max-w-xs">© 2024 Horizon Voyager. The Curated Odyssey.</p>
+</div>
+<div class="grid grid-cols-2 md:grid-cols-3 gap-8 md:gap-16">
+<div class="space-y-3">
+<span class="text-[0.75rem] font-label uppercase tracking-widest text-primary font-bold">Company</span>
+<ul class="space-y-2 text-sm text-slate-500 dark:text-slate-400">
+<li><a class="hover:text-blue-800 dark:hover:text-blue-200 underline-offset-4 hover:underline transition-all duration-200" href="#">Our Story</a></li>
+<li><a class="hover:text-blue-800 dark:hover:text-blue-200 underline-offset-4 hover:underline transition-all duration-200" href="#">Sustainability</a></li>
+</ul>
+</div>
+<div class="space-y-3">
+<span class="text-[0.75rem] font-label uppercase tracking-widest text-primary font-bold">Connect</span>
+<ul class="space-y-2 text-sm text-slate-500 dark:text-slate-400">
+<li><a class="hover:text-blue-800 dark:hover:text-blue-200 underline-offset-4 hover:underline transition-all duration-200" href="#">Contact Us</a></li>
+<li><a class="hover:text-blue-800 dark:hover:text-blue-200 underline-offset-4 hover:underline transition-all duration-200" href="#">Journal</a></li>
+</ul>
+</div>
+<div class="col-span-2 md:col-span-1 space-y-3">
+<span class="text-[0.75rem] font-label uppercase tracking-widest text-primary font-bold">Legal</span>
+<ul class="space-y-2 text-sm text-slate-500 dark:text-slate-400">
+<li><a class="hover:text-blue-800 dark:hover:text-blue-200 underline-offset-4 hover:underline transition-all duration-200" href="#">Privacy Policy</a></li>
+<li><a class="hover:text-blue-800 dark:hover:text-blue-200 underline-offset-4 hover:underline transition-all duration-200" href="#">Terms of Service</a></li>
+</ul>
+</div>
+</div>
+</div>
+</footer>
+<button class="md:hidden fixed bottom-6 right-6 w-14 h-14 bg-secondary text-white rounded-full shadow-2xl flex items-center justify-center z-50">
+<span class="material-symbols-outlined">chat_bubble</span>
+</button>
+</body></html>
