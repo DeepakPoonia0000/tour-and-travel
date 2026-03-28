@@ -2,74 +2,244 @@
 <html lang="en">
   <head>
     <%- include('partials/head') %>
+    <style>
+      .material-symbols-outlined {
+        font-variation-settings: 'FILL' 0, 'wght' 500, 'GRAD' 0, 'opsz' 24;
+      }
+
+      .glass-nav {
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+      }
+    </style>
   </head>
-  <body class="min-h-screen bg-slate-50 text-slate-900">
+  <body class="min-h-screen bg-surface font-sans text-slate-900">
     <%- include('partials/header') %>
-    <main class="space-y-12">
-      <section class="relative overflow-hidden">
-        <div class="absolute inset-0 bg-slate-950/45"></div>
-        <div class="h-[420px] bg-cover bg-center" style="background-image:url('<%= city.heroImage || '/images/placeholder.jpg' %>')"></div>
-        <div class="relative mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 py-20">
-          <div class="max-w-3xl text-white">
-            <p class="text-sm uppercase tracking-[0.28em] text-sky-300 font-semibold">City Spotlight</p>
-            <h1 class="mt-4 text-4xl font-semibold tracking-tight"><%= city.name %>, <%= city.state.name %></h1>
-            <p class="mt-6 text-lg leading-8 text-slate-200"><%= city.summary || city.description?.slice(0, 160) || 'Explore the most compelling city-level travel experiences.' %></p>
+    <%
+      const heroImage = city.heroImage || (attractions[0] && attractions[0].heroImage) || '/images/placeholder.jpg';
+      const citySummary = city.summary || city.description?.slice(0, 200) || 'Explore a city of layered stories, signature landmarks, and memorable local experiences.';
+      const cityDescription = city.description || 'This city page is dynamically generated from admin-managed travel content and curated destination entries.';
+      const primaryAttraction = attractions[0];
+      const secondaryAttractions = attractions.slice(1, 3);
+      const featuredActivities = activities.slice(0, 4);
+      const featuredPackages = packages.slice(0, 3);
+      const cityGuides = [
+        { time: 'Morning', title: 'Things to do', body: city.thingsToDo || 'A dynamic planning guide for the best things to do in the city.', href: `/cities/${city.slug}/things-to-do`, tone: 'bg-secondary' },
+        { time: 'Midday', title: 'Places to visit', body: city.placesToVisit || 'A curated guide to city landmarks, neighborhoods, and signature stops.', href: `/cities/${city.slug}/places-to-visit`, tone: 'bg-primary' },
+        { time: 'Seasonal', title: 'Best time to visit', body: city.bestTimeToVisit || 'Practical timing advice for planning a smoother city trip.', href: `/cities/${city.slug}/best-time-to-visit`, tone: 'bg-emerald-700' }
+      ];
+      const planningLinks = [
+        { label: 'Things to do', href: `/cities/${city.slug}/things-to-do` },
+        { label: 'Places to visit', href: `/cities/${city.slug}/places-to-visit` },
+        { label: 'Best time to visit', href: `/cities/${city.slug}/best-time-to-visit` },
+        { label: 'How to reach', href: `/cities/${city.slug}/how-to-reach` },
+        { label: 'Hotels', href: `/cities/${city.slug}/hotels` }
+      ];
+    %>
+    <main class="pb-20 pt-24">
+      <section class="relative flex min-h-[720px] items-end overflow-hidden">
+        <div class="absolute inset-0">
+          <div class="h-full w-full bg-cover bg-center" style="background-image:url('<%= heroImage %>')"></div>
+          <div class="absolute inset-0 bg-gradient-to-t from-primary/75 via-primary/20 to-slate-950/15"></div>
+        </div>
+
+        <div class="relative z-10 mx-auto w-full max-w-7xl px-4 pb-20 sm:px-6 lg:px-8 lg:pb-24">
+          <div class="max-w-4xl">
+            <span class="inline-flex rounded-full bg-accent px-4 py-2 text-xs font-bold uppercase tracking-[0.22em] text-slate-950">
+              Featured Destination
+            </span>
+            <h1 class="mt-6 font-serif text-5xl leading-[1.05] text-white sm:text-6xl lg:text-8xl">
+              <%= city.name %>: the heart of <%= city.state.name %>.
+            </h1>
+            <p class="mt-6 max-w-2xl text-base leading-8 text-white/85 sm:text-lg">
+              <%= citySummary %>
+            </p>
+            <div class="mt-8 flex flex-wrap gap-4">
+              <a href="/cities/<%= city.slug %>/places-to-visit" class="rounded-xl bg-primary px-8 py-4 text-sm font-semibold text-white transition hover:shadow-xl">
+                Explore the City
+              </a>
+              <a href="/cities/<%= city.slug %>/things-to-do" class="glass-nav rounded-xl border border-white/30 bg-white/10 px-8 py-4 text-sm font-semibold text-white transition hover:bg-white/20">
+                Plan Experiences
+              </a>
+            </div>
           </div>
+        </div>
+
+        <div class="absolute -bottom-1 right-0 hidden h-24 w-1/3 rounded-tl-[3rem] bg-surface lg:block"></div>
+      </section>
+
+      <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <nav class="flex flex-wrap items-center gap-2 py-6 text-sm text-slate-500">
+          <a class="transition hover:text-primary" href="/">Home</a>
+          <span class="material-symbols-outlined text-base text-slate-400">chevron_right</span>
+          <a class="transition hover:text-primary" href="/countries/<%= city.country.slug %>"><%= city.country.name %></a>
+          <span class="material-symbols-outlined text-base text-slate-400">chevron_right</span>
+          <a class="transition hover:text-primary" href="/states/<%= city.state.slug %>"><%= city.state.name %></a>
+          <span class="material-symbols-outlined text-base text-slate-400">chevron_right</span>
+          <span class="font-semibold text-slate-900"><%= city.name %></span>
+        </nav>
+      </div>
+
+      <section class="py-14">
+        <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <div class="mb-14 flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
+            <div class="max-w-2xl">
+              <h2 class="font-serif text-4xl leading-tight text-slate-900">Landmarks, neighborhoods, and local character</h2>
+              <p class="mt-5 text-base leading-8 text-slate-600">
+                <%= cityDescription %>
+              </p>
+            </div>
+            <a href="/cities/<%= city.slug %>/attractions" class="inline-flex w-fit items-center gap-2 font-semibold text-primary transition hover:gap-3">
+              View all landmarks
+              <span class="material-symbols-outlined text-lg">arrow_forward</span>
+            </a>
+          </div>
+
+          <% if (primaryAttraction) { %>
+            <div class="grid gap-8 md:grid-cols-12">
+              <article class="group md:col-span-7">
+                <a href="/attractions/<%= primaryAttraction.slug %>" class="block">
+                  <div class="relative mb-6 h-[420px] overflow-hidden rounded-[1.75rem]">
+                    <div class="h-full w-full bg-cover bg-center transition duration-700 group-hover:scale-105" style="background-image:url('<%= primaryAttraction.heroImage || heroImage %>')"></div>
+                  </div>
+                  <h3 class="font-serif text-3xl text-slate-900"><%= primaryAttraction.name %></h3>
+                  <p class="mt-3 max-w-xl text-base leading-7 text-slate-600">
+                    <%= primaryAttraction.summary || primaryAttraction.description?.slice(0, 140) || 'A flagship landmark that helps define the city’s visual identity.' %>
+                  </p>
+                </a>
+              </article>
+
+              <div class="space-y-8 md:col-span-5">
+                <% secondaryAttractions.forEach((item) => { %>
+                  <article class="group">
+                    <a href="/attractions/<%= item.slug %>" class="block">
+                      <div class="relative mb-4 h-[250px] overflow-hidden rounded-[1.5rem]">
+                        <div class="h-full w-full bg-cover bg-center transition duration-700 group-hover:scale-105" style="background-image:url('<%= item.heroImage || heroImage %>')"></div>
+                      </div>
+                      <h3 class="font-serif text-2xl text-slate-900"><%= item.name %></h3>
+                      <p class="mt-2 text-sm uppercase tracking-[0.22em] text-slate-500"><%= item.category || 'City Landmark' %></p>
+                    </a>
+                  </article>
+                <% }) %>
+              </div>
+            </div>
+          <% } else { %>
+            <div class="rounded-[2rem] bg-white p-10 shadow-sm ring-1 ring-slate-200">
+              <h3 class="font-serif text-2xl text-slate-900">Attractions are on the way</h3>
+              <p class="mt-4 max-w-2xl text-slate-600">Once attractions are added for <%= city.name %>, this section will automatically populate with featured landmarks.</p>
+            </div>
+          <% } %>
         </div>
       </section>
 
-      <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="grid gap-8 lg:grid-cols-[1.4fr_0.6fr] items-start">
-          <div class="rounded-[1.75rem] bg-white border border-slate-200 p-10 shadow-sm">
-            <h2 class="text-3xl font-semibold text-slate-900">About <%= city.name %></h2>
-            <p class="mt-4 text-slate-600"><%= city.description || 'This city page is dynamically generated from admin-managed content with travel guidance and attractions.' %></p>
-          </div>
-          <div class="rounded-[1.75rem] bg-white border border-slate-200 p-8 shadow-sm">
-            <div class="space-y-3">
-              <a href="/cities/<%= city.slug %>/things-to-do" class="block rounded-2xl border border-slate-200 bg-slate-50 px-4 py-4 text-slate-900 transition hover:bg-slate-100">Things to do</a>
-              <a href="/cities/<%= city.slug %>/places-to-visit" class="block rounded-2xl border border-slate-200 bg-slate-50 px-4 py-4 text-slate-900 transition hover:bg-slate-100">Places to visit</a>
-              <a href="/cities/<%= city.slug %>/best-time-to-visit" class="block rounded-2xl border border-slate-200 bg-slate-50 px-4 py-4 text-slate-900 transition hover:bg-slate-100">Best time to visit</a>
-              <a href="/cities/<%= city.slug %>/how-to-reach" class="block rounded-2xl border border-slate-200 bg-slate-50 px-4 py-4 text-slate-900 transition hover:bg-slate-100">How to reach</a>
-              <a href="/cities/<%= city.slug %>/hotels" class="block rounded-2xl border border-slate-200 bg-slate-50 px-4 py-4 text-slate-900 transition hover:bg-slate-100">Hotels</a>
+      <section class="bg-surface2 py-20">
+        <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <div class="grid gap-12 lg:grid-cols-[1.05fr_0.95fr] lg:items-center">
+            <div class="relative min-h-[380px] overflow-hidden rounded-[2rem] shadow-2xl lg:min-h-[600px]">
+              <div class="absolute inset-0 bg-cover bg-center" style="background-image:url('<%= (featuredActivities[0] && featuredActivities[0].heroImage) || heroImage %>')"></div>
+              <div class="absolute inset-0 bg-primary/20 mix-blend-multiply"></div>
+            </div>
+
+            <div>
+              <h2 class="font-serif text-4xl text-slate-900">Curated city experiences</h2>
+              <p class="mt-6 text-base leading-8 text-slate-600">
+                Choose from dynamic activity entries and editorial planning pages that help turn <%= city.name %> into a full, bookable travel story.
+              </p>
+
+              <% if (featuredActivities.length) { %>
+                <div class="mt-8 flex flex-wrap gap-3">
+                  <% featuredActivities.forEach((item, index) => { %>
+                    <a href="/activities/<%= item.slug %>" class="rounded-full px-5 py-3 text-sm font-semibold transition <%= index === 0 ? 'bg-accent text-slate-950 hover:brightness-95' : 'bg-white text-slate-800 hover:bg-primary hover:text-white' %>">
+                      <%= item.name %>
+                    </a>
+                  <% }) %>
+                </div>
+              <% } %>
+
+              <div class="mt-10 space-y-4">
+                <% if (featuredPackages.length) { %>
+                  <% featuredPackages.forEach((pkg) => { %>
+                    <a href="/packages/<%= pkg.slug %>" class="flex items-start gap-4 rounded-[1.5rem] bg-white p-5 shadow-sm ring-1 ring-slate-200 transition hover:shadow-md">
+                      <span class="material-symbols-outlined mt-1 text-3xl text-secondary">explore</span>
+                      <span>
+                        <strong class="block text-base text-primary"><%= pkg.name %></strong>
+                        <span class="mt-1 block text-sm leading-6 text-slate-600"><%= pkg.summary || 'A curated itinerary that features this city and nearby highlights.' %></span>
+                      </span>
+                    </a>
+                  <% }) %>
+                <% } else { %>
+                  <a href="/cities/<%= city.slug %>/things-to-do" class="flex items-start gap-4 rounded-[1.5rem] bg-white p-5 shadow-sm ring-1 ring-slate-200 transition hover:shadow-md">
+                    <span class="material-symbols-outlined mt-1 text-3xl text-secondary">eco</span>
+                    <span>
+                      <strong class="block text-base text-primary">Things to do guide</strong>
+                      <span class="mt-1 block text-sm leading-6 text-slate-600">Use the dynamic city guide to plan experiences, routes, and local highlights.</span>
+                    </span>
+                  </a>
+                <% } %>
+              </div>
             </div>
           </div>
         </div>
       </section>
 
-      <section class="bg-slate-50 py-12">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div class="flex flex-col gap-4 md:items-start mb-6">
-            <p class="text-sm uppercase tracking-[0.28em] text-sky-600 font-semibold">City life</p>
-            <h2 class="text-3xl font-semibold text-slate-900">Top attractions</h2>
+      <section class="py-20">
+        <div class="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
+          <div class="text-center">
+            <h2 class="font-serif text-4xl text-slate-900 sm:text-5xl">A perfect day in <%= city.name %></h2>
+            <p class="mt-4 text-base italic text-slate-500">A dynamic itinerary built from the city guide fields you already manage in admin.</p>
           </div>
-          <div class="grid gap-6 lg:grid-cols-3">
-            <% attractions.slice(0, 6).forEach(item => { %>
-              <article class="overflow-hidden rounded-[1.75rem] border border-slate-200 bg-white shadow-sm">
-                <a href="/attractions/<%= item.slug %>" class="block">
-                  <div class="h-52 bg-cover bg-center" style="background-image:url('<%= item.heroImage || '/images/placeholder.jpg' %>')"></div>
+
+          <div class="relative mt-16 border-l border-slate-200 pl-8 sm:pl-12">
+            <% cityGuides.forEach((item) => { %>
+              <article class="relative mb-16 last:mb-0">
+                <div class="absolute -left-[2.15rem] top-0 h-6 w-6 rounded-full border-4 border-surface <%= item.tone %>"></div>
+                <span class="block text-sm font-bold uppercase tracking-[0.22em] text-secondary"><%= item.time %></span>
+                <h3 class="mt-4 font-serif text-3xl text-slate-900"><%= item.title %></h3>
+                <p class="mt-5 text-base leading-8 text-slate-600"><%= item.body %></p>
+                <a href="<%= item.href %>" class="mt-5 inline-flex items-center gap-2 text-sm font-semibold text-primary transition hover:gap-3">
+                  Open guide
+                  <span class="material-symbols-outlined text-lg">arrow_forward</span>
                 </a>
-                <div class="p-6">
-                  <h3 class="text-xl font-semibold text-slate-900"><a href="/attractions/<%= item.slug %>" class="hover:text-sky-600"><%= item.name %></a></h3>
-                  <p class="mt-3 text-sm leading-6 text-slate-600"><%= item.summary || 'Discover this experience.' %></p>
-                </div>
               </article>
             <% }) %>
+
+            <article class="relative">
+              <div class="absolute -left-[2.15rem] top-0 h-6 w-6 rounded-full border-4 border-surface bg-slate-900"></div>
+              <span class="block text-sm font-bold uppercase tracking-[0.22em] text-slate-700">Arrival + Stay</span>
+              <h3 class="mt-4 font-serif text-3xl text-slate-900">How to reach and where to stay</h3>
+              <p class="mt-5 text-base leading-8 text-slate-600">
+                <%= city.howToReach || 'Find transport options, entry planning, and arrival logistics in the city guide.' %>
+              </p>
+              <p class="mt-5 text-base leading-8 text-slate-600">
+                <%= city.hotels || 'Hotel recommendations and stay-related notes can be managed from the city admin content.' %>
+              </p>
+              <div class="mt-6 flex flex-wrap gap-3">
+                <a href="/cities/<%= city.slug %>/how-to-reach" class="rounded-full bg-slate-100 px-5 py-3 text-sm font-semibold text-slate-800 transition hover:bg-primary hover:text-white">How to reach</a>
+                <a href="/cities/<%= city.slug %>/hotels" class="rounded-full bg-slate-100 px-5 py-3 text-sm font-semibold text-slate-800 transition hover:bg-primary hover:text-white">Hotels</a>
+              </div>
+            </article>
           </div>
         </div>
       </section>
 
-      <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        <div class="flex flex-col gap-4 md:items-start mb-6">
-          <p class="text-sm uppercase tracking-[0.28em] text-sky-600 font-semibold">City activities</p>
-          <h2 class="text-3xl font-semibold text-slate-900">Featured activities</h2>
-        </div>
-        <div class="grid gap-4 sm:grid-cols-2">
-          <% activities.slice(0, 6).forEach(item => { %>
-            <a href="/activities/<%= item.slug %>" class="block rounded-[1.5rem] border border-slate-200 bg-white p-5 text-slate-900 transition hover:bg-slate-50">
-              <strong class="text-lg font-semibold"><%= item.name %></strong>
-              <span class="mt-2 block text-sm text-slate-600"><%= item.category || 'Activity' %></span>
-            </a>
-          <% }) %>
+      <section class="bg-surface2 py-20">
+        <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <div class="mb-12 flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
+            <div>
+              <h2 class="font-serif text-4xl text-slate-900">Plan your <%= city.name %> stay</h2>
+              <p class="mt-4 max-w-2xl text-base leading-8 text-slate-600">Use the city’s dynamic guide pages for practical planning, seasonal timing, and stay recommendations.</p>
+            </div>
+          </div>
+
+          <div class="grid gap-6 md:grid-cols-3">
+            <% planningLinks.slice(0, 3).forEach((item) => { %>
+              <a href="<%= item.href %>" class="rounded-[1.5rem] bg-white p-6 shadow-sm ring-1 ring-slate-200 transition hover:-translate-y-1 hover:shadow-lg">
+                <p class="text-sm font-bold uppercase tracking-[0.22em] text-slate-500">City Guide</p>
+                <h3 class="mt-3 font-serif text-2xl text-slate-900"><%= item.label %></h3>
+                <p class="mt-3 text-sm leading-7 text-slate-600">Open the latest admin-managed content for this part of the trip.</p>
+              </a>
+            <% }) %>
+          </div>
         </div>
       </section>
     </main>

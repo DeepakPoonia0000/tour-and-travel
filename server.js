@@ -24,6 +24,7 @@ app.use((req, res, next) => {
   res.locals.admin = req.session?.admin;
   res.locals.currentUrl = req.originalUrl;
   res.locals.siteUrl = process.env.SITE_URL || `http://localhost:${port}`;
+  res.locals.error = null;
   next();
 });
 

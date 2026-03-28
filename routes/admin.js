@@ -71,6 +71,19 @@ const loadReferences = async () => ({
   activities: await Activity.find().sort({ name: 1 }).lean()
 });
 
+const parseSearchQuery = (req) => {
+  const search = (req.query.search || req.query.q || '').toString().trim();
+  if (!search) return {};
+  const regex = new RegExp(search.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'), 'i');
+  return { $or: [{ name: regex }, { slug: regex }] };
+};
+
+const parsePagination = (req, defaultLimit = 20) => {
+  const page = Math.max(1, parseInt(req.query.page, 10) || 1);
+  const limit = Math.max(1, Math.min(100, parseInt(req.query.limit, 10) || defaultLimit));
+  return { page, limit, skip: (page - 1) * limit };
+};
+
 router.get('/login', (req, res) => {
   res.render('admin/login', { error: null, ...buildMeta({ title: 'Admin Login | Tour & Travel' }) });
 });
@@ -108,11 +121,24 @@ router.get('/:entity', ensureAdmin, async (req, res) => {
   const Model = entityMap[entity];
   if (!Model) return res.redirect('/admin');
 
-  const items = await Model.find().sort({ priority: 1, updatedAt: -1 }).lean();
+  const searchFilter = parseSearchQuery(req);
+  const { page, limit, skip } = parsePagination(req, 20);
+  const total = await Model.countDocuments(searchFilter);
+  const items = await Model.find(searchFilter).sort({ priority: 1, updatedAt: -1 }).skip(skip).limit(limit).lean();
+
   res.render('admin/list', {
     entity,
     entityLabel: entityLabels[entity],
     items,
+    search: req.query.search || req.query.q || '',
+    pagination: {
+      page,
+      limit,
+      total,
+      totalPages: Math.max(1, Math.ceil(total / limit)),
+      baseUrl: `/admin/${entity}`,
+      query: req.query.search ? `search=${encodeURIComponent(req.query.search)}` : ''
+    },
     ...buildMeta({ title: `${entityLabels[entity]}s | Admin` })
   });
 });
@@ -128,6 +154,7 @@ router.get('/:entity/new', ensureAdmin, async (req, res) => {
     references: refs,
     action: `/admin/${entity}`,
     method: 'POST',
+    error: null,
     ...buildMeta({ title: `Create ${entityLabels[entity]} | Admin` })
   });
 });
@@ -148,6 +175,7 @@ router.get('/:entity/:id/edit', ensureAdmin, async (req, res) => {
     references: refs,
     action: `/admin/${entity}/${id}`,
     method: 'POST',
+    error: null,
     ...buildMeta({ title: `Edit ${entityLabels[entity]} | Admin` })
   });
 });

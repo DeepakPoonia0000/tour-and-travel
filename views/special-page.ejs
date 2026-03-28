@@ -5,19 +5,105 @@
   </head>
   <body class="min-h-screen bg-slate-50 text-slate-900">
     <%- include('partials/header') %>
-    <main class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-      <section class="rounded-[2rem] bg-white border border-slate-200 shadow-sm p-10 mb-10">
-        <p class="text-sm uppercase tracking-[0.28em] font-semibold text-sky-600"><%= sectionTitle %></p>
-        <h1 class="mt-4 text-4xl font-semibold tracking-tight text-slate-900"><%= sectionTitle %> in <%= entity.name %></h1>
-        <p class="mt-4 max-w-3xl text-slate-600">Dynamic content updated by the admin for every location in the travel portal.</p>
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+      <section class="rounded-[2rem] bg-white border border-slate-200 shadow-sm overflow-hidden">
+        <div class="grid gap-6 lg:grid-cols-[1.4fr_0.6fr] p-10">
+          <div>
+            <p class="text-sm uppercase tracking-[0.28em] font-semibold text-sky-600"><%= sectionTitle %></p>
+            <h1 class="mt-4 text-5xl font-semibold tracking-tight text-slate-900"><%= sectionTitle %> in <%= entity.name %></h1>
+            <p class="mt-6 max-w-3xl text-slate-600"><%= entity.summary || entity.description?.slice(0, 160) || 'Explore this guided travel section managed from the admin panel.' %></p>
+          </div>
+          <div class="rounded-[1.75rem] bg-slate-50 p-8">
+            <h2 class="text-lg font-semibold text-slate-900">Section overview</h2>
+            <p class="mt-4 text-slate-600">This page is driven by the internal content fields for each destination. Use the admin panel to update things to do, places to visit, best time to visit, how to reach, and hotel guidance.</p>
+            <div class="mt-8 grid gap-3 text-sm text-slate-700">
+              <div class="rounded-2xl bg-white p-4 shadow-sm">
+                <strong class="block text-slate-900">Entity:</strong> <span><%= entity.name %></span>
+              </div>
+              <% if (entityType === 'city') { %>
+                <div class="rounded-2xl bg-white p-4 shadow-sm">
+                  <strong class="block text-slate-900">State:</strong> <span><%= entity.state?.name %></span>
+                </div>
+              <% } %>
+              <% if (entityType === 'state' || entityType === 'city') { %>
+                <div class="rounded-2xl bg-white p-4 shadow-sm">
+                  <strong class="block text-slate-900">Country:</strong> <span><%= entity.country?.name %></span>
+                </div>
+              <% } %>
+            </div>
+          </div>
+        </div>
       </section>
-      <section class="rounded-[2rem] bg-white border border-slate-200 shadow-sm p-10">
-        <% if (bodyContent) { %>
-          <div class="prose max-w-none text-slate-700"><%= bodyContent %></div>
-        <% } else { %>
-          <p class="text-slate-600">Content is not yet available for this section. Please add it from the admin interface.</p>
-        <% } %>
+
+      <section class="grid gap-6 lg:grid-cols-[2fr_1fr]">
+        <div class="rounded-[2rem] bg-white border border-slate-200 p-10 shadow-sm">
+          <% if (bodyContent) { %>
+            <div class="prose max-w-none text-slate-700"><%= bodyContent %></div>
+          <% } else { %>
+            <div class="rounded-[1.75rem] border border-dashed border-slate-300 bg-slate-50 p-10 text-slate-600">
+              <p class="mb-4">There is no content for this section yet.</p>
+              <p class="font-semibold text-slate-900">Add the section text from the admin interface to populate this page.</p>
+            </div>
+          <% } %>
+        </div>
+        <aside class="rounded-[2rem] bg-slate-50 border border-slate-200 p-8 shadow-sm">
+          <h2 class="text-lg font-semibold text-slate-900">Destination links</h2>
+          <p class="mt-4 text-slate-600">Jump to the main pages connected to this <%= entityType %> while browsing this internal section.</p>
+          <div class="mt-6 space-y-3">
+            <% if (entityType === 'city' && entity.state) { %>
+              <a class="block rounded-2xl border border-slate-200 bg-white px-4 py-3 text-sm font-medium text-slate-900 transition hover:bg-slate-50" href="/states/<%= entity.state.slug %>">View state: <%= entity.state.name %></a>
+            <% } %>
+            <% if ((entityType === 'state' || entityType === 'city') && entity.country) { %>
+              <a class="block rounded-2xl border border-slate-200 bg-white px-4 py-3 text-sm font-medium text-slate-900 transition hover:bg-slate-50" href="/countries/<%= entity.country.slug %>">View country: <%= entity.country.name %></a>
+            <% } %>
+            <a class="block rounded-2xl border border-slate-200 bg-white px-4 py-3 text-sm font-medium text-slate-900 transition hover:bg-slate-50" href="/<%= entityType %>s/<%= entity.slug %>">Open main <%= entityType %> page</a>
+          </div>
+
+          <h2 class="mt-10 text-lg font-semibold text-slate-900">Need to update this page?</h2>
+          <p class="mt-4 text-slate-600">Open the admin editor for this destination and set the content for the selected internal page.</p>
+          <div class="mt-6 space-y-3">
+            <% if (entity._id) { %>
+              <a class="block rounded-2xl border border-slate-200 bg-white px-4 py-3 text-sm font-medium text-slate-900 transition hover:bg-slate-50" href="/admin/<%= entityType %>s/<%= entity._id %>/edit">Edit this destination</a>
+            <% } %>
+            <a class="block rounded-2xl border border-slate-200 bg-white px-4 py-3 text-sm font-medium text-slate-900 transition hover:bg-slate-50" href="/admin/<%= entityType %>s">Open admin list</a>
+          </div>
+        </aside>
       </section>
+
+      <% if (linkedEntries && linkedEntries.length) { %>
+        <section class="mt-10">
+          <div class="mb-6 flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
+            <div>
+              <p class="text-sm uppercase tracking-[0.28em] font-semibold text-sky-600">Linked entries</p>
+              <h2 class="mt-2 text-3xl font-semibold text-slate-900"><%= linkedEntriesTitle %></h2>
+            </div>
+          </div>
+          <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+            <% linkedEntries.forEach(item => { %>
+              <% const itemTypeMap = { city: 'cities', attraction: 'attractions', activity: 'activities' }; %>
+              <% const itemLabelMap = { city: 'city', attraction: 'attraction', activity: 'activity' }; %>
+              <% const itemType = itemTypeMap[item.entryType] || 'cities'; %>
+              <% const itemLabel = itemLabelMap[item.entryType] || 'entry'; %>
+              <article class="group overflow-hidden rounded-[1.75rem] border border-slate-200 bg-white shadow-sm transition duration-200 hover:-translate-y-1 hover:shadow-lg">
+                <a href="/<%= itemType %>/<%= item.slug %>" class="block">
+                  <div class="relative h-52 bg-cover bg-center" style="background-image:url('<%= item.heroImage || '/images/placeholder.jpg' %>')">
+                    <div class="absolute inset-0 bg-slate-950/20 transition duration-300 group-hover:bg-slate-950/35"></div>
+                    <div class="absolute inset-x-4 bottom-4 px-4 py-3 transition duration-300">
+                      <p class="text-xs font-semibold uppercase tracking-[0.24em] text-white/90"><%= itemLabel %></p>
+                      <h3 class="mt-2 text-xl font-semibold text-white">
+                        <span class="drop-shadow-sm"><%= item.name %></span>
+                      </h3>
+                    </div>
+                  </div>
+                </a>
+                <div class="p-6">
+                  <p class="mt-3 text-sm leading-6 text-slate-600"><%= item.summary || item.description?.slice(0, 120) || `Explore this ${itemLabel}.` %></p>
+                </div>
+              </article>
+            <% }) %>
+          </div>
+        </section>
+      <% } %>
     </main>
     <%- include('partials/footer') %>
   </body>

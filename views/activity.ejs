@@ -10,10 +10,12 @@
         <div class="absolute inset-0 bg-slate-950/45"></div>
         <div class="h-[420px] bg-cover bg-center" style="background-image:url('<%= activity.heroImage || '/images/placeholder.jpg' %>')"></div>
         <div class="relative mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 py-20">
-          <div class="max-w-3xl text-white">
-            <p class="text-sm uppercase tracking-[0.28em] text-sky-300 font-semibold"><%= activity.category || 'Activity' %></p>
-            <h1 class="mt-4 text-4xl font-semibold tracking-tight"><%= activity.name %></h1>
-            <p class="mt-6 text-lg leading-8 text-slate-200"><%= activity.summary || activity.description?.slice(0, 160) || 'Discover this activity and book your experience.' %></p>
+          <div class="group max-w-3xl">
+            <div class="inline-block max-w-3xl rounded-[2rem] px-8 py-8 transition duration-300 group-hover:border group-hover:border-white/30 group-hover:bg-white/15 group-hover:backdrop-blur-md">
+              <p class="text-sm uppercase tracking-[0.28em] text-sky-100 font-semibold"><%= activity.category || 'Activity' %></p>
+              <h1 class="mt-4 text-4xl font-semibold tracking-tight text-white"><%= activity.name %></h1>
+              <p class="mt-6 text-lg leading-8 text-slate-100"><%= activity.summary || activity.description?.slice(0, 160) || 'Discover this activity and book your experience.' %></p>
+            </div>
           </div>
         </div>
       </section>
@@ -26,13 +28,37 @@
           <div class="rounded-[1.75rem] bg-white border border-slate-200 p-8 shadow-sm">
             <div class="space-y-4 text-slate-700">
               <% if (activity.country) { %>
-                <a href="/countries/<%= activity.country.slug %>" class="block rounded-2xl border border-slate-200 bg-slate-50 px-4 py-3 text-slate-900 transition hover:bg-slate-100">Country: <%= activity.country.name %></a>
+                <a href="/countries/<%= activity.country.slug %>" class="group block overflow-hidden rounded-2xl border border-slate-200 shadow-sm transition duration-200 hover:-translate-y-1 hover:shadow-lg">
+                  <div class="relative h-32 bg-cover bg-center" style="background-image:url('<%= activity.country.heroImage || '/images/placeholder.jpg' %>')">
+                    <div class="absolute inset-0 bg-slate-950/20 transition duration-300 group-hover:bg-slate-950/35"></div>
+                    <div class="absolute inset-x-4 bottom-4 px-4 py-3 transition duration-300">
+                      <p class="text-xs font-semibold uppercase tracking-[0.24em] text-white/90">Country</p>
+                      <p class="mt-2 text-lg font-semibold text-white"><span class="drop-shadow-sm"><%= activity.country.name %></span></p>
+                    </div>
+                  </div>
+                </a>
               <% } %>
               <% if (activity.state) { %>
-                <a href="/states/<%= activity.state.slug %>" class="block rounded-2xl border border-slate-200 bg-slate-50 px-4 py-3 text-slate-900 transition hover:bg-slate-100">State: <%= activity.state.name %></a>
+                <a href="/states/<%= activity.state.slug %>" class="group block overflow-hidden rounded-2xl border border-slate-200 shadow-sm transition duration-200 hover:-translate-y-1 hover:shadow-lg">
+                  <div class="relative h-32 bg-cover bg-center" style="background-image:url('<%= activity.state.heroImage || '/images/placeholder.jpg' %>')">
+                    <div class="absolute inset-0 bg-slate-950/20 transition duration-300 group-hover:bg-slate-950/35"></div>
+                    <div class="absolute inset-x-4 bottom-4 px-4 py-3 transition duration-300">
+                      <p class="text-xs font-semibold uppercase tracking-[0.24em] text-white/90">State</p>
+                      <p class="mt-2 text-lg font-semibold text-white"><span class="drop-shadow-sm"><%= activity.state.name %></span></p>
+                    </div>
+                  </div>
+                </a>
               <% } %>
               <% if (activity.city) { %>
-                <a href="/cities/<%= activity.city.slug %>" class="block rounded-2xl border border-slate-200 bg-slate-50 px-4 py-3 text-slate-900 transition hover:bg-slate-100">City: <%= activity.city.name %></a>
+                <a href="/cities/<%= activity.city.slug %>" class="group block overflow-hidden rounded-2xl border border-slate-200 shadow-sm transition duration-200 hover:-translate-y-1 hover:shadow-lg">
+                  <div class="relative h-32 bg-cover bg-center" style="background-image:url('<%= activity.city.heroImage || '/images/placeholder.jpg' %>')">
+                    <div class="absolute inset-0 bg-slate-950/20 transition duration-300 group-hover:bg-slate-950/35"></div>
+                    <div class="absolute inset-x-4 bottom-4 px-4 py-3 transition duration-300">
+                      <p class="text-xs font-semibold uppercase tracking-[0.24em] text-white/90">City</p>
+                      <p class="mt-2 text-lg font-semibold text-white"><span class="drop-shadow-sm"><%= activity.city.name %></span></p>
+                    </div>
+                  </div>
+                </a>
               <% } %>
             </div>
           </div>

@@ -46,6 +46,24 @@ const buildPackageQuery = ({ countryIds = [], stateIds = [], cityIds = [], attra
   return clauses.length ? { $or: clauses } : { _id: null };
 };
 
+const parseSearchQuery = (req) => {
+  const search = (req.query.q || req.query.search || '').toString().trim();
+  if (!search) return null;
+  const regex = new RegExp(search.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'), 'i');
+  return { $or: [
+    { name: regex },
+    { slug: regex },
+    { summary: regex },
+    { description: regex }
+  ] };
+};
+
+const parsePagination = (req, defaultLimit = 12) => {
+  const page = Math.max(1, parseInt(req.query.page, 10) || 1);
+  const limit = Math.max(1, Math.min(100, parseInt(req.query.limit, 10) || defaultLimit));
+  return { page, limit, skip: (page - 1) * limit };
+};
+
 const findPackages = async (query) => {
   return Package.find(query).sort(sortQuery).lean();
 };
@@ -85,9 +103,18 @@ router.get('/', async (req, res) => {
 });
 
 router.get('/countries', async (req, res) => {
-  const countries = await Country.find().sort(sortQuery).lean();
+  const { page, limit, skip } = parsePagination(req, 12);
+  const total = await Country.countDocuments();
+  const countries = await Country.find().sort(sortQuery).skip(skip).limit(limit).lean();
   res.render('countries', {
     countries,
+    pagination: {
+      page,
+      limit,
+      total,
+      totalPages: Math.max(1, Math.ceil(total / limit)),
+      baseUrl: '/countries'
+    },
     ...buildMeta({
       title: 'Countries | Tour & Travel',
       description: 'Browse all countries available in the travel portal.',
@@ -187,9 +214,18 @@ router.get('/countries/:slug/:section', async (req, res) => {
 });
 
 router.get('/states', async (req, res) => {
-  const states = await State.find().sort(sortQuery).lean();
+  const { page, limit, skip } = parsePagination(req, 12);
+  const total = await State.countDocuments();
+  const states = await State.find().sort(sortQuery).skip(skip).limit(limit).lean();
   res.render('states', {
     states,
+    pagination: {
+      page,
+      limit,
+      total,
+      totalPages: Math.max(1, Math.ceil(total / limit)),
+      baseUrl: '/states'
+    },
     ...buildMeta({
       title: 'States | Tour & Travel',
       description: 'Browse all states and regions available in the travel portal.',
@@ -199,9 +235,18 @@ router.get('/states', async (req, res) => {
 });
 
 router.get('/cities', async (req, res) => {
-  const cities = await City.find().sort(sortQuery).populate('state country').lean();
+  const { page, limit, skip } = parsePagination(req, 12);
+  const total = await City.countDocuments();
+  const cities = await City.find().sort(sortQuery).populate('state country').skip(skip).limit(limit).lean();
   res.render('cities', {
     cities,
+    pagination: {
+      page,
+      limit,
+      total,
+      totalPages: Math.max(1, Math.ceil(total / limit)),
+      baseUrl: '/cities'
+    },
     ...buildMeta({
       title: 'Cities | Tour & Travel',
       description: 'Browse all cities in the travel portal, dynamically sorted by priority.',
@@ -211,9 +256,18 @@ router.get('/cities', async (req, res) => {
 });
 
 router.get('/attractions', async (req, res) => {
-  const attractions = await Attraction.find().sort(sortQuery).populate('country state city').lean();
+  const { page, limit, skip } = parsePagination(req, 12);
+  const total = await Attraction.countDocuments();
+  const attractions = await Attraction.find().sort(sortQuery).populate('country state city').skip(skip).limit(limit).lean();
   res.render('attractions', {
     attractions,
+    pagination: {
+      page,
+      limit,
+      total,
+      totalPages: Math.max(1, Math.ceil(total / limit)),
+      baseUrl: '/attractions'
+    },
     ...buildMeta({
       title: 'Attractions | Tour & Travel',
       description: 'Explore the attractions curated by the travel admin.',
@@ -223,9 +277,18 @@ router.get('/attractions', async (req, res) => {
 });
 
 router.get('/activities', async (req, res) => {
-  const activities = await Activity.find().sort(sortQuery).populate('country state city').lean();
+  const { page, limit, skip } = parsePagination(req, 12);
+  const total = await Activity.countDocuments();
+  const activities = await Activity.find().sort(sortQuery).populate('country state city').skip(skip).limit(limit).lean();
   res.render('activities', {
     activities,
+    pagination: {
+      page,
+      limit,
+      total,
+      totalPages: Math.max(1, Math.ceil(total / limit)),
+      baseUrl: '/activities'
+    },
     ...buildMeta({
       title: 'Activities | Tour & Travel',
       description: 'Browse the activity-led experiences curated for travelers.',
@@ -235,12 +298,49 @@ router.get('/activities', async (req, res) => {
 });
 
 router.get('/packages', async (req, res) => {
-  const packages = await Package.find().sort(sortQuery).lean();
+  const { page, limit, skip } = parsePagination(req, 12);
+  const total = await Package.countDocuments();
+  const packages = await Package.find().sort(sortQuery).skip(skip).limit(limit).lean();
   res.render('packages', {
     packages,
+    pagination: {
+      page,
+      limit,
+      total,
+      totalPages: Math.max(1, Math.ceil(total / limit)),
+      baseUrl: '/packages'
+    },
     ...buildMeta({
       title: 'Packages | Tour & Travel',
       description: 'Explore curated tour packages and itineraries managed through the admin portal.',
+      url: `${process.env.SITE_URL || 'http://localhost:3000'}${req.originalUrl}`
+    })
+  });
+});
+
+router.get('/search', async (req, res) => {
+  const q = (req.query.q || '').toString().trim();
+  const searchFilter = parseSearchQuery(req);
+  const [countries, states, cities, attractions, activities, packages] = await Promise.all([
+    Country.find(searchFilter || {}).sort(sortQuery).limit(12).lean(),
+    State.find(searchFilter || {}).sort(sortQuery).limit(12).lean(),
+    City.find(searchFilter || {}).sort(sortQuery).limit(12).lean(),
+    Attraction.find(searchFilter || {}).sort(sortQuery).limit(12).lean(),
+    Activity.find(searchFilter || {}).sort(sortQuery).limit(12).lean(),
+    Package.find(searchFilter || {}).sort(sortQuery).limit(12).lean()
+  ]);
+
+  res.render('search', {
+    query: q,
+    countries,
+    states,
+    cities,
+    attractions,
+    activities,
+    packages,
+    ...buildMeta({
+      title: q ? `Search results for ${q} | Tour & Travel` : 'Search | Tour & Travel',
+      description: q ? `Search results for ${q}.` : 'Search travel destinations, experiences, and packages.',
       url: `${process.env.SITE_URL || 'http://localhost:3000'}${req.originalUrl}`
     })
   });
@@ -325,12 +425,16 @@ router.get('/states/:slug/:section', async (req, res) => {
   };
 
   if (section in sectionContent) {
+    const cities = await City.find({ state: state._id }).sort(sortQuery).limit(6).lean();
+
     return res.render('special-page', {
       entity: state,
       entityType: 'state',
       section,
       sectionTitle: title,
       bodyContent: sectionContent[section],
+      linkedEntries: cities.map((item) => ({ ...item, entryType: 'city' })),
+      linkedEntriesTitle: 'Cities in this state',
       ...buildMeta({
         title: `${title} in ${state.name} | Tour & Travel`,
         description: state.seoDescription || `Discover ${title.toLowerCase()} in ${state.name}.`,
@@ -411,12 +515,22 @@ router.get('/cities/:slug/:section', async (req, res) => {
   };
 
   if (section in sectionContent) {
+    const [attractions, activities] = await Promise.all([
+      Attraction.find({ city: city._id }).sort(sortQuery).limit(4).lean(),
+      Activity.find({ city: city._id }).sort(sortQuery).limit(4).lean()
+    ]);
+
     return res.render('special-page', {
       entity: city,
       entityType: 'city',
       section,
       sectionTitle: title,
       bodyContent: sectionContent[section],
+      linkedEntries: [
+        ...attractions.map((item) => ({ ...item, entryType: 'attraction' })),
+        ...activities.map((item) => ({ ...item, entryType: 'activity' }))
+      ].slice(0, 6),
+      linkedEntriesTitle: `Explore more in ${city.name}`,
       ...buildMeta({
         title: `${title} in ${city.name} | Tour & Travel`,
         description: city.seoDescription || `Discover ${title.toLowerCase()} in ${city.name}.`,

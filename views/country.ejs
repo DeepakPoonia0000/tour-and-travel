@@ -2,102 +2,287 @@
 <html lang="en">
   <head>
     <%- include('partials/head') %>
+    <style>
+      .material-symbols-outlined {
+        font-variation-settings: 'FILL' 0, 'wght' 500, 'GRAD' 0, 'opsz' 24;
+      }
+
+      .glass-effect {
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+      }
+    </style>
   </head>
-  <body class="min-h-screen bg-slate-50 text-slate-900">
+  <body class="min-h-screen bg-surface text-slate-900">
     <%- include('partials/header') %>
-    <main class="space-y-12">
-      <section class="relative overflow-hidden">
-        <div class="absolute inset-0 bg-slate-950/45"></div>
-        <div class="h-[420px] bg-cover bg-center" style="background-image:url('<%= country.heroImage || '/images/placeholder.jpg' %>')"></div>
-        <div class="relative mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 py-20">
-          <div class="max-w-3xl text-white">
-            <p class="text-sm uppercase tracking-[0.28em] text-sky-300 font-semibold">Country Spotlight</p>
-            <h1 class="mt-4 text-5xl font-semibold tracking-tight"><%= country.name %></h1>
-            <p class="mt-6 text-lg leading-8 text-slate-200"><%= country.summary || country.description?.slice(0, 160) || 'Explore top destinations and curated travel guides.' %></p>
-          </div>
-        </div>
-      </section>
-
-      <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="grid gap-8 lg:grid-cols-[1.4fr_0.6fr] items-start">
-          <div class="rounded-[1.75rem] bg-white border border-slate-200 p-10 shadow-sm">
-            <h2 class="text-3xl font-semibold text-slate-900">About <%= country.name %></h2>
-            <p class="mt-4 text-slate-600"><%= country.description || 'This destination is managed by the admin and displays dynamic travel content across all sections.' %></p>
-          </div>
-          <div class="rounded-[1.75rem] bg-white border border-slate-200 p-8 shadow-sm">
-            <div class="space-y-3">
-              <a href="/countries/<%= country.slug %>/things-to-do" class="block rounded-2xl border border-slate-200 bg-slate-50 px-4 py-4 text-slate-900 transition hover:bg-slate-100">Things to do</a>
-              <a href="/countries/<%= country.slug %>/places-to-visit" class="block rounded-2xl border border-slate-200 bg-slate-50 px-4 py-4 text-slate-900 transition hover:bg-slate-100">Places to visit</a>
-              <a href="/countries/<%= country.slug %>/best-time-to-visit" class="block rounded-2xl border border-slate-200 bg-slate-50 px-4 py-4 text-slate-900 transition hover:bg-slate-100">Best time to visit</a>
-              <a href="/countries/<%= country.slug %>/how-to-reach" class="block rounded-2xl border border-slate-200 bg-slate-50 px-4 py-4 text-slate-900 transition hover:bg-slate-100">How to reach</a>
-              <a href="/countries/<%= country.slug %>/hotels" class="block rounded-2xl border border-slate-200 bg-slate-50 px-4 py-4 text-slate-900 transition hover:bg-slate-100">Hotels</a>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section class="bg-slate-50 py-12">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div class="flex flex-col gap-4 md:flex-row md:items-end md:justify-between mb-6">
-            <div>
-              <p class="text-sm uppercase tracking-[0.28em] text-sky-600 font-semibold">Regional travel</p>
-              <h2 class="mt-2 text-3xl font-semibold text-slate-900">States & cities</h2>
-            </div>
-            <div class="flex flex-wrap gap-3">
-              <a href="/countries/<%= country.slug %>/cities" class="rounded-full bg-white px-5 py-3 text-sm font-medium text-slate-900 shadow-sm ring-1 ring-slate-200 transition hover:bg-slate-100">View cities</a>
-            </div>
-          </div>
-          <div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-3 mb-8">
-            <% states.slice(0, 6).forEach(state => { %>
-              <a href="/states/<%= state.slug %>" class="group rounded-[1.75rem] border border-slate-200 bg-white p-6 shadow-sm transition hover:-translate-y-1 hover:shadow-lg">
-                <strong class="text-lg font-semibold text-slate-900"><%= state.name %></strong>
-                <p class="mt-3 text-sm leading-6 text-slate-600"><%= state.summary?.slice(0, 80) || 'Discover this region.' %></p>
+    <%
+      const heroImage = country.heroImage || (cities[0] && cities[0].heroImage) || '/images/placeholder.jpg';
+      const countrySummary = country.summary || country.description?.slice(0, 220) || 'Explore a country of layered regions, standout cities, and editorially selected travel experiences.';
+      const countryDescription = country.description || 'This country page is dynamically generated from admin-managed content and curates regions, cities, attractions, activities, and planning guides.';
+      const featuredCities = cities.slice(0, 4);
+      const leadCity = featuredCities[0];
+      const leadCityTwo = featuredCities[1];
+      const secondaryCities = featuredCities.slice(2);
+      const featuredStates = states.slice(0, 4);
+      const featuredPackages = packages.slice(0, 3);
+      const guideCards = [
+        { label: 'Things to do', body: country.thingsToDo || 'Open the country-wide guide to activities, routes, and signature experiences.', href: `/countries/${country.slug}/things-to-do`, tag: 'Experiences' },
+        { label: 'Places to visit', body: country.placesToVisit || 'Browse top places, regions, and destination highlights across the country.', href: `/countries/${country.slug}/places-to-visit`, tag: 'Destinations' },
+        { label: 'Best time to visit', body: country.bestTimeToVisit || 'See when to travel for weather, festivals, and seasonal atmosphere.', href: `/countries/${country.slug}/best-time-to-visit`, tag: 'Seasonal' }
+      ];
+      const planningLinks = [
+        { label: 'Things to do', href: `/countries/${country.slug}/things-to-do` },
+        { label: 'Places to visit', href: `/countries/${country.slug}/places-to-visit` },
+        { label: 'Best time to visit', href: `/countries/${country.slug}/best-time-to-visit` },
+        { label: 'How to reach', href: `/countries/${country.slug}/how-to-reach` },
+        { label: 'Hotels', href: `/countries/${country.slug}/hotels` }
+      ];
+      const experienceTiles = [
+        { title: featuredPackages[0]?.name || 'Signature Itineraries', body: featuredPackages[0]?.summary || 'Multi-stop journeys that connect the country’s strongest destinations and experiences.', href: featuredPackages[0] ? `/packages/${featuredPackages[0].slug}` : `/countries/${country.slug}/things-to-do`, image: featuredPackages[0]?.heroImage || (activities[0] && activities[0].heroImage) || heroImage },
+        { title: (activities[0] && activities[0].name) || 'Local Experiences', body: (activities[0] && (activities[0].summary || activities[0].description?.slice(0, 100))) || 'Browse activities managed through the admin to surface local flavor and trip-defining moments.', href: activities[0] ? `/activities/${activities[0].slug}` : `/countries/${country.slug}/activities`, image: (activities[0] && activities[0].heroImage) || heroImage },
+        { title: (attractions[0] && attractions[0].name) || 'Landmark Stories', body: (attractions[0] && (attractions[0].summary || attractions[0].description?.slice(0, 100))) || 'Highlight major landmarks, heritage sites, and visual anchors across the country.', href: attractions[0] ? `/attractions/${attractions[0].slug}` : `/countries/${country.slug}/attractions`, image: (attractions[0] && attractions[0].heroImage) || heroImage }
+      ];
+    %>
+    <main class="pb-20 pt-24">
+      <section class="relative min-h-[760px] overflow-hidden">
+        <div class="absolute inset-0 bg-primary/20 z-10"></div>
+        <div class="absolute inset-0 bg-cover bg-center scale-105" style="background-image:url('<%= heroImage %>')"></div>
+        <div class="relative z-20 mx-auto flex min-h-[760px] max-w-7xl flex-col justify-center px-4 sm:px-6 lg:px-8">
+          <div class="max-w-3xl">
+            <span class="inline-flex rounded-full bg-secondary px-4 py-2 text-xs font-bold tracking-[0.22em] text-white uppercase">
+              Destination Overview
+            </span>
+            <h1 class="mt-6 font-serif text-5xl leading-tight text-white sm:text-7xl lg:text-8xl">
+              <%= country.name %>: the curated odyssey.
+            </h1>
+            <p class="mt-8 max-w-xl text-lg leading-8 text-white/90">
+              <%= countrySummary %>
+            </p>
+            <div class="mt-10 flex flex-wrap gap-4">
+              <a href="/packages" class="rounded-md bg-white px-8 py-4 text-sm font-bold tracking-wide text-primary transition hover:bg-surface2">
+                View Itineraries
               </a>
-            <% }) %>
+              <a href="/countries/<%= country.slug %>/places-to-visit" class="rounded-md border border-white/40 px-8 py-4 text-sm font-bold tracking-wide text-white transition hover:bg-white/10">
+                Explore Destinations
+              </a>
+            </div>
           </div>
-          <div class="grid gap-6 lg:grid-cols-3">
-            <% cities.slice(0, 6).forEach(city => { %>
-              <article class="overflow-hidden rounded-[1.75rem] border border-slate-200 bg-white shadow-sm">
-                <a href="/cities/<%= city.slug %>" class="block">
-                  <div class="h-52 bg-cover bg-center" style="background-image:url('<%= city.heroImage || '/images/placeholder.jpg' %>')"></div>
-                </a>
-                <div class="p-6">
-                  <h3 class="text-xl font-semibold text-slate-900"><a href="/cities/<%= city.slug %>" class="hover:text-sky-600"><%= city.name %></a></h3>
-                  <p class="mt-3 text-sm leading-6 text-slate-600"><%= city.summary || city.description?.slice(0, 120) || 'City-level travel details and attractions.' %></p>
+        </div>
+
+        <div class="absolute bottom-4 right-8 z-30 hidden md:block lg:right-24">
+          <div class="max-w-sm rounded-[1.5rem] bg-white p-8 shadow-2xl">
+            <p class="text-xs font-bold tracking-[0.24em] text-secondary uppercase">Cultural Insight</p>
+            <h3 class="mt-4 font-serif text-2xl text-slate-900">Travel the country through its regions</h3>
+            <p class="mt-4 text-sm leading-7 text-slate-600">
+              <%= country.placesToVisit || country.description?.slice(0, 160) || 'Use the dynamic country guides to move from iconic highlights into regional depth and local character.' %>
+            </p>
+            <a href="/countries/<%= country.slug %>/places-to-visit" class="mt-6 inline-flex items-center gap-2 border-b-2 border-primary pb-1 text-sm font-bold text-primary transition hover:gap-3">
+              Explore Traditions
+              <span class="material-symbols-outlined text-sm">arrow_forward</span>
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <nav class="flex flex-wrap items-center gap-2 py-6 text-sm text-slate-500">
+          <a class="transition hover:text-primary" href="/">Home</a>
+          <span class="material-symbols-outlined text-base text-slate-400">chevron_right</span>
+          <span class="font-semibold text-slate-900"><%= country.name %></span>
+        </nav>
+      </div>
+
+      <section class="mx-auto max-w-7xl px-4 py-24 sm:px-6 lg:px-8">
+        <div class="mb-16 flex flex-col gap-8 md:flex-row md:items-end md:justify-between">
+          <div class="max-w-2xl">
+            <h2 class="font-serif text-4xl leading-tight text-slate-900 sm:text-5xl">Urban spectacles and heritage havens</h2>
+            <p class="mt-6 text-lg leading-8 text-slate-600">
+              <%= countryDescription %>
+            </p>
+          </div>
+          <a href="/countries/<%= country.slug %>/cities" class="inline-flex w-fit items-center gap-4 font-bold text-primary">
+            <span>All Cities</span>
+            <span class="h-px w-12 bg-primary/30"></span>
+            <span class="material-symbols-outlined">east</span>
+          </a>
+        </div>
+
+        <% if (leadCity) { %>
+          <div class="grid grid-cols-1 gap-8 md:grid-cols-12">
+            <article class="group md:col-span-7">
+              <a href="/cities/<%= leadCity.slug %>" class="block">
+                <div class="relative mb-6 aspect-[16/9] overflow-hidden rounded-[1.5rem]">
+                  <div class="h-full w-full bg-cover bg-center transition duration-700 group-hover:scale-105" style="background-image:url('<%= leadCity.heroImage || heroImage %>')"></div>
+                  <div class="absolute left-6 top-6">
+                    <span class="rounded-full bg-white/90 px-4 py-1.5 text-[10px] font-bold tracking-[0.2em] text-primary uppercase backdrop-blur-md">
+                      City Highlight
+                    </span>
+                  </div>
                 </div>
-              </article>
-            <% }) %>
+                <h3 class="font-serif text-3xl text-slate-900"><%= leadCity.name %></h3>
+                <p class="mt-3 max-w-xl text-base leading-7 text-slate-600">
+                  <%= leadCity.summary || leadCity.description?.slice(0, 140) || 'One of the country’s defining city stops, with culture, energy, and layered local character.' %>
+                </p>
+              </a>
+              <a href="/cities/<%= leadCityTwo.slug %>" class="block md:mt-10">
+                <div class="relative mb-6 aspect-[16/9] overflow-hidden rounded-[1.5rem]">
+                  <div class="h-full w-full bg-cover bg-center transition duration-700 group-hover:scale-105" style="background-image:url('<%= leadCityTwo.heroImage || heroImage %>')"></div>
+                  <div class="absolute left-6 top-6">
+                    <span class="rounded-full bg-white/90 px-4 py-1.5 text-[10px] font-bold tracking-[0.2em] text-primary uppercase backdrop-blur-md">
+                      City Highlight
+                    </span>
+                  </div>
+                </div>
+                <h3 class="font-serif text-3xl text-slate-900"><%= leadCityTwo.name %></h3>
+                <p class="mt-3 max-w-xl text-base leading-7 text-slate-600">
+                  <%= leadCityTwo.summary || leadCityTwo.description?.slice(0, 140) || 'One of the country’s defining city stops, with culture, energy, and layered local character.' %>
+                </p>
+              </a>
+            </article>
+
+            <div class="space-y-8 md:col-span-5">
+              <% secondaryCities.forEach((city) => { %>
+                <article class="group">
+                  <a href="/cities/<%= city.slug %>" class="block">
+                    <div class="relative mb-4 h-[250px] overflow-hidden rounded-[1.5rem]">
+                      <div class="h-full w-full bg-cover bg-center transition duration-700 group-hover:scale-105" style="background-image:url('<%= city.heroImage || heroImage %>')"></div>
+                    </div>
+                    <h3 class="font-serif text-2xl text-slate-900"><%= city.name %></h3>
+                    <p class="mt-2 text-sm leading-6 text-slate-500">
+                      <%= city.summary || city.description?.slice(0, 90) || 'A distinct urban mood within the wider country journey.' %>
+                    </p>
+                  </a>
+                </article>
+              <% }) %>
+            </div>
+          </div>
+        <% } else { %>
+          <div class="rounded-[2rem] bg-white p-10 shadow-sm ring-1 ring-slate-200">
+            Cities will appear here as soon as they are added to <%= country.name %>.
+          </div>
+        <% } %>
+      </section>
+
+      <section class="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
+        <div class="mb-12 flex items-center gap-8">
+          <h2 class="shrink-0 font-serif text-4xl text-slate-900">Curated Travel Guides</h2>
+          <div class="h-px flex-grow bg-slate-200"></div>
+        </div>
+
+        <div class="grid gap-10 md:grid-cols-3">
+          <% guideCards.forEach((guide, index) => { %>
+            <article class="group">
+              <a href="<%= guide.href %>" class="block">
+                <div class="relative mb-6 h-64 overflow-hidden rounded-[1.25rem]">
+                  <div class="h-full w-full bg-cover bg-center grayscale transition duration-500 group-hover:grayscale-0" style="background-image:url('<%= (featuredStates[index] && featuredStates[index].heroImage) || (featuredCities[index] && featuredCities[index].heroImage) || heroImage %>')"></div>
+                  <div class="absolute right-4 top-4 text-white">
+                    <span class="material-symbols-outlined">bookmark_add</span>
+                  </div>
+                </div>
+                <div class="space-y-4">
+                  <span class="text-xs font-bold tracking-widest text-primary/60 uppercase"><%= guide.tag %></span>
+                  <h3 class="font-serif text-2xl text-slate-900 transition-colors group-hover:text-primary"><%= guide.label %></h3>
+                  <p class="text-sm leading-7 text-slate-600"><%= guide.body %></p>
+                  <span class="inline-flex items-center gap-2 text-sm font-bold text-primary transition group-hover:translate-x-2">
+                    Read Guide
+                    <span class="material-symbols-outlined text-sm">trending_flat</span>
+                  </span>
+                </div>
+              </a>
+            </article>
+          <% }) %>
+        </div>
+      </section>
+
+      <section class="mx-auto max-w-7xl px-4 py-24 sm:px-6 lg:px-8">
+        <div class="grid grid-cols-1 gap-6 md:grid-cols-4 md:grid-rows-2">
+          <% experienceTiles.forEach((tile, index) => { %>
+            <article class="<%= index === 0 ? 'md:col-span-2 md:row-span-2 min-h-[420px]' : 'min-h-[200px]' %> relative overflow-hidden rounded-[1.5rem] group">
+              <a href="<%= tile.href %>" class="absolute inset-0 block">
+                <div class="absolute inset-0 bg-cover bg-center transition duration-700 group-hover:scale-105" style="background-image:url('<%= tile.image %>')"></div>
+                <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
+                <div class="absolute bottom-6 left-6 right-6 text-white">
+                  <h3 class="font-serif <%= index === 0 ? 'text-3xl' : 'text-2xl' %>"><%= tile.title %></h3>
+                  <p class="mt-2 max-w-sm text-white/75"><%= tile.body %></p>
+                </div>
+              </a>
+            </article>
+          <% }) %>
+        </div>
+      </section>
+
+      <section class="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
+        <div class="grid gap-8 lg:grid-cols-[1.2fr_0.8fr]">
+          <div class="rounded-[2rem] bg-white p-8 shadow-sm ring-1 ring-slate-200 sm:p-10">
+            <span class="text-sm font-bold uppercase tracking-[0.3em] text-secondary">Regional Lens</span>
+            <h2 class="mt-4 font-serif text-3xl text-slate-900 sm:text-4xl">States and regions to know</h2>
+            <% if (featuredStates.length) { %>
+              <div class="mt-8 grid gap-4 md:grid-cols-2">
+                <% featuredStates.forEach((state) => { %>
+                  <a href="/states/<%= state.slug %>" class="rounded-[1.25rem] bg-surface2 p-5 transition hover:-translate-y-1 hover:shadow-md">
+                    <p class="text-xs font-semibold uppercase tracking-[0.22em] text-slate-500">State</p>
+                    <h3 class="mt-2 text-xl font-semibold text-slate-900"><%= state.name %></h3>
+                    <p class="mt-3 text-sm leading-6 text-slate-600"><%= state.summary || state.description?.slice(0, 100) || 'Explore this region within the country.' %></p>
+                  </a>
+                <% }) %>
+              </div>
+            <% } else { %>
+              <p class="mt-6 text-base leading-8 text-slate-600">Regions and states will show up here once they are added in admin.</p>
+            <% } %>
+          </div>
+
+          <div class="rounded-[2rem] bg-primary p-8 text-white shadow-xl sm:p-10">
+            <span class="text-sm font-bold uppercase tracking-[0.3em] text-white/70">Plan Your Journey</span>
+            <div class="mt-6 space-y-3">
+              <% planningLinks.forEach((item) => { %>
+                <a href="<%= item.href %>" class="flex items-center justify-between rounded-2xl bg-white/10 px-5 py-4 transition hover:bg-white/15">
+                  <span class="font-medium"><%= item.label %></span>
+                  <span class="material-symbols-outlined text-lg">arrow_forward</span>
+                </a>
+              <% }) %>
+            </div>
+            <div class="mt-8 rounded-[1.5rem] bg-white/10 p-5 text-sm leading-7 text-white/80">
+              <%= country.howToReach || 'Use the guide pages for transport, timing, practical planning, and hotel context across the country.' %>
+            </div>
           </div>
         </div>
       </section>
 
-      <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        <div class="flex flex-col gap-4 md:flex-row md:items-end md:justify-between mb-6">
-          <div>
-            <p class="text-sm uppercase tracking-[0.28em] text-sky-600 font-semibold">Live experiences</p>
-            <h2 class="mt-2 text-3xl font-semibold text-slate-900">Attractions and activities</h2>
+      <section class="mx-auto mb-16 max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div class="relative overflow-hidden rounded-[2rem] bg-primary p-10 sm:p-14">
+          <div class="relative z-10 grid gap-12 md:grid-cols-2 md:items-center">
+            <div>
+              <h2 class="font-serif text-4xl text-white">Start your curated odyssey today</h2>
+              <p class="mt-6 text-lg leading-8 text-white/80">
+                Join our inner circle for destination ideas, seasonal inspiration, and new package openings across <%= country.name %>.
+              </p>
+              <form class="mt-8 flex flex-col gap-4 sm:flex-row">
+                <input type="email" placeholder="Your email address" class="flex-grow rounded-md border border-white/20 bg-primary/20 px-6 py-4 text-white outline-none placeholder:text-white/50 focus:ring-2 focus:ring-secondary/50" />
+                <button type="button" class="rounded-md bg-secondary px-8 py-4 font-bold tracking-wide text-white">Subscribe</button>
+              </form>
+            </div>
+            <div class="hidden md:block">
+              <div class="rounded-[1.5rem] bg-white/10 p-8 shadow-2xl">
+                <h3 class="font-serif text-2xl text-white">Featured packages</h3>
+                <div class="mt-6 space-y-4">
+                  <% if (featuredPackages.length) { %>
+                    <% featuredPackages.forEach((pkg) => { %>
+                      <a href="/packages/<%= pkg.slug %>" class="block rounded-xl bg-white/10 p-4 transition hover:bg-white/15">
+                        <strong class="block text-white"><%= pkg.name %></strong>
+                        <span class="mt-2 block text-sm leading-6 text-white/70"><%= pkg.summary || 'A curated itinerary that traverses the country’s standout stops.' %></span>
+                      </a>
+                    <% }) %>
+                  <% } else { %>
+                    <p class="text-white/75">Packages tied to this country will automatically appear here once they are added.</p>
+                  <% } %>
+                </div>
+              </div>
+            </div>
           </div>
-          <div class="flex flex-wrap gap-3">
-            <a href="/countries/<%= country.slug %>/attractions" class="rounded-full bg-white px-5 py-3 text-sm font-medium text-slate-900 shadow-sm ring-1 ring-slate-200 transition hover:bg-slate-100">All attractions</a>
-            <a href="/countries/<%= country.slug %>/activities" class="rounded-full bg-white px-5 py-3 text-sm font-medium text-slate-900 shadow-sm ring-1 ring-slate-200 transition hover:bg-slate-100">All activities</a>
-          </div>
-        </div>
-        <div class="grid gap-6 lg:grid-cols-2">
-          <div class="space-y-4">
-            <% attractions.slice(0, 5).forEach(item => { %>
-              <a href="/attractions/<%= item.slug %>" class="block rounded-[1.5rem] border border-slate-200 bg-white p-5 text-slate-900 transition hover:bg-slate-50">
-                <strong class="text-lg font-semibold"><%= item.name %></strong>
-                <span class="mt-2 block text-sm text-slate-600"><%= item.category || 'Attraction' %></span>
-              </a>
-            <% }) %>
-          </div>
-          <div class="space-y-4">
-            <% activities.slice(0, 5).forEach(item => { %>
-              <a href="/activities/<%= item.slug %>" class="block rounded-[1.5rem] border border-slate-200 bg-white p-5 text-slate-900 transition hover:bg-slate-50">
-                <strong class="text-lg font-semibold"><%= item.name %></strong>
-                <span class="mt-2 block text-sm text-slate-600"><%= item.category || 'Activity' %></span>
-              </a>
-            <% }) %>
+          <div class="pointer-events-none absolute right-0 top-0 h-full w-1/2 opacity-10">
+            <svg class="h-full w-full" viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg">
+              <path d="M47.7,-64.1C60.1,-54.3,67.1,-38.3,71.7,-21.8C76.4,-5.2,78.7,11.9,73.5,27C68.4,42.1,55.8,55.1,41.2,63.1C26.5,71.1,9.8,74,-6.5,72.9C-22.8,71.8,-38.6,66.6,-51.7,56.5C-64.8,46.3,-75.1,31.2,-78.3,14.8C-81.5,-1.6,-77.7,-19.2,-68.8,-34.1C-59.9,-49,-46,-61.2,-31.2,-69.5C-16.4,-77.8,-0.8,-82.2,14.3,-78.6C29.4,-74.9,35.3,-73.9,47.7,-64.1Z" fill="#FFFFFF" transform="translate(200 200)"></path>
+            </svg>
           </div>
         </div>
       </section>

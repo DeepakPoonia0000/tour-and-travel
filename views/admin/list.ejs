@@ -15,6 +15,11 @@
           <a class="inline-flex rounded-2xl border border-slate-300 bg-white px-5 py-3 text-sm font-semibold text-slate-900 transition hover:bg-slate-50" href="/admin">Dashboard</a>
         </div>
       </header>
+      <form class="mb-6 flex flex-col gap-3 rounded-[1.75rem] border border-slate-200 bg-white p-6 shadow-sm sm:flex-row sm:items-center" action="/admin/<%= entity %>" method="GET">
+        <label class="sr-only" for="search">Search</label>
+        <input id="search" name="search" type="search" value="<%= search %>" placeholder="Search <%= entityLabel.toLowerCase() %>" class="w-full rounded-full border border-slate-300 bg-slate-50 px-4 py-3 text-sm text-slate-900 outline-none transition focus:border-sky-500 focus:bg-white focus:ring-2 focus:ring-sky-100" />
+        <button type="submit" class="inline-flex shrink-0 rounded-full bg-sky-600 px-6 py-3 text-sm font-semibold text-white transition hover:bg-sky-700">Search</button>
+      </form>
       <% if (!items.length) { %>
         <div class="rounded-[1.75rem] border border-dashed border-slate-300 bg-white p-10 text-center text-slate-600">No <%= entityLabel.toLowerCase() %> entries found yet.</div>
       <% } else { %>
@@ -47,6 +52,7 @@
             </tbody>
           </table>
         </div>
+        <%- include('../partials/pagination', { pagination }) %>
       <% } %>
     </div>
   </body>
