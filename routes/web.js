@@ -4,6 +4,8 @@ const State = require('../models/State');
 const City = require('../models/City');
 const Attraction = require('../models/Attraction');
 const Activity = require('../models/Activity');
+const Hotel = require('../models/Hotel');
+const Blog = require('../models/Blog');
 const Package = require('../models/Package');
 
 const router = express.Router();
@@ -68,6 +70,72 @@ const findPackages = async (query) => {
   return Package.find(query).sort(sortQuery).lean();
 };
 
+const hasBestTimeGuide = (entity) => {
+  const guide = entity?.bestTimeToVisitGuide;
+  if (!guide) return false;
+  return Boolean(
+    guide.heroTitle ||
+    guide.heroDescription ||
+    guide.heroImage ||
+    guide.heroCardTitle ||
+    (Array.isArray(guide.seasons) && guide.seasons.length) ||
+    (Array.isArray(guide.travelerProfiles) && guide.travelerProfiles.length)
+  );
+};
+
+const hasHotelGuide = (entity) => {
+  const guide = entity?.hotelGuide;
+  if (!guide) return false;
+  return Boolean(
+    guide.heroTitle ||
+    guide.heroDescription ||
+    guide.heroImage ||
+    (Array.isArray(guide.hotels) && guide.hotels.length)
+  );
+};
+
+const hasHowToReachGuide = (entity) => {
+  const guide = entity?.howToReachGuide;
+  if (!guide) return false;
+  return Boolean(
+    guide.heroTitle ||
+    guide.heroDescription ||
+    guide.heroImage ||
+    (Array.isArray(guide.sections) && guide.sections.length) ||
+    guide.mapTitle
+  );
+};
+
+const loadPlacesEntries = async (entityType, entity) => {
+  if (entityType === 'country') {
+    const [states, cities, attractions] = await Promise.all([
+      State.find({ country: entity._id }).sort(sortQuery).limit(3).lean(),
+      City.find({ country: entity._id }).sort(sortQuery).limit(3).lean(),
+      Attraction.find({ country: entity._id }).sort(sortQuery).limit(6).lean()
+    ]);
+    return { states, cities, attractions };
+  }
+
+  if (entityType === 'state') {
+    const [cities, attractions] = await Promise.all([
+      City.find({ state: entity._id }).sort(sortQuery).limit(3).lean(),
+      Attraction.find({ state: entity._id }).sort(sortQuery).limit(6).lean()
+    ]);
+    return { cities, attractions };
+  }
+
+  const attractions = await Attraction.find({ city: entity._id }).sort(sortQuery).limit(6).lean();
+  return { attractions };
+};
+
+const findRelatedBlogs = async (field, entityId, limit = 3) => {
+  if (!entityId) return [];
+  return Blog.find({ [field]: entityId })
+    .sort({ priority: 1, publishedAt: -1, updatedAt: -1 })
+    .limit(limit)
+    .lean();
+};
+
 router.get('/', async (req, res) => {
   const [countries, states, cities, attractions, activities, packages] = await Promise.all([
     Country.find().sort(sortQuery).lean(),
@@ -127,11 +195,12 @@ router.get('/countries/:slug', async (req, res) => {
   const country = await Country.findOne({ slug: req.params.slug }).lean();
   if (!country) return renderNotFound(res, req.originalUrl);
 
-  const [states, cities, attractions, activities] = await Promise.all([
+  const [states, cities, attractions, activities, relatedBlogs] = await Promise.all([
     State.find({ country: country._id }).sort(sortQuery).lean(),
     City.find({ country: country._id }).sort(sortQuery).lean(),
     Attraction.find({ country: country._id }).sort(sortQuery).lean(),
-    Activity.find({ country: country._id }).sort(sortQuery).lean()
+    Activity.find({ country: country._id }).sort(sortQuery).lean(),
+    findRelatedBlogs('countries', country._id)
   ]);
 
   const packages = await findPackages(buildPackageQuery({
@@ -149,6 +218,7 @@ router.get('/countries/:slug', async (req, res) => {
     attractions,
     activities,
     packages,
+    relatedBlogs,
     ...buildMeta({
       title: country.seoTitle || `${country.name} | Tour & Travel`,
       description: country.seoDescription || country.summary || country.description || `Explore ${country.name} with curated travel guides, attractions, and activities.`,
@@ -175,6 +245,76 @@ router.get('/countries/:slug/:section', async (req, res) => {
   };
 
   if (section in sectionContent) {
+    if (section === 'best-time-to-visit' && hasBestTimeGuide(country)) {
+      return res.render('best-time-guide', {
+        entity: country,
+        entityType: 'country',
+        section,
+        sectionTitle: title,
+        guide: country.bestTimeToVisitGuide,
+        linkedEntries: [],
+        linkedEntriesTitle: '',
+        ...buildMeta({
+          title: `${title} in ${country.name} | Tour & Travel`,
+          description: country.seoDescription || `Discover ${title.toLowerCase()} in ${country.name}.`,
+          url: `${process.env.SITE_URL || 'http://localhost:3000'}${req.originalUrl}`
+        })
+      });
+    }
+
+    if (section === 'how-to-reach' && hasHowToReachGuide(country)) {
+      return res.render('how-to-reach-guide', {
+        entity: country,
+        entityType: 'country',
+        section,
+        sectionTitle: title,
+        guide: country.howToReachGuide,
+        linkedEntries: [],
+        linkedEntriesTitle: '',
+        ...buildMeta({
+          title: `${title} in ${country.name} | Tour & Travel`,
+          description: country.seoDescription || `Discover ${title.toLowerCase()} in ${country.name}.`,
+          url: `${process.env.SITE_URL || 'http://localhost:3000'}${req.originalUrl}`
+        })
+      });
+    }
+
+    if (section === 'places-to-visit') {
+      const entries = await loadPlacesEntries('country', country);
+      return res.render('places-to-visit-guide', {
+        entity: country,
+        entityType: 'country',
+        section,
+        sectionTitle: title,
+        entries,
+        ...buildMeta({
+          title: `${title} in ${country.name} | Tour & Travel`,
+          description: country.seoDescription || `Discover ${title.toLowerCase()} in ${country.name}.`,
+          url: `${process.env.SITE_URL || 'http://localhost:3000'}${req.originalUrl}`
+        })
+      });
+    }
+
+    const countryHotels = section === 'hotels'
+      ? await Hotel.find({ country: country._id }).sort(sortQuery).limit(6).populate('city state country').lean()
+      : [];
+
+    if (section === 'hotels' && (hasHotelGuide(country) || countryHotels.length)) {
+      return res.render('hotels-guide', {
+        entity: country,
+        entityType: 'country',
+        section,
+        sectionTitle: title,
+        guide: country.hotelGuide,
+        hotels: countryHotels,
+        ...buildMeta({
+          title: `${title} in ${country.name} | Tour & Travel`,
+          description: country.seoDescription || `Discover ${title.toLowerCase()} in ${country.name}.`,
+          url: `${process.env.SITE_URL || 'http://localhost:3000'}${req.originalUrl}`
+        })
+      });
+    }
+
     return res.render('special-page', {
       entity: country,
       entityType: 'country',
@@ -379,10 +519,11 @@ router.get('/states/:slug', async (req, res) => {
   const state = await State.findOne({ slug: req.params.slug }).populate('country').lean();
   if (!state) return renderNotFound(res, req.originalUrl);
 
-  const [cities, attractions, activities] = await Promise.all([
+  const [cities, attractions, activities, relatedBlogs] = await Promise.all([
     City.find({ state: state._id }).sort(sortQuery).lean(),
     Attraction.find({ state: state._id }).sort(sortQuery).lean(),
-    Activity.find({ state: state._id }).sort(sortQuery).lean()
+    Activity.find({ state: state._id }).sort(sortQuery).lean(),
+    findRelatedBlogs('states', state._id)
   ]);
 
   const packages = await findPackages(buildPackageQuery({
@@ -399,6 +540,7 @@ router.get('/states/:slug', async (req, res) => {
     attractions,
     activities,
     packages,
+    relatedBlogs,
     ...buildMeta({
       title: state.seoTitle || `${state.name}, ${state.country.name} | Tour & Travel`,
       description: state.seoDescription || state.summary || state.description || `Explore ${state.name} and discover top cities, attractions, and activities.`,
@@ -426,6 +568,76 @@ router.get('/states/:slug/:section', async (req, res) => {
 
   if (section in sectionContent) {
     const cities = await City.find({ state: state._id }).sort(sortQuery).limit(6).lean();
+
+    if (section === 'best-time-to-visit' && hasBestTimeGuide(state)) {
+      return res.render('best-time-guide', {
+        entity: state,
+        entityType: 'state',
+        section,
+        sectionTitle: title,
+        guide: state.bestTimeToVisitGuide,
+        linkedEntries: cities.map((item) => ({ ...item, entryType: 'city' })),
+        linkedEntriesTitle: 'Cities in this state',
+        ...buildMeta({
+          title: `${title} in ${state.name} | Tour & Travel`,
+          description: state.seoDescription || `Discover ${title.toLowerCase()} in ${state.name}.`,
+          url: `${process.env.SITE_URL || 'http://localhost:3000'}${req.originalUrl}`
+        })
+      });
+    }
+
+    if (section === 'how-to-reach' && hasHowToReachGuide(state)) {
+      return res.render('how-to-reach-guide', {
+        entity: state,
+        entityType: 'state',
+        section,
+        sectionTitle: title,
+        guide: state.howToReachGuide,
+        linkedEntries: cities.map((item) => ({ ...item, entryType: 'city' })),
+        linkedEntriesTitle: 'Cities in this state',
+        ...buildMeta({
+          title: `${title} in ${state.name} | Tour & Travel`,
+          description: state.seoDescription || `Discover ${title.toLowerCase()} in ${state.name}.`,
+          url: `${process.env.SITE_URL || 'http://localhost:3000'}${req.originalUrl}`
+        })
+      });
+    }
+
+    if (section === 'places-to-visit') {
+      const entries = await loadPlacesEntries('state', state);
+      return res.render('places-to-visit-guide', {
+        entity: state,
+        entityType: 'state',
+        section,
+        sectionTitle: title,
+        entries,
+        ...buildMeta({
+          title: `${title} in ${state.name} | Tour & Travel`,
+          description: state.seoDescription || `Discover ${title.toLowerCase()} in ${state.name}.`,
+          url: `${process.env.SITE_URL || 'http://localhost:3000'}${req.originalUrl}`
+        })
+      });
+    }
+
+    const stateHotels = section === 'hotels'
+      ? await Hotel.find({ state: state._id }).sort(sortQuery).limit(6).populate('city state country').lean()
+      : [];
+
+    if (section === 'hotels' && (hasHotelGuide(state) || stateHotels.length)) {
+      return res.render('hotels-guide', {
+        entity: state,
+        entityType: 'state',
+        section,
+        sectionTitle: title,
+        guide: state.hotelGuide,
+        hotels: stateHotels,
+        ...buildMeta({
+          title: `${title} in ${state.name} | Tour & Travel`,
+          description: state.seoDescription || `Discover ${title.toLowerCase()} in ${state.name}.`,
+          url: `${process.env.SITE_URL || 'http://localhost:3000'}${req.originalUrl}`
+        })
+      });
+    }
 
     return res.render('special-page', {
       entity: state,
@@ -471,9 +683,10 @@ router.get('/cities/:slug', async (req, res) => {
   const city = await City.findOne({ slug: req.params.slug }).populate('country state').lean();
   if (!city) return renderNotFound(res, req.originalUrl);
 
-  const [attractions, activities] = await Promise.all([
+  const [attractions, activities, relatedBlogs] = await Promise.all([
     Attraction.find({ city: city._id }).sort(sortQuery).lean(),
-    Activity.find({ city: city._id }).sort(sortQuery).lean()
+    Activity.find({ city: city._id }).sort(sortQuery).lean(),
+    findRelatedBlogs('cities', city._id)
   ]);
 
   const packages = await findPackages(buildPackageQuery({
@@ -489,6 +702,7 @@ router.get('/cities/:slug', async (req, res) => {
     attractions,
     activities,
     packages,
+    relatedBlogs,
     ...buildMeta({
       title: city.seoTitle || `${city.name}, ${city.state.name} | Tour & Travel`,
       description: city.seoDescription || city.summary || city.description || `Explore ${city.name} with curated attractions and activities.`,
@@ -519,6 +733,82 @@ router.get('/cities/:slug/:section', async (req, res) => {
       Attraction.find({ city: city._id }).sort(sortQuery).limit(4).lean(),
       Activity.find({ city: city._id }).sort(sortQuery).limit(4).lean()
     ]);
+
+    if (section === 'best-time-to-visit' && hasBestTimeGuide(city)) {
+      return res.render('best-time-guide', {
+        entity: city,
+        entityType: 'city',
+        section,
+        sectionTitle: title,
+        guide: city.bestTimeToVisitGuide,
+        linkedEntries: [
+          ...attractions.map((item) => ({ ...item, entryType: 'attraction' })),
+          ...activities.map((item) => ({ ...item, entryType: 'activity' }))
+        ].slice(0, 6),
+        linkedEntriesTitle: `Explore more in ${city.name}`,
+        ...buildMeta({
+          title: `${title} in ${city.name} | Tour & Travel`,
+          description: city.seoDescription || `Discover ${title.toLowerCase()} in ${city.name}.`,
+          url: `${process.env.SITE_URL || 'http://localhost:3000'}${req.originalUrl}`
+        })
+      });
+    }
+
+    if (section === 'how-to-reach' && hasHowToReachGuide(city)) {
+      return res.render('how-to-reach-guide', {
+        entity: city,
+        entityType: 'city',
+        section,
+        sectionTitle: title,
+        guide: city.howToReachGuide,
+        linkedEntries: [
+          ...attractions.map((item) => ({ ...item, entryType: 'attraction' })),
+          ...activities.map((item) => ({ ...item, entryType: 'activity' }))
+        ].slice(0, 6),
+        linkedEntriesTitle: `Explore more in ${city.name}`,
+        ...buildMeta({
+          title: `${title} in ${city.name} | Tour & Travel`,
+          description: city.seoDescription || `Discover ${title.toLowerCase()} in ${city.name}.`,
+          url: `${process.env.SITE_URL || 'http://localhost:3000'}${req.originalUrl}`
+        })
+      });
+    }
+
+    if (section === 'places-to-visit') {
+      const entries = await loadPlacesEntries('city', city);
+      return res.render('places-to-visit-guide', {
+        entity: city,
+        entityType: 'city',
+        section,
+        sectionTitle: title,
+        entries,
+        ...buildMeta({
+          title: `${title} in ${city.name} | Tour & Travel`,
+          description: city.seoDescription || `Discover ${title.toLowerCase()} in ${city.name}.`,
+          url: `${process.env.SITE_URL || 'http://localhost:3000'}${req.originalUrl}`
+        })
+      });
+    }
+
+    const cityHotels = section === 'hotels'
+      ? await Hotel.find({ city: city._id }).sort(sortQuery).limit(6).populate('city state country').lean()
+      : [];
+
+    if (section === 'hotels' && (hasHotelGuide(city) || cityHotels.length)) {
+      return res.render('hotels-guide', {
+        entity: city,
+        entityType: 'city',
+        section,
+        sectionTitle: title,
+        guide: city.hotelGuide,
+        hotels: cityHotels,
+        ...buildMeta({
+          title: `${title} in ${city.name} | Tour & Travel`,
+          description: city.seoDescription || `Discover ${title.toLowerCase()} in ${city.name}.`,
+          url: `${process.env.SITE_URL || 'http://localhost:3000'}${req.originalUrl}`
+        })
+      });
+    }
 
     return res.render('special-page', {
       entity: city,
@@ -565,17 +855,21 @@ router.get('/cities/:slug/:section', async (req, res) => {
 router.get('/attractions/:slug', async (req, res) => {
   const attraction = await Attraction.findOne({ slug: req.params.slug }).populate('country state city').lean();
   if (!attraction) return renderNotFound(res, req.originalUrl);
-  const packages = await findPackages(buildPackageQuery({
-    countryIds: [attraction.country?._id].filter(Boolean),
-    stateIds: [attraction.state?._id].filter(Boolean),
-    cityIds: [attraction.city?._id].filter(Boolean),
-    attractionIds: [attraction._id],
-    activityIds: []
-  }));
+  const [packages, relatedBlogs] = await Promise.all([
+    findPackages(buildPackageQuery({
+      countryIds: [attraction.country?._id].filter(Boolean),
+      stateIds: [attraction.state?._id].filter(Boolean),
+      cityIds: [attraction.city?._id].filter(Boolean),
+      attractionIds: [attraction._id],
+      activityIds: []
+    })),
+    findRelatedBlogs('attractions', attraction._id)
+  ]);
 
-  res.render('attraction', {
+  res.render('attraction-showcase', {
     attraction,
     packages,
+    relatedBlogs,
     ...buildMeta({
       title: attraction.seoTitle || `${attraction.name} | Tour & Travel`,
       description: attraction.seoDescription || attraction.summary || attraction.description || `Discover ${attraction.name}.`,
@@ -605,6 +899,58 @@ router.get('/activities/:slug', async (req, res) => {
       description: activity.seoDescription || activity.summary || activity.description || `Discover ${activity.name}.`,
       keywords: activity.seoKeywords || activity.category,
       image: activity.heroImage,
+      url: `${process.env.SITE_URL || 'http://localhost:3000'}${req.originalUrl}`
+    })
+  });
+});
+
+router.get('/blogs', async (req, res) => {
+  const q = (req.query.q || '').toString().trim();
+  const filter = q ? {
+    $or: [
+      { name: new RegExp(q.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'), 'i') },
+      { summary: new RegExp(q.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'), 'i') },
+      { description: new RegExp(q.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'), 'i') },
+      { primaryCategory: new RegExp(q.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'), 'i') },
+      { categories: new RegExp(q.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'), 'i') }
+    ]
+  } : {};
+  const blogs = await Blog.find(filter).sort({ priority: 1, publishedAt: -1, updatedAt: -1 }).limit(18).lean();
+  const featuredBlog = blogs[0] || null;
+  const latestBlogs = featuredBlog ? blogs.slice(1) : blogs;
+
+  res.render('blogs', {
+    blogs,
+    featuredBlog,
+    latestBlogs,
+    query: q,
+    ...buildMeta({
+      title: 'Journal | Tour & Travel',
+      description: 'Editorial travel stories, guides, and destination dispatches.',
+      url: `${process.env.SITE_URL || 'http://localhost:3000'}${req.originalUrl}`
+    })
+  });
+});
+
+router.get('/blogs/:slug', async (req, res) => {
+  const blog = await Blog.findOne({ slug: req.params.slug })
+    .populate('countries states cities attractions')
+    .lean();
+  if (!blog) return renderNotFound(res, req.originalUrl);
+
+  const relatedBlogs = await Blog.find({ _id: { $ne: blog._id } })
+    .sort({ priority: 1, publishedAt: -1, updatedAt: -1 })
+    .limit(3)
+    .lean();
+
+  res.render('blog', {
+    blog,
+    relatedBlogs,
+    ...buildMeta({
+      title: blog.seoTitle || `${blog.name} | Tour & Travel`,
+      description: blog.seoDescription || blog.summary || blog.description || `Read ${blog.name}.`,
+      keywords: blog.seoKeywords || blog.categories?.join(', '),
+      image: blog.heroImage,
       url: `${process.env.SITE_URL || 'http://localhost:3000'}${req.originalUrl}`
     })
   });

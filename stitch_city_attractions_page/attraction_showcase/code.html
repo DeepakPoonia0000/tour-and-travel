@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;family=Manrope:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "on-secondary-container": "#672c00",
+              "tertiary-fixed-dim": "#59dbc7",
+              "error": "#ba1a1a",
+              "primary-fixed": "#cee5ff",
+              "inverse-surface": "#2d3133",
+              "secondary-fixed": "#ffdbc9",
+              "surface-container-high": "#e6e8ea",
+              "error-container": "#ffdad6",
+              "tertiary-fixed": "#79f7e3",
+              "secondary-container": "#fc8a40",
+              "on-primary-container": "#89bff4",
+              "primary": "#003759",
+              "on-tertiary-fixed-variant": "#005047",
+              "on-tertiary": "#ffffff",
+              "on-tertiary-container": "#4aceba",
+              "surface-container": "#eceef0",
+              "on-primary-fixed": "#001d33",
+              "primary-container": "#004e7c",
+              "on-primary": "#ffffff",
+              "on-surface": "#191c1e",
+              "inverse-on-surface": "#eff1f3",
+              "on-secondary-fixed": "#331200",
+              "primary-fixed-dim": "#97cbff",
+              "outline-variant": "#c1c7d0",
+              "surface-container-low": "#f2f4f6",
+              "on-error-container": "#93000a",
+              "surface-variant": "#e0e3e5",
+              "background": "#f7f9fb",
+              "surface-tint": "#256291",
+              "surface-container-highest": "#e0e3e5",
+              "on-surface-variant": "#41474f",
+              "secondary-fixed-dim": "#ffb68d",
+              "outline": "#717880",
+              "on-background": "#191c1e",
+              "surface-dim": "#d8dadc",
+              "surface": "#f7f9fb",
+              "on-primary-fixed-variant": "#004a76",
+              "on-tertiary-fixed": "#00201c",
+              "inverse-primary": "#97cbff",
+              "tertiary-container": "#00544a",
+              "surface-bright": "#f7f9fb",
+              "secondary": "#9b4500",
+              "on-secondary-fixed-variant": "#763300",
+              "on-secondary": "#ffffff",
+              "surface-container-lowest": "#ffffff",
+              "tertiary": "#003b34",
+              "on-error": "#ffffff"
+            },
+            fontFamily: {
+              "headline": ["Plus Jakarta Sans"],
+              "body": ["Manrope"],
+              "label": ["Manrope"]
+            },
+            borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+          },
+        },
+      }
+    </script>
+<style>
+      .material-symbols-outlined {
+        font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+      }
+      .editorial-shadow {
+        box-shadow: 0 32px 64px -12px rgba(25, 28, 30, 0.06);
+      }
+    </style>
+</head>
+<body class="bg-surface font-body text-on-surface antialiased">
+<!-- Top Navigation Bar -->
+<header class="fixed top-0 w-full z-50 bg-white/80 dark:bg-slate-900/80 backdrop-blur-md shadow-sm dark:shadow-none">
+<div class="flex justify-between items-center px-8 py-4 max-w-7xl mx-auto">
+<div class="text-2xl font-black text-sky-900 dark:text-sky-100 uppercase tracking-tighter font-headline">
+                The Editorial Explorer
+            </div>
+<nav class="hidden md:flex items-center space-gap-8 gap-8">
+<a class="font-headline font-bold tracking-tight text-sky-900 dark:text-sky-300 border-b-2 border-orange-600 pb-1" href="#">Destinations</a>
+<a class="font-headline font-bold tracking-tight text-slate-600 dark:text-slate-400 hover:text-sky-800 dark:hover:text-sky-200 transition-colors" href="#">Expeditions</a>
+<a class="font-headline font-bold tracking-tight text-slate-600 dark:text-slate-400 hover:text-sky-800 dark:hover:text-sky-200 transition-colors" href="#">Journal</a>
+<a class="font-headline font-bold tracking-tight text-slate-600 dark:text-slate-400 hover:text-sky-800 dark:hover:text-sky-200 transition-colors" href="#">About Us</a>
+</nav>
+<div class="flex items-center gap-6">
+<button class="material-symbols-outlined text-on-surface-variant hover:text-primary transition-colors" data-icon="search">search</button>
+<button class="bg-primary text-on-primary px-6 py-2.5 rounded-full font-headline font-bold text-sm tracking-wide hover:opacity-90 transition-all duration-300 scale-95 md:scale-100">
+                    Book Now
+                </button>
+</div>
+</div>
+</header>
+<main class="pt-20">
+<!-- Hero Section -->
+<section class="relative h-[870px] w-full overflow-hidden">
+<img alt="Hidden lagoon in Thailand" class="w-full h-full object-cover" data-alt="Cinematic wide shot of a turquoise hidden lagoon in Thailand surrounded by towering limestone cliffs at midday with sparkling water" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBZ5AqyYvgTsj17R32MGHEdt-CryAavO5BK2EQxi5topwPucrn7XJvTbcmhBxgEEO8G3TQx6mJiEC4iNocA0ahYvyCip7d2ILxCnNfuSIzJppIuEHYlIAyt3aiNG3-P4UZFDHyIeXIMfciL55qGaCKks7Q72s8FOEFQYZrZbiMPEBCWx8YY2LZ353Kf_mFSLmB4EI1piJKzYw9rM80Nt1Wn1M_-foK0-HhHK__WwZs6JwhhCQJJm6wNvGZ3xzXyzhIWrKZxnwpcVi8"/>
+<div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
+<div class="absolute bottom-0 left-0 w-full p-8 md:p-16 max-w-7xl mx-auto">
+<div class="max-w-3xl">
+<span class="inline-block px-4 py-1 rounded-full bg-secondary-container text-on-secondary-container font-label text-sm font-bold tracking-widest uppercase mb-6">
+                        Hidden Gem • Krabi
+                    </span>
+<h1 class="text-white font-headline text-5xl md:text-7xl font-extrabold tracking-tighter mb-4 leading-[1.1]">
+                        The Emerald Grotto of Phranang
+                    </h1>
+<p class="text-white/90 text-xl font-body max-w-2xl leading-relaxed">
+                        A secluded sanctuary carved by time, where turquoise tides meet ancient limestone monoliths in a silent dance of nature.
+                    </p>
+</div>
+</div>
+</section>
+<!-- Content Grid -->
+<section class="max-w-7xl mx-auto px-8 py-24">
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-16">
+<!-- Main Narrative Content -->
+<div class="lg:col-span-8">
+<div class="mb-16">
+<h2 class="font-headline text-3xl font-bold text-primary mb-8 tracking-tight">An Untouched Masterpiece</h2>
+<div class="space-y-6 text-on-surface-variant text-lg leading-loose font-body">
+<p>
+                                Tucked away from the bustling tourist trails of Ao Nang, the Emerald Grotto represents the pinnacle of Southern Thailand's coastal mystery. Accessible only during low tide through a narrow subterranean passage, the grotto opens into a breathtaking open-air cathedral of rock and flora.
+                            </p>
+<p>
+                                Here, the sunlight filters through the jungle canopy above, casting dancing patterns on the shallow crystalline waters. The silence is absolute, broken only by the distant call of tropical birds and the rhythmic lap of the Andaman Sea against the cave walls. This is not just a destination; it is a pilgrimage for those seeking the soul of the islands.
+                            </p>
+</div>
+</div>
+<!-- Bento Gallery -->
+<div class="grid grid-cols-2 gap-4 mb-20">
+<div class="col-span-2 md:col-span-1 h-80 rounded-xl overflow-hidden shadow-sm">
+<img alt="Close up of limestone" class="w-full h-full object-cover hover:scale-105 transition-transform duration-700" data-alt="Extreme close up of weathered grey limestone rock formations with vibrant green moss growing in the crevices in soft natural light" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDDq-Kh8iQHqGppFrcSuf7S1qF6WlVWwoYWTCbmS1LpBrgNkW-qRC_rKveUqdRxZy4gs8NRFCYJm32TIbGvQ9H--1jwwRiJB3foBjf21h3eJp_Fp2HRVyKoCv0djR1l35er9jCNfm9kMFGRmZprG9l58wBd9CzQljhqEy8KDQxTFqVxBdgZim5UdES5K31rH_WVfeZ4oX90r6t2BLQYkeEMcI0leWdn3eqpeSlCGFg6nEJI1bCY262IEP1nqV2xqsqEjU6FynGmD58"/>
+</div>
+<div class="col-span-2 md:col-span-1 h-80 rounded-xl overflow-hidden shadow-sm">
+<img alt="Local longtail boat" class="w-full h-full object-cover hover:scale-105 transition-transform duration-700" data-alt="Traditional Thai longtail boat with colorful ribbons moored on a white sand beach with clear blue water in the background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBP7eJT4MjyE_gWBpq6wIp6wmzPHj5JBthjRzIkTDa794S5Xntn9YBvUig_ymeQ2rAFmEuzDbdb1Daz9g_Uw2CyVgKIgjsG7uZ9XZ_wBRuZF0NzkQwTfnQOR3j-QT4TGMtFxNWTYsf7bPpxfjs_3IzjjUGAXCI4sMO372CgRWQrZ0eTzjXMBRqnZSrqjWu1YCj3b3GChfZjeMYFUsfz3y-mPjsIEGHPbVul16uiqVTwP6y3jeLbz4McAnEDF5QeGcXtsuaT1izP5ng"/>
+</div>
+<div class="col-span-2 h-96 rounded-xl overflow-hidden shadow-sm">
+<img alt="Aerial view of islands" class="w-full h-full object-cover hover:scale-105 transition-transform duration-700" data-alt="Breathtaking aerial view of several small tropical islands with white beaches surrounded by vivid turquoise coral reefs under a clear sky" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA3gsnAQ5hmcuYBbVmsvAKMIhL0tmPPtYsvVhhg1YhQBWz0JnGZSh3rt4JHwub7x9ph5CmsmJNSfk1_ZAYOub4ThNcxPe1U9nVLbF3IMISEsUfcHtBcj1uccJx927MkhG_ojYEHUi3BVwUUrcLq-84gYigXo3pXlN06RS1aH9I4fHPyVRCYNnIKvUgkr0ry-_p3J9U7-sJ_eDKUUnTPMEU4dJaA-1-kBX6iko9zM7rr-ug4bGD2gnLZg8NLkTzlvazckMNKWAena38"/>
+</div>
+</div>
+<!-- What to Expect -->
+<div class="bg-surface-container-low rounded-3xl p-10 editorial-shadow">
+<h3 class="font-headline text-2xl font-bold text-primary mb-8">What to Expect</h3>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+<div class="flex gap-4">
+<div class="bg-secondary-container/20 p-3 rounded-full h-fit">
+<span class="material-symbols-outlined text-secondary" data-icon="water_drop">water_drop</span>
+</div>
+<div>
+<h4 class="font-headline font-bold text-on-surface mb-2">Pristine Waters</h4>
+<p class="text-on-surface-variant text-sm leading-relaxed">Visibility up to 15 meters, perfect for observing local marine life and rock formations.</p>
+</div>
+</div>
+<div class="flex gap-4">
+<div class="bg-secondary-container/20 p-3 rounded-full h-fit">
+<span class="material-symbols-outlined text-secondary" data-icon="hiking">hiking</span>
+</div>
+<div>
+<h4 class="font-headline font-bold text-on-surface mb-2">Short Trek</h4>
+<p class="text-on-surface-variant text-sm leading-relaxed">A moderate 15-minute walk through coastal trails precedes the boat entrance.</p>
+</div>
+</div>
+<div class="flex gap-4">
+<div class="bg-secondary-container/20 p-3 rounded-full h-fit">
+<span class="material-symbols-outlined text-secondary" data-icon="camera">camera</span>
+</div>
+<div>
+<h4 class="font-headline font-bold text-on-surface mb-2">Photo Opportunities</h4>
+<p class="text-on-surface-variant text-sm leading-relaxed">The 'Golden Hour' here provides otherworldly lighting conditions for photography.</p>
+</div>
+</div>
+<div class="flex gap-4">
+<div class="bg-secondary-container/20 p-3 rounded-full h-fit">
+<span class="material-symbols-outlined text-secondary" data-icon="eco">eco</span>
+</div>
+<div>
+<h4 class="font-headline font-bold text-on-surface mb-2">Eco-Conscious</h4>
+<p class="text-on-surface-variant text-sm leading-relaxed">A protected zone with limited daily visitors to preserve the fragile ecosystem.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Sidebar Practical Info -->
+<aside class="lg:col-span-4">
+<div class="sticky top-32 space-y-8">
+<!-- Practical Info Card -->
+<div class="bg-white rounded-3xl p-8 editorial-shadow border border-outline-variant/10">
+<h3 class="font-headline text-xl font-bold text-primary mb-6">At a Glance</h3>
+<div class="space-y-6">
+<div class="flex justify-between items-center py-3 border-b border-outline-variant/10">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-on-surface-variant" data-icon="calendar_today">calendar_today</span>
+<span class="text-on-surface font-medium">Best Time</span>
+</div>
+<span class="text-secondary font-bold">Nov — April</span>
+</div>
+<div class="flex justify-between items-center py-3 border-b border-outline-variant/10">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-on-surface-variant" data-icon="fitness_center">fitness_center</span>
+<span class="text-on-surface font-medium">Difficulty</span>
+</div>
+<span class="text-on-surface-variant">Moderate</span>
+</div>
+<div class="flex justify-between items-center py-3 border-b border-outline-variant/10">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-on-surface-variant" data-icon="schedule">schedule</span>
+<span class="text-on-surface font-medium">Duration</span>
+</div>
+<span class="text-on-surface-variant">4-5 Hours</span>
+</div>
+<div class="flex justify-between items-center py-3">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-on-surface-variant" data-icon="group">group</span>
+<span class="text-on-surface font-medium">Group Size</span>
+</div>
+<span class="text-on-surface-variant">Max 8 people</span>
+</div>
+</div>
+</div>
+<!-- CTA Card -->
+<div class="bg-primary p-8 rounded-3xl text-on-primary editorial-shadow relative overflow-hidden">
+<div class="absolute -right-8 -top-8 w-32 h-32 bg-primary-container rounded-full blur-3xl opacity-50"></div>
+<h3 class="font-headline text-2xl font-extrabold mb-4 leading-tight">Secure Your Expedition</h3>
+<p class="text-primary-fixed mb-8 text-sm leading-relaxed">Join our expert-led tour to navigate the secret tides and witness the grotto in its best light.</p>
+<div class="flex flex-col gap-4">
+<div class="flex justify-between items-end mb-2">
+<span class="text-sm opacity-80">Starting from</span>
+<span class="text-3xl font-headline font-black">$120<span class="text-sm font-normal opacity-70">/pp</span></span>
+</div>
+<button class="w-full bg-secondary text-on-secondary py-4 rounded-full font-headline font-bold text-center hover:bg-secondary-container hover:text-on-secondary-container transition-all duration-300">
+                                    Book Your Tour
+                                </button>
+<p class="text-[10px] text-center uppercase tracking-widest opacity-60">Instant Confirmation • Secure Payment</p>
+</div>
+</div>
+<!-- Mini Map / Location -->
+<div class="rounded-3xl overflow-hidden h-48 relative shadow-sm grayscale hover:grayscale-0 transition-all duration-500">
+<div class="absolute inset-0 bg-primary/10 z-10 pointer-events-none"></div>
+<img alt="Map location" class="w-full h-full object-cover" data-alt="Abstract stylized map graphic of the Krabi coastline with topographical lines and deep blue ocean colors" data-location="Krabi, Thailand" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDFCtLzn-xBGAMTN_jpWzQG_9JV5Vyx6lVoB6OJEjyVH2LfZIY45XBbRSMUeMJkw9zcRU5eilsZLhe-NokAx3QbbeWNd6TmEElLzr7Egau-ZjpVvualO38z6ZogKSFouN-GmFDDf949Gnfd9C0NG3Id3ZHQfcYQsU6UtvTDV05Z_3-yahEJ0832HFUkifTdMtPlu-eyH5k9jahs3A1XjrmtQnjX21hVGFN1uTVxTmnGmlb5pRvAUudUFOgxbtQhiYWRg0c4OsYBlas"/>
+<div class="absolute bottom-4 left-4 z-20 bg-white/90 backdrop-blur px-3 py-1 rounded-lg">
+<span class="text-[10px] font-bold text-primary flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]" data-icon="location_on">location_on</span>
+                                    KRABI PROVINCE
+                                </span>
+</div>
+</div>
+</div>
+</aside>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="w-full mt-24 border-t border-slate-100 dark:border-slate-800 bg-slate-50 dark:bg-slate-950">
+<div class="grid grid-cols-1 md:grid-cols-4 gap-12 px-8 py-16 max-w-7xl mx-auto">
+<div class="space-y-6">
+<div class="text-xl font-bold text-sky-900 dark:text-sky-100 font-headline uppercase tracking-tighter">
+                    The Editorial Explorer
+                </div>
+<p class="text-slate-500 dark:text-slate-500 text-sm leading-relaxed font-body">
+                    Crafting intentional journeys for the modern wanderer. We believe in travel as an art form.
+                </p>
+</div>
+<div class="space-y-4">
+<h4 class="font-headline font-bold text-sky-900 dark:text-sky-400">Company</h4>
+<nav class="flex flex-col gap-2">
+<a class="text-slate-500 dark:text-slate-500 hover:text-sky-700 dark:hover:text-sky-300 transition-all text-sm font-body" href="#">Privacy Policy</a>
+<a class="text-slate-500 dark:text-slate-500 hover:text-sky-700 dark:hover:text-sky-300 transition-all text-sm font-body" href="#">Terms of Service</a>
+<a class="text-slate-500 dark:text-slate-500 hover:text-sky-700 dark:hover:text-sky-300 transition-all text-sm font-body" href="#">Travel Insurance</a>
+</nav>
+</div>
+<div class="space-y-4">
+<h4 class="font-headline font-bold text-sky-900 dark:text-sky-400">Newsletter</h4>
+<p class="text-slate-500 dark:text-slate-500 text-sm font-body">Subscribe to our monthly journal of discoveries.</p>
+<div class="flex gap-2">
+<input class="bg-white dark:bg-slate-900 border-none rounded-lg px-4 py-2 text-sm w-full focus:ring-1 focus:ring-sky-500" placeholder="Your email" type="email"/>
+</div>
+</div>
+<div class="space-y-4">
+<h4 class="font-headline font-bold text-sky-900 dark:text-sky-400">Contact</h4>
+<nav class="flex flex-col gap-2">
+<a class="text-slate-500 dark:text-slate-500 hover:text-sky-700 dark:hover:text-sky-300 transition-all text-sm font-body" href="#">Newsletter Signup</a>
+<a class="text-slate-500 dark:text-slate-500 hover:text-sky-700 dark:hover:text-sky-300 transition-all text-sm font-body" href="#">Contact</a>
+</nav>
+</div>
+</div>
+<div class="max-w-7xl mx-auto px-8 py-8 border-t border-slate-100 dark:border-slate-800 text-center">
+<p class="text-slate-500 dark:text-slate-500 text-xs font-body">© 2024 The Editorial Explorer. All rights reserved.</p>
+</div>
+</footer>
+</body></html>

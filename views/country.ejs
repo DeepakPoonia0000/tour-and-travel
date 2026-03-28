@@ -286,6 +286,12 @@
           </div>
         </div>
       </section>
+
+      <%- include('partials/related-blogs', {
+        relatedBlogs,
+        relatedBlogsTitle: `Stories linked to ${country.name}`,
+        relatedBlogsIntro: `These blog entries were linked to ${country.name} in admin and appear here automatically.`
+      }) %>
     </main>
     <%- include('partials/footer') %>
   </body>

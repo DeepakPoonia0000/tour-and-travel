@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <%- include('partials/head') %>
+  </head>
+  <body class="bg-surface font-body text-on-surface antialiased">
+    <%- include('partials/header') %>
+    <%
+      const heroTitle = attraction.showcaseTitle || attraction.name;
+      const heroIntro = attraction.showcaseIntro || attraction.summary || attraction.description;
+      const overviewTitle = attraction.overviewTitle || 'An Untouched Masterpiece';
+      const overviewBody = attraction.overviewBody || attraction.description || 'Discover this attraction through the latest admin-managed content.';
+      const galleryImages = Array.isArray(attraction.galleryImages) && attraction.galleryImages.length ? attraction.galleryImages : [attraction.heroImage, attraction.heroImage, attraction.heroImage].filter(Boolean);
+      const expectTitle = attraction.expectTitle || 'What to Expect';
+      const expectItems = Array.isArray(attraction.expectItems) ? attraction.expectItems.filter((item) => item && (item.title || item.text)) : [];
+    %>
+    <main class="pt-20">
+      <section class="relative h-[870px] w-full overflow-hidden">
+        <img alt="<%= attraction.name %>" class="h-full w-full object-cover" src="<%= attraction.heroImage || '/images/placeholder.jpg' %>"/>
+        <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
+        <div class="absolute bottom-0 left-0 w-full p-8 md:p-16 max-w-7xl mx-auto">
+          <div class="max-w-3xl">
+            <span class="inline-block rounded-full bg-orange-200 px-4 py-1 text-sm font-bold uppercase tracking-widest text-orange-900 mb-6">
+              <%= attraction.showcaseEyebrow || attraction.category || 'Attraction' %><% if (attraction.showcaseLocation) { %> • <%= attraction.showcaseLocation %><% } %>
+            </span>
+            <h1 class="text-white text-5xl md:text-7xl font-extrabold tracking-tighter mb-4 leading-[1.1]"><%= heroTitle %></h1>
+            <p class="text-white/90 text-xl max-w-2xl leading-relaxed"><%= heroIntro %></p>
+          </div>
+        </div>
+      </section>
+
+      <section class="max-w-7xl mx-auto px-8 py-24">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-16">
+          <div class="lg:col-span-8">
+            <div class="mb-16">
+              <h2 class="text-3xl font-bold text-primary mb-8 tracking-tight"><%= overviewTitle %></h2>
+              <div class="space-y-6 text-slate-600 text-lg leading-loose">
+                <p><%= overviewBody %></p>
+              </div>
+            </div>
+
+            <div class="grid grid-cols-2 gap-4 mb-20">
+              <% galleryImages.slice(0, 3).forEach((image, index) => { %>
+                <div class="<%= index === 2 ? 'col-span-2 h-96' : 'col-span-2 md:col-span-1 h-80' %> rounded-xl overflow-hidden shadow-sm">
+                  <img class="w-full h-full object-cover" src="<%= image || attraction.heroImage || '/images/placeholder.jpg' %>" alt="<%= attraction.name %>"/>
+                </div>
+              <% }) %>
+            </div>
+
+            <div class="bg-slate-100 rounded-3xl p-10 shadow-sm">
+              <h3 class="text-2xl font-bold text-primary mb-8"><%= expectTitle %></h3>
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <% expectItems.forEach((item) => { %>
+                  <div class="flex gap-4">
+                    <div class="bg-orange-100 p-3 rounded-full h-fit">
+                      <span class="material-symbols-outlined text-secondary"><%= item.icon || 'explore' %></span>
+                    </div>
+                    <div>
+                      <h4 class="font-bold text-slate-900 mb-2"><%= item.title %></h4>
+                      <p class="text-slate-600 text-sm leading-relaxed"><%= item.text %></p>
+                    </div>
+                  </div>
+                <% }) %>
+              </div>
+            </div>
+
+          </div>
+
+          <aside class="lg:col-span-4">
+            <div class="sticky top-32 space-y-8">
+              <div class="bg-white rounded-3xl p-8 shadow-sm border border-slate-200">
+                <h3 class="text-xl font-bold text-primary mb-6">At a Glance</h3>
+                <div class="space-y-6">
+                  <div class="flex justify-between items-center py-3 border-b border-slate-200"><span>Best Time</span><span class="text-secondary font-bold"><%= attraction.bestTime || 'Not set' %></span></div>
+                  <div class="flex justify-between items-center py-3 border-b border-slate-200"><span>Difficulty</span><span class="text-slate-600"><%= attraction.difficulty || 'Flexible' %></span></div>
+                  <div class="flex justify-between items-center py-3 border-b border-slate-200"><span>Duration</span><span class="text-slate-600"><%= attraction.duration || 'Half Day' %></span></div>
+                  <div class="flex justify-between items-center py-3"><span>Group Size</span><span class="text-slate-600"><%= attraction.groupSize || 'Open' %></span></div>
+                </div>
+              </div>
+              <div class="bg-primary p-8 rounded-3xl text-white shadow-sm">
+                <h3 class="text-2xl font-extrabold mb-4 leading-tight">Secure Your Expedition</h3>
+                <p class="text-blue-100 mb-8 text-sm leading-relaxed"><%= attraction.bookingNote || 'Add booking notes from admin to complete this call-to-action.' %></p>
+                <div class="flex flex-col gap-4">
+                  <div class="flex justify-between items-end mb-2">
+                    <span class="text-sm opacity-80">Starting from</span>
+                    <span class="text-3xl font-black"><%= attraction.bookingPrice || 'On Request' %></span>
+                  </div>
+                  <a href="/packages" class="w-full bg-secondary py-4 rounded-full font-bold text-center"><%= attraction.bookingLabel || 'Book Your Tour' %></a>
+                </div>
+              </div>
+              <div class="rounded-3xl overflow-hidden h-48 relative shadow-sm">
+                <img class="w-full h-full object-cover" src="<%= attraction.mapImage || attraction.heroImage || '/images/placeholder.jpg' %>" alt="<%= attraction.name %> map"/>
+                <div class="absolute bottom-4 left-4 bg-white/90 px-3 py-1 rounded-lg text-[10px] font-bold text-primary">
+                  <%= attraction.city?.name || attraction.state?.name || attraction.country?.name || attraction.showcaseLocation || 'Location' %>
+                </div>
+              </div>
+            </div>
+          </aside>
+        </div>
+      </section>
+
+      <%- include('partials/related-blogs', {
+        relatedBlogs,
+        relatedBlogsTitle: `Stories linked to ${attraction.name}`,
+        relatedBlogsIntro: `These blog entries were linked to ${attraction.name} in admin and appear here automatically.`
+      }) %>
+    </main>
+    <%- include('partials/footer') %>
+  </body>
+</html>

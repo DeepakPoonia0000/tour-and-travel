@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <%- include('partials/head') %>
+    <style>
+      .hotel-card:hover img {
+        transform: scale(1.05);
+      }
+    </style>
+  </head>
+  <body class="min-h-screen bg-surface text-slate-900">
+    <%- include('partials/header') %>
+    <%
+      const heroImage = guide.heroImage || entity.heroImage || '/images/placeholder.jpg';
+      const heroEyebrow = guide.heroEyebrow || 'The Curated Collection';
+      const heroTitle = guide.heroTitle || `Hotels in ${entity.name}`;
+      const heroDescription = guide.heroDescription || entity.hotels || entity.summary || `Discover standout stays in ${entity.name}.`;
+      const heroImageAlt = guide.heroImageAlt || `${entity.name} hotels`;
+      const filters = [guide.filterPrimary, guide.filterSecondary, guide.filterTertiary].filter(Boolean);
+      const tags = [guide.tagOne, guide.tagTwo, guide.tagThree].filter(Boolean);
+      const hotelCards = Array.isArray(hotels) && hotels.length
+        ? hotels
+        : Array.isArray(guide.hotels)
+          ? guide.hotels.filter((hotel) => hotel && (hotel.name || hotel.area || hotel.image || hotel.price || (hotel.features && hotel.features.length)))
+          : [];
+      const newsletterTitle = guide.newsletterTitle || 'Join the Voyager Circle.';
+      const newsletterText = guide.newsletterText || 'Early access to curated stays and editorial travel notes.';
+    %>
+    <main class="pb-20 pt-24">
+      <header class="mx-auto mb-16 grid max-w-7xl grid-cols-1 gap-8 px-4 sm:px-6 lg:grid-cols-12 lg:px-8">
+        <div class="lg:col-span-7">
+          <span class="block text-xs font-bold uppercase tracking-[0.2em] text-secondary"><%= heroEyebrow %></span>
+          <h1 class="mt-4 font-serif text-5xl font-black leading-tight text-primary md:text-7xl"><%= heroTitle %></h1>
+          <p class="mt-6 max-w-2xl text-xl leading-relaxed text-slate-600"><%= heroDescription %></p>
+        </div>
+        <div class="hidden lg:col-span-5 lg:block">
+          <div class="aspect-[4/3] overflow-hidden rounded-xl shadow-2xl">
+            <img alt="<%= heroImageAlt %>" class="h-full w-full object-cover" src="<%= heroImage %>"/>
+          </div>
+        </div>
+      </header>
+
+      <section class="sticky top-20 z-30 mx-auto mb-12 max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div class="flex flex-wrap items-center justify-between gap-4 rounded-xl border border-slate-200 bg-white/85 p-4 shadow-sm backdrop-blur-xl">
+          <div class="flex flex-wrap items-center gap-4">
+            <% filters.forEach((filter) => { %>
+              <div class="rounded-md bg-slate-100 px-4 py-2 text-sm font-medium text-slate-700"><%= filter %></div>
+            <% }) %>
+          </div>
+          <div class="flex flex-wrap items-center gap-2">
+            <% tags.forEach((tag, index) => { %>
+              <span class="rounded-full px-3 py-1.5 text-xs font-bold <%= index === 0 ? 'bg-orange-100 text-orange-800' : 'bg-slate-100 text-slate-700' %>"><%= tag %></span>
+            <% }) %>
+          </div>
+        </div>
+      </section>
+
+      <section class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <% if (hotelCards.length) { %>
+          <div class="grid grid-cols-1 gap-10 md:grid-cols-2 lg:grid-cols-3">
+            <% hotelCards.forEach((hotel, index) => { %>
+              <article class="hotel-card group <%= index % 3 === 1 ? 'lg:mt-12' : '' %>">
+                <div class="mb-6 aspect-[4/5] overflow-hidden rounded-xl relative">
+                  <img alt="<%= hotel.imageAlt || hotel.name || 'Hotel image' %>" class="h-full w-full object-cover transition-transform duration-700" src="<%= hotel.image || hotel.heroImage || heroImage %>"/>
+                  <% if (hotel.rating) { %>
+                    <div class="absolute right-4 top-4 rounded-lg bg-white/90 px-3 py-1.5 text-xs font-bold text-primary shadow-sm"><%= hotel.rating %></div>
+                  <% } %>
+                </div>
+                <div class="px-2">
+                  <% const area = hotel.area || hotel.city?.name || hotel.state?.name || hotel.category; %>
+                  <% if (area) { %>
+                    <span class="text-xs font-bold uppercase tracking-wider text-slate-500"><%= area %></span>
+                  <% } %>
+                  <h2 class="mt-1 font-serif text-2xl font-bold text-primary"><%= hotel.name || `Hotel ${index + 1}` %></h2>
+                  <% const features = hotel.features || hotel.amenities || []; %>
+                  <% if (features.length) { %>
+                    <div class="my-4 flex flex-wrap gap-3">
+                      <% features.forEach((feature) => { %>
+                        <span class="rounded-md bg-slate-100 px-2.5 py-1 text-xs text-slate-600"><%= feature %></span>
+                      <% }) %>
+                    </div>
+                  <% } %>
+                  <% if (hotel.price) { %>
+                    <div class="border-t border-slate-200 pt-4">
+                      <span class="text-[10px] font-bold uppercase tracking-tight text-slate-500">Starting From</span>
+                      <p class="text-xl font-bold text-primary"><%= hotel.price %></p>
+                    </div>
+                  <% } %>
+                </div>
+              </article>
+            <% }) %>
+          </div>
+        <% } else { %>
+          <div class="rounded-[2rem] bg-white p-10 shadow-sm ring-1 ring-slate-200">
+            <h2 class="font-serif text-3xl text-slate-900">Hotels are not filled out yet</h2>
+            <p class="mt-4 max-w-2xl leading-8 text-slate-600">Add hotel collection entries in admin to turn this into the stitched hotels page.</p>
+          </div>
+        <% } %>
+      </section>
+
+      <section class="mx-auto mt-24 max-w-5xl px-4 sm:px-6 lg:px-8">
+        <div class="rounded-[2rem] bg-primary p-12 text-white">
+          <h2 class="font-serif text-4xl font-bold"><%= newsletterTitle %></h2>
+          <p class="mt-6 max-w-2xl text-lg leading-relaxed text-blue-100"><%= newsletterText %></p>
+          <div class="mt-8 flex flex-wrap gap-4">
+            <a href="/admin/<%= entityType %>s/<%= entity._id %>/edit" class="rounded-md bg-secondary px-6 py-3 text-sm font-bold text-white">Edit Hotels Page</a>
+            <a href="/<%= entityType %>s/<%= entity.slug %>" class="rounded-md border border-white/25 px-6 py-3 text-sm font-bold text-white">Open Main Page</a>
+          </div>
+        </div>
+      </section>
+    </main>
+    <%- include('partials/footer') %>
+  </body>
+</html>

@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <%- include('partials/head') %>
+    <style>
+      .glass-nav {
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+      }
+    </style>
+  </head>
+  <body class="min-h-screen bg-background text-on-background font-body">
+    <%- include('partials/header') %>
+    <%
+      const attractions = entries.attractions || [];
+      const cities = entries.cities || [];
+      const states = entries.states || [];
+      const heroImage = entity.heroImage || attractions[0]?.heroImage || cities[0]?.heroImage || states[0]?.heroImage || '/images/placeholder.jpg';
+      const heroSummary = entity.summary || entity.placesToVisit || entity.description || `Explore the standout places to visit in ${entity.name}.`;
+      const statCards = [
+        { value: attractions.length, label: 'Highlights' },
+        { value: cities.length, label: 'Cities' },
+        { value: states.length, label: 'Regions' }
+      ].filter((item) => item.value);
+      const spotlight = attractions[0] || cities[0] || states[0];
+      const gridItems = [...attractions, ...cities, ...states].slice(0, 4);
+      const itemPath = (item) => {
+        if (item.city || item.category) return `/attractions/${item.slug}`;
+        if (item.country && !item.state) return `/states/${item.slug}`;
+        if (item.state) return `/cities/${item.slug}`;
+        return '#';
+      };
+      const journalCards = [
+        { title: 'Seasonal Perspective', body: entity.bestTimeToVisit || `Understand the best timing for experiencing ${entity.name} at its most atmospheric.`, href: `/${entityType}s/${entity.slug}/best-time-to-visit` },
+        { title: 'Arrival Notes', body: entity.howToReach || `Plan the smoothest route into ${entity.name} before building the rest of your itinerary.`, href: `/${entityType}s/${entity.slug}/how-to-reach` },
+        { title: 'Stay Strategy', body: entity.hotels || `Pair these places with the highest-priority stays and hotel recommendations for a tighter trip plan.`, href: `/${entityType}s/${entity.slug}/hotels` }
+      ];
+    %>
+    <main class="pt-24">
+      <section class="relative flex min-h-[760px] items-center overflow-hidden">
+        <div class="absolute inset-0">
+          <img class="h-full w-full object-cover scale-105" src="<%= heroImage %>" alt="<%= entity.name %>"/>
+          <div class="absolute inset-0 bg-gradient-to-r from-primary/50 to-transparent"></div>
+        </div>
+        <div class="relative z-10 mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
+          <div class="max-w-2xl">
+            <span class="mb-4 block text-sm uppercase tracking-[0.2em] text-white">Destination Spotlight</span>
+            <h1 class="font-serif text-6xl italic leading-tight text-white md:text-8xl"><%= entity.name %>: places with story.</h1>
+            <p class="mt-6 max-w-lg text-lg leading-relaxed text-white/90"><%= heroSummary %></p>
+            <a href="#collection" class="mt-8 inline-flex items-center gap-2 rounded-md bg-secondary px-8 py-4 text-sm font-medium text-white">
+              Explore the Collection
+            </a>
+          </div>
+        </div>
+        <div class="absolute bottom-0 right-12 hidden translate-y-1/2 xl:block">
+          <div class="bg-white p-8 rounded-lg shadow-2xl max-w-sm">
+            <p class="text-xs uppercase tracking-wider text-slate-500">Current Vibe</p>
+            <p class="mt-2 font-semibold text-primary"><%= entity.placesToVisit || 'Curated and priority-sorted' %></p>
+          </div>
+        </div>
+      </section>
+
+      <section class="mx-auto max-w-7xl px-4 py-24 sm:px-6 lg:px-8">
+        <div class="flex flex-col gap-16 md:flex-row md:items-center">
+          <div class="w-full md:w-3/5">
+            <div class="aspect-[4/5] overflow-hidden rounded-lg">
+              <img class="h-full w-full object-cover" src="<%= spotlight?.heroImage || heroImage %>" alt="<%= spotlight?.name || entity.name %>"/>
+            </div>
+          </div>
+          <div class="w-full md:w-2/5">
+            <h2 class="font-serif text-4xl leading-snug text-primary">A curated route through <%= entity.name %></h2>
+            <p class="mt-8 text-base leading-8 text-slate-600"><%= entity.description || heroSummary %></p>
+            <% if (statCards.length) { %>
+              <div class="mt-10 flex gap-4">
+                <% statCards.forEach((stat) => { %>
+                  <div class="flex-1 rounded-lg bg-slate-100 p-4 text-center">
+                    <p class="font-serif text-2xl text-secondary"><%= stat.value %></p>
+                    <p class="text-[10px] uppercase tracking-tight text-slate-500"><%= stat.label %></p>
+                  </div>
+                <% }) %>
+              </div>
+            <% } %>
+          </div>
+        </div>
+      </section>
+
+      <section id="collection" class="bg-slate-100 py-24">
+        <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <div class="mb-16 flex items-end justify-between gap-8">
+            <div>
+              <span class="mb-2 block text-sm uppercase tracking-widest text-secondary">Curated Selection</span>
+              <h2 class="font-serif text-4xl italic text-primary">Iconic Landmarks</h2>
+            </div>
+          </div>
+          <% if (gridItems.length) { %>
+            <div class="grid grid-cols-1 gap-6 md:grid-cols-12">
+              <% gridItems.forEach((item, index) => { %>
+                <article class="<%= index === 0 || index === 3 ? 'md:col-span-8' : 'md:col-span-4' %> overflow-hidden rounded-lg bg-white shadow-sm">
+                  <a href="<%= itemPath(item) %>" class="block">
+                    <div class="aspect-[16/9] overflow-hidden">
+                      <img class="h-full w-full object-cover transition-transform duration-500 hover:scale-105" src="<%= item.heroImage || heroImage %>" alt="<%= item.name %>"/>
+                    </div>
+                    <div class="p-6 sm:p-8 flex items-center justify-between gap-6">
+                      <div>
+                        <p class="text-sm font-medium text-slate-500"><%= item.category || item.summary || 'Featured place' %></p>
+                        <h3 class="mt-2 font-serif text-2xl text-primary"><%= item.name %></h3>
+                        <p class="mt-2 text-sm text-slate-600"><%= item.summary || item.description?.slice(0, 110) || `Discover this stop in ${entity.name}.` %></p>
+                      </div>
+                      <span class="rounded-md bg-primary px-5 py-3 text-xs uppercase tracking-wide text-white">View</span>
+                    </div>
+                  </a>
+                </article>
+              <% }) %>
+            </div>
+          <% } else { %>
+            <div class="rounded-[2rem] bg-white p-10 shadow-sm ring-1 ring-slate-200">
+              Priority-sorted places will appear here once cities, states, or attractions are added.
+            </div>
+          <% } %>
+        </div>
+      </section>
+
+      <section class="mx-auto max-w-7xl px-4 py-24 sm:px-6 lg:px-8">
+        <div class="mb-16 text-center">
+          <h2 class="font-serif text-4xl italic text-primary">The Traveler's Journal</h2>
+          <div class="mx-auto mt-4 h-px w-24 bg-secondary"></div>
+        </div>
+        <div class="grid grid-cols-1 gap-12 md:grid-cols-3">
+          <% journalCards.forEach((card) => { %>
+            <article class="space-y-4">
+              <div class="aspect-video overflow-hidden rounded-lg bg-slate-200">
+                <img class="h-full w-full object-cover" src="<%= heroImage %>" alt="<%= card.title %>"/>
+              </div>
+              <span class="text-[10px] uppercase tracking-widest text-slate-500">Travel Notes</span>
+              <h4 class="font-serif text-xl text-primary"><%= card.title %></h4>
+              <p class="text-sm leading-relaxed text-slate-600"><%= card.body %></p>
+              <a class="inline-block text-sm font-medium text-secondary underline underline-offset-4" href="<%= card.href %>">Open Guide</a>
+            </article>
+          <% }) %>
+        </div>
+      </section>
+    </main>
+    <%- include('partials/footer') %>
+  </body>
+</html>

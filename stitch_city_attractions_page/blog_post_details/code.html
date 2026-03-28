@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&amp;family=Manrope:wght@200..800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "secondary": "#9b4500",
+              "secondary-container": "#fc8a40",
+              "on-tertiary": "#ffffff",
+              "on-background": "#191c1e",
+              "tertiary-container": "#00544a",
+              "secondary-fixed": "#ffdbc9",
+              "primary-fixed-dim": "#97cbff",
+              "surface-container-highest": "#e0e3e5",
+              "on-primary": "#ffffff",
+              "primary-fixed": "#cee5ff",
+              "on-error-container": "#93000a",
+              "secondary-fixed-dim": "#ffb68d",
+              "error-container": "#ffdad6",
+              "tertiary": "#003b34",
+              "error": "#ba1a1a",
+              "on-primary-fixed-variant": "#004a76",
+              "inverse-on-surface": "#eff1f3",
+              "tertiary-fixed": "#79f7e3",
+              "surface-container-low": "#f2f4f6",
+              "on-tertiary-fixed": "#00201c",
+              "on-primary-container": "#89bff4",
+              "surface-variant": "#e0e3e5",
+              "on-tertiary-container": "#4aceba",
+              "on-secondary-fixed": "#331200",
+              "on-surface": "#191c1e",
+              "on-secondary": "#ffffff",
+              "on-error": "#ffffff",
+              "background": "#f7f9fb",
+              "surface-dim": "#d8dadc",
+              "tertiary-fixed-dim": "#59dbc7",
+              "surface": "#f7f9fb",
+              "inverse-surface": "#2d3133",
+              "on-primary-fixed": "#001d33",
+              "outline": "#717880",
+              "primary-container": "#004e7c",
+              "on-secondary-container": "#672c00",
+              "surface-bright": "#f7f9fb",
+              "inverse-primary": "#97cbff",
+              "on-surface-variant": "#41474f",
+              "surface-container-high": "#e6e8ea",
+              "outline-variant": "#c1c7d0",
+              "surface-tint": "#256291",
+              "surface-container": "#eceef0",
+              "on-secondary-fixed-variant": "#763300",
+              "surface-container-lowest": "#ffffff",
+              "primary": "#003759",
+              "on-tertiary-fixed-variant": "#005047"
+            },
+            fontFamily: {
+              "headline": ["Plus Jakarta Sans"],
+              "body": ["Manrope"],
+              "label": ["Manrope"]
+            },
+            borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            display: inline-block;
+            vertical-align: middle;
+        }
+        body { font-family: 'Manrope', sans-serif; }
+        h1, h2, h3, .font-headline { font-family: 'Plus Jakarta Sans', sans-serif; }
+    </style>
+</head>
+<body class="bg-background text-on-surface selection:bg-secondary-fixed selection:text-on-secondary-fixed">
+<!-- TopNavBar -->
+<nav class="fixed top-0 w-full z-50 bg-white/80 dark:bg-slate-900/80 backdrop-blur-md shadow-sm dark:shadow-none">
+<div class="flex justify-between items-center px-8 py-4 max-w-7xl mx-auto">
+<div class="text-2xl font-black text-sky-900 dark:text-sky-100 uppercase tracking-tighter">
+                The Editorial Explorer
+            </div>
+<div class="hidden md:flex items-center space-x-8">
+<a class="text-slate-600 dark:text-slate-400 hover:text-sky-800 dark:hover:text-sky-200 transition-colors font-['Plus_Jakarta_Sans'] font-bold tracking-tight" href="#">Destinations</a>
+<a class="text-sky-900 dark:text-sky-300 border-b-2 border-orange-600 pb-1 font-['Plus_Jakarta_Sans'] font-bold tracking-tight" href="#">Expeditions</a>
+<a class="text-slate-600 dark:text-slate-400 hover:text-sky-800 dark:hover:text-sky-200 transition-colors font-['Plus_Jakarta_Sans'] font-bold tracking-tight" href="#">Journal</a>
+<a class="text-slate-600 dark:text-slate-400 hover:text-sky-800 dark:hover:text-sky-200 transition-colors font-['Plus_Jakarta_Sans'] font-bold tracking-tight" href="#">About Us</a>
+</div>
+<div class="flex items-center gap-6">
+<button class="material-symbols-outlined text-primary hover:text-secondary transition-all">search</button>
+<button class="bg-primary text-on-primary px-6 py-2 rounded-full font-bold hover:opacity-80 transition-all duration-300 transform active:scale-95">Book Now</button>
+</div>
+</div>
+</nav>
+<main class="pt-20">
+<!-- Hero Section -->
+<header class="relative w-full h-[870px] overflow-hidden">
+<img alt="Banff National Park" class="w-full h-full object-cover" data-alt="Wide cinematic shot of turquoise Moraine Lake in Banff surrounded by jagged snow-capped peaks and evergreen forests under a soft misty morning light" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCW6IM4j5rsWnsGue46O88s4JUDHq5Wabmy0Z0o75pa28vwLNmyRds9xlOQTfsGV3HXMICXP5SsLKd06RKuSp2y_lelSotu6VMjuhVXzgemYo2Rcnk543PwURQo_FoaiXbCPmer843N2TSTi-n8WEyYpUQJKHEB0RRvHs85esRM6KwxzRxd75jYYWdAF12HDdS0MycFTDyfroEMuJNBJ0S9L5oRTmBLh2kr46Jywj7_L1maHGjh-XGKFVBkRfhGWv4hQ4_GGi0_BKE"/>
+<div class="absolute inset-0 bg-gradient-to-t from-primary/80 via-transparent to-transparent"></div>
+<div class="absolute bottom-0 left-0 w-full p-8 md:p-16 max-w-7xl mx-auto">
+<div class="flex flex-col gap-4">
+<span class="inline-block px-4 py-1 bg-secondary text-on-primary text-xs font-bold tracking-widest uppercase rounded-full self-start">Expeditions</span>
+<h1 class="text-white text-5xl md:text-7xl font-black tracking-tighter max-w-4xl leading-[1.1]">
+                        Whispers of the Northern Mist: A Journey Through Banff
+                    </h1>
+<div class="flex items-center gap-6 text-white/90 font-medium">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-secondary-container" style="font-variation-settings: 'FILL' 1;">account_circle</span>
+<span>Julian Vance</span>
+</div>
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-secondary-container">calendar_today</span>
+<span>October 14, 2024</span>
+</div>
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-secondary-container">schedule</span>
+<span>12 Min Read</span>
+</div>
+</div>
+</div>
+</div>
+</header>
+<!-- Article Content -->
+<article class="max-w-7xl mx-auto px-8 py-24 grid grid-cols-1 lg:grid-cols-12 gap-16 relative">
+<!-- Side Controls (Sticky) -->
+<aside class="lg:col-span-1 hidden lg:flex flex-col items-center gap-8 sticky top-32 h-fit">
+<button class="group flex flex-col items-center gap-1 transition-all">
+<span class="material-symbols-outlined p-3 rounded-full bg-surface-container text-on-surface group-hover:bg-primary group-hover:text-on-primary transition-colors">favorite</span>
+<span class="text-[10px] font-bold uppercase tracking-tighter text-on-surface-variant">1.2k</span>
+</button>
+<button class="group flex flex-col items-center gap-1 transition-all">
+<span class="material-symbols-outlined p-3 rounded-full bg-surface-container text-on-surface group-hover:bg-secondary group-hover:text-on-primary transition-colors">share</span>
+<span class="text-[10px] font-bold uppercase tracking-tighter text-on-surface-variant">Share</span>
+</button>
+<button class="group flex flex-col items-center gap-1 transition-all">
+<span class="material-symbols-outlined p-3 rounded-full bg-surface-container text-on-surface group-hover:bg-primary-container group-hover:text-on-primary-container transition-colors">bookmark</span>
+<span class="text-[10px] font-bold uppercase tracking-tighter text-on-surface-variant">Save</span>
+</button>
+</aside>
+<!-- Main Text Column -->
+<div class="lg:col-span-8 space-y-12">
+<section class="space-y-8">
+<p class="text-xl md:text-2xl font-light text-on-surface-variant leading-relaxed first-letter:text-7xl first-letter:font-black first-letter:text-primary first-letter:float-left first-letter:mr-4 first-letter:mt-2">
+                        There is a silence in the Canadian Rockies that doesn’t just sit; it speaks. It is a dialogue between the shifting glaciers and the ancient limestone, a conversation that only becomes audible when you step away from the polished tourist trails of Banff and into the raw, unscripted heart of the wilderness.
+                    </p>
+<p class="text-lg text-on-surface leading-loose">
+                        In the early hours of dawn, before the first rays of the sun hit the peaks of the Three Sisters, the landscape is a monochromatic study in indigo and grey. The air is sharp enough to wake the soul, carrying the scent of damp pine needles and the faint, metallic hint of approaching snow. This is the Banff that the maps don't capture—the ephemeral moments of transition.
+                    </p>
+</section>
+<!-- Pull Quote -->
+<div class="relative py-12 px-8 border-l-4 border-secondary bg-surface-container-low">
+<span class="material-symbols-outlined absolute top-4 left-4 text-6xl text-secondary/10" style="font-variation-settings: 'FILL' 1;">format_quote</span>
+<blockquote class="text-3xl font-headline font-bold text-primary italic leading-tight">
+                        "The mountains are not just scenery; they are an invitation to silence. In Banff, the scale of the world recalibrates your own sense of importance."
+                    </blockquote>
+<cite class="block mt-6 text-on-surface-variant font-bold uppercase tracking-widest text-sm">— Julian Vance, Expedition Lead</cite>
+</div>
+<section class="space-y-6">
+<h2 class="text-4xl font-black tracking-tight text-primary pt-8">The Granite Sentinels</h2>
+<p class="text-lg text-on-surface leading-loose">
+                        Hiking the Plain of Six Glaciers is an exercise in geological humility. As you ascend, the Victoria Glacier looms larger, a massive tongue of ice that has been carving this valley for millennia. Every few minutes, a distant thunder echoes through the range—not a storm, but the calving of ice deep within the mountain's crevices.
+                    </p>
+</section>
+<!-- Bento Style Image Gallery -->
+<section class="grid grid-cols-6 grid-rows-2 gap-4 h-[600px]">
+<div class="col-span-4 row-span-2 rounded-xl overflow-hidden shadow-sm">
+<img alt="Mountain peak" class="w-full h-full object-cover hover:scale-105 transition-transform duration-700" data-alt="Sharp dramatic mountain peak silhouetted against a moody overcast sky with textures of rock and patches of snow visible" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCPGzSdb6Jd6k5IUiyBp8giNez0sUig4BYhoCuIrS9gPjnUUBFI7r0CB2hC7m8lyn0Zi-DucmupLNLv2GPRKEVr1JPmOkuS4pEz3rfTSS27PffwY6zFR_qTmgu3JdrbCN1FKGZ52q3ibM-8nqri_l9zN_UOHXtZ0iliwV0svFGkzsUMNGpmwbbPCEWsuGJGI91EbXMMmE2q7Wt8TRECtmKhcgUwwaLoYfOVHg4vPtsDu-OW5NpfHhPBRleTVYy5UUVebpo6fGTs5mo"/>
+</div>
+<div class="col-span-2 row-span-1 rounded-xl overflow-hidden shadow-sm">
+<img alt="Alpine forest" class="w-full h-full object-cover hover:scale-105 transition-transform duration-700" data-alt="Distant drone shot of a winding turquoise river through a dense dark green pine forest in the Canadian wilderness" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBp8Pcgm7WI35sM3MZcCPT0JKb57mnMfLAlqssTS8IQKmN1TxOrf0Ngq5iCBkSSDxLTROIOZpFAk5FhK_7OY2pPxwprJc3_9SdxNC4lMHFI4Bqfgpjqpnq3iNY-kRxuv-s16Ii5RpPgXUomh2yT6VSb5Uzy_vDD6v5Wpa7eINvTH9QvvuIB42Yi8nc2GVTriG5jcgLQBFXn60036mDrnGFrRqq4U2iARJTm9VnQ7OFQH7YkUhdKs0mxAON9T2s-t3mVgoj8I4UdGpM"/>
+</div>
+<div class="col-span-2 row-span-1 rounded-xl overflow-hidden shadow-sm">
+<img alt="Canoe on lake" class="w-full h-full object-cover hover:scale-105 transition-transform duration-700" data-alt="Close up of a red wooden canoe resting on the crystal clear edge of an alpine lake with smooth colorful pebbles underwater" src="https://lh3.googleusercontent.com/aida-public/AB6AXuClY5VsURboYr7PbNkQURroz36v88dH-Ad-_AuJks9TqVsGlGON1I0iD4UoMbLdyU-QDByDc10WHZHnIetSAey7MiOfRw-nFlnKX2NQMSNDlU6WQC6C9yXDSyf8ER5pKpIMw04XIz4brdTnug5bo-qGS_w2XNXeoBZb3MHAOHqgq_dVdzv9D2RqQwcdLxTq0z0Y4Wzsoo8WfVDgCLnos7_0JzGTDYyPYHLJD4aTF8tdRQ7HeAsHhT6Z3-ueF5Nzh0MGPjr8frRp92A"/>
+</div>
+</section>
+<section class="space-y-6">
+<h3 class="text-2xl font-bold text-primary">Embracing the Mist</h3>
+<p class="text-lg text-on-surface leading-loose">
+                        Weather in the Rockies is a living thing. One moment the sky is a vibrant sapphire, and the next, a heavy mist rolls in from the valley floor, turning the landscape into a dreamscape. It is in these moments—when the peaks vanish and the world shrinks to the radius of your campfire—that the true spirit of the expedition is felt.
+                    </p>
+<p class="text-lg text-on-surface leading-loose">
+                        We spent our final evening at a small backcountry lodge, the smell of cedar woodsmoke filling the cabin. There were no digital distractions, only the crackle of the fire and the stories of fellow travelers. In the Editorial Explorer's vision, travel isn't about checking boxes; it's about these unscripted connections.
+                    </p>
+</section>
+<!-- Tags & Social Footer -->
+<div class="pt-16 border-t border-surface-container-high flex flex-wrap justify-between items-center gap-8">
+<div class="flex gap-2">
+<span class="bg-surface-container-high px-4 py-2 rounded-lg text-xs font-bold text-on-surface-variant">ALBERTA</span>
+<span class="bg-surface-container-high px-4 py-2 rounded-lg text-xs font-bold text-on-surface-variant">MOUNTAINS</span>
+<span class="bg-surface-container-high px-4 py-2 rounded-lg text-xs font-bold text-on-surface-variant">ADVENTURE</span>
+</div>
+<div class="flex items-center gap-4">
+<span class="text-sm font-bold text-primary uppercase tracking-widest">Share this story</span>
+<div class="flex gap-2">
+<button class="w-10 h-10 flex items-center justify-center rounded-full bg-primary text-on-primary hover:bg-secondary transition-colors">
+<svg class="w-5 h-5 fill-current" viewbox="0 0 24 24"><path d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-1.29 2.213-.669 5.108 1.523 6.574-.806-.026-1.566-.247-2.229-.616-.054 2.281 1.581 4.415 3.949 4.89-.693.188-1.452.232-2.224.084.626 1.956 2.444 3.379 4.6 3.419-2.07 1.623-4.678 2.348-7.29 2.04 2.179 1.397 4.768 2.212 7.548 2.212 9.142 0 14.307-7.721 13.995-14.646.962-.695 1.797-1.562 2.457-2.549z"></path></svg>
+</button>
+<button class="w-10 h-10 flex items-center justify-center rounded-full bg-primary text-on-primary hover:bg-secondary transition-colors">
+<svg class="w-5 h-5 fill-current" viewbox="0 0 24 24"><path d="M9 8h-3v4h3v12h5v-12h3.642l.358-4h-4v-1.667c0-.955.192-1.333 1.115-1.333h2.885v-5h-3.808c-3.596 0-5.192 1.583-5.192 4.615v3.385z"></path></svg>
+</button>
+</div>
+</div>
+</div>
+</div>
+<!-- Author Sidebar Widget -->
+<div class="lg:col-span-3 space-y-12">
+<div class="bg-surface-container-low p-8 rounded-2xl space-y-6">
+<img alt="Julian Vance" class="w-24 h-24 rounded-full object-cover ring-4 ring-white shadow-md" data-alt="Portrait of a rugged man in his late 30s with light stubble wearing a high-quality navy outdoor jacket, smiling slightly in a natural setting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBJWCkeXkwsmNOpfFxLBj4HTfi4ni0Tcd0-_skmGHJc9K1frwlcvnu3USqO_NGu0NldbZWSro7MIFJqrEUVNljluPeRbyuSL9pj-9qTqujlimWuAR7BijijFjJGQSfuLq4pmpCfJ81jvFwhLgRNmUWwU7E_orAJe28Vx1MA89vZMVJ0TyBzQkqt1mU0sCNGhdKmWkkkUdV8O96ACUN4FLtNSS9GihPCqK2PxUloSkylHIeSQWssvIet-tH6b-mS3pMNmVmB6OmsC84"/>
+<div>
+<h4 class="text-xl font-bold text-primary">Julian Vance</h4>
+<p class="text-sm text-on-surface-variant font-medium">Senior Travel Editor</p>
+</div>
+<p class="text-sm text-on-surface-variant leading-relaxed italic">
+                        Julian has spent the last decade exploring the high altitudes of the world. He believes the best stories are found where the cellular signal ends.
+                    </p>
+<button class="w-full py-3 border-2 border-primary text-primary font-bold rounded-xl hover:bg-primary hover:text-on-primary transition-all">View Profile</button>
+</div>
+<!-- Newsletter Widget -->
+<div class="bg-primary p-8 rounded-2xl text-on-primary space-y-4">
+<h4 class="text-xl font-headline font-bold">Get the Journal</h4>
+<p class="text-sm text-on-primary/80">Weekly travel narratives and curated expedition guides delivered to your inbox.</p>
+<div class="space-y-3">
+<input class="w-full bg-white/10 border-transparent rounded-xl p-3 placeholder:text-white/50 focus:ring-secondary focus:border-secondary" placeholder="Your email address" type="email"/>
+<button class="w-full bg-secondary-container text-on-secondary-container font-bold py-3 rounded-xl hover:opacity-90 transition-all">Subscribe</button>
+</div>
+</div>
+</div>
+</article>
+<!-- Related Stories -->
+<section class="bg-surface-container-lowest py-24">
+<div class="max-w-7xl mx-auto px-8">
+<div class="flex justify-between items-end mb-12">
+<div class="space-y-2">
+<span class="text-secondary font-bold tracking-[0.2em] uppercase text-xs">Keep Exploring</span>
+<h3 class="text-4xl font-black text-primary">Related Stories</h3>
+</div>
+<a class="text-primary font-bold flex items-center gap-2 group" href="#">
+                        See All Journal Entries
+                        <span class="material-symbols-outlined group-hover:translate-x-1 transition-transform">arrow_forward</span>
+</a>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+<!-- Related Card 1 -->
+<div class="group cursor-pointer">
+<div class="relative h-[300px] overflow-hidden rounded-2xl mb-6">
+<img class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" data-alt="Breathtaking mountain lake in Norway with red traditional cabins reflecting in still dark water under a deep blue evening sky" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCQoc2lgII9liY8pciJbcm2nv2yaoaHZu7qdoxEXKWrpyCRmQQXzS68YeBVyZptAknna3frOC04h4TtHptFiV2pQckptOxoclubBoxCYnurauLjsHgO3rFi_HImkRuQIkOx8JPtRyZ0F_wRWCyC9mvNq7JhfQhgy4DJotv6_2HXXFDR8SNacD76-PKvainRDyqbTHWXMGqOexC1y5v-Q0opdRuEksBT68rYj5SHQWQsHa1FdHrNg7nujoPwdZCN75tlDzi_eii22dg"/>
+<div class="absolute top-4 left-4 bg-white/90 backdrop-blur px-3 py-1 rounded-lg text-[10px] font-black tracking-widest uppercase text-primary">Scandinavia</div>
+</div>
+<h5 class="text-xl font-bold text-primary group-hover:text-secondary transition-colors leading-tight mb-2">Fjords and Folklore: Sailing the Norwegian Deep</h5>
+<p class="text-sm text-on-surface-variant line-clamp-2">A nautical journey through the narrow passages of the Geirangerfjord, discovering lost myths...</p>
+</div>
+<!-- Related Card 2 -->
+<div class="group cursor-pointer">
+<div class="relative h-[300px] overflow-hidden rounded-2xl mb-6">
+<img class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" data-alt="Epic wide view of the snow-covered Swiss Alps at sunset with soft pink and golden light bathing the sharp mountain ridges" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBtws-vlSJsubewfopKoUQyeSZFcCieZtRAo7c0tAcmVAat-TcypQ_fM4Uk7qG4Phuu8VAtjG2YdUln4xy9hFwmrbXUVFO7KgWSdOgP8KANxbWYGV8fTMYYorYxz66q5kPxg_QBw5cRtjAcvbQUwuJyIYB7WjULbiY_vWtIKnXNdhzdYSO_DfpJr8g3ILiW6nAzJHcw-YY757-L6CY25QhLbR65HBCWCwvVYtvHDHFWl28HWiq56Ex-ZpXtn32cmHi2EWKdvdisz4I"/>
+<div class="absolute top-4 left-4 bg-white/90 backdrop-blur px-3 py-1 rounded-lg text-[10px] font-black tracking-widest uppercase text-primary">Europe</div>
+</div>
+<h5 class="text-xl font-bold text-primary group-hover:text-secondary transition-colors leading-tight mb-2">The Alpenglow Route: Winter in the Jungfrau</h5>
+<p class="text-sm text-on-surface-variant line-clamp-2">Exploring the high peaks of Switzerland when the summer crowds have vanished and the silence remains...</p>
+</div>
+<!-- Related Card 3 -->
+<div class="group cursor-pointer">
+<div class="relative h-[300px] overflow-hidden rounded-2xl mb-6">
+<img class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" data-alt="Lush green coastal cliffs of the Faroe Islands meeting a dark moody North Atlantic ocean with waves crashing against rocks" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAixFR2M-QnJNVKyloSSngFEZigB_AjuHqf0ehY5FwooZ6iqHRE_7v_TRW8KSLG8YS-xk-lvK9qWYJjlU3O0lE3RaI3G5dRHMskIvSSfS5tpViT4y-J-q9asiPeWjd6QoeEtSaLaYHkVrPSf1rxLdurl926l30dsEbaEfvV0iS_2rpMdcY8N-ymEtdEYuLB52ZhT7Mqfc-Ao-aMadiQbpJIfk75VR5cjSH5X4yURRLIEqDhskdHtGRekWQMFAEN0rL-E18hOAsxUto"/>
+<div class="absolute top-4 left-4 bg-white/90 backdrop-blur px-3 py-1 rounded-lg text-[10px] font-black tracking-widest uppercase text-primary">Islands</div>
+</div>
+<h5 class="text-xl font-bold text-primary group-hover:text-secondary transition-colors leading-tight mb-2">Edge of the World: Seven Days in the Faroe Islands</h5>
+<p class="text-sm text-on-surface-variant line-clamp-2">Isolated, windswept, and undeniably beautiful. A photographer's log from the remote northern archipelago.</p>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="w-full mt-24 border-t border-slate-100 dark:border-slate-800 bg-slate-50 dark:bg-slate-950">
+<div class="grid grid-cols-1 md:grid-cols-4 gap-12 px-8 py-16 max-w-7xl mx-auto font-['Manrope'] text-sm leading-relaxed">
+<div class="space-y-6">
+<div class="text-xl font-bold text-sky-900 dark:text-sky-100">The Editorial Explorer</div>
+<p class="text-slate-500 max-w-xs">Curating high-end travel expeditions and narratives for the discerning modern wanderer.</p>
+</div>
+<div class="space-y-4">
+<h6 class="font-bold text-sky-900 dark:text-sky-400 uppercase tracking-widest text-xs">Explore</h6>
+<ul class="space-y-2">
+<li><a class="text-slate-500 dark:text-slate-500 hover:text-sky-700 dark:hover:text-sky-300 hover:underline transition-all" href="#">Destinations</a></li>
+<li><a class="text-slate-500 dark:text-slate-500 hover:text-sky-700 dark:hover:text-sky-300 hover:underline transition-all" href="#">Expeditions</a></li>
+<li><a class="text-orange-600 font-semibold hover:underline transition-all" href="#">Journal</a></li>
+</ul>
+</div>
+<div class="space-y-4">
+<h6 class="font-bold text-sky-900 dark:text-sky-400 uppercase tracking-widest text-xs">Resources</h6>
+<ul class="space-y-2">
+<li><a class="text-slate-500 dark:text-slate-500 hover:text-sky-700 dark:hover:text-sky-300 hover:underline transition-all" href="#">Travel Insurance</a></li>
+<li><a class="text-slate-500 dark:text-slate-500 hover:text-sky-700 dark:hover:text-sky-300 hover:underline transition-all" href="#">Privacy Policy</a></li>
+<li><a class="text-slate-500 dark:text-slate-500 hover:text-sky-700 dark:hover:text-sky-300 hover:underline transition-all" href="#">Terms of Service</a></li>
+</ul>
+</div>
+<div class="space-y-4">
+<h6 class="font-bold text-sky-900 dark:text-sky-400 uppercase tracking-widest text-xs">Contact</h6>
+<ul class="space-y-2">
+<li><a class="text-slate-500 dark:text-slate-500 hover:text-sky-700 dark:hover:text-sky-300 hover:underline transition-all" href="#">Newsletter Signup</a></li>
+<li><a class="text-slate-500 dark:text-slate-500 hover:text-sky-700 dark:hover:text-sky-300 hover:underline transition-all" href="#">Contact Us</a></li>
+<li><span class="text-slate-500">Global HQ: London, UK</span></li>
+</ul>
+</div>
+</div>
+<div class="max-w-7xl mx-auto px-8 py-8 border-t border-slate-200/50 text-center md:text-left text-slate-400 text-xs">
+            © 2024 The Editorial Explorer. All rights reserved.
+        </div>
+</footer>
+</body></html>

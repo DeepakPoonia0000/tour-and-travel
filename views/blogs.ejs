@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <%- include('partials/head') %>
+  </head>
+  <body class="bg-surface font-body text-on-surface">
+    <%- include('partials/header') %>
+    <main class="pt-24 pb-20">
+      <% if (featuredBlog) { %>
+        <section class="max-w-7xl mx-auto px-8 mb-24">
+          <a href="/blogs/<%= featuredBlog.slug %>" class="relative group block overflow-hidden rounded-xl h-[716px]">
+            <img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" src="<%= featuredBlog.heroImage || '/images/placeholder.jpg' %>" alt="<%= featuredBlog.name %>"/>
+            <div class="absolute inset-0 bg-gradient-to-t from-primary/80 via-transparent to-transparent"></div>
+            <div class="absolute bottom-0 left-0 p-12 w-full md:w-3/4 lg:w-2/3">
+              <span class="inline-block bg-secondary text-white px-4 py-1 rounded-md text-xs font-bold tracking-widest uppercase mb-6"><%= featuredBlog.primaryCategory || 'Featured Expedition' %></span>
+              <h1 class="text-white text-5xl md:text-6xl font-extrabold tracking-tighter leading-tight mb-6"><%= featuredBlog.name %></h1>
+              <p class="text-white/90 text-lg md:text-xl max-w-2xl mb-8 leading-relaxed"><%= featuredBlog.summary || featuredBlog.description %></p>
+            </div>
+          </a>
+        </section>
+      <% } %>
+
+      <section class="max-w-7xl mx-auto px-8 mb-12">
+        <div class="flex flex-col md:flex-row md:items-end justify-between gap-6">
+          <div>
+            <h2 class="text-4xl font-extrabold tracking-tighter text-primary">The Latest Entries</h2>
+            <p class="text-slate-600 mt-2">Personal dispatches from our global contributors.</p>
+          </div>
+          <form action="/blogs" method="GET" class="w-full md:w-auto">
+            <input name="q" value="<%= query || '' %>" placeholder="Search blogs" class="w-full md:w-80 rounded-full border border-slate-300 bg-slate-50 px-5 py-3 text-sm outline-none focus:border-primary focus:ring-2 focus:ring-sky-100"/>
+          </form>
+        </div>
+      </section>
+
+      <section class="max-w-7xl mx-auto px-8 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
+        <% latestBlogs.forEach((blog, index) => { %>
+          <a href="/blogs/<%= blog.slug %>" class="flex flex-col group <%= index === 1 ? 'lg:translate-y-8' : index === 4 ? 'lg:-translate-y-8' : '' %>">
+            <div class="relative aspect-[4/3] overflow-hidden rounded-xl mb-6 shadow-sm bg-slate-100">
+              <img class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" src="<%= blog.heroImage || '/images/placeholder.jpg' %>" alt="<%= blog.name %>"/>
+              <div class="absolute top-4 left-4">
+                <span class="bg-white/90 text-primary px-3 py-1 rounded-md text-[10px] font-bold tracking-widest uppercase"><%= blog.primaryCategory || 'Journal' %></span>
+              </div>
+            </div>
+            <h3 class="text-2xl font-bold tracking-tight text-primary group-hover:text-secondary transition-colors mb-3"><%= blog.name %></h3>
+            <p class="text-slate-600 leading-relaxed line-clamp-3 mb-4"><%= blog.summary || blog.description || 'Open this journal entry.' %></p>
+            <div class="mt-auto flex items-center justify-between text-slate-400 text-xs uppercase tracking-tighter">
+              <span><%= blog.publishedAt ? new Date(blog.publishedAt).toLocaleDateString() : 'Drafted' %></span>
+              <span class="flex items-center gap-1">Read More</span>
+            </div>
+          </a>
+        <% }) %>
+      </section>
+    </main>
+    <%- include('partials/footer') %>
+  </body>
+</html>

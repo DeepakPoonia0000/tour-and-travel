@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <%- include('partials/head') %>
+    <style>
+      .season-card {
+        transition: transform 0.35s ease, box-shadow 0.35s ease;
+      }
+
+      .season-card:hover {
+        transform: translateY(-6px);
+      }
+    </style>
+  </head>
+  <body class="min-h-screen bg-surface text-slate-900">
+    <%- include('partials/header') %>
+    <%
+      const heroImage = guide.heroImage || entity.heroImage || '/images/placeholder.jpg';
+      const heroEyebrow = guide.heroEyebrow || 'Seasonal Guide';
+      const heroTitle = guide.heroTitle || `Best Time to Visit ${entity.name}`;
+      const heroDescription = guide.heroDescription || entity.bestTimeToVisit || entity.summary || entity.description || `Plan the ideal season for your trip to ${entity.name}.`;
+      const heroCardTitle = guide.heroCardTitle || 'Quick Take';
+      const heroCardText = guide.heroCardText || entity.bestTimeToVisit || 'Use this seasonal breakdown to match weather, atmosphere, and crowd levels to your travel style.';
+      const seasons = (Array.isArray(guide.seasons) && guide.seasons.length ? guide.seasons : []).filter((season) => season && (season.name || season.subtitle || season.temperature || season.peakMonth || (season.highlights && season.highlights.length) || season.verdictText || season.image));
+      const travelerProfiles = (Array.isArray(guide.travelerProfiles) && guide.travelerProfiles.length ? guide.travelerProfiles : []).filter((profile) => profile && (profile.title || profile.recommendation || profile.text));
+      const defaultProfiles = travelerProfiles.length ? travelerProfiles : [
+        { title: 'First-Time Visitor', recommendation: 'Pick the shoulder season', text: 'You will usually get a better balance of weather, crowd levels, and pricing.' },
+        { title: 'Experience Seeker', recommendation: 'Travel for the signature season', text: 'Use the peak festival or scenery window if you want the destination at its most iconic.' }
+      ];
+      const itemTypeMap = { city: 'cities', attraction: 'attractions', activity: 'activities' };
+      const itemLabelMap = { city: 'City', attraction: 'Attraction', activity: 'Activity' };
+      const basePath = `/${entityType}s/${entity.slug}`;
+    %>
+    <main class="pb-20 pt-24">
+      <section class="relative overflow-hidden">
+        <div class="absolute inset-0 bg-cover bg-center" style="background-image:url('<%= heroImage %>')"></div>
+        <div class="absolute inset-0 bg-gradient-to-br from-slate-950/75 via-primary/70 to-slate-950/30"></div>
+        <div class="relative mx-auto grid max-w-7xl gap-10 px-4 py-20 sm:px-6 lg:grid-cols-[1.15fr_0.85fr] lg:px-8 lg:py-28">
+          <div class="max-w-3xl">
+            <span class="inline-flex rounded-full bg-white/12 px-4 py-2 text-xs font-bold uppercase tracking-[0.28em] text-white/90 backdrop-blur-md">
+              <%= heroEyebrow %>
+            </span>
+            <h1 class="mt-6 font-serif text-5xl leading-[1.05] text-white sm:text-6xl lg:text-7xl">
+              <%= heroTitle %>
+            </h1>
+            <p class="mt-8 max-w-2xl text-base leading-8 text-white/85 sm:text-lg">
+              <%= heroDescription %>
+            </p>
+            <div class="mt-8 flex flex-wrap gap-4">
+              <a href="<%= basePath %>" class="rounded-xl bg-white px-7 py-4 text-sm font-semibold text-primary transition hover:bg-slate-100">
+                Open Main Page
+              </a>
+              <a href="<%= basePath %>/places-to-visit" class="rounded-xl border border-white/25 bg-white/10 px-7 py-4 text-sm font-semibold text-white transition hover:bg-white/15">
+                Explore Places
+              </a>
+            </div>
+          </div>
+
+          <aside class="self-end rounded-[2rem] border border-white/15 bg-white/10 p-8 text-white shadow-2xl backdrop-blur-md">
+            <p class="text-xs font-bold uppercase tracking-[0.26em] text-white/65">Season Snapshot</p>
+            <h2 class="mt-4 font-serif text-3xl"><%= heroCardTitle %></h2>
+            <p class="mt-4 text-sm leading-7 text-white/82"><%= heroCardText %></p>
+            <div class="mt-8 grid gap-3 sm:grid-cols-2 lg:grid-cols-1">
+              <div class="rounded-2xl bg-white/10 p-4">
+                <p class="text-xs font-semibold uppercase tracking-[0.24em] text-white/60">Destination</p>
+                <p class="mt-2 text-lg font-semibold text-white"><%= entity.name %></p>
+              </div>
+              <% if (entityType === 'city' && entity.state) { %>
+                <div class="rounded-2xl bg-white/10 p-4">
+                  <p class="text-xs font-semibold uppercase tracking-[0.24em] text-white/60">State</p>
+                  <p class="mt-2 text-lg font-semibold text-white"><%= entity.state.name %></p>
+                </div>
+              <% } %>
+              <% if ((entityType === 'state' || entityType === 'city') && entity.country) { %>
+                <div class="rounded-2xl bg-white/10 p-4">
+                  <p class="text-xs font-semibold uppercase tracking-[0.24em] text-white/60">Country</p>
+                  <p class="mt-2 text-lg font-semibold text-white"><%= entity.country.name %></p>
+                </div>
+              <% } %>
+            </div>
+          </aside>
+        </div>
+      </section>
+
+      <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <nav class="flex flex-wrap items-center gap-2 py-6 text-sm text-slate-500">
+          <a class="transition hover:text-primary" href="/">Home</a>
+          <span>/</span>
+          <a class="transition hover:text-primary" href="<%= basePath %>"><%= entity.name %></a>
+          <span>/</span>
+          <span class="font-semibold text-slate-900"><%= sectionTitle %></span>
+        </nav>
+      </div>
+
+      <section class="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
+        <% if (seasons.length) { %>
+          <div class="space-y-12">
+            <% seasons.forEach((season, index) => { %>
+              <article class="season-card overflow-hidden rounded-[2rem] bg-white shadow-sm ring-1 ring-slate-200">
+                <div class="grid gap-0 lg:grid-cols-[0.95fr_1.05fr] <%= index % 2 === 1 ? 'lg:[&>*:first-child]:order-2' : '' %>">
+                  <div class="relative min-h-[320px] lg:min-h-[460px]">
+                    <div class="absolute inset-0 bg-cover bg-center" style="background-image:url('<%= season.image || heroImage %>')"></div>
+                    <div class="absolute inset-0 bg-gradient-to-t from-slate-950/60 via-slate-950/10 to-transparent"></div>
+                    <div class="absolute bottom-6 left-6 right-6 text-white">
+                      <% if (season.accentLabel) { %>
+                        <span class="inline-flex rounded-full bg-white/15 px-4 py-2 text-xs font-bold uppercase tracking-[0.24em] text-white/90 backdrop-blur-sm">
+                          <%= season.accentLabel %>
+                        </span>
+                      <% } %>
+                      <h2 class="mt-4 font-serif text-4xl sm:text-5xl"><%= season.name || `Season ${index + 1}` %></h2>
+                      <% if (season.subtitle) { %>
+                        <p class="mt-3 max-w-xl text-sm uppercase tracking-[0.24em] text-white/70"><%= season.subtitle %></p>
+                      <% } %>
+                    </div>
+                  </div>
+
+                  <div class="p-8 sm:p-10">
+                    <div class="grid gap-4 sm:grid-cols-2">
+                      <div class="rounded-2xl bg-slate-50 p-5">
+                        <p class="text-xs font-semibold uppercase tracking-[0.24em] text-slate-500">Avg Temperature</p>
+                        <p class="mt-3 font-serif text-2xl text-slate-900"><%= season.temperature || 'Not set yet' %></p>
+                      </div>
+                      <div class="rounded-2xl bg-slate-50 p-5">
+                        <p class="text-xs font-semibold uppercase tracking-[0.24em] text-slate-500">Peak Month</p>
+                        <p class="mt-3 font-serif text-2xl text-slate-900"><%= season.peakMonth || 'Not set yet' %></p>
+                      </div>
+                    </div>
+
+                    <% if (season.highlights && season.highlights.length) { %>
+                      <div class="mt-8">
+                        <h3 class="text-sm font-bold uppercase tracking-[0.24em] text-secondary">Seasonal Highlights</h3>
+                        <ul class="mt-5 grid gap-3 text-sm leading-7 text-slate-600">
+                          <% season.highlights.forEach((highlight) => { %>
+                            <li class="rounded-2xl border border-slate-200 bg-white px-4 py-3"><%= highlight %></li>
+                          <% }) %>
+                        </ul>
+                      </div>
+                    <% } %>
+
+                    <% if (season.verdictLabel || season.verdictText) { %>
+                      <div class="mt-8 rounded-[1.5rem] bg-primary px-6 py-7 text-white">
+                        <p class="text-xs font-bold uppercase tracking-[0.24em] text-white/60">Traveler's Verdict</p>
+                        <% if (season.verdictLabel) { %>
+                          <h3 class="mt-3 font-serif text-2xl"><%= season.verdictLabel %></h3>
+                        <% } %>
+                        <% if (season.verdictText) { %>
+                          <p class="mt-3 text-sm leading-7 text-white/85"><%= season.verdictText %></p>
+                        <% } %>
+                      </div>
+                    <% } %>
+                  </div>
+                </div>
+              </article>
+            <% }) %>
+          </div>
+        <% } else { %>
+          <div class="rounded-[2rem] bg-white p-10 text-slate-600 shadow-sm ring-1 ring-slate-200">
+            <h2 class="font-serif text-3xl text-slate-900">Seasonal guide is not filled out yet</h2>
+            <p class="mt-4 max-w-2xl leading-8">Add the structured best-time-to-visit fields in admin to turn this page into a full seasonal guide.</p>
+          </div>
+        <% } %>
+      </section>
+
+      <section class="mt-16 bg-surface2 py-20">
+        <div class="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+          <div class="text-center">
+            <span class="text-sm font-bold uppercase tracking-[0.3em] text-secondary">Final Call</span>
+            <h2 class="mt-4 font-serif text-4xl text-slate-900 sm:text-5xl">When should you plan <%= entity.name %>?</h2>
+          </div>
+
+          <div class="mt-12 grid gap-6 md:grid-cols-2">
+            <% defaultProfiles.forEach((profile) => { %>
+              <article class="rounded-[2rem] bg-white p-8 shadow-sm ring-1 ring-slate-200">
+                <h3 class="font-serif text-3xl text-primary"><%= profile.title || 'Traveler Profile' %></h3>
+                <% if (profile.recommendation) { %>
+                  <p class="mt-4 text-base font-semibold text-slate-900"><%= profile.recommendation %></p>
+                <% } %>
+                <% if (profile.text) { %>
+                  <p class="mt-4 text-sm leading-7 text-slate-600"><%= profile.text %></p>
+                <% } %>
+              </article>
+            <% }) %>
+          </div>
+
+          <div class="mt-12 text-center">
+            <a href="<%= guide.ctaHref || '/packages' %>" class="inline-flex rounded-xl bg-primary px-8 py-4 text-sm font-semibold text-white transition hover:bg-primary/90">
+              <%= guide.ctaLabel || 'Start Planning Your Trip' %>
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <section class="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
+        <div class="grid gap-8 lg:grid-cols-[1fr_0.9fr]">
+          <aside class="rounded-[2rem] bg-white p-8 shadow-sm ring-1 ring-slate-200">
+            <h2 class="font-serif text-3xl text-slate-900">Need to update this page?</h2>
+            <p class="mt-4 text-base leading-8 text-slate-600">Open the admin editor for this destination and update the seasonal guide fields for this page.</p>
+            <div class="mt-8 flex flex-wrap gap-3">
+              <% if (entity._id) { %>
+                <a class="rounded-full bg-primary px-5 py-3 text-sm font-semibold text-white transition hover:bg-primary/90" href="/admin/<%= entityType %>s/<%= entity._id %>/edit">Edit this destination</a>
+              <% } %>
+              <a class="rounded-full border border-slate-300 bg-white px-5 py-3 text-sm font-semibold text-slate-900 transition hover:border-primary hover:text-primary" href="/admin/<%= entityType %>s">Open admin list</a>
+            </div>
+          </aside>
+
+          <% if (linkedEntries && linkedEntries.length) { %>
+            <div>
+              <h2 class="font-serif text-3xl text-slate-900"><%= linkedEntriesTitle %></h2>
+              <div class="mt-6 grid gap-5 sm:grid-cols-2">
+                <% linkedEntries.forEach((item) => { %>
+                  <% const itemType = itemTypeMap[item.entryType] || 'cities'; %>
+                  <% const itemLabel = itemLabelMap[item.entryType] || 'Entry'; %>
+                  <article class="overflow-hidden rounded-[1.75rem] bg-white shadow-sm ring-1 ring-slate-200">
+                    <a href="/<%= itemType %>/<%= item.slug %>" class="block">
+                      <div class="h-48 bg-cover bg-center" style="background-image:url('<%= item.heroImage || '/images/placeholder.jpg' %>')"></div>
+                      <div class="p-6">
+                        <p class="text-xs font-bold uppercase tracking-[0.24em] text-slate-500"><%= itemLabel %></p>
+                        <h3 class="mt-3 font-serif text-2xl text-slate-900"><%= item.name %></h3>
+                        <p class="mt-3 text-sm leading-7 text-slate-600"><%= item.summary || item.description?.slice(0, 120) || `Explore this ${itemLabel.toLowerCase()}.` %></p>
+                      </div>
+                    </a>
+                  </article>
+                <% }) %>
+              </div>
+            </div>
+          <% } %>
+        </div>
+      </section>
+    </main>
+    <%- include('partials/footer') %>
+  </body>
+</html>

@@ -2,8 +2,76 @@
 <html lang="en">
   <head>
     <%- include('../partials/head') %>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tom-select@2.4.3/dist/css/tom-select.css">
+    <link href="https://cdn.jsdelivr.net/npm/quill@1.3.7/dist/quill.snow.css" rel="stylesheet">
   </head>
   <body class="min-h-screen bg-slate-50 text-slate-900">
+    <%
+      const selected = selectedReferences || {};
+      const renderSelectedOptions = (items = []) => items.map((item) => `<option value="${item._id || item.value}" selected>${item.name || item.text}</option>`).join('');
+      const guide = record.bestTimeToVisitGuide || {};
+      const seasonDefaults = [
+        { name: 'Spring', subtitle: 'The Awakening' },
+        { name: 'Summer', subtitle: 'The Pulse' },
+        { name: 'Autumn', subtitle: 'The Ember' },
+        { name: 'Winter', subtitle: 'The Stillness' }
+      ];
+      const seasons = seasonDefaults.map((season, index) => {
+        const existingSeason = Array.isArray(guide.seasons) ? guide.seasons[index] || {} : {};
+        const highlightsValue = Array.isArray(existingSeason.highlights) ? existingSeason.highlights.join('\n') : existingSeason.highlights || '';
+        return {
+          ...season,
+          ...existingSeason,
+          highlightsValue
+        };
+      });
+      const travelerProfileDefaults = [
+        { title: 'The Newcomer' },
+        { title: 'The Purist' }
+      ];
+      const travelerProfiles = travelerProfileDefaults.map((profile, index) => ({
+        ...profile,
+        ...(Array.isArray(guide.travelerProfiles) ? guide.travelerProfiles[index] || {} : {})
+      }));
+      const supportsBestTimeGuide = entity === 'countries' || entity === 'states' || entity === 'cities';
+      const hotelGuide = record.hotelGuide || {};
+      const hotelCards = Array.from({ length: 6 }, (_, index) => {
+        const existingHotel = Array.isArray(hotelGuide.hotels) ? hotelGuide.hotels[index] || {} : {};
+        const featuresValue = Array.isArray(existingHotel.features) ? existingHotel.features.join('\n') : existingHotel.features || '';
+        return { ...existingHotel, featuresValue };
+      });
+      const supportsHotelGuide = entity === 'states' || entity === 'cities';
+      const reachGuide = record.howToReachGuide || {};
+      const reachSectionDefaults = [
+        { eyebrow: '01 - AIR TRAVEL', title: 'By Air' },
+        { eyebrow: '02 - RAILWAY', title: 'By Rail' },
+        { eyebrow: '03 - ROAD & TAXI', title: 'By Road' }
+      ];
+      const reachSections = reachSectionDefaults.map((section, index) => {
+        const existingSection = Array.isArray(reachGuide.sections) ? reachGuide.sections[index] || {} : {};
+        const items = Array.from({ length: 3 }, (_, itemIndex) => ({
+          ...(Array.isArray(existingSection.items) ? existingSection.items[itemIndex] || {} : {})
+        }));
+        return { ...section, ...existingSection, items };
+      });
+      const supportsReachGuide = entity === 'countries' || entity === 'states' || entity === 'cities';
+      const blogCategories = Array.isArray(record.categories) ? record.categories : [];
+      const attractionExpectItems = Array.from({ length: 4 }, (_, index) => ({
+        ...(Array.isArray(record.expectItems) ? record.expectItems[index] || {} : {})
+      }));
+      const attractionGalleryImages = Array.isArray(record.galleryImages) ? record.galleryImages.join('\n') : '';
+      const packageItineraryDays = Array.from({ length: 6 }, (_, index) => ({
+        ...(Array.isArray(record.itineraryDays) ? record.itineraryDays[index] || {} : {})
+      }));
+      const packagePricingTiers = Array.from({ length: 3 }, (_, index) => ({
+        ...(Array.isArray(record.pricingTiers) ? record.pricingTiers[index] || {} : {}),
+        featuresValue: Array.isArray(record.pricingTiers?.[index]?.features) ? record.pricingTiers[index].features.join('\n') : record.pricingTiers?.[index]?.features || '',
+        isFeatured: Boolean(record.pricingTiers?.[index]?.isFeatured)
+      }));
+      const packageReviews = Array.from({ length: 3 }, (_, index) => ({
+        ...(Array.isArray(record.reviews) ? record.reviews[index] || {} : {})
+      }));
+    %>
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
       <header class="mb-8 flex flex-col gap-4 rounded-[2rem] bg-white border border-slate-200 p-8 shadow-sm sm:flex-row sm:items-center sm:justify-between">
         <div>
@@ -18,7 +86,7 @@
       <form class="space-y-8 rounded-[2rem] bg-white border border-slate-200 p-8 shadow-sm" action="<%= action %>" method="POST" enctype="multipart/form-data">
         <div class="grid gap-6 xl:grid-cols-2">
           <label class="block">
-            <span class="text-sm font-medium text-slate-700">Name</span>
+            <span class="text-sm font-medium text-slate-700"><%= entity === 'blogs' ? 'Title' : 'Name' %></span>
             <input name="name" required value="<%= record.name || '' %>" class="mt-2 w-full rounded-2xl border border-slate-300 bg-slate-50 px-4 py-3 text-slate-900 outline-none transition focus:border-sky-500 focus:ring-2 focus:ring-sky-100" />
           </label>
           <label class="block">
@@ -40,97 +108,334 @@
           </label>
         </div>
         <% if (entity === 'packages') { %>
-          <div class="grid gap-6 xl:grid-cols-2">
+          <section class="space-y-8 rounded-[2rem] border border-slate-200 bg-slate-50 p-6 sm:p-8">
+            <div>
+              <h2 class="text-2xl font-semibold text-slate-900">Package Details Page Builder</h2>
+              <p class="mt-2 text-sm leading-7 text-slate-600">These fields map to the stitched package details layout, including the hero, intro, itinerary timeline, pricing tiers, inclusions, and reviews.</p>
+            </div>
+
+            <div class="grid gap-6 xl:grid-cols-2">
+              <label class="block">
+                <span class="text-sm font-medium text-slate-700">Hero eyebrow</span>
+                <input name="heroEyebrow" value="<%= record.heroEyebrow || '' %>" placeholder="7-Day Curated Expedition" class="mt-2 w-full rounded-2xl border border-slate-300 bg-white px-4 py-3 text-slate-900 outline-none transition focus:border-sky-500 focus:ring-2 focus:ring-sky-100" />
+              </label>
+              <label class="block">
+                <span class="text-sm font-medium text-slate-700">Hero location line</span>
+                <input name="heroLocation" value="<%= record.heroLocation || '' %>" placeholder="Delhi • Agra • Jaipur" class="mt-2 w-full rounded-2xl border border-slate-300 bg-white px-4 py-3 text-slate-900 outline-none transition focus:border-sky-500 focus:ring-2 focus:ring-sky-100" />
+              </label>
+              <label class="block">
+                <span class="text-sm font-medium text-slate-700">Season label</span>
+                <input name="heroSeason" value="<%= record.heroSeason || '' %>" placeholder="All Year Round" class="mt-2 w-full rounded-2xl border border-slate-300 bg-white px-4 py-3 text-slate-900 outline-none transition focus:border-sky-500 focus:ring-2 focus:ring-sky-100" />
+              </label>
+              <label class="block">
+                <span class="text-sm font-medium text-slate-700">Duration</span>
+                <input name="duration" value="<%= record.duration || '' %>" placeholder="7 Days" class="mt-2 w-full rounded-2xl border border-slate-300 bg-white px-4 py-3 text-slate-900 outline-none transition focus:border-sky-500 focus:ring-2 focus:ring-sky-100" />
+              </label>
+              <label class="block">
+                <span class="text-sm font-medium text-slate-700">Starting price</span>
+                <input name="price" value="<%= record.price || '' %>" placeholder="$899" class="mt-2 w-full rounded-2xl border border-slate-300 bg-white px-4 py-3 text-slate-900 outline-none transition focus:border-sky-500 focus:ring-2 focus:ring-sky-100" />
+              </label>
+              <label class="block">
+                <span class="text-sm font-medium text-slate-700">Floating price label</span>
+                <input name="bookingPriceLabel" value="<%= record.bookingPriceLabel || '' %>" placeholder="/ traveler" class="mt-2 w-full rounded-2xl border border-slate-300 bg-white px-4 py-3 text-slate-900 outline-none transition focus:border-sky-500 focus:ring-2 focus:ring-sky-100" />
+              </label>
+              <label class="block xl:col-span-2">
+                <span class="text-sm font-medium text-slate-700">Intro heading</span>
+                <input name="introHeading" value="<%= record.introHeading || '' %>" class="mt-2 w-full rounded-2xl border border-slate-300 bg-white px-4 py-3 text-slate-900 outline-none transition focus:border-sky-500 focus:ring-2 focus:ring-sky-100" />
+              </label>
+              <label class="block xl:col-span-2">
+                <span class="text-sm font-medium text-slate-700">Intro body</span>
+                <textarea rows="5" name="introBody" class="mt-2 w-full rounded-2xl border border-slate-300 bg-white px-4 py-3 text-slate-900 outline-none transition focus:border-sky-500 focus:ring-2 focus:ring-sky-100"><%= record.introBody || '' %></textarea>
+              </label>
+              <label class="block">
+                <span class="text-sm font-medium text-slate-700">Intro side image URL</span>
+                <input name="introImage" value="<%= record.introImage || '' %>" class="mt-2 w-full rounded-2xl border border-slate-300 bg-white px-4 py-3 text-slate-900 outline-none transition focus:border-sky-500 focus:ring-2 focus:ring-sky-100" />
+              </label>
+              <label class="block">
+                <span class="text-sm font-medium text-slate-700">Testimonial author</span>
+                <input name="testimonialAuthor" value="<%= record.testimonialAuthor || '' %>" placeholder="Elena V., Travel Journalist" class="mt-2 w-full rounded-2xl border border-slate-300 bg-white px-4 py-3 text-slate-900 outline-none transition focus:border-sky-500 focus:ring-2 focus:ring-sky-100" />
+              </label>
+              <label class="block xl:col-span-2">
+                <span class="text-sm font-medium text-slate-700">Testimonial quote</span>
+                <textarea rows="3" name="testimonialQuote" class="mt-2 w-full rounded-2xl border border-slate-300 bg-white px-4 py-3 text-slate-900 outline-none transition focus:border-sky-500 focus:ring-2 focus:ring-sky-100"><%= record.testimonialQuote || '' %></textarea>
+              </label>
+            </div>
+
+            <div class="grid gap-6 lg:grid-cols-2">
+              <label class="block">
+                <span class="text-sm font-medium text-slate-700">Itinerary countries</span>
+                <select name="itineraryCountries" multiple data-remote-entity="countries" data-placeholder="Search countries" class="js-remote-select mt-2 w-full">
+                  <%- renderSelectedOptions(selected.countries) %>
+                </select>
+              </label>
+              <label class="block">
+                <span class="text-sm font-medium text-slate-700">Itinerary states</span>
+                <select name="itineraryStates" multiple data-remote-entity="states" data-placeholder="Search states" class="js-remote-select mt-2 w-full">
+                  <%- renderSelectedOptions(selected.states) %>
+                </select>
+              </label>
+              <label class="block">
+                <span class="text-sm font-medium text-slate-700">Itinerary cities</span>
+                <select name="itineraryCities" multiple data-remote-entity="cities" data-placeholder="Search cities" class="js-remote-select mt-2 w-full">
+                  <%- renderSelectedOptions(selected.cities) %>
+                </select>
+              </label>
+              <label class="block">
+                <span class="text-sm font-medium text-slate-700">Itinerary attractions</span>
+                <select name="itineraryAttractions" multiple data-remote-entity="attractions" data-placeholder="Search attractions" class="js-remote-select mt-2 w-full">
+                  <%- renderSelectedOptions(selected.attractions) %>
+                </select>
+              </label>
+            </div>
             <label class="block">
-              <span class="text-sm font-medium text-slate-700">Price</span>
-              <input name="price" value="<%= record.price || '' %>" class="mt-2 w-full rounded-2xl border border-slate-300 bg-slate-50 px-4 py-3 text-slate-900 outline-none transition focus:border-sky-500 focus:ring-2 focus:ring-sky-100" />
-            </label>
-            <label class="block">
-              <span class="text-sm font-medium text-slate-700">Duration</span>
-              <input name="duration" value="<%= record.duration || '' %>" class="mt-2 w-full rounded-2xl border border-slate-300 bg-slate-50 px-4 py-3 text-slate-900 outline-none transition focus:border-sky-500 focus:ring-2 focus:ring-sky-100" />
-            </label>
-          </div>
-          <div class="grid gap-6 lg:grid-cols-2">
-            <label class="block">
-              <span class="text-sm font-medium text-slate-700">Itinerary countries</span>
-              <select name="itineraryCountries" multiple class="mt-2 h-40 w-full rounded-2xl border border-slate-300 bg-slate-50 px-4 py-3 text-slate-900 outline-none transition focus:border-sky-500 focus:ring-2 focus:ring-sky-100">
-                <% references.countries.forEach(country => { %>
-                  <option value="<%= country._id %>" <%= Array.isArray(record.itineraryCountries) && record.itineraryCountries.includes(String(country._id)) ? 'selected' : '' %>><%= country.name %></option>
-                <% }) %>
+              <span class="text-sm font-medium text-slate-700">Itinerary activities</span>
+              <select name="itineraryActivities" multiple data-remote-entity="activities" data-placeholder="Search activities" class="js-remote-select mt-2 w-full">
+                <%- renderSelectedOptions(selected.activities) %>
               </select>
             </label>
-            <label class="block">
-              <span class="text-sm font-medium text-slate-700">Itinerary states</span>
-              <select name="itineraryStates" multiple class="mt-2 h-40 w-full rounded-2xl border border-slate-300 bg-slate-50 px-4 py-3 text-slate-900 outline-none transition focus:border-sky-500 focus:ring-2 focus:ring-sky-100">
-                <% references.states.forEach(state => { %>
-                  <option value="<%= state._id %>" <%= Array.isArray(record.itineraryStates) && record.itineraryStates.includes(String(state._id)) ? 'selected' : '' %>><%= state.name %></option>
-                <% }) %>
-              </select>
-            </label>
-          </div>
-          <div class="grid gap-6 lg:grid-cols-2">
-            <label class="block">
-              <span class="text-sm font-medium text-slate-700">Itinerary cities</span>
-              <select name="itineraryCities" multiple class="mt-2 h-40 w-full rounded-2xl border border-slate-300 bg-slate-50 px-4 py-3 text-slate-900 outline-none transition focus:border-sky-500 focus:ring-2 focus:ring-sky-100">
-                <% references.cities.forEach(city => { %>
-                  <option value="<%= city._id %>" <%= Array.isArray(record.itineraryCities) && record.itineraryCities.includes(String(city._id)) ? 'selected' : '' %>><%= city.name %></option>
-                <% }) %>
-              </select>
-            </label>
-            <label class="block">
-              <span class="text-sm font-medium text-slate-700">Itinerary attractions</span>
-              <select name="itineraryAttractions" multiple class="mt-2 h-40 w-full rounded-2xl border border-slate-300 bg-slate-50 px-4 py-3 text-slate-900 outline-none transition focus:border-sky-500 focus:ring-2 focus:ring-sky-100">
-                <% references.attractions.forEach(attraction => { %>
-                  <option value="<%= attraction._id %>" <%= Array.isArray(record.itineraryAttractions) && record.itineraryAttractions.includes(String(attraction._id)) ? 'selected' : '' %>><%= attraction.name %></option>
-                <% }) %>
-              </select>
-            </label>
-          </div>
-          <label class="block">
-            <span class="text-sm font-medium text-slate-700">Itinerary activities</span>
-            <select name="itineraryActivities" multiple class="mt-2 h-40 w-full rounded-2xl border border-slate-300 bg-slate-50 px-4 py-3 text-slate-900 outline-none transition focus:border-sky-500 focus:ring-2 focus:ring-sky-100">
-              <% references.activities.forEach(activity => { %>
-                <option value="<%= activity._id %>" <%= Array.isArray(record.itineraryActivities) && record.itineraryActivities.includes(String(activity._id)) ? 'selected' : '' %>><%= activity.name %></option>
+
+            <div class="space-y-6">
+              <div>
+                <h3 class="text-xl font-semibold text-slate-900">Itinerary Timeline</h3>
+                <p class="mt-2 text-sm text-slate-500">Add the day cards used in the vertical itinerary section.</p>
+              </div>
+              <% packageItineraryDays.forEach((day, index) => { %>
+                <div class="grid gap-4 rounded-[1.75rem] border border-slate-200 bg-white p-5 xl:grid-cols-3">
+                  <label class="block">
+                    <span class="text-sm font-medium text-slate-700">Day label</span>
+                    <input name="itineraryDays[<%= index %>][dayLabel]" value="<%= day.dayLabel || '' %>" placeholder="Day 1 / Arrival & Immersion" class="mt-2 w-full rounded-2xl border border-slate-300 bg-slate-50 px-4 py-3 text-slate-900 outline-none transition focus:border-sky-500 focus:ring-2 focus:ring-sky-100" />
+                  </label>
+                  <label class="block">
+                    <span class="text-sm font-medium text-slate-700">Title</span>
+                    <input name="itineraryDays[<%= index %>][title]" value="<%= day.title || '' %>" class="mt-2 w-full rounded-2xl border border-slate-300 bg-slate-50 px-4 py-3 text-slate-900 outline-none transition focus:border-sky-500 focus:ring-2 focus:ring-sky-100" />
+                  </label>
+                  <label class="block xl:col-span-3">
+                    <span class="text-sm font-medium text-slate-700">Description</span>
+                    <textarea rows="3" name="itineraryDays[<%= index %>][description]" class="mt-2 w-full rounded-2xl border border-slate-300 bg-slate-50 px-4 py-3 text-slate-900 outline-none transition focus:border-sky-500 focus:ring-2 focus:ring-sky-100"><%= day.description || '' %></textarea>
+                  </label>
+                </div>
               <% }) %>
-            </select>
-          </label>
+            </div>
+
+            <div class="space-y-6">
+              <div>
+                <h3 class="text-xl font-semibold text-slate-900">Pricing Tiers</h3>
+                <p class="mt-2 text-sm text-slate-500">Each tier powers one pricing card. Put one feature per line.</p>
+              </div>
+              <div class="grid gap-6 xl:grid-cols-3">
+                <% packagePricingTiers.forEach((tier, index) => { %>
+                  <section class="rounded-[1.75rem] border border-slate-200 bg-white p-6">
+                    <h4 class="text-lg font-semibold text-slate-900">Tier <%= index + 1 %></h4>
+                    <div class="mt-5 space-y-4">
+                      <label class="block">
+                        <span class="text-sm font-medium text-slate-700">Eyebrow</span>
+                        <input name="pricingTiers[<%= index %>][eyebrow]" value="<%= tier.eyebrow || '' %>" placeholder="The Explorer" class="mt-2 w-full rounded-2xl border border-slate-300 bg-slate-50 px-4 py-3 text-slate-900 outline-none transition focus:border-sky-500 focus:ring-2 focus:ring-sky-100" />
+                      </label>
+                      <label class="block">
+                        <span class="text-sm font-medium text-slate-700">Tier name</span>
+                        <input name="pricingTiers[<%= index %>][name]" value="<%= tier.name || '' %>" placeholder="Budget" class="mt-2 w-full rounded-2xl border border-slate-300 bg-slate-50 px-4 py-3 text-slate-900 outline-none transition focus:border-sky-500 focus:ring-2 focus:ring-sky-100" />
+                      </label>
+                      <label class="block">
+                        <span class="text-sm font-medium text-slate-700">Tier price</span>
+                        <input name="pricingTiers[<%= index %>][price]" value="<%= tier.price || '' %>" placeholder="$899" class="mt-2 w-full rounded-2xl border border-slate-300 bg-slate-50 px-4 py-3 text-slate-900 outline-none transition focus:border-sky-500 focus:ring-2 focus:ring-sky-100" />
+                      </label>
+                      <label class="block">
+                        <span class="text-sm font-medium text-slate-700">Price suffix</span>
+                        <input name="pricingTiers[<%= index %>][priceSuffix]" value="<%= tier.priceSuffix || '' %>" placeholder="/ person" class="mt-2 w-full rounded-2xl border border-slate-300 bg-slate-50 px-4 py-3 text-slate-900 outline-none transition focus:border-sky-500 focus:ring-2 focus:ring-sky-100" />
+                      </label>
+                      <label class="block">
+                        <span class="text-sm font-medium text-slate-700">Button label</span>
+                        <input name="pricingTiers[<%= index %>][buttonLabel]" value="<%= tier.buttonLabel || '' %>" placeholder="Inquire Now" class="mt-2 w-full rounded-2xl border border-slate-300 bg-slate-50 px-4 py-3 text-slate-900 outline-none transition focus:border-sky-500 focus:ring-2 focus:ring-sky-100" />
+                      </label>
+                      <label class="flex items-center gap-3 rounded-2xl border border-slate-200 bg-slate-50 px-4 py-3">
+                        <input type="checkbox" name="pricingTiers[<%= index %>][isFeatured]" value="true" <%= tier.isFeatured ? 'checked' : '' %> class="h-4 w-4 rounded border-slate-300 text-sky-600 focus:ring-sky-500" />
+                        <span class="text-sm font-medium text-slate-700">Highlight this tier</span>
+                      </label>
+                      <label class="block">
+                        <span class="text-sm font-medium text-slate-700">Features</span>
+                        <textarea rows="5" name="pricingTiers[<%= index %>][features]" class="mt-2 w-full rounded-2xl border border-slate-300 bg-slate-50 px-4 py-3 text-slate-900 outline-none transition focus:border-sky-500 focus:ring-2 focus:ring-sky-100"><%= tier.featuresValue || '' %></textarea>
+                      </label>
+                    </div>
+                  </section>
+                <% }) %>
+              </div>
+            </div>
+
+            <div class="grid gap-6 xl:grid-cols-2">
+              <label class="block">
+                <span class="text-sm font-medium text-slate-700">Pricing section heading</span>
+                <input name="pricingHeading" value="<%= record.pricingHeading || '' %>" placeholder="Choose Your Experience Level" class="mt-2 w-full rounded-2xl border border-slate-300 bg-white px-4 py-3 text-slate-900 outline-none transition focus:border-sky-500 focus:ring-2 focus:ring-sky-100" />
+              </label>
+              <label class="block">
+                <span class="text-sm font-medium text-slate-700">Primary booking button label</span>
+                <input name="bookingButtonLabel" value="<%= record.bookingButtonLabel || '' %>" placeholder="Book Now" class="mt-2 w-full rounded-2xl border border-slate-300 bg-white px-4 py-3 text-slate-900 outline-none transition focus:border-sky-500 focus:ring-2 focus:ring-sky-100" />
+              </label>
+              <label class="block xl:col-span-2">
+                <span class="text-sm font-medium text-slate-700">Pricing section description</span>
+                <textarea rows="3" name="pricingDescription" class="mt-2 w-full rounded-2xl border border-slate-300 bg-white px-4 py-3 text-slate-900 outline-none transition focus:border-sky-500 focus:ring-2 focus:ring-sky-100"><%= record.pricingDescription || '' %></textarea>
+              </label>
+              <label class="block xl:col-span-2">
+                <span class="text-sm font-medium text-slate-700">Secondary booking button label</span>
+                <input name="bookingSecondaryLabel" value="<%= record.bookingSecondaryLabel || '' %>" placeholder="Save to Itinerary" class="mt-2 w-full rounded-2xl border border-slate-300 bg-white px-4 py-3 text-slate-900 outline-none transition focus:border-sky-500 focus:ring-2 focus:ring-sky-100" />
+              </label>
+            </div>
+
+            <div class="grid gap-6 xl:grid-cols-2">
+              <label class="block">
+                <span class="text-sm font-medium text-slate-700">What's included</span>
+                <textarea rows="6" name="inclusions" class="mt-2 w-full rounded-2xl border border-slate-300 bg-white px-4 py-3 text-slate-900 outline-none transition focus:border-sky-500 focus:ring-2 focus:ring-sky-100"><%= Array.isArray(record.inclusions) ? record.inclusions.join('\n') : '' %></textarea>
+              </label>
+              <label class="block">
+                <span class="text-sm font-medium text-slate-700">What's excluded</span>
+                <textarea rows="6" name="exclusions" class="mt-2 w-full rounded-2xl border border-slate-300 bg-white px-4 py-3 text-slate-900 outline-none transition focus:border-sky-500 focus:ring-2 focus:ring-sky-100"><%= Array.isArray(record.exclusions) ? record.exclusions.join('\n') : '' %></textarea>
+              </label>
+            </div>
+
+            <div class="space-y-6">
+              <div>
+                <h3 class="text-xl font-semibold text-slate-900">Traveler Reviews</h3>
+                <p class="mt-2 text-sm text-slate-500">Add the review cards displayed near the end of the package page.</p>
+              </div>
+              <div class="grid gap-6 xl:grid-cols-3">
+                <% packageReviews.forEach((review, index) => { %>
+                  <section class="rounded-[1.75rem] border border-slate-200 bg-white p-6">
+                    <h4 class="text-lg font-semibold text-slate-900">Review <%= index + 1 %></h4>
+                    <div class="mt-5 space-y-4">
+                      <label class="block">
+                        <span class="text-sm font-medium text-slate-700">Traveler name</span>
+                        <input name="reviews[<%= index %>][name]" value="<%= review.name || '' %>" class="mt-2 w-full rounded-2xl border border-slate-300 bg-slate-50 px-4 py-3 text-slate-900 outline-none transition focus:border-sky-500 focus:ring-2 focus:ring-sky-100" />
+                      </label>
+                      <label class="block">
+                        <span class="text-sm font-medium text-slate-700">Meta line</span>
+                        <input name="reviews[<%= index %>][meta]" value="<%= review.meta || '' %>" placeholder="Visited Nov 2023" class="mt-2 w-full rounded-2xl border border-slate-300 bg-slate-50 px-4 py-3 text-slate-900 outline-none transition focus:border-sky-500 focus:ring-2 focus:ring-sky-100" />
+                      </label>
+                      <label class="block">
+                        <span class="text-sm font-medium text-slate-700">Image URL</span>
+                        <input name="reviews[<%= index %>][image]" value="<%= review.image || '' %>" class="mt-2 w-full rounded-2xl border border-slate-300 bg-slate-50 px-4 py-3 text-slate-900 outline-none transition focus:border-sky-500 focus:ring-2 focus:ring-sky-100" />
+                      </label>
+                      <label class="block">
+                        <span class="text-sm font-medium text-slate-700">Quote</span>
+                        <textarea rows="4" name="reviews[<%= index %>][quote]" class="mt-2 w-full rounded-2xl border border-slate-300 bg-slate-50 px-4 py-3 text-slate-900 outline-none transition focus:border-sky-500 focus:ring-2 focus:ring-sky-100"><%= review.quote || '' %></textarea>
+                      </label>
+                    </div>
+                  </section>
+                <% }) %>
+              </div>
+            </div>
+          </section>
         <% } %>
-        <% if (entity === 'states' || entity === 'cities' || entity === 'attractions' || entity === 'activities') { %>
+        <% if (entity === 'states' || entity === 'cities' || entity === 'attractions' || entity === 'activities' || entity === 'hotels') { %>
           <div class="grid gap-6 xl:grid-cols-2">
             <label class="block">
               <span class="text-sm font-medium text-slate-700">Country</span>
-              <select name="country" required class="mt-2 w-full rounded-2xl border border-slate-300 bg-slate-50 px-4 py-3 text-slate-900 outline-none transition focus:border-sky-500 focus:ring-2 focus:ring-sky-100">
+              <select name="country" required data-remote-entity="countries" data-placeholder="Select country" class="js-remote-select js-country-select mt-2 w-full">
                 <option value="">Select country</option>
-                <% references.countries.forEach(country => { %>
-                  <option value="<%= country._id %>" <%= String(country._id) === String(record.country) ? 'selected' : '' %>><%= country.name %></option>
-                <% }) %>
+                <%- renderSelectedOptions(selected.countries) %>
               </select>
             </label>
-            <% if (entity === 'cities' || entity === 'attractions' || entity === 'activities') { %>
+            <% if (entity === 'cities' || entity === 'attractions' || entity === 'activities' || entity === 'hotels') { %>
               <label class="block">
                 <span class="text-sm font-medium text-slate-700">State</span>
-                <select name="state" <%= entity === 'cities' ? 'required' : '' %> class="mt-2 w-full rounded-2xl border border-slate-300 bg-slate-50 px-4 py-3 text-slate-900 outline-none transition focus:border-sky-500 focus:ring-2 focus:ring-sky-100">
+                <select name="state" <%= entity === 'cities' ? 'required' : '' %> data-remote-entity="states" data-parent-country="country" data-placeholder="Select state" class="js-remote-select js-state-select mt-2 w-full">
                   <option value="">Select state</option>
-                  <% references.states.forEach(state => { %>
-                    <option value="<%= state._id %>" <%= String(state._id) === String(record.state) ? 'selected' : '' %>><%= state.name %></option>
-                  <% }) %>
+                  <%- renderSelectedOptions(selected.states) %>
                 </select>
               </label>
             <% } %>
-            <% if (entity === 'attractions' || entity === 'activities') { %>
+            <% if (entity === 'attractions' || entity === 'activities' || entity === 'hotels') { %>
               <label class="block">
                 <span class="text-sm font-medium text-slate-700">City</span>
-                <select name="city" class="mt-2 w-full rounded-2xl border border-slate-300 bg-slate-50 px-4 py-3 text-slate-900 outline-none transition focus:border-sky-500 focus:ring-2 focus:ring-sky-100">
+                <select name="city" data-remote-entity="cities" data-parent-country="country" data-parent-state="state" data-placeholder="Select city" class="js-remote-select mt-2 w-full">
                   <option value="">Select city</option>
-                  <% references.cities.forEach(city => { %>
-                    <option value="<%= city._id %>" <%= String(city._id) === String(record.city) ? 'selected' : '' %>><%= city.name %></option>
-                  <% }) %>
+                  <%- renderSelectedOptions(selected.cities) %>
                 </select>
               </label>
             <% } %>
             <label class="block">
               <span class="text-sm font-medium text-slate-700">Category</span>
               <input name="category" value="<%= record.category || '' %>" class="mt-2 w-full rounded-2xl border border-slate-300 bg-slate-50 px-4 py-3 text-slate-900 outline-none transition focus:border-sky-500 focus:ring-2 focus:ring-sky-100" />
+            </label>
+          </div>
+        <% } %>
+        <% if (entity === 'hotels') { %>
+          <div class="grid gap-6 xl:grid-cols-2">
+            <label class="block">
+              <span class="text-sm font-medium text-slate-700">Rating</span>
+              <input name="rating" value="<%= record.rating || '' %>" class="mt-2 w-full rounded-2xl border border-slate-300 bg-slate-50 px-4 py-3 text-slate-900 outline-none transition focus:border-sky-500 focus:ring-2 focus:ring-sky-100" />
+            </label>
+            <label class="block">
+              <span class="text-sm font-medium text-slate-700">Price</span>
+              <input name="price" value="<%= record.price || '' %>" class="mt-2 w-full rounded-2xl border border-slate-300 bg-slate-50 px-4 py-3 text-slate-900 outline-none transition focus:border-sky-500 focus:ring-2 focus:ring-sky-100" />
+            </label>
+          </div>
+          <label class="block">
+            <span class="text-sm font-medium text-slate-700">Amenities</span>
+            <textarea rows="4" name="amenities" class="mt-2 w-full rounded-2xl border border-slate-300 bg-slate-50 px-4 py-3 text-slate-900 outline-none transition focus:border-sky-500 focus:ring-2 focus:ring-sky-100"><%= Array.isArray(record.amenities) ? record.amenities.join('\n') : record.amenities || '' %></textarea>
+          </label>
+        <% } %>
+        <% if (entity === 'blogs') { %>
+          <div class="grid gap-6 xl:grid-cols-2">
+            <label class="block">
+              <span class="text-sm font-medium text-slate-700">Author name</span>
+              <input name="authorName" value="<%= record.authorName || '' %>" class="mt-2 w-full rounded-2xl border border-slate-300 bg-slate-50 px-4 py-3 text-slate-900 outline-none transition focus:border-sky-500 focus:ring-2 focus:ring-sky-100" />
+            </label>
+            <label class="block">
+              <span class="text-sm font-medium text-slate-700">Author role</span>
+              <input name="authorRole" value="<%= record.authorRole || '' %>" class="mt-2 w-full rounded-2xl border border-slate-300 bg-slate-50 px-4 py-3 text-slate-900 outline-none transition focus:border-sky-500 focus:ring-2 focus:ring-sky-100" />
+            </label>
+            <label class="block">
+              <span class="text-sm font-medium text-slate-700">Read time</span>
+              <input name="readTime" value="<%= record.readTime || '' %>" placeholder="12 Min Read" class="mt-2 w-full rounded-2xl border border-slate-300 bg-slate-50 px-4 py-3 text-slate-900 outline-none transition focus:border-sky-500 focus:ring-2 focus:ring-sky-100" />
+            </label>
+            <label class="block">
+              <span class="text-sm font-medium text-slate-700">Published at</span>
+              <input name="publishedAt" type="datetime-local" value="<%= record.publishedAt ? new Date(record.publishedAt).toISOString().slice(0,16) : '' %>" class="mt-2 w-full rounded-2xl border border-slate-300 bg-slate-50 px-4 py-3 text-slate-900 outline-none transition focus:border-sky-500 focus:ring-2 focus:ring-sky-100" />
+            </label>
+            <label class="block">
+              <span class="text-sm font-medium text-slate-700">Primary category</span>
+              <input name="primaryCategory" value="<%= record.primaryCategory || '' %>" class="mt-2 w-full rounded-2xl border border-slate-300 bg-slate-50 px-4 py-3 text-slate-900 outline-none transition focus:border-sky-500 focus:ring-2 focus:ring-sky-100" />
+            </label>
+            <label class="block">
+              <span class="text-sm font-medium text-slate-700">Author image URL</span>
+              <input name="authorImage" value="<%= record.authorImage || '' %>" class="mt-2 w-full rounded-2xl border border-slate-300 bg-slate-50 px-4 py-3 text-slate-900 outline-none transition focus:border-sky-500 focus:ring-2 focus:ring-sky-100" />
+            </label>
+          </div>
+          <label class="block">
+            <span class="text-sm font-medium text-slate-700">Author bio</span>
+            <textarea rows="3" name="authorBio" class="mt-2 w-full rounded-2xl border border-slate-300 bg-slate-50 px-4 py-3 text-slate-900 outline-none transition focus:border-sky-500 focus:ring-2 focus:ring-sky-100"><%= record.authorBio || '' %></textarea>
+          </label>
+          <label class="block">
+            <span class="text-sm font-medium text-slate-700">Categories</span>
+            <select name="categories" multiple class="js-tag-select mt-2 w-full" data-placeholder="Add categories">
+              <% blogCategories.forEach(category => { %>
+                <option value="<%= category %>" selected><%= category %></option>
+              <% }) %>
+            </select>
+          </label>
+          <div class="grid gap-6 xl:grid-cols-2">
+            <label class="block">
+              <span class="text-sm font-medium text-slate-700">Linked countries</span>
+              <select name="countries" multiple data-remote-entity="countries" data-placeholder="Search countries" class="js-remote-select mt-2 w-full">
+                <%- renderSelectedOptions(selected.countries) %>
+              </select>
+            </label>
+            <label class="block">
+              <span class="text-sm font-medium text-slate-700">Linked states</span>
+              <select name="states" multiple data-remote-entity="states" data-placeholder="Search states" class="js-remote-select mt-2 w-full">
+                <%- renderSelectedOptions(selected.states) %>
+              </select>
+            </label>
+            <label class="block">
+              <span class="text-sm font-medium text-slate-700">Linked cities</span>
+              <select name="cities" multiple data-remote-entity="cities" data-placeholder="Search cities" class="js-remote-select mt-2 w-full">
+                <%- renderSelectedOptions(selected.cities) %>
+              </select>
+            </label>
+            <label class="block">
+              <span class="text-sm font-medium text-slate-700">Linked attractions</span>
+              <select name="attractions" multiple data-remote-entity="attractions" data-placeholder="Search attractions" class="js-remote-select mt-2 w-full">
+                <%- renderSelectedOptions(selected.attractions) %>
+              </select>
             </label>
           </div>
         <% } %>
@@ -144,30 +449,514 @@
             <textarea rows="5" name="description" class="mt-2 w-full rounded-2xl border border-slate-300 bg-slate-50 px-4 py-3 text-slate-900 outline-none transition focus:border-sky-500 focus:ring-2 focus:ring-sky-100"><%= record.description || '' %></textarea>
           </label>
         </div>
-        <div class="grid gap-6 xl:grid-cols-2">
+        <% if (entity === 'countries' || entity === 'states' || entity === 'cities') { %>
+          <div class="grid gap-6 xl:grid-cols-2">
+            <label class="block">
+              <span class="text-sm font-medium text-slate-700">Things to do</span>
+              <textarea rows="4" name="thingsToDo" class="mt-2 w-full rounded-2xl border border-slate-300 bg-slate-50 px-4 py-3 text-slate-900 outline-none transition focus:border-sky-500 focus:ring-2 focus:ring-sky-100"><%= record.thingsToDo || '' %></textarea>
+            </label>
+            <label class="block">
+              <span class="text-sm font-medium text-slate-700">Places to visit</span>
+              <textarea rows="4" name="placesToVisit" class="mt-2 w-full rounded-2xl border border-slate-300 bg-slate-50 px-4 py-3 text-slate-900 outline-none transition focus:border-sky-500 focus:ring-2 focus:ring-sky-100"><%= record.placesToVisit || '' %></textarea>
+            </label>
+          </div>
+          <div class="grid gap-6 xl:grid-cols-2">
+            <label class="block">
+              <span class="text-sm font-medium text-slate-700">Best time to visit summary</span>
+              <textarea rows="3" name="bestTimeToVisit" class="mt-2 w-full rounded-2xl border border-slate-300 bg-slate-50 px-4 py-3 text-slate-900 outline-none transition focus:border-sky-500 focus:ring-2 focus:ring-sky-100"><%= record.bestTimeToVisit || '' %></textarea>
+              <p class="mt-2 text-sm text-slate-500">Used in cards, summaries, and as the fallback if the full seasonal guide is not filled out.</p>
+            </label>
+            <label class="block">
+              <span class="text-sm font-medium text-slate-700">How to reach</span>
+              <textarea rows="3" name="howToReach" class="mt-2 w-full rounded-2xl border border-slate-300 bg-slate-50 px-4 py-3 text-slate-900 outline-none transition focus:border-sky-500 focus:ring-2 focus:ring-sky-100"><%= record.howToReach || '' %></textarea>
+            </label>
+          </div>
+        <% } %>
+        <% if (entity === 'attractions') { %>
+          <section class="space-y-6 rounded-[2rem] border border-slate-200 bg-slate-50 p-6 sm:p-8">
+            <div>
+              <h2 class="text-2xl font-semibold text-slate-900">Attraction Showcase</h2>
+              <p class="mt-2 text-sm leading-7 text-slate-600">These fields power the stitched attraction showcase page layout.</p>
+            </div>
+            <div class="grid gap-6 xl:grid-cols-2">
+              <label class="block">
+                <span class="text-sm font-medium text-slate-700">Eyebrow</span>
+                <input name="showcaseEyebrow" value="<%= record.showcaseEyebrow || '' %>" placeholder="Hidden Gem" class="mt-2 w-full rounded-2xl border border-slate-300 bg-white px-4 py-3 text-slate-900 outline-none transition focus:border-sky-500 focus:ring-2 focus:ring-sky-100" />
+              </label>
+              <label class="block">
+                <span class="text-sm font-medium text-slate-700">Location label</span>
+                <input name="showcaseLocation" value="<%= record.showcaseLocation || '' %>" placeholder="Krabi" class="mt-2 w-full rounded-2xl border border-slate-300 bg-white px-4 py-3 text-slate-900 outline-none transition focus:border-sky-500 focus:ring-2 focus:ring-sky-100" />
+              </label>
+              <label class="block xl:col-span-2">
+                <span class="text-sm font-medium text-slate-700">Showcase title</span>
+                <input name="showcaseTitle" value="<%= record.showcaseTitle || '' %>" class="mt-2 w-full rounded-2xl border border-slate-300 bg-white px-4 py-3 text-slate-900 outline-none transition focus:border-sky-500 focus:ring-2 focus:ring-sky-100" />
+              </label>
+              <label class="block xl:col-span-2">
+                <span class="text-sm font-medium text-slate-700">Showcase intro</span>
+                <textarea rows="3" name="showcaseIntro" class="mt-2 w-full rounded-2xl border border-slate-300 bg-white px-4 py-3 text-slate-900 outline-none transition focus:border-sky-500 focus:ring-2 focus:ring-sky-100"><%= record.showcaseIntro || '' %></textarea>
+              </label>
+              <label class="block">
+                <span class="text-sm font-medium text-slate-700">Overview title</span>
+                <input name="overviewTitle" value="<%= record.overviewTitle || '' %>" class="mt-2 w-full rounded-2xl border border-slate-300 bg-white px-4 py-3 text-slate-900 outline-none transition focus:border-sky-500 focus:ring-2 focus:ring-sky-100" />
+              </label>
+              <label class="block xl:col-span-2">
+                <span class="text-sm font-medium text-slate-700">Overview body</span>
+                <textarea rows="5" name="overviewBody" class="mt-2 w-full rounded-2xl border border-slate-300 bg-white px-4 py-3 text-slate-900 outline-none transition focus:border-sky-500 focus:ring-2 focus:ring-sky-100"><%= record.overviewBody || '' %></textarea>
+              </label>
+              <label class="block xl:col-span-2">
+                <span class="text-sm font-medium text-slate-700">Gallery images</span>
+                <textarea rows="4" name="galleryImages" class="mt-2 w-full rounded-2xl border border-slate-300 bg-white px-4 py-3 text-slate-900 outline-none transition focus:border-sky-500 focus:ring-2 focus:ring-sky-100"><%= attractionGalleryImages %></textarea>
+              </label>
+              <label class="block">
+                <span class="text-sm font-medium text-slate-700">What to expect title</span>
+                <input name="expectTitle" value="<%= record.expectTitle || '' %>" class="mt-2 w-full rounded-2xl border border-slate-300 bg-white px-4 py-3 text-slate-900 outline-none transition focus:border-sky-500 focus:ring-2 focus:ring-sky-100" />
+              </label>
+              <label class="block">
+                <span class="text-sm font-medium text-slate-700">Best time</span>
+                <input name="bestTime" value="<%= record.bestTime || '' %>" class="mt-2 w-full rounded-2xl border border-slate-300 bg-white px-4 py-3 text-slate-900 outline-none transition focus:border-sky-500 focus:ring-2 focus:ring-sky-100" />
+              </label>
+              <label class="block">
+                <span class="text-sm font-medium text-slate-700">Difficulty</span>
+                <input name="difficulty" value="<%= record.difficulty || '' %>" class="mt-2 w-full rounded-2xl border border-slate-300 bg-white px-4 py-3 text-slate-900 outline-none transition focus:border-sky-500 focus:ring-2 focus:ring-sky-100" />
+              </label>
+              <label class="block">
+                <span class="text-sm font-medium text-slate-700">Duration</span>
+                <input name="duration" value="<%= record.duration || '' %>" class="mt-2 w-full rounded-2xl border border-slate-300 bg-white px-4 py-3 text-slate-900 outline-none transition focus:border-sky-500 focus:ring-2 focus:ring-sky-100" />
+              </label>
+              <label class="block">
+                <span class="text-sm font-medium text-slate-700">Group size</span>
+                <input name="groupSize" value="<%= record.groupSize || '' %>" class="mt-2 w-full rounded-2xl border border-slate-300 bg-white px-4 py-3 text-slate-900 outline-none transition focus:border-sky-500 focus:ring-2 focus:ring-sky-100" />
+              </label>
+              <label class="block">
+                <span class="text-sm font-medium text-slate-700">Booking price</span>
+                <input name="bookingPrice" value="<%= record.bookingPrice || '' %>" class="mt-2 w-full rounded-2xl border border-slate-300 bg-white px-4 py-3 text-slate-900 outline-none transition focus:border-sky-500 focus:ring-2 focus:ring-sky-100" />
+              </label>
+              <label class="block">
+                <span class="text-sm font-medium text-slate-700">Booking button label</span>
+                <input name="bookingLabel" value="<%= record.bookingLabel || '' %>" class="mt-2 w-full rounded-2xl border border-slate-300 bg-white px-4 py-3 text-slate-900 outline-none transition focus:border-sky-500 focus:ring-2 focus:ring-sky-100" />
+              </label>
+              <label class="block xl:col-span-2">
+                <span class="text-sm font-medium text-slate-700">Booking note</span>
+                <textarea rows="2" name="bookingNote" class="mt-2 w-full rounded-2xl border border-slate-300 bg-white px-4 py-3 text-slate-900 outline-none transition focus:border-sky-500 focus:ring-2 focus:ring-sky-100"><%= record.bookingNote || '' %></textarea>
+              </label>
+              <label class="block xl:col-span-2">
+                <span class="text-sm font-medium text-slate-700">Map image URL</span>
+                <input name="mapImage" value="<%= record.mapImage || '' %>" class="mt-2 w-full rounded-2xl border border-slate-300 bg-white px-4 py-3 text-slate-900 outline-none transition focus:border-sky-500 focus:ring-2 focus:ring-sky-100" />
+              </label>
+            </div>
+            <div class="space-y-4">
+              <% attractionExpectItems.forEach((item, index) => { %>
+                <div class="grid gap-4 rounded-2xl border border-slate-200 bg-white p-4 xl:grid-cols-3">
+                  <label class="block">
+                    <span class="text-sm font-medium text-slate-700">Icon</span>
+                    <input name="expectItems[<%= index %>][icon]" value="<%= item.icon || '' %>" placeholder="water_drop" class="mt-2 w-full rounded-2xl border border-slate-300 bg-slate-50 px-4 py-3 text-slate-900 outline-none transition focus:border-sky-500 focus:ring-2 focus:ring-sky-100" />
+                  </label>
+                  <label class="block">
+                    <span class="text-sm font-medium text-slate-700">Title</span>
+                    <input name="expectItems[<%= index %>][title]" value="<%= item.title || '' %>" class="mt-2 w-full rounded-2xl border border-slate-300 bg-slate-50 px-4 py-3 text-slate-900 outline-none transition focus:border-sky-500 focus:ring-2 focus:ring-sky-100" />
+                  </label>
+                  <label class="block xl:col-span-1">
+                    <span class="text-sm font-medium text-slate-700">Text</span>
+                    <textarea rows="3" name="expectItems[<%= index %>][text]" class="mt-2 w-full rounded-2xl border border-slate-300 bg-slate-50 px-4 py-3 text-slate-900 outline-none transition focus:border-sky-500 focus:ring-2 focus:ring-sky-100"><%= item.text || '' %></textarea>
+                  </label>
+                </div>
+              <% }) %>
+            </div>
+          </section>
+        <% } %>
+        <% if (entity === 'blogs') { %>
+          <section class="space-y-4">
+            <div>
+              <h2 class="text-2xl font-semibold text-slate-900">Blog Content</h2>
+              <p class="mt-2 text-sm text-slate-600">Use the rich editor for the full blog body.</p>
+            </div>
+            <textarea name="content" id="blog-content-input" hidden><%- record.content || '' %></textarea>
+            <div id="blog-editor" class="min-h-[420px] rounded-[1.5rem] border border-slate-300 bg-white"></div>
+          </section>
+        <% } %>
+        <% if (supportsBestTimeGuide) { %>
+          <section class="space-y-8 rounded-[2rem] border border-slate-200 bg-slate-50 p-6 sm:p-8">
+            <div>
+              <h2 class="text-2xl font-semibold text-slate-900">Best Time to Visit Page Builder</h2>
+              <p class="mt-2 max-w-3xl text-sm leading-7 text-slate-600">Fill these fields to generate a stitched seasonal guide page for this <%= entityLabel.toLowerCase() %>. Leave them blank to keep using the simple text page.</p>
+            </div>
+
+            <div class="grid gap-6 xl:grid-cols-2">
+              <label class="block">
+                <span class="text-sm font-medium text-slate-700">Hero eyebrow</span>
+                <input name="bestTimeToVisitGuide[heroEyebrow]" value="<%= guide.heroEyebrow || '' %>" placeholder="Seasonal Guide" class="mt-2 w-full rounded-2xl border border-slate-300 bg-white px-4 py-3 text-slate-900 outline-none transition focus:border-sky-500 focus:ring-2 focus:ring-sky-100" />
+              </label>
+              <label class="block">
+                <span class="text-sm font-medium text-slate-700">Hero title</span>
+                <input name="bestTimeToVisitGuide[heroTitle]" value="<%= guide.heroTitle || '' %>" placeholder="Best Time to Visit..." class="mt-2 w-full rounded-2xl border border-slate-300 bg-white px-4 py-3 text-slate-900 outline-none transition focus:border-sky-500 focus:ring-2 focus:ring-sky-100" />
+              </label>
+              <label class="block xl:col-span-2">
+                <span class="text-sm font-medium text-slate-700">Hero description</span>
+                <textarea rows="4" name="bestTimeToVisitGuide[heroDescription]" class="mt-2 w-full rounded-2xl border border-slate-300 bg-white px-4 py-3 text-slate-900 outline-none transition focus:border-sky-500 focus:ring-2 focus:ring-sky-100"><%= guide.heroDescription || '' %></textarea>
+              </label>
+              <label class="block">
+                <span class="text-sm font-medium text-slate-700">Hero image URL</span>
+                <input name="bestTimeToVisitGuide[heroImage]" value="<%= guide.heroImage || '' %>" class="mt-2 w-full rounded-2xl border border-slate-300 bg-white px-4 py-3 text-slate-900 outline-none transition focus:border-sky-500 focus:ring-2 focus:ring-sky-100" />
+              </label>
+              <label class="block">
+                <span class="text-sm font-medium text-slate-700">Hero image alt text</span>
+                <input name="bestTimeToVisitGuide[heroImageAlt]" value="<%= guide.heroImageAlt || '' %>" class="mt-2 w-full rounded-2xl border border-slate-300 bg-white px-4 py-3 text-slate-900 outline-none transition focus:border-sky-500 focus:ring-2 focus:ring-sky-100" />
+              </label>
+              <label class="block">
+                <span class="text-sm font-medium text-slate-700">Hero side card title</span>
+                <input name="bestTimeToVisitGuide[heroCardTitle]" value="<%= guide.heroCardTitle || '' %>" placeholder="Quick Take" class="mt-2 w-full rounded-2xl border border-slate-300 bg-white px-4 py-3 text-slate-900 outline-none transition focus:border-sky-500 focus:ring-2 focus:ring-sky-100" />
+              </label>
+              <label class="block">
+                <span class="text-sm font-medium text-slate-700">Hero side card text</span>
+                <textarea rows="3" name="bestTimeToVisitGuide[heroCardText]" class="mt-2 w-full rounded-2xl border border-slate-300 bg-white px-4 py-3 text-slate-900 outline-none transition focus:border-sky-500 focus:ring-2 focus:ring-sky-100"><%= guide.heroCardText || '' %></textarea>
+              </label>
+            </div>
+
+            <div class="space-y-6">
+              <div>
+                <h3 class="text-xl font-semibold text-slate-900">Season Sections</h3>
+                <p class="mt-2 text-sm text-slate-500">Each block maps to one stitched seasonal section. Enter highlights on separate lines.</p>
+              </div>
+              <% seasons.forEach((season, index) => { %>
+                <section class="rounded-[1.75rem] border border-slate-200 bg-white p-6">
+                  <div class="mb-6 flex items-center justify-between gap-4">
+                    <h4 class="text-lg font-semibold text-slate-900">Season <%= index + 1 %></h4>
+                    <span class="rounded-full bg-slate-100 px-3 py-1 text-xs font-semibold uppercase tracking-[0.22em] text-slate-600"><%= season.name || `Season ${index + 1}` %></span>
+                  </div>
+                  <div class="grid gap-6 xl:grid-cols-2">
+                    <label class="block">
+                      <span class="text-sm font-medium text-slate-700">Season name</span>
+                      <input name="bestTimeToVisitGuide[seasons][<%= index %>][name]" value="<%= season.name || '' %>" class="mt-2 w-full rounded-2xl border border-slate-300 bg-slate-50 px-4 py-3 text-slate-900 outline-none transition focus:border-sky-500 focus:ring-2 focus:ring-sky-100" />
+                    </label>
+                    <label class="block">
+                      <span class="text-sm font-medium text-slate-700">Subtitle</span>
+                      <input name="bestTimeToVisitGuide[seasons][<%= index %>][subtitle]" value="<%= season.subtitle || '' %>" class="mt-2 w-full rounded-2xl border border-slate-300 bg-slate-50 px-4 py-3 text-slate-900 outline-none transition focus:border-sky-500 focus:ring-2 focus:ring-sky-100" />
+                    </label>
+                    <label class="block">
+                      <span class="text-sm font-medium text-slate-700">Average temperature</span>
+                      <input name="bestTimeToVisitGuide[seasons][<%= index %>][temperature]" value="<%= season.temperature || '' %>" placeholder="15°C - 22°C" class="mt-2 w-full rounded-2xl border border-slate-300 bg-slate-50 px-4 py-3 text-slate-900 outline-none transition focus:border-sky-500 focus:ring-2 focus:ring-sky-100" />
+                    </label>
+                    <label class="block">
+                      <span class="text-sm font-medium text-slate-700">Peak month</span>
+                      <input name="bestTimeToVisitGuide[seasons][<%= index %>][peakMonth]" value="<%= season.peakMonth || '' %>" placeholder="April" class="mt-2 w-full rounded-2xl border border-slate-300 bg-slate-50 px-4 py-3 text-slate-900 outline-none transition focus:border-sky-500 focus:ring-2 focus:ring-sky-100" />
+                    </label>
+                    <label class="block">
+                      <span class="text-sm font-medium text-slate-700">Image URL</span>
+                      <input name="bestTimeToVisitGuide[seasons][<%= index %>][image]" value="<%= season.image || '' %>" class="mt-2 w-full rounded-2xl border border-slate-300 bg-slate-50 px-4 py-3 text-slate-900 outline-none transition focus:border-sky-500 focus:ring-2 focus:ring-sky-100" />
+                    </label>
+                    <label class="block">
+                      <span class="text-sm font-medium text-slate-700">Image alt text</span>
+                      <input name="bestTimeToVisitGuide[seasons][<%= index %>][imageAlt]" value="<%= season.imageAlt || '' %>" class="mt-2 w-full rounded-2xl border border-slate-300 bg-slate-50 px-4 py-3 text-slate-900 outline-none transition focus:border-sky-500 focus:ring-2 focus:ring-sky-100" />
+                    </label>
+                    <label class="block">
+                      <span class="text-sm font-medium text-slate-700">Accent label</span>
+                      <input name="bestTimeToVisitGuide[seasons][<%= index %>][accentLabel]" value="<%= season.accentLabel || '' %>" placeholder="Editor's Choice / Peak Bloom / Serenity" class="mt-2 w-full rounded-2xl border border-slate-300 bg-slate-50 px-4 py-3 text-slate-900 outline-none transition focus:border-sky-500 focus:ring-2 focus:ring-sky-100" />
+                    </label>
+                    <label class="block">
+                      <span class="text-sm font-medium text-slate-700">Traveler verdict heading</span>
+                      <input name="bestTimeToVisitGuide[seasons][<%= index %>][verdictLabel]" value="<%= season.verdictLabel || '' %>" placeholder="Best for Beauty" class="mt-2 w-full rounded-2xl border border-slate-300 bg-slate-50 px-4 py-3 text-slate-900 outline-none transition focus:border-sky-500 focus:ring-2 focus:ring-sky-100" />
+                    </label>
+                    <label class="block xl:col-span-2">
+                      <span class="text-sm font-medium text-slate-700">Seasonal highlights</span>
+                      <textarea rows="5" name="bestTimeToVisitGuide[seasons][<%= index %>][highlights]" class="mt-2 w-full rounded-2xl border border-slate-300 bg-slate-50 px-4 py-3 text-slate-900 outline-none transition focus:border-sky-500 focus:ring-2 focus:ring-sky-100"><%= season.highlightsValue || '' %></textarea>
+                    </label>
+                    <label class="block xl:col-span-2">
+                      <span class="text-sm font-medium text-slate-700">Traveler verdict text</span>
+                      <textarea rows="4" name="bestTimeToVisitGuide[seasons][<%= index %>][verdictText]" class="mt-2 w-full rounded-2xl border border-slate-300 bg-slate-50 px-4 py-3 text-slate-900 outline-none transition focus:border-sky-500 focus:ring-2 focus:ring-sky-100"><%= season.verdictText || '' %></textarea>
+                    </label>
+                  </div>
+                </section>
+              <% }) %>
+            </div>
+
+            <div class="space-y-6">
+              <div>
+                <h3 class="text-xl font-semibold text-slate-900">Final Recommendation Cards</h3>
+                <p class="mt-2 text-sm text-slate-500">These power the two summary cards near the bottom of the page.</p>
+              </div>
+              <div class="grid gap-6 xl:grid-cols-2">
+                <% travelerProfiles.forEach((profile, index) => { %>
+                  <section class="rounded-[1.75rem] border border-slate-200 bg-white p-6">
+                    <h4 class="text-lg font-semibold text-slate-900">Card <%= index + 1 %></h4>
+                    <div class="mt-5 grid gap-5">
+                      <label class="block">
+                        <span class="text-sm font-medium text-slate-700">Title</span>
+                        <input name="bestTimeToVisitGuide[travelerProfiles][<%= index %>][title]" value="<%= profile.title || '' %>" class="mt-2 w-full rounded-2xl border border-slate-300 bg-slate-50 px-4 py-3 text-slate-900 outline-none transition focus:border-sky-500 focus:ring-2 focus:ring-sky-100" />
+                      </label>
+                      <label class="block">
+                        <span class="text-sm font-medium text-slate-700">Recommendation</span>
+                        <input name="bestTimeToVisitGuide[travelerProfiles][<%= index %>][recommendation]" value="<%= profile.recommendation || '' %>" placeholder="Choose late November" class="mt-2 w-full rounded-2xl border border-slate-300 bg-slate-50 px-4 py-3 text-slate-900 outline-none transition focus:border-sky-500 focus:ring-2 focus:ring-sky-100" />
+                      </label>
+                      <label class="block">
+                        <span class="text-sm font-medium text-slate-700">Description</span>
+                        <textarea rows="4" name="bestTimeToVisitGuide[travelerProfiles][<%= index %>][text]" class="mt-2 w-full rounded-2xl border border-slate-300 bg-slate-50 px-4 py-3 text-slate-900 outline-none transition focus:border-sky-500 focus:ring-2 focus:ring-sky-100"><%= profile.text || '' %></textarea>
+                      </label>
+                    </div>
+                  </section>
+                <% }) %>
+              </div>
+            </div>
+
+            <div class="grid gap-6 xl:grid-cols-2">
+              <label class="block">
+                <span class="text-sm font-medium text-slate-700">CTA label</span>
+                <input name="bestTimeToVisitGuide[ctaLabel]" value="<%= guide.ctaLabel || '' %>" placeholder="Start Planning Your Trip" class="mt-2 w-full rounded-2xl border border-slate-300 bg-white px-4 py-3 text-slate-900 outline-none transition focus:border-sky-500 focus:ring-2 focus:ring-sky-100" />
+              </label>
+              <label class="block">
+                <span class="text-sm font-medium text-slate-700">CTA link</span>
+                <input name="bestTimeToVisitGuide[ctaHref]" value="<%= guide.ctaHref || '' %>" placeholder="/packages" class="mt-2 w-full rounded-2xl border border-slate-300 bg-white px-4 py-3 text-slate-900 outline-none transition focus:border-sky-500 focus:ring-2 focus:ring-sky-100" />
+              </label>
+            </div>
+          </section>
+        <% } %>
+        <% if (supportsReachGuide) { %>
+          <section class="space-y-8 rounded-[2rem] border border-slate-200 bg-slate-50 p-6 sm:p-8">
+            <div>
+              <h2 class="text-2xl font-semibold text-slate-900">How to Reach Page Builder</h2>
+              <p class="mt-2 max-w-3xl text-sm leading-7 text-slate-600">Fill this to render the stitched travel-access page. Leave it blank to keep the plain text how-to-reach page.</p>
+            </div>
+            <div class="grid gap-6 xl:grid-cols-2">
+              <label class="block">
+                <span class="text-sm font-medium text-slate-700">Hero eyebrow</span>
+                <input name="howToReachGuide[heroEyebrow]" value="<%= reachGuide.heroEyebrow || '' %>" class="mt-2 w-full rounded-2xl border border-slate-300 bg-white px-4 py-3 text-slate-900 outline-none transition focus:border-sky-500 focus:ring-2 focus:ring-sky-100" />
+              </label>
+              <label class="block">
+                <span class="text-sm font-medium text-slate-700">Hero title</span>
+                <input name="howToReachGuide[heroTitle]" value="<%= reachGuide.heroTitle || '' %>" class="mt-2 w-full rounded-2xl border border-slate-300 bg-white px-4 py-3 text-slate-900 outline-none transition focus:border-sky-500 focus:ring-2 focus:ring-sky-100" />
+              </label>
+              <label class="block xl:col-span-2">
+                <span class="text-sm font-medium text-slate-700">Hero description</span>
+                <textarea rows="4" name="howToReachGuide[heroDescription]" class="mt-2 w-full rounded-2xl border border-slate-300 bg-white px-4 py-3 text-slate-900 outline-none transition focus:border-sky-500 focus:ring-2 focus:ring-sky-100"><%= reachGuide.heroDescription || '' %></textarea>
+              </label>
+              <label class="block">
+                <span class="text-sm font-medium text-slate-700">Hero image URL</span>
+                <input name="howToReachGuide[heroImage]" value="<%= reachGuide.heroImage || '' %>" class="mt-2 w-full rounded-2xl border border-slate-300 bg-white px-4 py-3 text-slate-900 outline-none transition focus:border-sky-500 focus:ring-2 focus:ring-sky-100" />
+              </label>
+              <label class="block">
+                <span class="text-sm font-medium text-slate-700">Hero image alt text</span>
+                <input name="howToReachGuide[heroImageAlt]" value="<%= reachGuide.heroImageAlt || '' %>" class="mt-2 w-full rounded-2xl border border-slate-300 bg-white px-4 py-3 text-slate-900 outline-none transition focus:border-sky-500 focus:ring-2 focus:ring-sky-100" />
+              </label>
+              <label class="block">
+                <span class="text-sm font-medium text-slate-700">Hero card title</span>
+                <input name="howToReachGuide[heroCardTitle]" value="<%= reachGuide.heroCardTitle || '' %>" class="mt-2 w-full rounded-2xl border border-slate-300 bg-white px-4 py-3 text-slate-900 outline-none transition focus:border-sky-500 focus:ring-2 focus:ring-sky-100" />
+              </label>
+              <label class="block">
+                <span class="text-sm font-medium text-slate-700">Hero card text</span>
+                <textarea rows="3" name="howToReachGuide[heroCardText]" class="mt-2 w-full rounded-2xl border border-slate-300 bg-white px-4 py-3 text-slate-900 outline-none transition focus:border-sky-500 focus:ring-2 focus:ring-sky-100"><%= reachGuide.heroCardText || '' %></textarea>
+              </label>
+            </div>
+            <div class="space-y-6">
+              <% reachSections.forEach((section, sectionIndex) => { %>
+                <section class="rounded-[1.75rem] border border-slate-200 bg-white p-6">
+                  <h3 class="text-lg font-semibold text-slate-900">Reach Section <%= sectionIndex + 1 %></h3>
+                  <div class="mt-5 grid gap-6 xl:grid-cols-2">
+                    <label class="block">
+                      <span class="text-sm font-medium text-slate-700">Eyebrow</span>
+                      <input name="howToReachGuide[sections][<%= sectionIndex %>][eyebrow]" value="<%= section.eyebrow || '' %>" class="mt-2 w-full rounded-2xl border border-slate-300 bg-slate-50 px-4 py-3 text-slate-900 outline-none transition focus:border-sky-500 focus:ring-2 focus:ring-sky-100" />
+                    </label>
+                    <label class="block">
+                      <span class="text-sm font-medium text-slate-700">Section title</span>
+                      <input name="howToReachGuide[sections][<%= sectionIndex %>][title]" value="<%= section.title || '' %>" class="mt-2 w-full rounded-2xl border border-slate-300 bg-slate-50 px-4 py-3 text-slate-900 outline-none transition focus:border-sky-500 focus:ring-2 focus:ring-sky-100" />
+                    </label>
+                    <label class="block xl:col-span-2">
+                      <span class="text-sm font-medium text-slate-700">Description</span>
+                      <textarea rows="4" name="howToReachGuide[sections][<%= sectionIndex %>][description]" class="mt-2 w-full rounded-2xl border border-slate-300 bg-slate-50 px-4 py-3 text-slate-900 outline-none transition focus:border-sky-500 focus:ring-2 focus:ring-sky-100"><%= section.description || '' %></textarea>
+                    </label>
+                    <label class="block">
+                      <span class="text-sm font-medium text-slate-700">Image URL</span>
+                      <input name="howToReachGuide[sections][<%= sectionIndex %>][image]" value="<%= section.image || '' %>" class="mt-2 w-full rounded-2xl border border-slate-300 bg-slate-50 px-4 py-3 text-slate-900 outline-none transition focus:border-sky-500 focus:ring-2 focus:ring-sky-100" />
+                    </label>
+                    <label class="block">
+                      <span class="text-sm font-medium text-slate-700">Image alt text</span>
+                      <input name="howToReachGuide[sections][<%= sectionIndex %>][imageAlt]" value="<%= section.imageAlt || '' %>" class="mt-2 w-full rounded-2xl border border-slate-300 bg-slate-50 px-4 py-3 text-slate-900 outline-none transition focus:border-sky-500 focus:ring-2 focus:ring-sky-100" />
+                    </label>
+                    <label class="block xl:col-span-2">
+                      <span class="text-sm font-medium text-slate-700">Quote / standout text</span>
+                      <textarea rows="2" name="howToReachGuide[sections][<%= sectionIndex %>][quote]" class="mt-2 w-full rounded-2xl border border-slate-300 bg-slate-50 px-4 py-3 text-slate-900 outline-none transition focus:border-sky-500 focus:ring-2 focus:ring-sky-100"><%= section.quote || '' %></textarea>
+                    </label>
+                  </div>
+                  <div class="mt-6 space-y-4">
+                    <% section.items.forEach((item, itemIndex) => { %>
+                      <div class="grid gap-4 rounded-2xl border border-slate-200 bg-slate-50 p-4 xl:grid-cols-2">
+                        <label class="block">
+                          <span class="text-sm font-medium text-slate-700">Item name</span>
+                          <input name="howToReachGuide[sections][<%= sectionIndex %>][items][<%= itemIndex %>][name]" value="<%= item.name || '' %>" class="mt-2 w-full rounded-2xl border border-slate-300 bg-white px-4 py-3 text-slate-900 outline-none transition focus:border-sky-500 focus:ring-2 focus:ring-sky-100" />
+                        </label>
+                        <label class="block">
+                          <span class="text-sm font-medium text-slate-700">Icon</span>
+                          <input name="howToReachGuide[sections][<%= sectionIndex %>][items][<%= itemIndex %>][icon]" value="<%= item.icon || '' %>" placeholder="train / flight / local_taxi" class="mt-2 w-full rounded-2xl border border-slate-300 bg-white px-4 py-3 text-slate-900 outline-none transition focus:border-sky-500 focus:ring-2 focus:ring-sky-100" />
+                        </label>
+                        <label class="block xl:col-span-2">
+                          <span class="text-sm font-medium text-slate-700">Item description</span>
+                          <textarea rows="2" name="howToReachGuide[sections][<%= sectionIndex %>][items][<%= itemIndex %>][description]" class="mt-2 w-full rounded-2xl border border-slate-300 bg-white px-4 py-3 text-slate-900 outline-none transition focus:border-sky-500 focus:ring-2 focus:ring-sky-100"><%= item.description || '' %></textarea>
+                        </label>
+                        <label class="block xl:col-span-2">
+                          <span class="text-sm font-medium text-slate-700">Item detail / timing</span>
+                          <input name="howToReachGuide[sections][<%= sectionIndex %>][items][<%= itemIndex %>][detail]" value="<%= item.detail || '' %>" class="mt-2 w-full rounded-2xl border border-slate-300 bg-white px-4 py-3 text-slate-900 outline-none transition focus:border-sky-500 focus:ring-2 focus:ring-sky-100" />
+                        </label>
+                      </div>
+                    <% }) %>
+                  </div>
+                </section>
+              <% }) %>
+            </div>
+            <div class="grid gap-6 xl:grid-cols-2">
+              <label class="block">
+                <span class="text-sm font-medium text-slate-700">Map section title</span>
+                <input name="howToReachGuide[mapTitle]" value="<%= reachGuide.mapTitle || '' %>" class="mt-2 w-full rounded-2xl border border-slate-300 bg-white px-4 py-3 text-slate-900 outline-none transition focus:border-sky-500 focus:ring-2 focus:ring-sky-100" />
+              </label>
+              <label class="block">
+                <span class="text-sm font-medium text-slate-700">Map image URL</span>
+                <input name="howToReachGuide[mapImage]" value="<%= reachGuide.mapImage || '' %>" class="mt-2 w-full rounded-2xl border border-slate-300 bg-white px-4 py-3 text-slate-900 outline-none transition focus:border-sky-500 focus:ring-2 focus:ring-sky-100" />
+              </label>
+              <label class="block xl:col-span-2">
+                <span class="text-sm font-medium text-slate-700">Map description</span>
+                <textarea rows="3" name="howToReachGuide[mapDescription]" class="mt-2 w-full rounded-2xl border border-slate-300 bg-white px-4 py-3 text-slate-900 outline-none transition focus:border-sky-500 focus:ring-2 focus:ring-sky-100"><%= reachGuide.mapDescription || '' %></textarea>
+              </label>
+              <label class="block">
+                <span class="text-sm font-medium text-slate-700">Map image alt text</span>
+                <input name="howToReachGuide[mapImageAlt]" value="<%= reachGuide.mapImageAlt || '' %>" class="mt-2 w-full rounded-2xl border border-slate-300 bg-white px-4 py-3 text-slate-900 outline-none transition focus:border-sky-500 focus:ring-2 focus:ring-sky-100" />
+              </label>
+              <label class="block">
+                <span class="text-sm font-medium text-slate-700">Map badge one</span>
+                <input name="howToReachGuide[mapBadgeOne]" value="<%= reachGuide.mapBadgeOne || '' %>" class="mt-2 w-full rounded-2xl border border-slate-300 bg-white px-4 py-3 text-slate-900 outline-none transition focus:border-sky-500 focus:ring-2 focus:ring-sky-100" />
+              </label>
+              <label class="block">
+                <span class="text-sm font-medium text-slate-700">Map badge two</span>
+                <input name="howToReachGuide[mapBadgeTwo]" value="<%= reachGuide.mapBadgeTwo || '' %>" class="mt-2 w-full rounded-2xl border border-slate-300 bg-white px-4 py-3 text-slate-900 outline-none transition focus:border-sky-500 focus:ring-2 focus:ring-sky-100" />
+              </label>
+            </div>
+            <div class="grid gap-6 xl:grid-cols-2">
+              <label class="block">
+                <span class="text-sm font-medium text-slate-700">Connectivity tip title</span>
+                <input name="howToReachGuide[connectivityTip][title]" value="<%= reachGuide.connectivityTip?.title || '' %>" class="mt-2 w-full rounded-2xl border border-slate-300 bg-white px-4 py-3 text-slate-900 outline-none transition focus:border-sky-500 focus:ring-2 focus:ring-sky-100" />
+              </label>
+              <label class="block">
+                <span class="text-sm font-medium text-slate-700">Connectivity tip button label</span>
+                <input name="howToReachGuide[connectivityTip][buttonLabel]" value="<%= reachGuide.connectivityTip?.buttonLabel || '' %>" class="mt-2 w-full rounded-2xl border border-slate-300 bg-white px-4 py-3 text-slate-900 outline-none transition focus:border-sky-500 focus:ring-2 focus:ring-sky-100" />
+              </label>
+              <label class="block xl:col-span-2">
+                <span class="text-sm font-medium text-slate-700">Connectivity tip description</span>
+                <textarea rows="3" name="howToReachGuide[connectivityTip][description]" class="mt-2 w-full rounded-2xl border border-slate-300 bg-white px-4 py-3 text-slate-900 outline-none transition focus:border-sky-500 focus:ring-2 focus:ring-sky-100"><%= reachGuide.connectivityTip?.description || '' %></textarea>
+              </label>
+              <label class="block">
+                <span class="text-sm font-medium text-slate-700">Final mile title</span>
+                <input name="howToReachGuide[finalMile][title]" value="<%= reachGuide.finalMile?.title || '' %>" class="mt-2 w-full rounded-2xl border border-slate-300 bg-white px-4 py-3 text-slate-900 outline-none transition focus:border-sky-500 focus:ring-2 focus:ring-sky-100" />
+              </label>
+              <label class="block xl:col-span-2">
+                <span class="text-sm font-medium text-slate-700">Final mile description</span>
+                <textarea rows="3" name="howToReachGuide[finalMile][description]" class="mt-2 w-full rounded-2xl border border-slate-300 bg-white px-4 py-3 text-slate-900 outline-none transition focus:border-sky-500 focus:ring-2 focus:ring-sky-100"><%= reachGuide.finalMile?.description || '' %></textarea>
+              </label>
+            </div>
+          </section>
+        <% } %>
+        <% if (entity === 'countries' || entity === 'states' || entity === 'cities') { %>
           <label class="block">
-            <span class="text-sm font-medium text-slate-700">Things to do</span>
-            <textarea rows="4" name="thingsToDo" class="mt-2 w-full rounded-2xl border border-slate-300 bg-slate-50 px-4 py-3 text-slate-900 outline-none transition focus:border-sky-500 focus:ring-2 focus:ring-sky-100"><%= record.thingsToDo || '' %></textarea>
+            <span class="text-sm font-medium text-slate-700">Hotels</span>
+            <textarea rows="3" name="hotels" class="mt-2 w-full rounded-2xl border border-slate-300 bg-slate-50 px-4 py-3 text-slate-900 outline-none transition focus:border-sky-500 focus:ring-2 focus:ring-sky-100"><%= record.hotels || '' %></textarea>
           </label>
-          <label class="block">
-            <span class="text-sm font-medium text-slate-700">Places to visit</span>
-            <textarea rows="4" name="placesToVisit" class="mt-2 w-full rounded-2xl border border-slate-300 bg-slate-50 px-4 py-3 text-slate-900 outline-none transition focus:border-sky-500 focus:ring-2 focus:ring-sky-100"><%= record.placesToVisit || '' %></textarea>
-          </label>
-        </div>
-        <div class="grid gap-6 xl:grid-cols-2">
-          <label class="block">
-            <span class="text-sm font-medium text-slate-700">Best time to visit</span>
-            <textarea rows="3" name="bestTimeToVisit" class="mt-2 w-full rounded-2xl border border-slate-300 bg-slate-50 px-4 py-3 text-slate-900 outline-none transition focus:border-sky-500 focus:ring-2 focus:ring-sky-100"><%= record.bestTimeToVisit || '' %></textarea>
-          </label>
-          <label class="block">
-            <span class="text-sm font-medium text-slate-700">How to reach</span>
-            <textarea rows="3" name="howToReach" class="mt-2 w-full rounded-2xl border border-slate-300 bg-slate-50 px-4 py-3 text-slate-900 outline-none transition focus:border-sky-500 focus:ring-2 focus:ring-sky-100"><%= record.howToReach || '' %></textarea>
-          </label>
-        </div>
-        <label class="block">
-          <span class="text-sm font-medium text-slate-700">Hotels</span>
-          <textarea rows="3" name="hotels" class="mt-2 w-full rounded-2xl border border-slate-300 bg-slate-50 px-4 py-3 text-slate-900 outline-none transition focus:border-sky-500 focus:ring-2 focus:ring-sky-100"><%= record.hotels || '' %></textarea>
-        </label>
+        <% } %>
+        <% if (supportsHotelGuide) { %>
+          <section class="space-y-8 rounded-[2rem] border border-slate-200 bg-slate-50 p-6 sm:p-8">
+            <div>
+              <h2 class="text-2xl font-semibold text-slate-900">Hotels Page Builder</h2>
+              <p class="mt-2 max-w-3xl text-sm leading-7 text-slate-600">Fill this to render the stitched hotels collection page for this destination. The plain hotels textarea still works as fallback text.</p>
+            </div>
+            <div class="grid gap-6 xl:grid-cols-2">
+              <label class="block">
+                <span class="text-sm font-medium text-slate-700">Hero eyebrow</span>
+                <input name="hotelGuide[heroEyebrow]" value="<%= hotelGuide.heroEyebrow || '' %>" class="mt-2 w-full rounded-2xl border border-slate-300 bg-white px-4 py-3 text-slate-900 outline-none transition focus:border-sky-500 focus:ring-2 focus:ring-sky-100" />
+              </label>
+              <label class="block">
+                <span class="text-sm font-medium text-slate-700">Hero title</span>
+                <input name="hotelGuide[heroTitle]" value="<%= hotelGuide.heroTitle || '' %>" class="mt-2 w-full rounded-2xl border border-slate-300 bg-white px-4 py-3 text-slate-900 outline-none transition focus:border-sky-500 focus:ring-2 focus:ring-sky-100" />
+              </label>
+              <label class="block xl:col-span-2">
+                <span class="text-sm font-medium text-slate-700">Hero description</span>
+                <textarea rows="4" name="hotelGuide[heroDescription]" class="mt-2 w-full rounded-2xl border border-slate-300 bg-white px-4 py-3 text-slate-900 outline-none transition focus:border-sky-500 focus:ring-2 focus:ring-sky-100"><%= hotelGuide.heroDescription || '' %></textarea>
+              </label>
+              <label class="block">
+                <span class="text-sm font-medium text-slate-700">Hero image URL</span>
+                <input name="hotelGuide[heroImage]" value="<%= hotelGuide.heroImage || '' %>" class="mt-2 w-full rounded-2xl border border-slate-300 bg-white px-4 py-3 text-slate-900 outline-none transition focus:border-sky-500 focus:ring-2 focus:ring-sky-100" />
+              </label>
+              <label class="block">
+                <span class="text-sm font-medium text-slate-700">Hero image alt text</span>
+                <input name="hotelGuide[heroImageAlt]" value="<%= hotelGuide.heroImageAlt || '' %>" class="mt-2 w-full rounded-2xl border border-slate-300 bg-white px-4 py-3 text-slate-900 outline-none transition focus:border-sky-500 focus:ring-2 focus:ring-sky-100" />
+              </label>
+              <label class="block">
+                <span class="text-sm font-medium text-slate-700">Filter label 1</span>
+                <input name="hotelGuide[filterPrimary]" value="<%= hotelGuide.filterPrimary || '' %>" placeholder="All Neighborhoods" class="mt-2 w-full rounded-2xl border border-slate-300 bg-white px-4 py-3 text-slate-900 outline-none transition focus:border-sky-500 focus:ring-2 focus:ring-sky-100" />
+              </label>
+              <label class="block">
+                <span class="text-sm font-medium text-slate-700">Filter label 2</span>
+                <input name="hotelGuide[filterSecondary]" value="<%= hotelGuide.filterSecondary || '' %>" placeholder="Property Type" class="mt-2 w-full rounded-2xl border border-slate-300 bg-white px-4 py-3 text-slate-900 outline-none transition focus:border-sky-500 focus:ring-2 focus:ring-sky-100" />
+              </label>
+              <label class="block">
+                <span class="text-sm font-medium text-slate-700">Filter label 3</span>
+                <input name="hotelGuide[filterTertiary]" value="<%= hotelGuide.filterTertiary || '' %>" placeholder="Price Range" class="mt-2 w-full rounded-2xl border border-slate-300 bg-white px-4 py-3 text-slate-900 outline-none transition focus:border-sky-500 focus:ring-2 focus:ring-sky-100" />
+              </label>
+              <label class="block">
+                <span class="text-sm font-medium text-slate-700">Tag 1</span>
+                <input name="hotelGuide[tagOne]" value="<%= hotelGuide.tagOne || '' %>" class="mt-2 w-full rounded-2xl border border-slate-300 bg-white px-4 py-3 text-slate-900 outline-none transition focus:border-sky-500 focus:ring-2 focus:ring-sky-100" />
+              </label>
+              <label class="block">
+                <span class="text-sm font-medium text-slate-700">Tag 2</span>
+                <input name="hotelGuide[tagTwo]" value="<%= hotelGuide.tagTwo || '' %>" class="mt-2 w-full rounded-2xl border border-slate-300 bg-white px-4 py-3 text-slate-900 outline-none transition focus:border-sky-500 focus:ring-2 focus:ring-sky-100" />
+              </label>
+              <label class="block">
+                <span class="text-sm font-medium text-slate-700">Tag 3</span>
+                <input name="hotelGuide[tagThree]" value="<%= hotelGuide.tagThree || '' %>" class="mt-2 w-full rounded-2xl border border-slate-300 bg-white px-4 py-3 text-slate-900 outline-none transition focus:border-sky-500 focus:ring-2 focus:ring-sky-100" />
+              </label>
+            </div>
+            <div class="space-y-6">
+              <% hotelCards.forEach((hotel, hotelIndex) => { %>
+                <section class="rounded-[1.75rem] border border-slate-200 bg-white p-6">
+                  <h3 class="text-lg font-semibold text-slate-900">Hotel Card <%= hotelIndex + 1 %></h3>
+                  <div class="mt-5 grid gap-6 xl:grid-cols-2">
+                    <label class="block">
+                      <span class="text-sm font-medium text-slate-700">Area / neighborhood</span>
+                      <input name="hotelGuide[hotels][<%= hotelIndex %>][area]" value="<%= hotel.area || '' %>" class="mt-2 w-full rounded-2xl border border-slate-300 bg-slate-50 px-4 py-3 text-slate-900 outline-none transition focus:border-sky-500 focus:ring-2 focus:ring-sky-100" />
+                    </label>
+                    <label class="block">
+                      <span class="text-sm font-medium text-slate-700">Hotel name</span>
+                      <input name="hotelGuide[hotels][<%= hotelIndex %>][name]" value="<%= hotel.name || '' %>" class="mt-2 w-full rounded-2xl border border-slate-300 bg-slate-50 px-4 py-3 text-slate-900 outline-none transition focus:border-sky-500 focus:ring-2 focus:ring-sky-100" />
+                    </label>
+                    <label class="block">
+                      <span class="text-sm font-medium text-slate-700">Image URL</span>
+                      <input name="hotelGuide[hotels][<%= hotelIndex %>][image]" value="<%= hotel.image || '' %>" class="mt-2 w-full rounded-2xl border border-slate-300 bg-slate-50 px-4 py-3 text-slate-900 outline-none transition focus:border-sky-500 focus:ring-2 focus:ring-sky-100" />
+                    </label>
+                    <label class="block">
+                      <span class="text-sm font-medium text-slate-700">Image alt text</span>
+                      <input name="hotelGuide[hotels][<%= hotelIndex %>][imageAlt]" value="<%= hotel.imageAlt || '' %>" class="mt-2 w-full rounded-2xl border border-slate-300 bg-slate-50 px-4 py-3 text-slate-900 outline-none transition focus:border-sky-500 focus:ring-2 focus:ring-sky-100" />
+                    </label>
+                    <label class="block">
+                      <span class="text-sm font-medium text-slate-700">Rating</span>
+                      <input name="hotelGuide[hotels][<%= hotelIndex %>][rating]" value="<%= hotel.rating || '' %>" placeholder="4.9" class="mt-2 w-full rounded-2xl border border-slate-300 bg-slate-50 px-4 py-3 text-slate-900 outline-none transition focus:border-sky-500 focus:ring-2 focus:ring-sky-100" />
+                    </label>
+                    <label class="block">
+                      <span class="text-sm font-medium text-slate-700">Starting price</span>
+                      <input name="hotelGuide[hotels][<%= hotelIndex %>][price]" value="<%= hotel.price || '' %>" placeholder="$890 / night" class="mt-2 w-full rounded-2xl border border-slate-300 bg-slate-50 px-4 py-3 text-slate-900 outline-none transition focus:border-sky-500 focus:ring-2 focus:ring-sky-100" />
+                    </label>
+                    <label class="block xl:col-span-2">
+                      <span class="text-sm font-medium text-slate-700">Features</span>
+                      <textarea rows="4" name="hotelGuide[hotels][<%= hotelIndex %>][features]" class="mt-2 w-full rounded-2xl border border-slate-300 bg-slate-50 px-4 py-3 text-slate-900 outline-none transition focus:border-sky-500 focus:ring-2 focus:ring-sky-100"><%= hotel.featuresValue || '' %></textarea>
+                    </label>
+                  </div>
+                </section>
+              <% }) %>
+            </div>
+            <div class="grid gap-6 xl:grid-cols-2">
+              <label class="block">
+                <span class="text-sm font-medium text-slate-700">Newsletter section title</span>
+                <input name="hotelGuide[newsletterTitle]" value="<%= hotelGuide.newsletterTitle || '' %>" class="mt-2 w-full rounded-2xl border border-slate-300 bg-white px-4 py-3 text-slate-900 outline-none transition focus:border-sky-500 focus:ring-2 focus:ring-sky-100" />
+              </label>
+              <label class="block">
+                <span class="text-sm font-medium text-slate-700">Newsletter section text</span>
+                <textarea rows="3" name="hotelGuide[newsletterText]" class="mt-2 w-full rounded-2xl border border-slate-300 bg-white px-4 py-3 text-slate-900 outline-none transition focus:border-sky-500 focus:ring-2 focus:ring-sky-100"><%= hotelGuide.newsletterText || '' %></textarea>
+              </label>
+            </div>
+          </section>
+        <% } %>
         <div class="grid gap-6 xl:grid-cols-2">
           <label class="block">
             <span class="text-sm font-medium text-slate-700">SEO title</span>
@@ -185,5 +974,89 @@
         <button class="w-full rounded-2xl bg-sky-600 px-6 py-4 text-base font-semibold text-white transition hover:bg-sky-700" type="submit"><%= record && record._id ? 'Update' : 'Create' %> <%= entityLabel %></button>
       </form>
     </div>
+    <script src="https://cdn.jsdelivr.net/npm/tom-select@2.4.3/dist/js/tom-select.complete.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/quill@1.3.7/dist/quill.min.js"></script>
+    <script>
+      (() => {
+        const buildUrl = (select, query) => {
+          const url = new URL(`/admin/api/options/${select.dataset.remoteEntity}`, window.location.origin);
+          if (query) url.searchParams.set('q', query);
+          const parentCountry = select.dataset.parentCountry && document.querySelector(`[name="${select.dataset.parentCountry}"]`)?.value;
+          const parentState = select.dataset.parentState && document.querySelector(`[name="${select.dataset.parentState}"]`)?.value;
+          if (parentCountry) url.searchParams.set('countryId', parentCountry);
+          if (parentState) url.searchParams.set('stateId', parentState);
+          return url.toString();
+        };
+
+        const instances = [];
+
+        document.querySelectorAll('.js-remote-select').forEach((select) => {
+          const instance = new TomSelect(select, {
+            valueField: 'value',
+            labelField: 'text',
+            searchField: ['text', 'meta'],
+            plugins: select.multiple ? ['remove_button'] : [],
+            create: false,
+            maxOptions: 15,
+            preload: 'focus',
+            placeholder: select.dataset.placeholder || 'Search',
+            load: function(query, callback) {
+              fetch(buildUrl(select, query))
+                .then((res) => res.json())
+                .then((data) => callback(data.items || []))
+                .catch(() => callback());
+            }
+          });
+          instances.push({ select, instance });
+        });
+
+        document.querySelectorAll('.js-tag-select').forEach((select) => {
+          new TomSelect(select, {
+            plugins: ['remove_button'],
+            persist: false,
+            create: true,
+            placeholder: select.dataset.placeholder || 'Add tags'
+          });
+        });
+
+        const resetDependent = (name) => {
+          const target = instances.find((entry) => entry.select.name === name);
+          if (!target) return;
+          target.instance.clear(true);
+          target.instance.clearOptions();
+        };
+
+        const country = document.querySelector('[name="country"]');
+        const state = document.querySelector('[name="state"]');
+        if (country) country.addEventListener('change', () => {
+          resetDependent('state');
+          resetDependent('city');
+        });
+        if (state) state.addEventListener('change', () => {
+          resetDependent('city');
+        });
+
+        const editorRoot = document.getElementById('blog-editor');
+        const contentInput = document.getElementById('blog-content-input');
+        if (editorRoot && contentInput) {
+          const quill = new Quill(editorRoot, {
+            theme: 'snow',
+            modules: {
+              toolbar: [
+                [{ header: [2, 3, false] }],
+                ['bold', 'italic', 'underline', 'blockquote'],
+                [{ list: 'ordered' }, { list: 'bullet' }],
+                ['link'],
+                ['clean']
+              ]
+            }
+          });
+          quill.root.innerHTML = contentInput.value || '';
+          quill.on('text-change', () => {
+            contentInput.value = quill.root.innerHTML;
+          });
+        }
+      })();
+    </script>
   </body>
 </html>
