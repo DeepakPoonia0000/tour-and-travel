@@ -60,6 +60,12 @@ router.get('/', async (req, res) => {
     Package.find().sort(sortQuery).limit(6).lean()
   ]);
 
+  const featuredCountry = countries[0] || null;
+  const featuredCountryStates = featuredCountry ? states.filter((state) => String(state.country) === String(featuredCountry._id)) : [];
+  const featuredCountryAttractions = featuredCountry ? attractions.filter((item) => String(item.country) === String(featuredCountry._id)) : [];
+  const topState = featuredCountryStates[0] || null;
+  const topAttraction = featuredCountryAttractions[0] || null;
+
   res.render('index', {
     countries,
     states,
@@ -67,6 +73,9 @@ router.get('/', async (req, res) => {
     attractions,
     activities,
     packages,
+    featuredCountry,
+    topState,
+    topAttraction,
     ...buildMeta({
       title: 'Tour & Travel | Curated Destinations',
       description: 'Discover countries, states, cities, attractions and activities with admin-managed content and priority ordering.',
